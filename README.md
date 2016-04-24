@@ -1,5 +1,7 @@
 # kantan.csv
 
+[![Join the chat at https://gitter.im/nrinaudo/kantan.regex](https://badges.gitter.im/nrinaudo/kantan.regex.svg)](https://gitter.im/nrinaudo/kantan.regex?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/nrinaudo/kantan.regex.svg)](https://travis-ci.org/nrinaudo/kantan.regex)
 [![codecov.io](http://codecov.io/github/nrinaudo/kantan.regex/coverage.svg?branch=master)](http://codecov.io/github/nrinaudo/kantan.regex)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.nrinaudo/kantan.regex_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.nrinaudo/kantan.regex_2.11)
