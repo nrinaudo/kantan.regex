@@ -1,0 +1,7 @@
+package kantan.regex
+
+trait TupleDecoders {
+  [#implicit def tuple1[[#I1: GroupDecoder#]]: MatchDecoder[Tuple1[[#I1#]]] = MatchDecoder.decoder([#1#])(Tuple1.apply[[#I1#]])#
+
+  ]
+}
