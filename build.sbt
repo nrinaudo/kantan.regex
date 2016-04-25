@@ -36,6 +36,11 @@ lazy val compilerOptions = Seq("-deprecation",
 lazy val baseSettings = Seq(
   scalacOptions ++= compilerOptions,
   headers := Map("scala" -> Apache2_0("2016", "Nicolas Rinaudo")),
+  resolvers ++= Seq(
+    Resolver.sonatypeRepo("releases"),
+    Resolver.sonatypeRepo("snapshots")
+  ),
+  coverageExcludedPackages := "kantan\\.regex\\.laws\\..*",
   incOptions  := incOptions.value.withNameHashing(true)
 )
 
