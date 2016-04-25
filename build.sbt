@@ -4,9 +4,11 @@ import UnidocKeys._
 import de.heikoseeberger.sbtheader.license.Apache2_0
 
 val kantanCodecsVersion  = "0.1.3"
-val disciplineVersion    = "0.4"
-val scalaCheckVersion    = "1.12.5"
+val catsVersion          = "0.4.1"
 val scalatestVersion     = "3.0.0-M9"
+val scalaCheckVersion    = "1.12.5"
+val scalazVersion        = "7.2.2"
+val disciplineVersion    = "0.4"
 
 lazy val buildSettings = Seq(
   organization       := "com.nrinaudo",
@@ -62,7 +64,6 @@ lazy val publishSettings = Seq(
   </developers>
 )
 
-
 lazy val allSettings = buildSettings ++ baseSettings ++ publishSettings
 
 lazy val root = Project(id = "kantan-regex", base = file("."))
@@ -88,6 +89,72 @@ lazy val core = project
   .settings(allSettings: _*)
   .enablePlugins(spray.boilerplate.BoilerplatePlugin)
   .settings(libraryDependencies += "com.nrinaudo" %% "kantan.codecs" % kantanCodecsVersion)
+  .enablePlugins(AutomateHeaderPlugin)
+
+
+lazy val jodaTime = Project(id = "joda-time", base = file("joda-time"))
+  .settings(
+    moduleName := "kantan.regex-joda-time",
+    name       := "joda-time"
+  )
+  .settings(libraryDependencies ++= Seq(
+    "com.nrinaudo"  %% "kantan.codecs-joda-time"      % kantanCodecsVersion,
+    "com.nrinaudo"  %% "kantan.codecs-joda-time-laws" % kantanCodecsVersion % "test",
+    "org.scalatest" %% "scalatest"                    % scalatestVersion    % "test"
+  ))
+  .settings(allSettings: _*)
+  .dependsOn(core, laws % "test")
+  .enablePlugins(AutomateHeaderPlugin)
+
+lazy val cats = project
+  .settings(
+    moduleName := "kantan.regex-cats",
+    name       := "cats"
+  )
+  .settings(libraryDependencies ++= Seq(
+    "com.nrinaudo"  %% "kantan.codecs-cats"      % kantanCodecsVersion,
+    "com.nrinaudo"  %% "kantan.codecs-cats-laws" % kantanCodecsVersion  % "test",
+    "org.scalatest" %% "scalatest"               % scalatestVersion     % "test"
+  ))
+  .settings(allSettings: _*)
+  .dependsOn(core, laws % "test")
+  .enablePlugins(AutomateHeaderPlugin)
+
+lazy val scalaz = project
+  .settings(
+    moduleName := "kantan.regex-scalaz",
+    name       := "scalaz"
+  )
+  .settings(allSettings: _*)
+  .settings(libraryDependencies ++= Seq(
+    "com.nrinaudo"  %% "kantan.codecs-scalaz"      % kantanCodecsVersion,
+    "com.nrinaudo"  %% "kantan.codecs-scalaz-laws" % kantanCodecsVersion % "test",
+    "org.scalatest" %% "scalatest"                 % scalatestVersion    % "test"
+  ))
+  .dependsOn(core, laws % "test")
+  .enablePlugins(AutomateHeaderPlugin)
+
+lazy val laws = project
+  .settings(
+    moduleName := "kantan.regex-laws",
+    name       := "laws"
+  )
+  .settings(libraryDependencies ++= Seq(
+    "com.nrinaudo"   %% "kantan.codecs-laws" % kantanCodecsVersion,
+    "org.scalacheck" %% "scalacheck" % scalaCheckVersion,
+    "org.typelevel"  %% "discipline" % disciplineVersion
+  ))
+  .enablePlugins(spray.boilerplate.BoilerplatePlugin)
+  .settings(allSettings: _*)
+  .dependsOn(core)
+  .enablePlugins(AutomateHeaderPlugin)
+
+lazy val tests = project
+  .enablePlugins(spray.boilerplate.BoilerplatePlugin)
+  .settings(allSettings: _*)
+  .settings(noPublishSettings: _*)
+  .settings(libraryDependencies += "org.scalatest" %% "scalatest" % scalatestVersion % "test")
+  .dependsOn(core, cats, laws % "test")
   .enablePlugins(AutomateHeaderPlugin)
 
 lazy val docs = project
