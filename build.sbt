@@ -70,7 +70,7 @@ lazy val root = Project(id = "kantan-regex", base = file("."))
   .settings(moduleName := "root")
   .settings(allSettings)
   .settings(noPublishSettings)
-  .aggregate(core, docs)
+  .aggregate(core, docs, laws, tests, cats, scalaz, jodaTime)
   .dependsOn(core)
   .settings(
     initialCommands in console :=
