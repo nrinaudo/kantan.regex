@@ -16,13 +16,16 @@
 
 package kantan.regex.laws.discipline
 
+import java.util.regex.Pattern
+import kantan.codecs.laws.{IllegalString, LegalString}
 import kantan.regex._
 import kantan.regex.DecodeError.{NoSuchGroupId, NoSuchGroupName}
+import kantan.regex.laws._
 import org.scalacheck.Arbitrary
 import org.scalacheck.Arbitrary.{arbitrary => arb}
 import org.scalacheck.Gen._
 
-object arbitrary {
+object arbitrary extends kantan.codecs.laws.discipline.ArbitraryInstances {
   // - Arbitrary errors ------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   implicit val arbCompileError: Arbitrary[CompileError] =
@@ -36,4 +39,21 @@ object arbitrary {
   implicit val arbRegexError: Arbitrary[RegexError] =
     Arbitrary(oneOf(arb[DecodeError], arb[CompileError]))
 
+
+
+  // - Arbitrary matches -----------------------------------------------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+  private def toMatch(str: String): Match = {
+    val matcher = Pattern.compile(".*").matcher(str)
+    matcher.find()
+    new Match(matcher)
+  }
+
+  implicit def arbLegalMatch[A](implicit la: Arbitrary[LegalString[A]]): Arbitrary[LegalMatch[A]] = Arbitrary {
+    la.arbitrary.map(_.mapEncoded(toMatch))
+  }
+
+  implicit def arbIlllegalMatch[A](implicit ia: Arbitrary[IllegalString[A]]): Arbitrary[IllegalMatch[A]] = Arbitrary {
+    ia.arbitrary.map(_.mapEncoded(toMatch))
+  }
 }

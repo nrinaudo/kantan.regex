@@ -17,11 +17,13 @@
 package kantan.regex
 
 import java.net.URI
-import kantan.regex.laws.discipline.GroupDecoderTests
+import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
+import kantan.regex.laws.discipline.arbitrary._
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
 class URIDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
   checkAll("GroupDecoder[URI]", GroupDecoderTests[URI].decoder[Int, Int])
+  checkAll("MatchDecoder[URI]", MatchDecoderTests[URI].decoder[Int, Int])
 }

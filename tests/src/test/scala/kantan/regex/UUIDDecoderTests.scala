@@ -17,7 +17,8 @@
 package kantan.regex
 
 import java.util.UUID
-import kantan.regex.laws.discipline.GroupDecoderTests
+import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
+import kantan.regex.laws.discipline.arbitrary._
 import org.scalacheck.{Arbitrary, Gen}
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
@@ -27,4 +28,5 @@ class UUIDDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with 
   implicit val arbUUID = Arbitrary(Gen.uuid)
 
   checkAll("GroupDecoder[UUID]", GroupDecoderTests[UUID].decoder[Int, Int])
+  checkAll("MatchDecoder[UUID]", MatchDecoderTests[UUID].decoder[Int, Int])
 }

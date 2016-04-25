@@ -16,11 +16,13 @@
 
 package kantan.regex
 
-import kantan.regex.laws.discipline.GroupDecoderTests
+import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
+import kantan.regex.laws.discipline.arbitrary._
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
 class ShortDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
   checkAll("GroupDecoder[Short]", GroupDecoderTests[Short].decoder[Int, Int])
+  checkAll("MatchDecoder[Short]", MatchDecoderTests[Short].decoder[Int, Int])
 }

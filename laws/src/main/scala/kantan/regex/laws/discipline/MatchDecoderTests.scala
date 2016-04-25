@@ -16,13 +16,13 @@
 
 package kantan.regex.laws.discipline
 
-import kantan.codecs.laws._
 import kantan.codecs.laws.discipline.DecoderTests
 import kantan.regex._
 import kantan.regex.laws._
+import kantan.regex.laws.discipline.arbitrary._
 import org.scalacheck.Arbitrary
 
 object MatchDecoderTests {
-  def apply[A](implicit la: MatchDecoderLaws[A], al: Arbitrary[LegalString[A]]): MatchDecoderTests[A] =
+  def apply[A](implicit la: MatchDecoderLaws[A], al: Arbitrary[LegalMatch[A]]): MatchDecoderTests[A] =
       DecoderTests[Match, A, DecodeError, codecs.type]
 }
