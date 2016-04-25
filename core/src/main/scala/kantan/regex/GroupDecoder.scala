@@ -16,17 +16,9 @@
 
 package kantan.regex
 
-import kantan.codecs.Decoder
-
-object MatchDecoder extends GeneratedMatchDecoders {
-  def apply[A](implicit da: MatchDecoder[A]): MatchDecoder[A] = da
-
-  def apply[A](f: Match ⇒ DecodeResult[A]): MatchDecoder[A] =
-    Decoder[Match, A, DecodeError, codecs.type](f)
-
-  def fromGroup[A](index: Int)(implicit da: GroupDecoder[A]): MatchDecoder[A] =
-    MatchDecoder(_.decode(index))
-
-  def fromGroup[A](name: String)(implicit da: GroupDecoder[A]): MatchDecoder[A] =
-    MatchDecoder(_.decode(name))
+object GroupDecoder {
+  def apply[A](implicit da: GroupDecoder[A]): GroupDecoder[A] = da
+  def apply[A](f: String ⇒ DecodeResult[A]): GroupDecoder[A] = new GroupDecoder[A] {
+    override def decode(e: String) = f(e)
+  }
 }

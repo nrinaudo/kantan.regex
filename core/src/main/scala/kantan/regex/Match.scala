@@ -22,13 +22,15 @@ import kantan.codecs.Result
 class Match private[regex] (private val matcher: Matcher) {
   def length: Int = matcher.groupCount()
 
-  def decode[A](index: Int)(implicit da: GroupDecoder[A]): DecodeResult[A] =
-    if(index < 0 || index > length) DecodeResult.noSuchGroupId(index)
-    else                            da.decode(matcher.group(index))
+  private def decodeValue[A](value: String)(implicit da: GroupDecoder[A]): DecodeResult[A] =
+    if(value == null) da.decode("")
+    else              da.decode(value)
 
-  def decode[A](name: String)(implicit da: GroupDecoder[A]): DecodeResult[A] =
-    Result.nonFatalOr(DecodeError.NoSuchGroupName(name))(matcher.group(name)).flatMap { v ⇒
-      if(v == null) DecodeResult.noSuchGroupName(name)
-      else          da.decode(v)
-    }
+  def decode[A: GroupDecoder](index: Int): DecodeResult[A] =
+    if(index < 0 || index > length) DecodeResult.noSuchGroupId(index)
+    else                            decodeValue(matcher.group(index))
+
+
+  def decode[A: GroupDecoder](name: String): DecodeResult[A] =
+    Result.nonFatalOr(DecodeError.NoSuchGroupName(name))(matcher.group(name)).flatMap(v ⇒ decodeValue(v))
 }
