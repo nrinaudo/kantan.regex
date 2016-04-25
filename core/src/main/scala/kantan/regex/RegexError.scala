@@ -16,8 +16,6 @@
 
 package kantan.regex
 
-import kantan.regex.DecodeError.TypeError
-
 sealed abstract class RegexError
 
 sealed abstract class DecodeError extends RegexError
@@ -26,7 +24,7 @@ final case class CompileError(cause: Throwable) extends RegexError {
   override def toString: String = s"CompileError(${cause.getMessage})"
 
   override def equals(obj: Any) = obj match {
-    case TypeError(cause2) ⇒ cause.getClass == cause2.getClass
+    case CompileError(cause2) ⇒ cause.getClass == cause2.getClass
     case _                 ⇒ false
   }
 
