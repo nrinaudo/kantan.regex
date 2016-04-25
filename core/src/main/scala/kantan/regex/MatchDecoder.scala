@@ -24,11 +24,9 @@ object MatchDecoder extends GeneratedMatchDecoders {
   def apply[A](f: Match ⇒ DecodeResult[A]): MatchDecoder[A] =
     Decoder[Match, A, DecodeError, codecs.type](f)
 
-  def fromGroup[A](index: Int)(implicit da: GroupDecoder[A]): MatchDecoder[A] = MatchDecoder { m ⇒
-    m.group(index).flatMap(da.decode)
-  }
+  def fromGroup[A](index: Int)(implicit da: GroupDecoder[A]): MatchDecoder[A] =
+    MatchDecoder(_.decode(0))
 
-  def fromGroup[A](name: String)(implicit da: GroupDecoder[A]): MatchDecoder[A] = MatchDecoder { m ⇒
-    m.group(name).flatMap(da.decode)
-  }
+  def fromGroup[A](name: String)(implicit da: GroupDecoder[A]): MatchDecoder[A] =
+    MatchDecoder(_.decode(name))
 }

@@ -3,17 +3,19 @@ package kantan.regex
 trait GeneratedMatchDecoders {
   [#def decoder[[#A1#], O]([#i1: Int#])(f: ([#A1#]) ⇒ O)(implicit [#da1: GroupDecoder[A1]#]): MatchDecoder[O] = MatchDecoder { m ⇒
     for {
-      [#a1 ← m.group(i1).flatMap(da1.decode)#
+      [#a1 ← m.decode[A1](i1)#
       ]
     } yield f([#a1#])
   }
 
   def decoder[[#A1#], O]([#n1: String#])(f: ([#A1#]) ⇒ O)(implicit [#da1: GroupDecoder[A1]#]): MatchDecoder[O] = MatchDecoder { m ⇒
     for {
-      [#a1 ← m.group(n1).flatMap(da1.decode)#
+      [#a1 ← m.decode[A1](n1)#
       ]
     } yield f([#a1#])
   }#
 
   ]
+
+  // TODO: helpers for tuples
 }

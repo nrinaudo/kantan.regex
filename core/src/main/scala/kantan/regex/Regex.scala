@@ -36,6 +36,7 @@ object Regex {
 
 private class MatchIterator(val matcher: Matcher) extends Iterator[Match] {
   var nextSeen = false
+  val m = new Match(matcher)
 
   override def hasNext = {
     if(!nextSeen) nextSeen = matcher.find()
@@ -44,6 +45,6 @@ private class MatchIterator(val matcher: Matcher) extends Iterator[Match] {
   override def next(): Match = {
     if(!hasNext) throw new NoSuchElementException
     nextSeen = false
-    new Match(matcher)
+    m
   }
 }

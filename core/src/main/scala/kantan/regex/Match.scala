@@ -19,11 +19,16 @@ package kantan.regex
 import java.util.regex.Matcher
 import kantan.codecs.Result
 
-class Match(matcher: Matcher) {
+class Match private[regex] (private val matcher: Matcher) {
   def length: Int = matcher.groupCount()
-  def group(index: Int): DecodeResult[String] =
-    Result.nonFatalOr(DecodeError.NoSuchGroupId(index))(matcher.group(index))
 
-  def group(name: String): DecodeResult[String] =
-    Result.nonFatalOr(DecodeError.NoSuchGroupName(name))(matcher.group(name))
+  def decode[A](index: Int)(implicit da: GroupDecoder[A]): DecodeResult[A] =
+    if(index < 0 || index > length) DecodeResult.noSuchGroupId(index)
+    else                            da.decode(matcher.group(index))
+
+  def decode[A](name: String)(implicit da: GroupDecoder[A]): DecodeResult[A] =
+    Result.nonFatalOr(DecodeError.NoSuchGroupName(name))(matcher.group(name)).flatMap { v ⇒
+      if(v == null) DecodeResult.noSuchGroupName(name)
+      else          da.decode(v)
+    }
 }

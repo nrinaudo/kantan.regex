@@ -21,4 +21,6 @@ import kantan.codecs.Result
 object DecodeResult {
   def apply[A](implicit da: DecodeResult[A]): DecodeResult[A] = da
   def success[A](a: A): DecodeResult[A] = Result.success(a)
+  def noSuchGroupId(id: Int): DecodeResult[Nothing] = Result.failure(DecodeError.NoSuchGroupId(id))
+  def noSuchGroupName(name: String): DecodeResult[Nothing] = Result.failure(DecodeError.NoSuchGroupName(name))
 }
