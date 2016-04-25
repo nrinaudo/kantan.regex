@@ -17,5 +17,11 @@ trait GeneratedMatchDecoders {
 
   ]
 
-  // TODO: helpers for tuples
+  [#def tuple[[#A1#]]([#i1: Int#])(implicit [#da1: GroupDecoder[A1]#]): MatchDecoder[Tuple1[[#A1#]]] =
+    decoder([#i1#])(Tuple1.apply[[#A1#]])
+
+  def tuple[[#A1#]]([#n1: String#])(implicit [#da1: GroupDecoder[A1]#]): MatchDecoder[Tuple1[[#A1#]]] =
+    decoder([#n1#])(Tuple1.apply[[#A1#]])#
+
+  ]
 }
