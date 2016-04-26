@@ -1,0 +1,17 @@
+package kantan.regex
+
+import java.util.regex.Pattern
+import kantan.codecs.laws._
+import kantan.codecs.laws.CodecValue.{IllegalValue, LegalValue}
+import kantan.regex.laws.{IllegalMatch, LegalMatch, MatchValue}
+import kantan.regex.laws.discipline.MatchDecoderTests
+import kantan.regex.laws.discipline.arbitrary._
+import org.scalacheck.Arbitrary
+import org.scalatest.FunSuite
+import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.typelevel.discipline.scalatest.Discipline
+
+class TupleDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+  [#checkAll("MatchDecoder[([#Int#])]", MatchDecoderTests[Tuple1[[#Int#]]].decoder[Int, Int])#
+  ]
+}
