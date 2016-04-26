@@ -25,7 +25,10 @@ import org.scalacheck.Arbitrary
 import org.scalacheck.Arbitrary.{arbitrary => arb}
 import org.scalacheck.Gen._
 
-object arbitrary extends kantan.codecs.laws.discipline.ArbitraryInstances {
+object arbitrary extends kantan.codecs.laws.discipline.ArbitraryInstances
+                         with kantan.regex.laws.discipline.ArbitraryInstances
+
+trait ArbitraryInstances {
   // - Arbitrary errors ------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   implicit val arbCompileError: Arbitrary[CompileError] =
