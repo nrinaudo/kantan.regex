@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package kantan.regex.cats
+package kantan.regex.scalaz
 
-import cats.data.Xor
-import kantan.regex.Match
-import kantan.regex.cats.arbitrary._
-import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
+
+import kantan.regex.laws.discipline._
+import kantan.regex.scalaz.arbitrary._
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
+import scalaz.\/
 
-class XorTests  extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
-  implicit val legal = arbLegalXor[Match, Int, Boolean]
-  implicit val illegal = arbIllegalXor[Match, Int, Boolean]
+class DisjunctionTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+  implicit val legalDisjunction = arbLegalMatch[Int \/ Boolean]
+  implicit val illegalDisjunction = arbIllegalMatch[Int \/ Boolean]
 
-  checkAll("GroupDecoder[Int Xor Boolean]", GroupDecoderTests[Int Xor Boolean].decoder[Int, Int])
-  checkAll("MatchDecoder[Int Xor Boolean]", MatchDecoderTests[Int Xor Boolean].decoder[Int, Int])
+  checkAll("GroupDecoder[Int \\/ Boolean]", GroupDecoderTests[Int \/ Boolean].decoder[Int, Int])
+  checkAll("MatchDecoder[Int \\/ Boolean]", MatchDecoderTests[Int \/ Boolean].decoder[Int, Int])
 }

@@ -56,7 +56,7 @@ trait ArbitraryInstances {
     la.arbitrary.map(_.mapEncoded(toMatch))
   }
 
-  implicit def arbIlllegalMatch[A](implicit ia: Arbitrary[IllegalString[A]]): Arbitrary[IllegalMatch[A]] = Arbitrary {
+  implicit def arbIllegalMatch[A](implicit ia: Arbitrary[IllegalString[A]]): Arbitrary[IllegalMatch[A]] = Arbitrary {
     ia.arbitrary.map(_.mapEncoded(toMatch))
   }
 }
