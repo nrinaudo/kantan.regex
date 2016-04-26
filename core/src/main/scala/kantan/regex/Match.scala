@@ -30,7 +30,8 @@ class Match private[regex] (private val matcher: Matcher) {
     if(index < 0 || index > length) DecodeResult.noSuchGroupId(index)
     else                            decodeValue(matcher.group(index))
 
-
   def decode[A: GroupDecoder](name: String): DecodeResult[A] =
     Result.nonFatalOr(DecodeError.NoSuchGroupName(name))(matcher.group(name)).flatMap(v ⇒ decodeValue(v))
+
+  override def toString = matcher.toString
 }

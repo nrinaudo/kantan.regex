@@ -1,0 +1,46 @@
+package kantan.regex
+
+import java.util.regex.Pattern
+import kantan.codecs.laws._
+import kantan.codecs.laws.CodecValue.{IllegalValue, LegalValue}
+import kantan.regex.laws.{IllegalMatch, LegalMatch, MatchValue}
+import kantan.regex.laws.discipline.MatchDecoderTests
+import org.scalacheck.Arbitrary
+import org.scalatest.FunSuite
+import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.typelevel.discipline.scalatest.Discipline
+
+class CaseClassDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+  def toMatch(p: Pattern, is: String*): Match = {
+    val matcher = p.matcher(is.mkString(" "))
+    matcher.find()
+    new Match(matcher)
+  }
+
+  [#case class Class1([#i1: Int#])
+  implicit val decoder1: MatchDecoder[Class1] = MatchDecoder.decoder([#1#])(Class1.apply)
+  implicit val arbLegalClass1: Arbitrary[LegalMatch[Class1]] = {
+    val pattern = Pattern.compile("[#([^ ]*)# ]")
+    Arbitrary {
+      for {
+        [#i1 ← Arbitrary.arbitrary[LegalString[Int]]#
+        ]
+      } yield LegalValue(toMatch(pattern, [#i1.encoded#]), Class1([#i1.decoded#]))
+    }
+  }
+
+  implicit val arbIllegalClass1: Arbitrary[IllegalMatch[Class1]] = {
+    val pattern = Pattern.compile("[#([^ ]*)# ]")
+    Arbitrary {
+      for {
+        [#i1 ← Arbitrary.arbitrary[IllegalString[Int]]#
+        ]
+      } yield IllegalValue(toMatch(pattern, [#i1.encoded#]))
+    }
+  }#
+
+  ]
+
+  [#checkAll("MatchDecoder[Class1]", MatchDecoderTests[Class1].decoder[Int, Int])#
+  ]
+}
