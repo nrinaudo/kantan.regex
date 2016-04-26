@@ -17,13 +17,17 @@
 package kantan.regex.cats
 
 import cats.data.Xor
+import kantan.regex.Match
 import kantan.regex.cats.arbitrary._
-import kantan.regex.laws.discipline.GroupDecoderTests
+import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
 class XorTests  extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+  implicit val legal = arbLegalXor[Match, Int, Boolean]
+  implicit val illegal = arbIllegalXor[Match, Int, Boolean]
+
   checkAll("GroupDecoder[Int Xor Boolean]", GroupDecoderTests[Int Xor Boolean].decoder[Int, Int])
   checkAll("MatchDecoder[Int Xor Boolean]", MatchDecoderTests[Int Xor Boolean].decoder[Int, Int])
 }
