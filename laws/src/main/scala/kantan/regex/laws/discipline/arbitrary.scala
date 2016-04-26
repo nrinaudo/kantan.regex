@@ -17,7 +17,7 @@
 package kantan.regex.laws.discipline
 
 import java.util.regex.Pattern
-import kantan.codecs.laws.{IllegalString, LegalString}
+import kantan.codecs.laws._
 import kantan.regex._
 import kantan.regex.DecodeError.{NoSuchGroupId, NoSuchGroupName}
 import kantan.regex.laws._
@@ -27,6 +27,7 @@ import org.scalacheck.Gen._
 
 object arbitrary extends kantan.codecs.laws.discipline.ArbitraryInstances
                          with kantan.regex.laws.discipline.ArbitraryInstances
+                         with kantan.regex.laws.discipline.ArbitraryArities
 
 trait ArbitraryInstances {
   // - Arbitrary errors ------------------------------------------------------------------------------------------------

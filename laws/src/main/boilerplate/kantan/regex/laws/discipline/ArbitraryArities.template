@@ -1,0 +1,41 @@
+package kantan.regex.laws.discipline
+
+import java.util.regex.Pattern
+import kantan.codecs.laws._
+import kantan.codecs.laws.CodecValue.{IllegalValue, LegalValue}
+import kantan.regex._
+import kantan.regex.laws._
+import org.scalacheck.Arbitrary
+
+trait ArbitraryArities {
+
+  def toMatch(p: Pattern, is: String*): Match = {
+    val matcher = p.matcher(is.mkString(" "))
+    matcher.find()
+    new Match(matcher)
+  }
+
+  [#val pattern1 = Pattern.compile("[#([^ ]*+)# ]")
+
+  def arbLegalCaseClass1[[#I1#], O](f: ([#I1#]) => O)(implicit [#al1: Arbitrary[LegalString[I1]]#]): Arbitrary[LegalMatch[O]] = Arbitrary {
+    for {
+      [#i1 ← al1.arbitrary#
+      ]
+    } yield LegalValue(toMatch(pattern1, [#i1.encoded#]), f([#i1.decoded#]))
+  }
+
+  def arbIllegalCaseClass1[[#I1#], O](implicit [#ai1: Arbitrary[IllegalString[I1]]#]): Arbitrary[IllegalMatch[O]] = Arbitrary {
+    for {
+      [#i1 ← ai1.arbitrary#
+      ]
+    } yield IllegalValue(toMatch(pattern1, [#i1.encoded#]))
+  }
+
+  implicit def arbLegalTuple1[[#I1#]](implicit [#al1: Arbitrary[LegalString[I1]]#]): Arbitrary[LegalMatch[Tuple1[[#I1#]]]] =
+    arbLegalCaseClass1(Tuple1.apply[[#I1#]])
+
+  implicit def arbIllegalTuple1[[#I1#]](implicit [#ai1: Arbitrary[IllegalString[I1]]#]): Arbitrary[IllegalMatch[Tuple1[[#I1#]]]] =
+    arbIllegalCaseClass1[[#I1#], Tuple1[[#I1#]]]#
+
+  ]
+}
