@@ -31,6 +31,7 @@ object Regex {
 
       new Regex[DecodeResult[A]] {
         override def apply(s: String) = new MatchIterator(pattern.matcher(s)).map(m ⇒ da.decode(m))
+        override def toString() = pattern.toString
       }
     }
   }

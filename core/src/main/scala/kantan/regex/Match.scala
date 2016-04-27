@@ -20,7 +20,7 @@ import java.util.regex.Matcher
 import kantan.codecs.Result
 
 class Match private[regex] (private val matcher: Matcher) {
-  def length: Int = matcher.groupCount()
+  val length: Int = matcher.groupCount()
 
   private def decodeValue[A](value: String)(implicit da: GroupDecoder[A]): DecodeResult[A] =
     if(value == null) da.decode("")

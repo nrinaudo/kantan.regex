@@ -16,19 +16,21 @@
 
 package kantan.regex
 
+import org.scalacheck.{Arbitrary, Gen}
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
-class RegexTests extends FunSuite with GeneratorDrivenPropertyChecks {
-  test("All matches should be decoded as expected.") {
-    forAll { is: List[Int] ⇒
-      val regex = Regex.unsafeCompile[Int]("-?\\d+").map(_.get)
-      assert(regex(is.mkString(" ")).toList == is)
+class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks {
+  test("length should return the expected value") {
+    def validating(length: Int): MatchDecoder[List[Int]] = MatchDecoder[List[Int]].contramapEncoded { (m: Match) ⇒
+      assert(m.length == length)
+      m
+    }
+
+    forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int])) { (is: List[Int]) ⇒
+      implicit val decoder = validating(is.length)
+      val regex = Regex.unsafeCompile[List[Int]](is.map(_ ⇒ "(-?\\d+)").mkString(" ")).map(_.get)
+      assert(regex(is.mkString(" ")).next == is)
     }
   }
-
-  test("Invalid regular expressions should not compile") {
-    assert(Regex.compile[Int]("[").isFailure)
-  }
-
 }
