@@ -53,10 +53,10 @@ class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks {
       m.decode[Int](id)
     }
 
-      forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int]), Gen.identifier) { (is, id) ⇒
-        implicit val decoder = noSuchName(id)
-        val regex = Regex.unsafeCompile[Int](is.map(_ ⇒ "(-?\\d+)").mkString(" "))
-        assert(regex(is.mkString(" ")).next == DecodeResult.noSuchGroupName(id))
-      }
+    forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int]), Gen.identifier) { (is, id) ⇒
+      implicit val decoder = noSuchName(id)
+      val regex = Regex.unsafeCompile[Int](is.map(_ ⇒ "(-?\\d+)").mkString(" "))
+      assert(regex(is.mkString(" ")).next == DecodeResult.noSuchGroupName(id))
     }
+  }
 }
