@@ -18,7 +18,11 @@ package kantan.regex
 
 import java.util.regex.{Matcher, Pattern}
 
-trait Regex[A] extends (String ⇒ Iterator[A])
+trait Regex[A] extends (String ⇒ Iterator[A]) { self ⇒
+  def map[B](f: A ⇒ B): Regex[B] = new Regex[B] {
+    override def apply(s: String) =  self(s).map(f)
+  }
+}
 
 object Regex {
   def compile[A](expr: String)(implicit da: MatchDecoder[A]): CompileResult[Regex[DecodeResult[A]]] = {
