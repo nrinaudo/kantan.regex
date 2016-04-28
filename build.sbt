@@ -186,3 +186,6 @@ lazy val docs = project
   )
   .settings(noPublishSettings:_*)
   .dependsOn(core)
+
+
+addCommandAlias("validate", "; clean; scalastyle; test:scalastyle; coverage; test; coverageReport; coverageAggregate; docs/makeSite")
