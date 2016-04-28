@@ -17,10 +17,19 @@
 package kantan.regex
 
 import kantan.codecs.Result
+import org.scalatest.FunSuite
+import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
-object DecodeResult {
-  def apply[A](a: ⇒ A): DecodeResult[A] = Result.nonFatal(a).leftMap(DecodeError.TypeError.apply)
-  def success[A](a: A): DecodeResult[A] = Result.success(a)
-  def noSuchGroupId(id: Int): DecodeResult[Nothing] = Result.failure(DecodeError.NoSuchGroupId(id))
-  def noSuchGroupName(name: String): DecodeResult[Nothing] = Result.failure(DecodeError.NoSuchGroupName(name))
+class CompileResultTests extends FunSuite with GeneratorDrivenPropertyChecks {
+  test("CompileResult.success should return a success") {
+    forAll { i: Int ⇒ assert(CompileResult.success(i) == Result.Success(i))}
+  }
+
+  test("CompileResult.apply should return a success on 'good' values") {
+    forAll { i: Int ⇒ assert(CompileResult(i) == Result.Success(i))}
+  }
+
+  test("CompileResult.apply should return a failure on 'bad' values") {
+    forAll { e: Exception ⇒ assert(CompileResult(throw e) == Result.Failure(CompileError(e)))}
+  }
 }
