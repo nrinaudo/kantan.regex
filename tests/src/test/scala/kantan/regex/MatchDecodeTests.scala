@@ -16,26 +16,29 @@
 
 package kantan.regex
 
+import java.util.regex.Pattern
 import kantan.regex.laws.discipline.arbitrary._
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
-// Not the best name, but GroupDecoderTests conflicts with laws.
-class GroupTests extends FunSuite with GeneratorDrivenPropertyChecks {
-  test("Instances created through GroupDecoder.apply should behave as expected") {
-    forAll { (s: String, f: (String ⇒ DecodeResult[Int])) ⇒
-      implicit val decoder = GroupDecoder(f)
+class MatchDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks {
+  test("Instances created through MatchDecoder.apply should behave as expected") {
+    forAll { (s: String, f: (Match ⇒ DecodeResult[Int])) ⇒
+      implicit val decoder = MatchDecoder(f)
 
       val r = Regex.unsafeCompile[Int](".*")
-      assert(r(s).next == f(s))
+      val m = Pattern.compile(".*").matcher(s)
+      m.find()
+
+      assert(r(s).next == f(new Match(m)))
     }
   }
 
   test("The instance summoning method should behave as expected") {
-    forAll { (f: (String ⇒ DecodeResult[Int])) ⇒
-      implicit val decoder = GroupDecoder(f)
+    forAll { (f: (Match ⇒ DecodeResult[Int])) ⇒
+      implicit val decoder = MatchDecoder(f)
 
-      assert(decoder.equals(GroupDecoder[Int]))
+      assert(decoder.equals(MatchDecoder[Int]))
     }
   }
 }
