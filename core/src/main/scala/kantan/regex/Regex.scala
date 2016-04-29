@@ -18,10 +18,12 @@ package kantan.regex
 
 import java.util.regex.{Matcher, Pattern}
 
-trait Regex[A] extends (String ⇒ Iterator[A]) { self ⇒
+trait Regex[A]  { self ⇒
   def map[B](f: A ⇒ B): Regex[B] = new Regex[B] {
-    override def apply(s: String) =  self(s).map(f)
+    override def eval(s: String) =  self.eval(s).map(f)
   }
+
+  def eval(str: String): Iterator[A]
 }
 
 object Regex {
@@ -30,7 +32,7 @@ object Regex {
       val pattern = Pattern.compile(expr)
 
       new Regex[DecodeResult[A]] {
-        override def apply(s: String) = new MatchIterator(pattern.matcher(s)).map(m ⇒ da.decode(m))
+        override def eval(s: String) = new MatchIterator(pattern.matcher(s)).map(m ⇒ da.decode(m))
         override def toString() = pattern.toString
       }
     }
