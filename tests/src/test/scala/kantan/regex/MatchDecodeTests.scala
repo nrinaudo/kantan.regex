@@ -30,7 +30,7 @@ class MatchDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks {
       val m = Pattern.compile(".*").matcher(s)
       m.find()
 
-      assert(r(s).next == f(new Match(m)))
+      assert(r.eval(s).next == f(new Match(m)))
     }
   }
 

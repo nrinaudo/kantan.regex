@@ -26,7 +26,7 @@ class GroupDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks {
       implicit val decoder = GroupDecoder(f)
 
       val r = Regex.unsafeCompile[Int](".*")
-      assert(r(s).next == f(s))
+      assert(r.eval(s).next == f(s))
     }
   }
 

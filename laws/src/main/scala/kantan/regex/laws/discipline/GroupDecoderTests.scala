@@ -25,5 +25,5 @@ import org.scalacheck.Arbitrary
 
 object GroupDecoderTests {
   def apply[A](implicit la: GroupDecoderLaws[A], al: Arbitrary[LegalString[A]]): GroupDecoderTests[A] =
-      DecoderTests[String, A, DecodeError, codecs.type]
+    DecoderTests[String, A, DecodeError, codecs.type]
 }

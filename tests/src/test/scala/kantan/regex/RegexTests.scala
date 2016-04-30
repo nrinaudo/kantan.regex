@@ -23,7 +23,7 @@ class RegexTests extends FunSuite with GeneratorDrivenPropertyChecks {
   test("All matches should be decoded as expected.") {
     forAll { is: List[Int] ⇒
       val regex = Regex.unsafeCompile[Int]("-?\\d+").map(_.get)
-      assert(regex(is.mkString(" ")).toList == is)
+      assert(regex.eval(is.mkString(" ")).toList == is)
     }
   }
 
