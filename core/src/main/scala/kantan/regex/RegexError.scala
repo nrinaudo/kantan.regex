@@ -32,6 +32,8 @@ final case class CompileError(cause: Throwable) extends RegexError {
 }
 
 object DecodeError {
+  case object EmptyGroup extends DecodeError
+
   final case class NoSuchGroupId(id: Int) extends DecodeError
 
   final case class NoSuchGroupName(name: String) extends DecodeError

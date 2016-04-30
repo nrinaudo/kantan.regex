@@ -22,16 +22,16 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
 class GroupDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks {
   test("Instances created through GroupDecoder.apply should behave as expected") {
-    forAll { (s: String, f: (String ⇒ DecodeResult[Int])) ⇒
+    forAll { (s: String, f: (Option[String] ⇒ DecodeResult[Int])) ⇒
       implicit val decoder = GroupDecoder(f)
 
       val r = Regex.unsafeCompile[Int](".*")
-      assert(r.eval(s).next == f(s))
+      assert(r.eval(s).next == f(Some(s)))
     }
   }
 
   test("The instance summoning method should behave as expected") {
-    forAll { (f: (String ⇒ DecodeResult[Int])) ⇒
+    forAll { (f: (Option[String] ⇒ DecodeResult[Int])) ⇒
       implicit val decoder = GroupDecoder(f)
 
       assert(decoder.equals(GroupDecoder[Int]))

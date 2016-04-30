@@ -25,8 +25,11 @@ import org.typelevel.discipline.scalatest.Discipline
 import scalaz.\/
 
 class DisjunctionTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
-  implicit val legalDisjunction = arbLegalMatch[Int \/ Boolean]
-  implicit val illegalDisjunction = arbIllegalMatch[Int \/ Boolean]
+  implicit val legalDisjunctionGroup = arbLegalGroup[Int \/ Boolean]
+  implicit val illegalDisjunctionGroup = arbIllegalGroup[Int \/ Boolean]
+
+  implicit val legalDisjunctionMatch = arbLegalMatch[Int \/ Boolean]
+  implicit val illegalDisjunctionMatch = arbIllegalMatch[Int \/ Boolean]
 
   checkAll("GroupDecoder[Int \\/ Boolean]", GroupDecoderTests[Int \/ Boolean].decoder[Int, Int])
   checkAll("MatchDecoder[Int \\/ Boolean]", MatchDecoderTests[Int \/ Boolean].decoder[Int, Int])

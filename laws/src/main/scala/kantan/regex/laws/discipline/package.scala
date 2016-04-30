@@ -20,6 +20,6 @@ import kantan.codecs.laws.discipline.DecoderTests
 import kantan.regex._
 
 package object discipline {
-  type GroupDecoderTests[A] = DecoderTests[String, A, DecodeError, codecs.type]
+  type GroupDecoderTests[A] = DecoderTests[Option[String], A, DecodeError, codecs.type]
   type MatchDecoderTests[A] = DecoderTests[Match, A, DecodeError, codecs.type]
 }

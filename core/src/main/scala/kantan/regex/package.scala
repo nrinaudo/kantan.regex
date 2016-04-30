@@ -19,7 +19,7 @@ package kantan
 import kantan.codecs.{Decoder, Result}
 
 package object regex {
-  type GroupDecoder[A] = Decoder[String, A, DecodeError, codecs.type]
+  type GroupDecoder[A] = Decoder[Option[String], A, DecodeError, codecs.type]
   type MatchDecoder[A] = Decoder[Match, A, DecodeError, codecs.type]
 
   type DecodeResult[A]  = Result[DecodeError, A]

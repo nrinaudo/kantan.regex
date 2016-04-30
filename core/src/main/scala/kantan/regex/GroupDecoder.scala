@@ -18,7 +18,7 @@ package kantan.regex
 
 object GroupDecoder {
   def apply[A](implicit da: GroupDecoder[A]): GroupDecoder[A] = da
-  def apply[A](f: String ⇒ DecodeResult[A]): GroupDecoder[A] = new GroupDecoder[A] {
-    override def decode(e: String) = f(e)
+  def apply[A](f: Option[String] ⇒ DecodeResult[A]): GroupDecoder[A] = new GroupDecoder[A] {
+    override def decode(e: Option[String]) = f(e)
   }
 }

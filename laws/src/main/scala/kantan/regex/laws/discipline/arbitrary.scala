@@ -22,7 +22,7 @@ import kantan.codecs.laws._
 import kantan.regex._
 import kantan.regex.DecodeError.{NoSuchGroupId, NoSuchGroupName}
 import kantan.regex.laws._
-import org.scalacheck.Arbitrary
+import org.scalacheck.{Arbitrary, Gen}
 import org.scalacheck.Arbitrary.{arbitrary => arb}
 import org.scalacheck.Gen._
 
@@ -50,6 +50,28 @@ trait ArbitraryInstances {
     Arbitrary(oneOf(arbA.arbitrary.map(Result.Success.apply), arbDecodeError.arbitrary.map(Result.Failure.apply)))
 
 
+
+  // - Arbitrary groups -----------------------------------------------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+  implicit def arbLegalGroup[A](implicit la: Arbitrary[LegalString[A]]): Arbitrary[LegalGroup[A]] =
+    Arbitrary(la.arbitrary.map(_.mapEncoded(Option.apply)))
+
+  implicit def arbIllegalGroup[A](implicit la: Arbitrary[IllegalString[A]]): Arbitrary[IllegalGroup[A]] =
+    Arbitrary(Gen.oneOf(
+      la.arbitrary.map(_.mapEncoded(Option.apply)),
+      Gen.const(CodecValue.IllegalValue[Option[String], A](Option.empty))
+    ))
+
+  implicit def arbLegalGroupOpt[A](implicit la: Arbitrary[LegalString[A]]): Arbitrary[LegalGroup[Option[A]]] =
+    Arbitrary(Gen.oneOf(
+      la.arbitrary.map(_.mapEncoded(Option.apply).mapDecoded(Option.apply)),
+      Gen.const(CodecValue.LegalValue[Option[String], Option[A]](Option.empty, Option.empty))
+    ))
+
+  implicit def arbIllegalGroupOpt[A](implicit la: Arbitrary[IllegalString[A]]): Arbitrary[IllegalGroup[Option[A]]] =
+    Arbitrary(la.arbitrary.map(_.mapEncoded(Option.apply).mapDecoded(Option.apply)))
+
+
   // - Arbitrary matches -----------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   private def toMatch(str: String): Match = {
@@ -58,11 +80,9 @@ trait ArbitraryInstances {
     new Match(matcher)
   }
 
-  implicit def arbLegalMatch[A](implicit la: Arbitrary[LegalString[A]]): Arbitrary[LegalMatch[A]] = Arbitrary {
-    la.arbitrary.map(_.mapEncoded(toMatch))
-  }
+  implicit def arbLegalMatch[A](implicit la: Arbitrary[LegalString[A]]): Arbitrary[LegalMatch[A]] =
+    Arbitrary(la.arbitrary.map(_.mapEncoded(toMatch)))
 
-  implicit def arbIllegalMatch[A](implicit ia: Arbitrary[IllegalString[A]]): Arbitrary[IllegalMatch[A]] = Arbitrary {
-    ia.arbitrary.map(_.mapEncoded(toMatch))
-  }
+  implicit def arbIllegalMatch[A](implicit ia: Arbitrary[IllegalString[A]]): Arbitrary[IllegalMatch[A]] =
+    Arbitrary (ia.arbitrary.map(_.mapEncoded(toMatch)))
 }

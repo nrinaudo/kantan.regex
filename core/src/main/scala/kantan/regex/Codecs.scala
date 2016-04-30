@@ -25,7 +25,18 @@ object codecs extends TupleDecoders {
   implicit def fromGroup[A](implicit da: GroupDecoder[A]): MatchDecoder[A] = MatchDecoder.fromGroup(0)
 
   implicit def fromString[A](implicit da: StringDecoder[A]): GroupDecoder[A] =
-    da.tag[codecs.type].mapError(DecodeError.TypeError.apply)
+    GroupDecoder(_.map(da.mapError(DecodeError.TypeError.apply).decode)
+      .getOrElse(DecodeResult.emptyGroup))
+
+  implicit def optFromString[A](implicit da: StringDecoder[A]): GroupDecoder[Option[A]] =
+    fromString(da).map(Option.apply)recover {
+      case DecodeError.EmptyGroup ⇒ Option.empty[A]
+    }
+
+  implicit def optMatch[A](implicit da: GroupDecoder[Option[A]]): MatchDecoder[Option[A]] =
+    MatchDecoder.fromGroup[Option[A]](0)(GroupDecoder { os ⇒
+      da.decode(os.filter(_.nonEmpty))
+    })
 
   implicit def fromCbf[F[_], A](implicit da: GroupDecoder[A], cbf: CanBuildFrom[Nothing, A, F[A]]): MatchDecoder[F[A]] =
     MatchDecoder[F[A]] { (m: Match) ⇒

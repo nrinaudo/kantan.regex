@@ -3,7 +3,7 @@ import com.typesafe.sbt.SbtSite.SiteKeys._
 import UnidocKeys._
 import de.heikoseeberger.sbtheader.license.Apache2_0
 
-val kantanCodecsVersion  = "0.1.3"
+val kantanCodecsVersion  = "0.1.4-SNAPSHOT"
 val catsVersion          = "0.5.0"
 val scalatestVersion     = "3.0.0-M9"
 val scalaCheckVersion    = "1.12.5"

@@ -25,8 +25,11 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
 class XorDecoderTests  extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
-  implicit val legal = arbLegalXor[Match, Int, Boolean]
-  implicit val illegal = arbIllegalXor[Match, Int, Boolean]
+  implicit val legalGroup = arbLegalXor[Option[String], Int, Boolean]
+  implicit val illegalGroup = arbIllegalXor[Option[String], Int, Boolean]
+
+  implicit val legalMatch = arbLegalXor[Match, Int, Boolean]
+  implicit val illegalMatch = arbIllegalXor[Match, Int, Boolean]
 
   checkAll("GroupDecoder[Int Xor Boolean]", GroupDecoderTests[Int Xor Boolean].decoder[Int, Int])
   checkAll("MatchDecoder[Int Xor Boolean]", MatchDecoderTests[Int Xor Boolean].decoder[Int, Int])

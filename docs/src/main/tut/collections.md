@@ -24,3 +24,7 @@ import kantan.regex.ops._
 ```tut
 regex.regex[List[Int]].eval(input).toList
 ```
+
+```tut
+regex.regex[(Int, Int, Option[Int])].eval(input).toList
+```

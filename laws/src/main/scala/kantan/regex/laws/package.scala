@@ -20,8 +20,12 @@ import kantan.codecs.laws._
 import kantan.codecs.laws.CodecValue.{IllegalValue, LegalValue}
 
 package object laws {
-  type GroupDecoderLaws[A] = DecoderLaws[String, A, DecodeError, codecs.type]
+  type GroupDecoderLaws[A] = DecoderLaws[Option[String], A, DecodeError, codecs.type]
   type MatchDecoderLaws[A] = DecoderLaws[Match, A, DecodeError, codecs.type]
+
+  type LegalGroup[A]   = LegalValue[Option[String], A]
+  type IllegalGroup[A] = IllegalValue[Option[String], A]
+  type GroupValue[A]   = CodecValue[Option[String], A]
 
   type LegalMatch[A]   = LegalValue[Match, A]
   type IllegalMatch[A] = IllegalValue[Match, A]
