@@ -38,16 +38,17 @@ object codecs extends TupleDecoders {
       da.decode(os.filter(_.nonEmpty))
     })
 
-  implicit def fromCbf[F[_], A](implicit da: GroupDecoder[A], cbf: CanBuildFrom[Nothing, A, F[A]]): MatchDecoder[F[A]] =
+  // TODO: there *must* be a more elegant way to write this.
+  implicit def fromCbf[F[_], A](implicit da: GroupDecoder[Option[A]], cbf: CanBuildFrom[Nothing, A, F[A]]): MatchDecoder[F[A]] =
     MatchDecoder[F[A]] { (m: Match) ⇒
       @tailrec
       def loop(i: Int, curr: DecodeResult[mutable.Builder[A, F[A]]]): DecodeResult[F[A]] =
         if(i > m.length || !curr.isSuccess) curr.map(_.result())
         else loop(i + 1, for {
           fa ← curr
-          a  ← m.decode[A](i)
+          a  ← m.decode[Option[A]](i)
         } yield {
-          fa += a
+          a.foreach(fa += _)
           fa
         })
 
