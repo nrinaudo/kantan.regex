@@ -2,7 +2,7 @@
 layout: tutorial
 title: "Extracting arbitrary types"
 section: tutorial
-sort: 6
+sort: 5
 ---
 
 ```tut
@@ -23,7 +23,7 @@ class Point(val x: Int, val y: Int, val z: Option[Int]) {
 ```
 
 ```tut:silent
-implicit val decoder: MatchDecoder[Point] = MatchDecoder.decoder(1, 2, 3) { (x: Int, y: Int, z: Option[Int]) ⇒
+implicit val decoder: MatchDecoder[Point] = MatchDecoder.ordered { (x: Int, y: Int, z: Option[Int]) ⇒
   new Point(x, y, z)
 }
 ```

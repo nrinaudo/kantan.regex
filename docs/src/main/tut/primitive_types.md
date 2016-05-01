@@ -17,10 +17,6 @@ val input = "lorem ipsum [123] dolor si amet [456] DO NOT MATCH THIS 789."
 val regex = "\\d+"
 ```
 
-```tut
-regex.r.findAllIn(input).map(_.toInt).toList
-```
-
 ```tut:silent
 import kantan.regex.ops._
 ```
@@ -32,10 +28,6 @@ regex.regex[Int].eval(input).toList
 
 ```tut:silent
 val regex = "\\[(\\d+)\\]"
-```
-
-```tut
-regex.r.findAllMatchIn(input).map(_.group(1).toInt).toList
 ```
 
 ```tut:silent

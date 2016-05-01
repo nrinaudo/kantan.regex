@@ -2,7 +2,7 @@
 layout: tutorial
 title: "Extracting tuples"
 section: tutorial
-sort: 3
+sort: 2
 ---
 
 ```tut
