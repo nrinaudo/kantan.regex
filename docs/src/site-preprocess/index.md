@@ -20,6 +20,24 @@ in your SBT build file:
 ```scala
 // Core library, included automatically if any other module is imported.
 libraryDependencies += "com.nrinaudo" %% "kantan.regex" % "@VERSION@"
+
+// Provides scalaz type class instances.
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-scalaz" % "@VERSION@"
+
+// Provides cats type class instances.
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-cats" % "@VERSION@"
+
+// Provides joda-time decoders.
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "@VERSION@"
 ```
 
 ## Motivation
+
+Regular expressions, for all their flaws, are still extremely useful to extract content from raw strings. Scala,
+unfortunately, doesn't do much with that - the regex library is great for checking matches, but not extracting
+well-typed data from them.
+
+Kantan.regex is meant to fill that void - and nothing else. By that, I mean that if you need to use regular expressions
+as predicates (does a string match a certain pattern?), kantan.regex is absolutely not the right tool for the job. If,
+on the other hand, you need to extract bits of strings as custom, composite types, in a safe way and checked at compile
+time, then it might just be.
