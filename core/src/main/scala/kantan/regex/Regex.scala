@@ -26,7 +26,12 @@ trait Regex[A]  { self ⇒
   def eval(str: String): Iterator[A]
 }
 
+/** Provides [[Regex]] compilation methods. */
 object Regex {
+  /** Attempts to compile the specified string as a [[Regex]].
+    *
+    * This method is safe - results are wrapped in a [[CompileResult]] value.
+    */
   def compile[A](expr: String)(implicit da: MatchDecoder[A]): CompileResult[Regex[DecodeResult[A]]] = {
     CompileResult {
       val pattern = Pattern.compile(expr)
@@ -38,6 +43,11 @@ object Regex {
     }
   }
 
+  /** Attempts to compile the specified string as a [[Regex]].
+    *
+    * This method is unsafe - errors result in thrown exceptions. It's often better to use the safe alternative,
+    * [[compile]].
+    */
   def unsafeCompile[A: MatchDecoder](expr: String): Regex[DecodeResult[A]] = compile(expr).get
 }
 

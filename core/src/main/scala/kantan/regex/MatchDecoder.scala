@@ -17,6 +17,9 @@
 package kantan.regex
 
 import kantan.codecs.Decoder
+import scala.annotation.tailrec
+import scala.collection.generic.CanBuildFrom
+import scala.collection.mutable
 
 object MatchDecoder extends GeneratedMatchDecoders {
   def apply[A](implicit da: MatchDecoder[A]): MatchDecoder[A] = da
@@ -29,4 +32,34 @@ object MatchDecoder extends GeneratedMatchDecoders {
 
   def fromGroup[A](name: String)(implicit da: GroupDecoder[A]): MatchDecoder[A] =
     MatchDecoder(_.decode(name))
+}
+
+trait MatchDecoderInstances {
+  implicit def fromGroup[A](implicit da: GroupDecoder[A]): MatchDecoder[A] = MatchDecoder.fromGroup(0)
+
+  implicit def eitherMatch[A: MatchDecoder, B: MatchDecoder]: MatchDecoder[Either[A, B]] =
+    Decoder.eitherDecoder
+
+  implicit def optMatch[A](implicit da: GroupDecoder[Option[A]]): MatchDecoder[Option[A]] =
+    MatchDecoder.fromGroup[Option[A]](0)(GroupDecoder { os ⇒
+      da.decode(os.filter(_.nonEmpty))
+    })
+
+  // TODO: there *must* be a more elegant way to write this.
+  implicit def fromCbf[F[_], A]
+  (implicit da: GroupDecoder[Option[A]], cbf: CanBuildFrom[Nothing, A, F[A]]): MatchDecoder[F[A]] =
+    MatchDecoder[F[A]] { (m: Match) ⇒
+      @tailrec
+      def loop(i: Int, curr: DecodeResult[mutable.Builder[A, F[A]]]): DecodeResult[F[A]] =
+        if(i > m.length || !curr.isSuccess) curr.map(_.result())
+        else loop(i + 1, for {
+          fa ← curr
+          a  ← m.decode[Option[A]](i)
+        } yield {
+          a.foreach(fa += _)
+          fa
+        })
+
+      loop(1, DecodeResult.success(cbf()))
+    }
 }

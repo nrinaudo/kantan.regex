@@ -17,7 +17,14 @@
 package kantan.regex
 
 object ops {
+  /** Enriches strings with useful methods. */
   implicit class StringOps(val str: String) extends AnyVal {
+    /** Attempts to compile the string into a [[Regex]].
+      *
+      * This is equivalent to calling [[Regex.unsafeCompile]]. Note that, as the name implies, this method is unsafe:
+      * should the input string be ill-formed, an exception will be thrown. It's often preferable to use the safe
+      * alternative, [[Regex.compile]].
+      */
     def regex[A: MatchDecoder]: Regex[DecodeResult[A]] = Regex.unsafeCompile(str)
   }
 }

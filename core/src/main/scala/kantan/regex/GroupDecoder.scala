@@ -16,9 +16,32 @@
 
 package kantan.regex
 
+import kantan.codecs.Decoder
+import kantan.codecs.strings._
+
 object GroupDecoder {
   def apply[A](implicit da: GroupDecoder[A]): GroupDecoder[A] = da
   def apply[A](f: Option[String] ⇒ DecodeResult[A]): GroupDecoder[A] = new GroupDecoder[A] {
     override def decode(e: Option[String]) = f(e)
   }
+}
+
+trait GroupDecoderInstances {
+  implicit def fromString[A](implicit da: StringDecoder[A]): GroupDecoder[A] =
+      GroupDecoder(_.map(da.mapError(DecodeError.TypeError.apply).decode)
+        .getOrElse(DecodeResult.emptyGroup))
+
+
+  implicit def optGroupDecoder[A](implicit da: GroupDecoder[A]): GroupDecoder[Option[A]] =
+    Decoder.optionalDecoder
+
+  implicit def eitherGroupDecoder[A: GroupDecoder, B: GroupDecoder]: GroupDecoder[Either[A, B]] =
+    Decoder.eitherDecoder
+
+  /*
+  implicit def optFromString[A](implicit da: StringDecoder[A]): GroupDecoder[Option[A]] =
+    fromString(da).map(Option.apply)recover {
+      case DecodeError.EmptyGroup ⇒ Option.empty[A]
+    }
+    */
 }

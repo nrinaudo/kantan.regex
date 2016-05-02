@@ -9,6 +9,8 @@ val scalatestVersion     = "3.0.0-M9"
 val scalaCheckVersion    = "1.12.5"
 val scalazVersion        = "7.2.2"
 val disciplineVersion    = "0.4"
+val jodaVersion          = "2.9.3"
+val jodaConvertVersion   = "1.8.1"
 
 lazy val buildSettings = Seq(
   organization       := "com.nrinaudo",
@@ -168,6 +170,11 @@ lazy val docs = project
   .settings(ghpages.settings: _*)
   .settings(unidocSettings: _*)
   .settings(site.preprocessSite())
+  .settings(libraryDependencies ++= Seq(
+    "joda-time" % "joda-time"    % jodaVersion,
+    "org.joda"  % "joda-convert" % jodaConvertVersion
+  ))
+
   .settings(
     apiURL := Some(url("http://nrinaudo.github.io/kantan.codecs/api/")),
     scalacOptions in (ScalaUnidoc, unidoc) ++= Seq(
