@@ -16,7 +16,7 @@
 
 package kantan.regex
 
-sealed abstract class RegexError
+sealed abstract class RegexError extends Product with Serializable
 
 sealed abstract class DecodeError extends RegexError
 
