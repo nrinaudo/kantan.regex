@@ -21,11 +21,11 @@ those looking for a few quick examples:
 import kantan.regex.ops._
 
 // Returns an iterator on all parts of str that look like a positive integer
-"\\d+".regex[Int].eval(str)
+str.evalRegex[Int]("\\d+")
 
 // Returns an iterator on all parts of str that look like an (x, y) point. Points
 // are represented as a Tuple2[Int, Int] 
-"\\((\\d+), (\\d+)\\)".regex[(Int, Int)].eval(str)
+str.evalRegex[(Int, Int)]("\\((\\d+), (\\d+)\\)")
 
 // Declares a new Point case class and how to extract it regular expression matches.
 case class Point(x: Int, y: Int)
@@ -33,7 +33,10 @@ implicit val decoder = MatchDecoder.decoder(1, 2)(Point.apply)
 
 // Returns an iterator on all parts of str that look like an (x, y) point. Points
 // are represented as Point.
-"\\((\\d+), (\\d+)\\)".regex[Point].eval(str)
+str.evalRegex[Point]("\\((\\d+), (\\d+)\\)")
+
+// A somewhat contrived example where the z-coordinate of a point is optional:
+str.evalRegex[(Int, Int, Option[Int])]("\\[(\\d+), (\\d+)(?:, (\\d+))?\\]")
 ```
 
 kantan.regex is distributed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0.html).
