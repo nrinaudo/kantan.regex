@@ -22,7 +22,7 @@ regular expression:
 val digits = "\\d+"
 ```
 
-We'll need to turn this into a [`Regex`] value, which is done through the [`regex`] method that enriches strings:
+We'll need to turn this into a [`Regex`] value, which is done through the [`asUnsafeRegex`] method that enriches strings:
 
 ```tut:silent
 import kantan.regex._
@@ -31,10 +31,10 @@ import kantan.regex.ops._
 val regex = digits.asUnsafeRegex[Int]
 ```
 
-Note the type parameter to [`regex`]: this tells kantan.regex how to interpret each match.
+Note the type parameter to [`asUnsafeRegex`]: this tells kantan.regex how to interpret each match.
 
-Another point worth mentioning is that [`regex`] is unsafe: if your regular expression is ill-formed, an exception will
-be thrown. Should you need a safe version, use [`compile`].
+Another point worth mentioning is that [`asUnsafeRegex`] is unsafe: if your regular expression is ill-formed, an exception will
+be thrown. Should you need a safe version, use [`asRegex`].
  
 We can then simply evaluate that expression on our input string:
  
@@ -62,8 +62,7 @@ val bracketedDigits = "\\[(\\d+)\\]"
 The problem here is that when this matches of this expression are not valid ints - they are surrounded by brackets. This
 is where groups come in handy: we've declared our regular expression in such a way that for each match, the first group
 will be the matched digits without the brackets. All that's left to do is to compile the regular expression in such
-a way that it attempts to interpret the first group rather than the entire match, by specifying an explicit
-[`MatchDecoder`] to [`regex`]:
+a way that it attempts to interpret the first group rather than the entire match:
 
 ```tut
 bracketedDigits.asUnsafeRegex[Int](1).eval(input).foreach(println _)
@@ -98,8 +97,8 @@ And we can now decode this easily:
 
 
 [`Regex`]:{{ site.baseUrl }}/api/#kantan.regex.Regex
-[`regex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops$$StringOps@regex[A](implicitevidence$1:kantan.regex.MatchDecoder[A]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
-[`compile`]:{{ site.baseUrl }}/api/index.html#kantan.regex.Regex$@compile[A](expr:String)(implicitda:kantan.regex.MatchDecoder[A]):kantan.regex.CompileResult[kantan.regex.Regex[kantan.regex.DecodeResult[A]]]
+[`asUnsafeRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops$$CompilableOps@asUnsafeRegex[A](implicitevidence$4:kantan.regex.MatchDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
+[`asRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops$$CompilableOps@asRegex[A](implicitevidence$2:kantan.regex.MatchDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.CompileResult[kantan.regex.Regex[kantan.regex.DecodeResult[A]]]
 [`Iterator`]:http://www.scala-lang.org/api/current/index.html#scala.collection.Iterator
 [`Int`]:http://www.scala-lang.org/api/current/index.html#scala.Int
 [`DecodeResult`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]
