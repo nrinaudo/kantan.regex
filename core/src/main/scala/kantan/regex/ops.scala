@@ -19,20 +19,24 @@ package kantan.regex
 import kantan.codecs.Result
 
 object ops {
-  implicit class CompilableOps[S](val expr: S) extends AnyVal {
+  implicit class StringOps(val str: String) extends AnyVal {
     private def eval[A](s: String, r: CompileResult[Regex[DecodeResult[A]]]): Iterator[RegexResult[A]] =
       r.map(_.eval(s)).recover { case e ⇒ Iterator(Result.failure(e)) }.get
 
-    def evalRegex[A: MatchDecoder](s: String)(implicit cs: Compiler[S]): Iterator[RegexResult[A]] =
-      eval(s, asRegex)
-    def evalRegex[A: GroupDecoder](s: String, group: Int)(implicit cs: Compiler[S]): Iterator[RegexResult[A]] =
-      eval(s, asRegex(group))
+    def evalRegex[A](r: Regex[A]): Iterator[A] = r.eval(str)
 
-    def evalUnsafeRegex[A: MatchDecoder](s: String)(implicit cs: Compiler[S]): Iterator[A] =
-      asUnsafeRegex[A].eval(s).map(_.get)
-    def evalUnsafeRegex[A: GroupDecoder](s: String, group: Int)(implicit cs: Compiler[S]): Iterator[A] =
-      asUnsafeRegex[A](group).eval(s).map(_.get)
+    def evalRegex[A: MatchDecoder](expr: String): Iterator[RegexResult[A]] =
+      eval(str, Regex.compile(expr))
+    def evalRegex[A: GroupDecoder](expr: String, group: Int): Iterator[RegexResult[A]] =
+      eval(str, Regex.compile(expr, group))
 
+    def evalUnsafeRegex[A: MatchDecoder](expr: String): Iterator[A] =
+      Regex.unsafeCompile(expr).eval(str).map(_.get)
+    def evalUnsafeRegex[A: GroupDecoder](expr: String, group: Int): Iterator[A] =
+      Regex.unsafeCompile(expr, group).eval(str).map(_.get)
+  }
+
+  implicit class CompilableOps[S](val expr: S) extends AnyVal {
     def asRegex[A: GroupDecoder](group: Int)(implicit cs: Compiler[S]): CompileResult[Regex[DecodeResult[A]]] =
       Regex.compile(expr, group)
     def asRegex[A: MatchDecoder](implicit cs: Compiler[S]): CompileResult[Regex[DecodeResult[A]]] = Regex.compile(expr)

@@ -5,7 +5,7 @@ section: tutorial
 sort: 2
 ---
 
-```tut
+```tut:silent
 val input = "[1, 2] and then [3, 4] followed by [5, 6, 7]"
 ```
 
@@ -18,5 +18,5 @@ import kantan.regex.ops._
 ```
 
 ```tut
-regex.asUnsafeRegex[(Int, Int, Option[Int])].eval(input).toList
+input.evalRegex[(Int, Int, Option[Int])](regex).foreach(println _)
 ```

@@ -25,5 +25,5 @@ implicit val decoder: MatchDecoder[Point] = MatchDecoder.ordered(Point.apply _)
 ```
 
 ```tut
-regex.asUnsafeRegex[Point].eval(input).toList
+input.evalRegex[Point](regex).foreach(println _)
 ```
