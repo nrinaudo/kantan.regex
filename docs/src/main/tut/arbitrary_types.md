@@ -29,5 +29,5 @@ implicit val decoder: MatchDecoder[Point] = MatchDecoder.ordered { (x: Int, y: I
 ```
 
 ```tut
-regex.regex[Point].eval(input).toList
+regex.asUnsafeRegex[Point].eval(input).toList
 ```

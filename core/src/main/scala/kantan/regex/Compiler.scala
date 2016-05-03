@@ -16,14 +16,20 @@
 
 package kantan.regex
 
-object ops {
-  implicit class CompilableOps[S](val expr: S) extends AnyVal {
-    def asRegex[A: GroupDecoder](group: Int)(implicit cs: Compiler[S]): CompileResult[Regex[DecodeResult[A]]] =
-      Regex.compile(expr, group)
-    def asRegex[A: MatchDecoder](implicit cs: Compiler[S]): CompileResult[Regex[DecodeResult[A]]] = Regex.compile(expr)
+import java.util.regex.Pattern
 
-    def asUnsafeRegex[A: GroupDecoder](group: Int)(implicit cs: Compiler[S]): Regex[DecodeResult[A]] =
-      Regex.unsafeCompile(expr, group)
-    def asUnsafeRegex[A: MatchDecoder](implicit cs: Compiler[S]): Regex[DecodeResult[A]] = Regex.unsafeCompile(expr)
+trait Compiler[A] {
+  def compile(a: A): CompileResult[Pattern]
+}
+
+object Compiler {
+  def apply[A](f: A ⇒ CompileResult[Pattern]): Compiler[A] = new Compiler[A] {
+    override def compile(a: A) = f(a)
   }
+
+  def safe[A](f: A ⇒ Pattern): Compiler[A] = Compiler(f andThen CompileResult.success)
+
+  implicit val scalaRegex: Compiler[scala.util.matching.Regex] = safe(_.pattern)
+  implicit val pattern: Compiler[Pattern] = safe(identity)
+  implicit val string: Compiler[String] = Compiler(s ⇒ CompileResult(Pattern.compile(s)))
 }

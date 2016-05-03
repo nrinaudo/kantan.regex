@@ -18,6 +18,7 @@ package kantan.regex
 
 import java.util.regex.Pattern
 import kantan.regex.laws.discipline.arbitrary._
+import kantan.regex.ops._
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
@@ -26,7 +27,7 @@ class MatchDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks {
     forAll { (s: String, f: (Match ⇒ DecodeResult[Int])) ⇒
       implicit val decoder = MatchDecoder(f)
 
-      val r = Regex.unsafeCompile[Int](".*")
+      val r = ".*".asUnsafeRegex[Int]
       val m = Pattern.compile(".*").matcher(s)
       m.find()
 

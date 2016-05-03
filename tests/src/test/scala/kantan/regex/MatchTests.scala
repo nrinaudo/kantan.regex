@@ -16,6 +16,7 @@
 
 package kantan.regex
 
+import kantan.regex.ops._
 import org.scalacheck.{Arbitrary, Gen}
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
@@ -29,7 +30,8 @@ class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks {
 
     forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int])) { (is: List[Int]) ⇒
       implicit val decoder = validating(is.length)
-      val regex = Regex.unsafeCompile[List[Int]](is.map(_ ⇒ "(-?\\d+)").mkString(" ")).map(_.get)
+
+      val regex = is.map(_ ⇒ "(-?\\d+)").mkString(" ").asUnsafeRegex[List[Int]].map(_.get)
       assert(regex.eval(is.mkString(" ")).next == is)
     }
   }
@@ -43,7 +45,7 @@ class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks {
       val index = is.length + 1 + offset
 
       implicit val decoder = outOfBounds(index)
-      val regex = Regex.unsafeCompile[Int](is.map(_ ⇒ "(-?\\d+)").mkString(" "))
+      val regex = is.map(_ ⇒ "(-?\\d+)").mkString(" ").asUnsafeRegex[Int]
       assert(regex.eval(is.mkString(" ")).next == DecodeResult.noSuchGroupId(index))
     }
   }
@@ -55,7 +57,7 @@ class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks {
 
     forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int]), Gen.identifier) { (is, id) ⇒
       implicit val decoder = noSuchName(id)
-      val regex = Regex.unsafeCompile[Int](is.map(_ ⇒ "(-?\\d+)").mkString(" "))
+      val regex = is.map(_ ⇒ "(-?\\d+)").mkString(" ").asUnsafeRegex[Int]
       assert(regex.eval(is.mkString(" ")).next == DecodeResult.noSuchGroupName(id))
     }
   }

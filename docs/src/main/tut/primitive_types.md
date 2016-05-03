@@ -28,7 +28,7 @@ We'll need to turn this into a [`Regex`] value, which is done through the [`rege
 import kantan.regex._
 import kantan.regex.ops._
 
-val regex = digits.regex[Int]
+val regex = digits.asUnsafeRegex[Int]
 ```
 
 Note the type parameter to [`regex`]: this tells kantan.regex how to interpret each match.
@@ -66,7 +66,7 @@ a way that it attempts to interpret the first group rather than the entire match
 [`MatchDecoder`] to [`regex`]:
 
 ```tut
-bracketedDigits.regex(MatchDecoder.fromGroup[Int](1)).eval(input).foreach(println _)
+bracketedDigits.asUnsafeRegex[Int](1).eval(input).foreach(println _)
 ```
 
 ## Adding support to new types
@@ -93,7 +93,7 @@ val input = "Nothing of note happened on 2009-01-06"
 And we can now decode this easily:
 
 ```tut
-"\\d\\d\\d\\d-\\d\\d-\\d\\d".regex[DateTime].eval(input).foreach(println _)
+"\\d\\d\\d\\d-\\d\\d-\\d\\d".asUnsafeRegex[DateTime].eval(input).foreach(println _)
 ```
 
 

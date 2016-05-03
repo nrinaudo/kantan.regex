@@ -18,5 +18,5 @@ import kantan.regex.ops._
 ```
 
 ```tut
-regex.regex[(Int, Int, Option[Int])].eval(input).toList
+regex.asUnsafeRegex[(Int, Int, Option[Int])].eval(input).toList
 ```
