@@ -9,14 +9,18 @@ a depressingly recurrent scenario being to extract simple integers from strings.
 
 Let's imagine that we get the following string and are interested in the integers between brackets: 
 
-```tut
+```tut:silent
 val input = "lorem ipsum [123] dolor si amet [456] DO NOT MATCH THIS 789."
 ```
 
 ## First attempt
 
 The first, naive approach would to simply match digits and turn matches into ints. This can be achieved with a trivial
-regular expression, `\d+`.
+regular expression:
+
+```tut
+val digits = "\\d+"
+```
 
 In order to evaluate that, we'll first need to import the kantan.regex syntax:
 
@@ -27,7 +31,7 @@ import kantan.regex.ops._
 And we can now simply call the [`evalRegex`] method that enriches strings:
 
 ```tut
-val results = input.evalRegex[Int]("\\d+")
+val results = input.evalRegex[Int](digits)
 
 results.foreach(println _)
 ```
@@ -44,16 +48,19 @@ makes regular expression evaluation safe: errors are wrapped in a failure value 
 ## Improved solution using groups
 
 Looking at the results however, we see that we didn't really achieve what we set out to do: `789` should not have been
-matched, but was. In order to solve this, we need to change our regular expression to something more precise, such as
-`\[(\d+)\]`.
+matched, but was. In order to solve this, we need to change our regular expression to something more precise, such as:
 
-The problem here is that when this matches of this expression are not valid ints - they are surrounded by brackets. This
+```tut
+val regex = "\\[(\\d+)\\]"
+```
+
+The problem here is that matches of this expression are not valid ints - they are surrounded by brackets. This
 is where groups come in handy: we've declared our regular expression in such a way that for each match, the first group
 will be the matched digits without the brackets. There's a version of [`evalRegex`] that takes the index of the group
 from which to extract data:
 
 ```tut
-input.evalRegex[Int]("\\[(\\d+)\\]", 1).foreach(println _)
+input.evalRegex[Int](regex, 1).foreach(println _)
 ```
 
 ## Adding support to new types
