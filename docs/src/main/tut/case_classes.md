@@ -10,17 +10,17 @@ provide more meaningful types.
 
 Let's take the following input and attempt to extract the bits between brackets: 
 
-```tut
+```tut:silent
 val input = "[1, 2] and [3, false]"
 ```
 
-We could use the following regular expression to the bits that interest us:
+This could be achieved with the following regular expression:
 
 ```tut
 val regex = "\\[(\\d+), (\\d+|true|false)\\]"
 ```
 
-And since we're trying to demonstrate case class extraction, let's store them in the following case class:
+And since we're trying to demonstrate case class extraction, let's extract data to the following case class:
 
 ```tut:silent
 case class WeirdPoint(x: Int, y: Either[Int, Boolean])
