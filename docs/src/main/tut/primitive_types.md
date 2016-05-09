@@ -43,6 +43,7 @@ Second, `results` is an [`Iterator`]: regular expressions are evaluated lazily.
 
 Lastly, even though we requested results of type [`Int`], we got [`Success[Int]`][`DecodeResult`] values instead. This 
 makes regular expression evaluation safe: errors are wrapped in a failure value rather than turned into exceptions.
+Should you not really care about safety, you can use [`unsafeEvalRegex`] and get raw ints.
 
 
 ## Improved solution using groups
@@ -100,3 +101,4 @@ input.evalRegex[DateTime]("\\d\\d\\d\\d-\\d\\d-\\d\\d").foreach(println _)
 [`MatchDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]
 [`DateTime`]:http://www.joda.org/joda-time/apidocs/org/joda/time/DateTime.html
 [`GroupDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]
+[`unsafeEvalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops$$StringOps@unsafeEvalRegex[A](expr:String)(implicitevidence$3:kantan.regex.MatchDecoder[A]):Iterator[A]

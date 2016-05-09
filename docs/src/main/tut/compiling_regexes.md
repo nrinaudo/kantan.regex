@@ -28,7 +28,8 @@ val regex = "\\[(\\d+), (\\d+)\\]".asRegex[(Int, Int)].get
 ```
 
 Note that we had to call [`get`] on the result: [`asRegex`] returns a [`CompileResult`] instance to protect against
-ill-formed regular expressions. We could also have used [`asUnsafeRegex`] for exactly the same result.s
+ill-formed regular expressions. We could also have used [`asUnsafeRegex`] for exactly the same results. Or, ideally,
+have some proper error handling in place.
 
 Now that we have this instance of [`Regex`], we can simply pass it as parameter to [`evalRegex`]:
 

@@ -50,11 +50,11 @@ object ops {
       eval(str, Regex.compile(expr, group))
 
     /** Unsafe version of [[evalRegex[A](expr:String)*]] .*/
-    def evalUnsafeRegex[A: MatchDecoder](expr: String): Iterator[A] =
+    def unsafeEvalRegex[A: MatchDecoder](expr: String): Iterator[A] =
       Regex.unsafeCompile(expr).eval(str).map(_.get)
 
     /** Unsafe version of [[evalRegex[A](expr:String,group:Int)*]] .*/
-    def evalUnsafeRegex[A: GroupDecoder](expr: String, group: Int): Iterator[A] =
+    def unsafeEvalRegex[A: GroupDecoder](expr: String, group: Int): Iterator[A] =
       Regex.unsafeCompile(expr, group).eval(str).map(_.get)
   }
 
