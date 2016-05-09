@@ -176,7 +176,7 @@ lazy val docs = project
   ))
 
   .settings(
-    apiURL := Some(url("http://nrinaudo.github.io/kantan.codecs/api/")),
+    apiURL := Some(url("http://nrinaudo.github.io/kantan.regex/api/")),
     scalacOptions in (ScalaUnidoc, unidoc) ++= Seq(
       "-doc-source-url", scmInfo.value.get.browseUrl + "/tree/master€{FILE_PATH}.scala",
       "-sourcepath", baseDirectory.in(LocalRootProject).value.getAbsolutePath
@@ -186,7 +186,7 @@ lazy val docs = project
   .settings(
     site.addMappingsToSiteDir(mappings in (ScalaUnidoc, packageDoc), "api"),
     site.addMappingsToSiteDir(tut, "_tut"),
-    git.remoteRepo := "git@github.com:nrinaudo/kantan.codecs.git",
+    git.remoteRepo := "git@github.com:nrinaudo/kantan.regex.git",
     ghpagesNoJekyll := false,
     includeFilter in makeSite := "*.yml" | "*.md" | "*.html" | "*.css" | "*.png" | "*.jpg" | "*.gif" | "*.js" |
                                  "*.eot" | "*.svg" | "*.ttf" | "*.woff" | "*.woff2" | "*.otf"
