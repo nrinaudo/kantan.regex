@@ -21,19 +21,40 @@ import scala.annotation.tailrec
 import scala.collection.generic.CanBuildFrom
 import scala.collection.mutable
 
+/** Provides useful methods for [[MatchDecoder]] instance summoning and creation.
+  *
+  * If trying to create a [[MatchDecoder]] from a type for which you already have a [[GroupDecoder]], use
+  * [[MatchDecoder$.fromGroup[A](index:Int)*]].
+  *
+  * Otherwise, the `ordered` or `decoder` methods make it simple to create [[MatchDecoder]] instances for more
+  * complicated types.
+  */
 object MatchDecoder extends GeneratedMatchDecoders {
+  /** Summons an implicit instance of [[MatchDecoder]] if it exists, fails compilation if it does not.
+    *
+    * This is just a convenience method and equivalent to calling `implicitly[MatchDecoder[A]]`
+    */
   def apply[A](implicit da: MatchDecoder[A]): MatchDecoder[A] = da
 
   def apply[A](f: Match ⇒ DecodeResult[A]): MatchDecoder[A] =
     Decoder[Match, A, DecodeError, codecs.type](f)
 
+  /** Creates a new [[MatchDecoder]] for a type that already has a [[GroupDecoder]].
+    *
+    * @param index index (from 1) of the group that should be extracted.
+    */
   def fromGroup[A](index: Int)(implicit da: GroupDecoder[A]): MatchDecoder[A] =
     MatchDecoder(_.decode(index))
 
+  /** Creates a new [[MatchDecoder]] for a type that already has a [[GroupDecoder]].
+    *
+    * @param name name of the group that should be extracted.
+    */
   def fromGroup[A](name: String)(implicit da: GroupDecoder[A]): MatchDecoder[A] =
     MatchDecoder(_.decode(name))
 }
 
+/** Declares default [[MatchDecoder]] instances. */
 trait MatchDecoderInstances {
   implicit def fromGroup[A](implicit da: GroupDecoder[A]): MatchDecoder[A] = MatchDecoder.fromGroup(0)
 
