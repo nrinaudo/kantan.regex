@@ -1,0 +1,555 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>regex - kantan.regex</title>
+          <meta name="description" content="regex - kantan.regex" />
+          <meta name="keywords" content="regex kantan.regex" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../index.html';
+            var hash = 'kantan.regex.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Package" src="../../lib/package_big.png" />
+        <p id="owner"><a href="../package.html" class="extype" name="kantan">kantan</a></p>
+        <h1>regex</h1><span class="permalink">
+      <a href="../../index.html#kantan.regex.package" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">regex</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/core/src/main/scala/kantan/regex/package.scala" target="_blank">package.scala</a></dd></dl><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="kantan.regex"><span>regex</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="kantan.regex.CompileError" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CompileErrorextendsRegexErrorwithProductwithSerializable"></a>
+      <a id="CompileError:CompileError"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="CompileError.html"><span class="name">CompileError</span></a><span class="params">(<span name="cause">cause: <span class="extype" name="scala.Throwable">Throwable</span></span>)</span><span class="result"> extends <a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@CompileErrorextendsRegexErrorwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.CompileResult" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CompileResult[A]=kantan.codecs.Result[kantan.regex.CompileError,A]"></a>
+      <a id="CompileResult[A]:CompileResult[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CompileResult</span><span class="tparams">[<span name="A">A</span>]</span><span class="result"> = <a href="https://nrinaudo.github.io/kantan.codecs/api/index.html#kantan.codecs.Result" class="extype" target="_top">Result</a>[<a href="CompileError.html" class="extype" name="kantan.regex.CompileError">CompileError</a>, <span class="extype" name="kantan.regex.CompileResult.A">A</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@CompileResult[A]=kantan.codecs.Result[kantan.regex.CompileError,A]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.Compiler" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="Compiler[A]extendsAnyRef"></a>
+      <a id="Compiler[A]:Compiler[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Compiler.html"><span class="name">Compiler</span></a><span class="tparams">[<span name="A">A</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@Compiler[A]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.DecodeError" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="DecodeErrorextendsRegexError"></a>
+      <a id="DecodeError:DecodeError"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="DecodeError.html"><span class="name">DecodeError</span></a><span class="result"> extends <a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@DecodeErrorextendsRegexError" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.DecodeResult" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]"></a>
+      <a id="DecodeResult[A]:DecodeResult[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">DecodeResult</span><span class="tparams">[<span name="A">A</span>]</span><span class="result"> = <a href="https://nrinaudo.github.io/kantan.codecs/api/index.html#kantan.codecs.Result" class="extype" target="_top">Result</a>[<a href="DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a>, <span class="extype" name="kantan.regex.DecodeResult.A">A</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.GeneratedMatchDecoders" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="GeneratedMatchDecodersextendsAnyRef"></a>
+      <a id="GeneratedMatchDecoders:GeneratedMatchDecoders"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="GeneratedMatchDecoders.html"><span class="name">GeneratedMatchDecoders</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@GeneratedMatchDecodersextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.GroupDecoder" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]"></a>
+      <a id="GroupDecoder[A]:GroupDecoder[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">GroupDecoder</span><span class="tparams">[<span name="A">A</span>]</span><span class="result"> = <a href="https://nrinaudo.github.io/kantan.codecs/api/index.html#kantan.codecs.Decoder" class="extype" target="_top">Decoder</a>[<a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Option" class="extype" target="_top">Option</a>[<span class="extype" name="scala.Predef.String">String</span>], <span class="extype" name="kantan.regex.GroupDecoder.A">A</span>, <a href="DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a>, <a href="codecs$.html" class="extype" name="kantan.regex.codecs">codecs</a>.type]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.GroupDecoderInstances" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="GroupDecoderInstancesextendsAnyRef"></a>
+      <a id="GroupDecoderInstances:GroupDecoderInstances"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="GroupDecoderInstances.html"><span class="name">GroupDecoderInstances</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@GroupDecoderInstancesextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.Match" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MatchextendsAnyRef"></a>
+      <a id="Match:Match"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Match.html"><span class="name">Match</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@MatchextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.MatchDecoder" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]"></a>
+      <a id="MatchDecoder[A]:MatchDecoder[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MatchDecoder</span><span class="tparams">[<span name="A">A</span>]</span><span class="result"> = <a href="https://nrinaudo.github.io/kantan.codecs/api/index.html#kantan.codecs.Decoder" class="extype" target="_top">Decoder</a>[<a href="Match.html" class="extype" name="kantan.regex.Match">Match</a>, <span class="extype" name="kantan.regex.MatchDecoder.A">A</span>, <a href="DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a>, <a href="codecs$.html" class="extype" name="kantan.regex.codecs">codecs</a>.type]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.MatchDecoderInstances" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="MatchDecoderInstancesextendsAnyRef"></a>
+      <a id="MatchDecoderInstances:MatchDecoderInstances"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="MatchDecoderInstances.html"><span class="name">MatchDecoderInstances</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@MatchDecoderInstancesextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.Regex" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="Regex[A]extendsAnyRef"></a>
+      <a id="Regex[A]:Regex[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Regex.html"><span class="name">Regex</span></a><span class="tparams">[<span name="A">A</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@Regex[A]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.RegexError" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="RegexErrorextendsProductwithSerializable"></a>
+      <a id="RegexError:RegexError"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="RegexError.html"><span class="name">RegexError</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@RegexErrorextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.RegexResult" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RegexResult[A]=kantan.codecs.Result[kantan.regex.RegexError,A]"></a>
+      <a id="RegexResult[A]:RegexResult[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RegexResult</span><span class="tparams">[<span name="A">A</span>]</span><span class="result"> = <a href="https://nrinaudo.github.io/kantan.codecs/api/index.html#kantan.codecs.Result" class="extype" target="_top">Result</a>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>, <span class="extype" name="kantan.regex.RegexResult.A">A</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@RegexResult[A]=kantan.codecs.Result[kantan.regex.RegexError,A]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.TupleDecoders" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TupleDecodersextendsAnyRef"></a>
+      <a id="TupleDecoders:TupleDecoders"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="TupleDecoders.html"><span class="name">TupleDecoders</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@TupleDecodersextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="kantan.regex.CompileResult" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CompileResult"></a>
+      <a id="CompileResult:CompileResult"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CompileResult$.html"><span class="name">CompileResult</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@CompileResult" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.Compiler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Compiler"></a>
+      <a id="Compiler:Compiler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Compiler$.html"><span class="name">Compiler</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@Compiler" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.DecodeError" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DecodeError"></a>
+      <a id="DecodeError:DecodeError"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="DecodeError$.html"><span class="name">DecodeError</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@DecodeError" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.DecodeResult" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DecodeResult"></a>
+      <a id="DecodeResult:DecodeResult"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="DecodeResult$.html"><span class="name">DecodeResult</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@DecodeResult" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.GroupDecoder" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="GroupDecoder"></a>
+      <a id="GroupDecoder:GroupDecoder"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="GroupDecoder$.html"><span class="name">GroupDecoder</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@GroupDecoder" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.MatchDecoder" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MatchDecoder"></a>
+      <a id="MatchDecoder:MatchDecoder"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MatchDecoder$.html"><span class="name">MatchDecoder</span></a><span class="result"> extends <a href="GeneratedMatchDecoders.html" class="extype" name="kantan.regex.GeneratedMatchDecoders">GeneratedMatchDecoders</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@MatchDecoder" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.Regex" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Regex"></a>
+      <a id="Regex:Regex"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Regex$.html"><span class="name">Regex</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@Regex" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Provides <a href="Regex.html" class="extype" name="kantan.regex.Regex">Regex</a> compilation methods.</p>
+    </li><li name="kantan.regex.codecs" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="codecs"></a>
+      <a id="codecs:codecs"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="codecs$.html"><span class="name">codecs</span></a><span class="result"> extends <a href="GroupDecoderInstances.html" class="extype" name="kantan.regex.GroupDecoderInstances">GroupDecoderInstances</a> with <a href="MatchDecoderInstances.html" class="extype" name="kantan.regex.MatchDecoderInstances">MatchDecoderInstances</a> with <a href="TupleDecoders.html" class="extype" name="kantan.regex.TupleDecoders">TupleDecoders</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@codecs" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.laws" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="laws"></a>
+      <a id="laws:laws"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="laws/package.html"><span class="name">laws</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@laws" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.ops" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ops"></a>
+      <a id="ops:ops"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ops$.html"><span class="name">ops</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@ops" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
