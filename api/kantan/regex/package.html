@@ -122,23 +122,25 @@
       </a>
     </span>
       
-    </li><li name="kantan.regex.Compiler" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="Compiler[A]extendsAnyRef"></a>
-      <a id="Compiler[A]:Compiler[A]"></a>
+    </li><li name="kantan.regex.Compiler" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="Compiler[E]extendsAnyRef"></a>
+      <a id="Compiler[E]:Compiler[E]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="Compiler.html"><span class="name">Compiler</span></a><span class="tparams">[<span name="A">A</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <a href="Compiler.html"><span class="name">Compiler</span></a><span class="tparams">[<span name="E">E</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#kantan.regex.package@Compiler[A]extendsAnyRef" title="Permalink" target="_top">
+      <a href="../../index.html#kantan.regex.package@Compiler[E]extendsAnyRef" title="Permalink" target="_top">
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Type class for types that can be compiled to instances of <a href="Regex.html" class="extype" name="kantan.regex.Regex">Regex</a>.</p><div class="fullcomment"><div class="comment cmt"><p>Type class for types that can be compiled to instances of <a href="Regex.html" class="extype" name="kantan.regex.Regex">Regex</a>.</p><p>The vast majority of the time, there should be no reason to interact with this as default instances are provided
+for most types anyone's likely to need.
+</p></div></div>
     </li><li name="kantan.regex.DecodeError" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="DecodeErrorextendsRegexError"></a>
       <a id="DecodeError:DecodeError"></a>
@@ -274,7 +276,7 @@
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Declares default <a href="#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> instances.</p>
     </li><li name="kantan.regex.Regex" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="Regex[A]extendsAnyRef"></a>
       <a id="Regex[A]:Regex[A]"></a>
@@ -383,7 +385,7 @@
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Provides default instances, instance creation and instance summoning methods.</p>
     </li><li name="kantan.regex.DecodeError" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="DecodeError"></a>
       <a id="DecodeError:DecodeError"></a>
@@ -435,7 +437,7 @@
       </a>
     </span>
       
-    </li><li name="kantan.regex.MatchDecoder" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="kantan.regex.MatchDecoder" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="MatchDecoder"></a>
       <a id="MatchDecoder:MatchDecoder"></a>
       <h4 class="signature">
@@ -451,24 +453,10 @@
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
-    </li><li name="kantan.regex.Regex" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="Regex"></a>
-      <a id="Regex:Regex"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a href="Regex$.html"><span class="name">Regex</span></a>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#kantan.regex.package@Regex" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Provides <a href="Regex.html" class="extype" name="kantan.regex.Regex">Regex</a> compilation methods.</p>
+      <p class="shortcomment cmt">Provides useful methods for <a href="#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> instance summoning and creation.</p><div class="fullcomment"><div class="comment cmt"><p>Provides useful methods for <a href="#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> instance summoning and creation.</p><p>If trying to create a <a href="#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> from a type for which you already have a <a href="#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>, use
+<a href="MatchDecoder$.html#fromGroup[A](index:Int)(implicitda:kantan.regex.GroupDecoder[A]):kantan.regex.MatchDecoder[A]" class="extmbr" name="kantan.regex.MatchDecoder#fromGroup">MatchDecoder$.fromGroup[A](index:Int)*</a>.</p><p>Otherwise, the <code>ordered</code> or <code>decoder</code> methods make it simple to create <a href="#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> instances for more
+complicated types.
+</p></div></div>
     </li><li name="kantan.regex.codecs" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="codecs"></a>
       <a id="codecs:codecs"></a>

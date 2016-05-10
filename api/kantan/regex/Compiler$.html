@@ -51,7 +51,7 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/core/src/main/scala/kantan/regex/Compiler.scala" target="_blank">Compiler.scala</a></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Provides default instances, instance creation and instance summoning methods.</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/core/src/main/scala/kantan/regex/Compiler.scala" target="_blank">Compiler.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -148,22 +148,22 @@
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="kantan.regex.Compiler#apply" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="apply[A](f:A=&gt;kantan.regex.CompileResult[java.util.regex.Pattern]):kantan.regex.Compiler[A]"></a>
-      <a id="apply[A]((A)⇒CompileResult[Pattern]):Compiler[A]"></a>
+      <a id="apply[A](implicitca:kantan.regex.Compiler[A]):kantan.regex.Compiler[A]"></a>
+      <a id="apply[A](Compiler[A]):Compiler[A]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">apply</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="kantan.regex.Compiler.apply.A">A</span>) ⇒ <a href="package.html#CompileResult[A]=kantan.codecs.Result[kantan.regex.CompileError,A]" class="extmbr" name="kantan.regex.CompileResult">CompileResult</a>[<span class="extype" name="java.util.regex.Pattern">Pattern</span>]</span>)</span><span class="result">: <a href="Compiler.html" class="extype" name="kantan.regex.Compiler">Compiler</a>[<span class="extype" name="kantan.regex.Compiler.apply.A">A</span>]</span>
+        <span class="name">apply</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="ca">ca: <a href="Compiler.html" class="extype" name="kantan.regex.Compiler">Compiler</a>[<span class="extype" name="kantan.regex.Compiler.apply.A">A</span>]</span>)</span><span class="result">: <a href="Compiler.html" class="extype" name="kantan.regex.Compiler">Compiler</a>[<span class="extype" name="kantan.regex.Compiler.apply.A">A</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#kantan.regex.Compiler$@apply[A](f:A=&gt;kantan.regex.CompileResult[java.util.regex.Pattern]):kantan.regex.Compiler[A]" title="Permalink" target="_top">
+      <a href="../../index.html#kantan.regex.Compiler$@apply[A](implicitca:kantan.regex.Compiler[A]):kantan.regex.Compiler[A]" title="Permalink" target="_top">
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Returns an instance of <a href="Compiler.html" class="extype" name="kantan.regex.Compiler">Compiler</a> for <code>A</code> if one is found in scope, fails compilation otherwise.</p>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -261,6 +261,23 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="kantan.regex.Compiler#fromPattern" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="fromPattern[A](f:A=&gt;kantan.regex.CompileResult[java.util.regex.Pattern]):kantan.regex.Compiler[A]"></a>
+      <a id="fromPattern[A]((A)⇒CompileResult[Pattern]):Compiler[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fromPattern</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="kantan.regex.Compiler.fromPattern.A">A</span>) ⇒ <a href="package.html#CompileResult[A]=kantan.codecs.Result[kantan.regex.CompileError,A]" class="extmbr" name="kantan.regex.CompileResult">CompileResult</a>[<span class="extype" name="java.util.regex.Pattern">Pattern</span>]</span>)</span><span class="result">: <a href="Compiler.html" class="extype" name="kantan.regex.Compiler">Compiler</a>[<span class="extype" name="kantan.regex.Compiler.fromPattern.A">A</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.Compiler$@fromPattern[A](f:A=&gt;kantan.regex.CompileResult[java.util.regex.Pattern]):kantan.regex.Compiler[A]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Creates a new <a href="Compiler.html" class="extype" name="kantan.regex.Compiler">Compiler</a> instance from a function that turns <code>A</code> into a <code>Pattern</code>.</p>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <a id="getClass():Class[_]"></a>
@@ -379,24 +396,7 @@
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
-    </li><li name="kantan.regex.Compiler#safe" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="safe[A](f:A=&gt;java.util.regex.Pattern):kantan.regex.Compiler[A]"></a>
-      <a id="safe[A]((A)⇒Pattern):Compiler[A]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">safe</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="kantan.regex.Compiler.safe.A">A</span>) ⇒ <span class="extype" name="java.util.regex.Pattern">Pattern</span></span>)</span><span class="result">: <a href="Compiler.html" class="extype" name="kantan.regex.Compiler">Compiler</a>[<span class="extype" name="kantan.regex.Compiler.safe.A">A</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#kantan.regex.Compiler$@safe[A](f:A=&gt;java.util.regex.Pattern):kantan.regex.Compiler[A]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      
+      <p class="shortcomment cmt">Provides compilation for Java Patterns.</p>
     </li><li name="kantan.regex.Compiler#scalaRegex" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="scalaRegex:kantan.regex.Compiler[scala.util.matching.Regex]"></a>
       <a id="scalaRegex:Compiler[scala.util.matching.Regex]"></a>
@@ -413,7 +413,7 @@
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Provides compilation for Scala Regexes.</p>
     </li><li name="kantan.regex.Compiler#string" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="string:kantan.regex.Compiler[String]"></a>
       <a id="string:Compiler[String]"></a>
@@ -430,7 +430,7 @@
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Provides compilation for Strings.</p>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

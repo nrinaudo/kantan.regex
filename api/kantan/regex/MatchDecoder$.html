@@ -49,7 +49,10 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/core/src/main/scala/kantan/regex/MatchDecoder.scala" target="_blank">MatchDecoder.scala</a></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Provides useful methods for <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> instance summoning and creation.</p><p>If trying to create a <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> from a type for which you already have a <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>, use
+<a href="#fromGroup[A](index:Int)(implicitda:kantan.regex.GroupDecoder[A]):kantan.regex.MatchDecoder[A]" class="extmbr" name="kantan.regex.MatchDecoder#fromGroup">MatchDecoder$.fromGroup[A](index:Int)*</a>.</p><p>Otherwise, the <code>ordered</code> or <code>decoder</code> methods make it simple to create <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> instances for more
+complicated types.
+</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/core/src/main/scala/kantan/regex/MatchDecoder.scala" target="_blank">MatchDecoder.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><a href="GeneratedMatchDecoders.html" class="extype" name="kantan.regex.GeneratedMatchDecoders">GeneratedMatchDecoders</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -161,8 +164,8 @@
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
-    </li><li name="kantan.regex.MatchDecoder#apply" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Creates a new instance of <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> from the specified function.</p>
+    </li><li name="kantan.regex.MatchDecoder#apply" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="apply[A](implicitda:kantan.regex.MatchDecoder[A]):kantan.regex.MatchDecoder[A]"></a>
       <a id="apply[A](MatchDecoder[A]):MatchDecoder[A]"></a>
       <h4 class="signature">
@@ -178,7 +181,8 @@
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Summons an implicit instance of <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> if it exists, fails compilation if it does not.</p><div class="fullcomment"><div class="comment cmt"><p>Summons an implicit instance of <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> if it exists, fails compilation if it does not.</p><p>This is just a convenience method and equivalent to calling <code>implicitly[MatchDecoder[A]]</code>
+</p></div></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -1024,7 +1028,7 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="kantan.regex.MatchDecoder#fromGroup" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="kantan.regex.MatchDecoder#fromGroup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="fromGroup[A](name:String)(implicitda:kantan.regex.GroupDecoder[A]):kantan.regex.MatchDecoder[A]"></a>
       <a id="fromGroup[A](String)(GroupDecoder[A]):MatchDecoder[A]"></a>
       <h4 class="signature">
@@ -1040,8 +1044,9 @@
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
-    </li><li name="kantan.regex.MatchDecoder#fromGroup" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Creates a new <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> for a type that already has a <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>.</p><div class="fullcomment"><div class="comment cmt"><p>Creates a new <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> for a type that already has a <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>.
+</p></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>name of the group that should be extracted.</p></dd></dl></div>
+    </li><li name="kantan.regex.MatchDecoder#fromGroup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="fromGroup[A](index:Int)(implicitda:kantan.regex.GroupDecoder[A]):kantan.regex.MatchDecoder[A]"></a>
       <a id="fromGroup[A](Int)(GroupDecoder[A]):MatchDecoder[A]"></a>
       <h4 class="signature">
@@ -1057,7 +1062,8 @@
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Creates a new <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> for a type that already has a <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>.</p><div class="fullcomment"><div class="comment cmt"><p>Creates a new <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> for a type that already has a <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>.
+</p></div><dl class="paramcmts block"><dt class="param">index</dt><dd class="cmt"><p>index (from 1) of the group that should be extracted.</p></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <a id="getClass():Class[_]"></a>
