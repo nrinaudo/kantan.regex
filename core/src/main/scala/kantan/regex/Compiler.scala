@@ -16,20 +16,52 @@
 
 package kantan.regex
 
-import java.util.regex.Pattern
+import java.util.regex.{Matcher, Pattern}
 
+/** Type class for types that can be compiled to instances of [[Regex]].
+  *
+  * The vast majority of the time, there should be no reason to interact with this as default instances are provided
+  * for most types anyone's likely to need.
+  */
 trait Compiler[A] {
-  def compile(a: A): CompileResult[Pattern]
+  def compile[B](expr: A)(implicit db: MatchDecoder[B]): CompileResult[Regex[DecodeResult[B]]]
+
+  def compile[B: GroupDecoder](expr: A, group: Int): CompileResult[Regex[DecodeResult[B]]] =
+    compile(expr)(MatchDecoder.fromGroup[B](group))
+
+  def unsafeCompile[B: MatchDecoder](expr: A): Regex[DecodeResult[B]] = compile(expr).get
+  def unsafeCompile[B: GroupDecoder](expr: A, group: Int): Regex[DecodeResult[B]] = compile(expr, group).get
 }
 
 object Compiler {
-  def apply[A](f: A ⇒ CompileResult[Pattern]): Compiler[A] = new Compiler[A] {
-    override def compile(a: A) = f(a)
+  def fromPattern[A](f: A ⇒ CompileResult[Pattern]): Compiler[A] = new Compiler[A] {
+    override def compile[B](expr: A)(implicit db: MatchDecoder[B]): CompileResult[Regex[DecodeResult[B]]] =
+      f(expr).map { pattern ⇒
+        new Regex[DecodeResult[B]] {
+          override def eval(s: String) = new MatchIterator(pattern.matcher(s)).map(m ⇒ db.decode(m))
+          override def toString = pattern.toString
+        }
+      }
   }
 
-  def safe[A](f: A ⇒ Pattern): Compiler[A] = Compiler(f andThen CompileResult.success)
+  def apply[A](implicit ca: Compiler[A]): Compiler[A] = ca
 
-  implicit val scalaRegex: Compiler[scala.util.matching.Regex] = safe(_.pattern)
-  implicit val pattern: Compiler[Pattern] = safe(identity)
-  implicit val string: Compiler[String] = Compiler(s ⇒ CompileResult(Pattern.compile(s)))
+  implicit val scalaRegex: Compiler[scala.util.matching.Regex] = fromPattern(r ⇒ CompileResult.success(r.pattern))
+  implicit val pattern: Compiler[Pattern] = fromPattern(p ⇒ CompileResult.success(p))
+  implicit val string: Compiler[String] = fromPattern(s ⇒ CompileResult(Pattern.compile(s)))
+}
+
+private class MatchIterator(val matcher: Matcher) extends Iterator[Match] {
+  var nextSeen = false
+  val m = new Match(matcher)
+
+  override def hasNext = {
+    if(!nextSeen) nextSeen = matcher.find()
+    nextSeen
+  }
+  override def next(): Match = {
+    if(!hasNext) throw new NoSuchElementException
+    nextSeen = false
+    m
+  }
 }

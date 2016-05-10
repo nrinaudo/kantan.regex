@@ -29,7 +29,7 @@ object ops {
 
     /** Compiles and evaluates the specified regular expression against this string. */
     def evalRegex[A: MatchDecoder](expr: String): Iterator[RegexResult[A]] =
-      eval(str, Regex.compile(expr))
+      eval(str, Compiler[String].compile(expr))
 
     /** Compiles and evaluates the specified regular expression against this string.
       *
@@ -47,28 +47,29 @@ object ops {
       * @param group index of the group from which to extract data in each match.
       */
     def evalRegex[A: GroupDecoder](expr: String, group: Int): Iterator[RegexResult[A]] =
-      eval(str, Regex.compile(expr, group))
+      eval(str, Compiler[String].compile(expr, group))
 
     /** Unsafe version of [[evalRegex[A](expr:String)*]] .*/
     def unsafeEvalRegex[A: MatchDecoder](expr: String): Iterator[A] =
-      Regex.unsafeCompile(expr).eval(str).map(_.get)
+      evalRegex[A](expr).map(_.get)
 
     /** Unsafe version of [[evalRegex[A](expr:String,group:Int)*]] .*/
     def unsafeEvalRegex[A: GroupDecoder](expr: String, group: Int): Iterator[A] =
-      Regex.unsafeCompile(expr, group).eval(str).map(_.get)
+      evalRegex(expr, group).map(_.get)
   }
 
   /** Provides useful syntax for types that have a [[Compiler]] instance. */
   implicit class CompilableOps[S](val expr: S) extends AnyVal {
     /** Compiles this value as a [[Regex]]. */
-    def asRegex[A: MatchDecoder](implicit cs: Compiler[S]): CompileResult[Regex[DecodeResult[A]]] = Regex.compile(expr)
+    def asRegex[A: MatchDecoder](implicit cs: Compiler[S]): CompileResult[Regex[DecodeResult[A]]] =
+      cs.compile(expr)
     def asRegex[A: GroupDecoder](group: Int)(implicit cs: Compiler[S]): CompileResult[Regex[DecodeResult[A]]] =
-      Regex.compile(expr, group)
+      cs.compile(expr, group)
 
-    def asUnsafeRegex[A: MatchDecoder](implicit cs: Compiler[S]): Regex[DecodeResult[A]] = Regex.unsafeCompile(expr)
+    def asUnsafeRegex[A: MatchDecoder](implicit cs: Compiler[S]): Regex[DecodeResult[A]] = cs.unsafeCompile(expr)
 
     /** Unsafe version of [[asRegex[A](group:Int)*]]. */
     def asUnsafeRegex[A: GroupDecoder](group: Int)(implicit cs: Compiler[S]): Regex[DecodeResult[A]] =
-      Regex.unsafeCompile(expr, group)
+      cs.unsafeCompile(expr, group)
   }
 }
