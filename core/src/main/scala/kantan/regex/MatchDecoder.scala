@@ -36,6 +36,7 @@ object MatchDecoder extends GeneratedMatchDecoders {
     */
   def apply[A](implicit da: MatchDecoder[A]): MatchDecoder[A] = da
 
+  /** Creates a new instance of [[MatchDecoder]] from the specified function. */
   def apply[A](f: Match ⇒ DecodeResult[A]): MatchDecoder[A] =
     Decoder[Match, A, DecodeError, codecs.type](f)
 
@@ -56,17 +57,23 @@ object MatchDecoder extends GeneratedMatchDecoders {
 
 /** Declares default [[MatchDecoder]] instances. */
 trait MatchDecoderInstances {
+  /** Turns a [[GroupDecoder]] into a [[MatchDecoder]] by having it look at the entire match rather than a specific
+    * group. */
   implicit def fromGroup[A](implicit da: GroupDecoder[A]): MatchDecoder[A] = MatchDecoder.fromGroup(0)
 
+  /** Provides an instance of [[MatchDecoder]] for `Either[A, B]`, provided both `A` and `B` have a [[MatchDecoder]]. */
   implicit def eitherMatch[A: MatchDecoder, B: MatchDecoder]: MatchDecoder[Either[A, B]] =
     Decoder.eitherDecoder
 
+  /** Provides an instance of [[MatchDecoder]] for `Option[A]`, provided `A` has a [[MatchDecoder]]. */
   implicit def optMatch[A](implicit da: GroupDecoder[Option[A]]): MatchDecoder[Option[A]] =
     MatchDecoder.fromGroup[Option[A]](0)(GroupDecoder { os ⇒
       da.decode(os.filter(_.nonEmpty))
     })
 
   // TODO: there *must* be a more elegant way to write this.
+  // This is more of a hack and not terribly satisfactory, since regular expressions are much more limitted than I
+  // initially assumed: matching "12345" against "(\d)*" will not result in 5 groups, but 2: "12345" and "5".
   implicit def fromCbf[F[_], A]
   (implicit da: GroupDecoder[Option[A]], cbf: CanBuildFrom[Nothing, A, F[A]]): MatchDecoder[F[A]] =
     MatchDecoder[F[A]] { (m: Match) ⇒

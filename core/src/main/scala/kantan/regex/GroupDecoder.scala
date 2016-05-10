@@ -37,11 +37,4 @@ trait GroupDecoderInstances {
 
   implicit def eitherGroupDecoder[A: GroupDecoder, B: GroupDecoder]: GroupDecoder[Either[A, B]] =
     Decoder.eitherDecoder
-
-  /*
-  implicit def optFromString[A](implicit da: StringDecoder[A]): GroupDecoder[Option[A]] =
-    fromString(da).map(Option.apply)recover {
-      case DecodeError.EmptyGroup ⇒ Option.empty[A]
-    }
-    */
 }
