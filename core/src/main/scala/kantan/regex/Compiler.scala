@@ -23,17 +23,30 @@ import java.util.regex.{Matcher, Pattern}
   * The vast majority of the time, there should be no reason to interact with this as default instances are provided
   * for most types anyone's likely to need.
   */
-trait Compiler[A] {
-  def compile[B](expr: A)(implicit db: MatchDecoder[B]): CompileResult[Regex[DecodeResult[B]]]
+trait Compiler[E] {
+  /** Compiles the specified expression into a [[Regex]]. */
+  def compile[B](expr: E)(implicit db: MatchDecoder[B]): CompileResult[Regex[DecodeResult[B]]]
 
-  def compile[B: GroupDecoder](expr: A, group: Int): CompileResult[Regex[DecodeResult[B]]] =
+  /** Compiles the specified expression into a [[Regex]].
+    *
+    * Each match is turned into a `B` by decoding group `group` using `B`'s implicit [[GroupDecoder]] instance.
+    */
+  def compile[B: GroupDecoder](expr: E, group: Int): CompileResult[Regex[DecodeResult[B]]] =
     compile(expr)(MatchDecoder.fromGroup[B](group))
 
-  def unsafeCompile[B: MatchDecoder](expr: A): Regex[DecodeResult[B]] = compile(expr).get
-  def unsafeCompile[B: GroupDecoder](expr: A, group: Int): Regex[DecodeResult[B]] = compile(expr, group).get
+  /** Unsafe version of `compile`. */
+  def unsafeCompile[B: MatchDecoder](expr: E): Regex[DecodeResult[B]] = compile(expr).get
+
+  /** Unsafe version of `compile`. */
+  def unsafeCompile[B: GroupDecoder](expr: E, group: Int): Regex[DecodeResult[B]] = compile(expr, group).get
 }
 
+/** Provides default instances, instance creation and instance summoning methods. */
 object Compiler {
+  /** Returns an instance of [[Compiler]] for `A` if one is found in scope, fails compilation otherwise. */
+  def apply[A](implicit ca: Compiler[A]): Compiler[A] = ca
+
+  /** Creates a new [[Compiler]] instance from a function that turns `A` into a `Pattern`. */
   def fromPattern[A](f: A ⇒ CompileResult[Pattern]): Compiler[A] = new Compiler[A] {
     override def compile[B](expr: A)(implicit db: MatchDecoder[B]): CompileResult[Regex[DecodeResult[B]]] =
       f(expr).map { pattern ⇒
@@ -44,10 +57,11 @@ object Compiler {
       }
   }
 
-  def apply[A](implicit ca: Compiler[A]): Compiler[A] = ca
-
+  /** Provides compilation for Scala Regexes. */
   implicit val scalaRegex: Compiler[scala.util.matching.Regex] = fromPattern(r ⇒ CompileResult.success(r.pattern))
+  /** Provides compilation for Java Patterns. */
   implicit val pattern: Compiler[Pattern] = fromPattern(p ⇒ CompileResult.success(p))
+  /** Provides compilation for Strings. */
   implicit val string: Compiler[String] = fromPattern(s ⇒ CompileResult(Pattern.compile(s)))
 }
 
