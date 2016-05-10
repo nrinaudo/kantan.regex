@@ -23,19 +23,23 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 class CompilableOpsTests extends FunSuite with GeneratorDrivenPropertyChecks {
   test("asRegex should succeed for valid regular expressions") {
     assert("\\d+".asRegex[Int].isSuccess)
+    assert("\\d+".asRegex[Int](1).isSuccess)
   }
 
   test("asRegex should fail for invalid regular expressions") {
     assert("[".asRegex[Int].isFailure)
+    assert("[".asRegex[Int](1).isFailure)
   }
 
   test("asUnsafeRegex should succeed for valid regular expressions") {
     "\\d+".asUnsafeRegex[Int]
+    "\\d+".asUnsafeRegex[Int](1)
     ()
   }
 
   test("asUnsafeRegex should fail for invalid regular expressions") {
     intercept[Exception]("[".asUnsafeRegex[Int])
+    intercept[Exception]("[".asUnsafeRegex[Int](1))
     ()
   }
 }
