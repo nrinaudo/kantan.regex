@@ -51,11 +51,11 @@ object ops {
 
     /** Unsafe version of [[evalRegex[A](expr:String)*]] .*/
     def unsafeEvalRegex[A: MatchDecoder](expr: String): Iterator[A] =
-      evalRegex[A](expr).map(_.get)
+      evalRegex(Compiler[String].unsafeCompile[A](expr)).map(_.get)
 
     /** Unsafe version of [[evalRegex[A](expr:String,group:Int)*]] .*/
     def unsafeEvalRegex[A: GroupDecoder](expr: String, group: Int): Iterator[A] =
-      evalRegex(expr, group).map(_.get)
+      evalRegex(Compiler[String].unsafeCompile[A](expr, group)).map(_.get)
   }
 
   /** Provides useful syntax for types that have a [[Compiler]] instance. */
