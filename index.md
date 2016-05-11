@@ -14,21 +14,21 @@ kantan.regex is a library for extracting useful types from regular expression ma
 
 kantan.regex is currently available both for Scala 2.10 and 2.11.
 
-The current version is `0.1.0-SNAPSHOT`, which can be added to your project with one or more of the following line(s)
+The current version is `0.1.0`, which can be added to your project with one or more of the following line(s)
 in your SBT build file:
 
 ```scala
 // Core library, included automatically if any other module is imported.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex" % "0.1.0-SNAPSHOT"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex" % "0.1.0"
 
 // Provides scalaz type class instances.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-scalaz" % "0.1.0-SNAPSHOT"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-scalaz" % "0.1.0"
 
 // Provides cats type class instances.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-cats" % "0.1.0-SNAPSHOT"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-cats" % "0.1.0"
 
 // Provides joda-time decoders.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.1.0-SNAPSHOT"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.1.0"
 ```
 
 ## Motivation
