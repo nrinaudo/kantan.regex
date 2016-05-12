@@ -21,6 +21,8 @@ import kantan.codecs.Result
 object DecodeResult {
   def apply[A](a: ⇒ A): DecodeResult[A] = Result.nonFatal(a).leftMap(DecodeError.TypeError.apply)
   def success[A](a: A): DecodeResult[A] = Result.success(a)
+  def typeError(str: String): DecodeResult[Nothing] = Result.failure(DecodeError.TypeError(str))
+  def typeError(e: Exception): DecodeResult[Nothing] = Result.failure(DecodeError.TypeError(e))
   def noSuchGroupId(id: Int): DecodeResult[Nothing] = Result.failure(DecodeError.NoSuchGroupId(id))
   def noSuchGroupName(name: String): DecodeResult[Nothing] = Result.failure(DecodeError.NoSuchGroupName(name))
   val emptyGroup: DecodeResult[Nothing] = Result.failure(DecodeError.EmptyGroup)
