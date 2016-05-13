@@ -17,7 +17,7 @@ val input = "[1, 2] and [3, false]"
 This could be achieved with the following regular expression:
 
 ```tut
-val regex = "\\[(\\d+), (\\d+|true|false)\\]"
+val regex = """\[(\d+), (\d+|true|false)\]"""
 ```
 
 And since we're trying to demonstrate case class extraction, let's extract data to the following case class:

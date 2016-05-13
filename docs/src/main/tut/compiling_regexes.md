@@ -24,7 +24,7 @@ regular expression, which we can compile with the [`asRegex`] method:
 ```tut:silent
 import kantan.regex.ops._
 
-val regex = "\\[(\\d+), (\\d+)\\]".asRegex[(Int, Int)].get
+val regex = """\[(\d+), (\d+)\]""".asRegex[(Int, Int)].get
 ```
 
 Note that we had to call [`get`] on the result: [`asRegex`] returns a [`CompileResult`] instance to protect against
@@ -49,10 +49,10 @@ For example:
 
 ```tut:silent
 // Note the .r - we're working with a Scala regular expression
-"\\[(\\d+), (\\d+)\\]".r.asRegex[(Int, Int)]
+"""\[(\d+), (\d+)\]""".r.asRegex[(Int, Int)]
 
 // Java patterns can also be turned into instances of Regex.
-Pattern.compile("\\[(\\d+), (\\d+)\\]".asRegex[(Int, Int)]
+Pattern.compile("""\[(\d+), (\d+)\]""".asRegex[(Int, Int)]
 ```
 
 

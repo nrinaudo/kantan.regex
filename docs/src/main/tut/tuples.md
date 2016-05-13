@@ -16,8 +16,8 @@ val input = "[1, 2] and then [3, 4] followed by [5, 6, 7]"
 We might want to extract all the parts that look like a point from it - this could be achieved with a simple regular
 expression, something like:
 
-```tut
-val regex = "\\[(\\d+), (\\d+)\\]"
+```tut:silent
+val regex = """\[(\d+), (\d+)\]"""
 ```
 
 Note how the "interesting" parts are each in their own group, this is critical to kantan.regex behaving properly. 
@@ -43,8 +43,8 @@ third point, this one with a `z` coordinate.
 
 The following regex can be used to match the first two coordinates with an optional third:
 
-```tut
-val regex = "\\[(\\d+), (\\d+)(?:, (\\d+))?\\]"
+```tut:silent
+val regex = """\[(\d+), (\d+)(?:, (\d+))?\]"""
 ```
 
 One way of interpreting matches from this regex would be as `(Int, Int, Option[Int])`: triples with two ints and an

@@ -49,7 +49,7 @@ implicit val formatter = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.ENG
 And we're now capable of decoding XML content as dates:
 
 ```tut
-"2000-01-00T00:00:00.000".evalRegex[Date]("\\d\\d\\d\\d-\\d\\d-\\d\\d").foreach(println _)
+"2000-01-00T00:00:00.000".evalRegex[Date]("""\d\d\d\d-\d\d-\d\d""").foreach(println _)
 ```
 
 Note that kantan.regex has a joda-time module, a very well thought out alternative to [`Date`]. 
@@ -64,7 +64,7 @@ This is useful for dodgy string data where the type of a value is not well defin
 sometimes a boolean, for example:
 
 ```tut
-"[123] [true]".evalRegex[Either[Int, Boolean]]("\\[(\\d+|true|false)\\]", 1).foreach(println _)
+"[123] [true]".evalRegex[Either[Int, Boolean]]("""\[(\d+|true|false)\]""", 1).foreach(println _)
 ```
 
 ### `Option`
@@ -74,7 +74,7 @@ For any type `A` that has a [`GroupDecoder`], there exists a [`GroupDecoder[Opti
 This is particularly useful for optional groups. For example:
 
 ```tut
-"[123], []".evalRegex[Option[Int]]("\\[(\\d+)?\\]", 1).foreach(println _)
+"[123], []".evalRegex[Option[Int]]("""\[(\d+)?\]""", 1).foreach(println _)
 ```
 
 
@@ -98,7 +98,7 @@ Tuples composed of types that each have a [`GroupDecoder`] automatically have a 
 assuming that the value of group 1 corresponds to the first field in the tuple, group 2 to the second, ...
 
 ```tut
-"[1, true] and then [3, false]".evalRegex[(Int, Boolean)]("\\[(\\d+), ([a-z]+)\\]").foreach(println _)
+"[1, true] and then [3, false]".evalRegex[(Int, Boolean)]("""\[(\d+), ([a-z]+)\]""").foreach(println _)
 ```
 
 
@@ -110,7 +110,7 @@ For any two types `A` and `B` that each have a [`MatchDecoder`], there exists a
 This works essentially the same way as [`GroupDecoder`] for [`Either`]:
 
 ```tut
-"[123, true] [456, foo]".evalRegex[Either[(Int, Boolean), (Int, String)]]("\\[(\\d+), ([a-z]+)\\]").foreach(println _)
+"[123, true] [456, foo]".evalRegex[Either[(Int, Boolean), (Int, String)]]("""\[(\d+), ([a-z]+)\]""").foreach(println _)
 ```
 
 ### `Option`
