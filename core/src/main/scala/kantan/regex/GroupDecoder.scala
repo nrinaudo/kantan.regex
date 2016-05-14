@@ -28,8 +28,8 @@ object GroupDecoder {
 
 trait GroupDecoderInstances {
   implicit def fromString[A](implicit da: StringDecoder[A]): GroupDecoder[A] =
-      GroupDecoder(_.map(da.mapError(DecodeError.TypeError.apply).decode)
-        .getOrElse(DecodeResult.emptyGroup))
+    GroupDecoder(_.map(da.mapError(DecodeError.TypeError.apply).decode)
+      .getOrElse(DecodeResult.emptyGroup))
 
 
   implicit def optGroupDecoder[A](implicit da: GroupDecoder[A]): GroupDecoder[Option[A]] =

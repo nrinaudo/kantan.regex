@@ -23,6 +23,6 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
 class OptionDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
-  //checkAll("GroupDecoder[Option[Int]]", GroupDecoderTests[Option[Int]].decoder[Int, Int])
+  checkAll("GroupDecoder[Option[Int]]", GroupDecoderTests[Option[Int]].decoder[Int, Int])
   checkAll("MatchDecoder[Option[Int]]", MatchDecoderTests[Option[Int]].decoder[Int, Int])
 }

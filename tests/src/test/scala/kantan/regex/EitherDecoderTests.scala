@@ -23,8 +23,6 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
 class EitherDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
-  MatchDecoder[Either[Int, Boolean]]
-
   checkAll("GroupDecoder[Either[Int, Boolean]]", GroupDecoderTests[Either[Int, Boolean]].decoder[Int, Int])
   checkAll("MatchDecoder[Either[Int, Boolean]]", MatchDecoderTests[Either[Int, Boolean]].decoder[Int, Int])
 }

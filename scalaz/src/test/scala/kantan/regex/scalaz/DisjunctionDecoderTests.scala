@@ -24,7 +24,7 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 import scalaz.\/
 
-class DisjunctionTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class DisjunctionDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
   implicit val legalDisjunctionGroup = arbLegalGroup[Int \/ Boolean]
   implicit val illegalDisjunctionGroup = arbIllegalGroup[Int \/ Boolean]
 
