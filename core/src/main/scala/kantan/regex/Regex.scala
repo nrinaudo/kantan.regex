@@ -17,9 +17,12 @@
 package kantan.regex
 
 trait Regex[A]  { self ⇒
-  def map[B](f: A ⇒ B): Regex[B] = new Regex[B] {
-    override def eval(s: String) =  self.eval(s).map(f)
-  }
-
+  def map[B](f: A ⇒ B): Regex[B] = Regex(s ⇒ self.eval(s).map(f))
   def eval(str: String): Iterator[A]
+}
+
+object Regex {
+  def apply[A](f: String ⇒ Iterator[A]): Regex[A] = new Regex[A] {
+    override def eval(str: String) = f(str)
+  }
 }
