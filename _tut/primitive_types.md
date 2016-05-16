@@ -19,8 +19,7 @@ The first, naive approach would to simply match digits and turn matches into int
 regular expression:
 
 ```scala
-scala> val digits = "\\d+"
-digits: String = \d+
+val digits = """\d+"""
 ```
 
 In order to evaluate that, we'll first need to import the kantan.regex syntax:
@@ -57,7 +56,7 @@ Looking at the results however, we see that we didn't really achieve what we set
 matched, but was. In order to solve this, we need to change our regular expression to something more precise, such as:
 
 ```scala
-scala> val regex = "\\[(\\d+)\\]"
+scala> val regex = """\[(\d+)\]"""
 regex: String = \[(\d+)\]
 ```
 
@@ -97,7 +96,7 @@ val input = "Nothing of note happened on 2009-01-06"
 And we can now decode this easily:
 
 ```scala
-scala> input.evalRegex[DateTime]("\\d\\d\\d\\d-\\d\\d-\\d\\d").foreach(println _)
+scala> input.evalRegex[DateTime]("""\d\d\d\d-\d\d-\d\d""").foreach(println _)
 Success(2009-01-06T00:00:00.000+01:00)
 ```
 

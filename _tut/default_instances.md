@@ -49,7 +49,7 @@ implicit val formatter = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.ENG
 And we're now capable of decoding XML content as dates:
 
 ```scala
-scala> "2000-01-00T00:00:00.000".evalRegex[Date]("\\d\\d\\d\\d-\\d\\d-\\d\\d").foreach(println _)
+scala> "2000-01-00T00:00:00.000".evalRegex[Date]("""\d\d\d\d-\d\d-\d\d""").foreach(println _)
 Success(Fri Dec 31 00:00:00 CET 1999)
 ```
 
@@ -65,7 +65,7 @@ This is useful for dodgy string data where the type of a value is not well defin
 sometimes a boolean, for example:
 
 ```scala
-scala> "[123] [true]".evalRegex[Either[Int, Boolean]]("\\[(\\d+|true|false)\\]", 1).foreach(println _)
+scala> "[123] [true]".evalRegex[Either[Int, Boolean]]("""\[(\d+|true|false)\]""", 1).foreach(println _)
 Success(Left(123))
 Success(Right(true))
 ```
@@ -77,7 +77,7 @@ For any type `A` that has a [`GroupDecoder`], there exists a [`GroupDecoder[Opti
 This is particularly useful for optional groups. For example:
 
 ```scala
-scala> "[123], []".evalRegex[Option[Int]]("\\[(\\d+)?\\]", 1).foreach(println _)
+scala> "[123], []".evalRegex[Option[Int]]("""\[(\d+)?\]""", 1).foreach(println _)
 Success(Some(123))
 Success(None)
 ```
@@ -103,7 +103,7 @@ Tuples composed of types that each have a [`GroupDecoder`] automatically have a 
 assuming that the value of group 1 corresponds to the first field in the tuple, group 2 to the second, ...
 
 ```scala
-scala> "[1, true] and then [3, false]".evalRegex[(Int, Boolean)]("\\[(\\d+), ([a-z]+)\\]").foreach(println _)
+scala> "[1, true] and then [3, false]".evalRegex[(Int, Boolean)]("""\[(\d+), ([a-z]+)\]""").foreach(println _)
 Success((1,true))
 Success((3,false))
 ```
@@ -117,7 +117,7 @@ For any two types `A` and `B` that each have a [`MatchDecoder`], there exists a
 This works essentially the same way as [`GroupDecoder`] for [`Either`]:
 
 ```scala
-scala> "[123, true] [456, foo]".evalRegex[Either[(Int, Boolean), (Int, String)]]("\\[(\\d+), ([a-z]+)\\]").foreach(println _)
+scala> "[123, true] [456, foo]".evalRegex[Either[(Int, Boolean), (Int, String)]]("""\[(\d+), ([a-z]+)\]""").foreach(println _)
 Success(Left((123,true)))
 Success(Right((456,foo)))
 ```

@@ -17,7 +17,7 @@ val input = "[1, 2] and [3, false]"
 This could be achieved with the following regular expression:
 
 ```scala
-scala> val regex = "\\[(\\d+), (\\d+|true|false)\\]"
+scala> val regex = """\[(\d+), (\d+|true|false)\]"""
 regex: String = \[(\d+), (\d+|true|false)\]
 ```
 

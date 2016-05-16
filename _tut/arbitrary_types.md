@@ -18,7 +18,7 @@ val input = "[1, 2] and then [3, 4] followed by [5, 6, 7]"
 This could be achieved with the following regular expression: 
 
 ```scala
-scala> val regex = "\\[(\\d+), (\\d+)(?:, (\\d+))?\\]"
+scala> val regex = """\[(\d+), (\d+)(?:, (\d+))?\]"""
 regex: String = \[(\d+), (\d+)(?:, (\d+))?\]
 ```
 

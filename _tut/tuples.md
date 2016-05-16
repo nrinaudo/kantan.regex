@@ -17,8 +17,7 @@ We might want to extract all the parts that look like a point from it - this cou
 expression, something like:
 
 ```scala
-scala> val regex = "\\[(\\d+), (\\d+)\\]"
-regex: String = \[(\d+), (\d+)\]
+val regex = """\[(\d+), (\d+)\]"""
 ```
 
 Note how the "interesting" parts are each in their own group, this is critical to kantan.regex behaving properly. 
@@ -47,8 +46,7 @@ third point, this one with a `z` coordinate.
 The following regex can be used to match the first two coordinates with an optional third:
 
 ```scala
-scala> val regex = "\\[(\\d+), (\\d+)(?:, (\\d+))?\\]"
-regex: String = \[(\d+), (\d+)(?:, (\d+))?\]
+val regex = """\[(\d+), (\d+)(?:, (\d+))?\]"""
 ```
 
 One way of interpreting matches from this regex would be as `(Int, Int, Option[Int])`: triples with two ints and an
