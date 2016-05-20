@@ -71,5 +71,5 @@ successful.  If we'd swapped the type parameter in our previous example, we'd no
 input.evalRegex[Either[(Int, Int), (Int, Int, Int)]](regex).foreach(println _)
 ```
 
-[`evalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops$$StringOps@evalRegex[A](expr:String,group:Int)(implicitevidence$2:kantan.regex.GroupDecoder[A]):Iterator[kantan.regex.RegexResult[A]]
+[`evalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
 [`Either`]:http://www.scala-lang.org/api/current/index.html#scala.util.Either

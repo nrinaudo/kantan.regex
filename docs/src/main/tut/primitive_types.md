@@ -101,11 +101,11 @@ input.evalRegex[DateTime](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
 
 
 [`Regex`]:{{ site.baseUrl }}/api/#kantan.regex.Regex
-[`evalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops$$StringOps@evalRegex[A](expr:String,group:Int)(implicitevidence$2:kantan.regex.GroupDecoder[A]):Iterator[kantan.regex.RegexResult[A]]
+[`evalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
 [`Iterator`]:http://www.scala-lang.org/api/current/index.html#scala.collection.Iterator
 [`Int`]:http://www.scala-lang.org/api/current/index.html#scala.Int
 [`DecodeResult`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]
 [`MatchDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]
 [`DateTime`]:http://www.joda.org/joda-time/apidocs/org/joda/time/DateTime.html
 [`GroupDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]
-[`unsafeEvalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops$$StringOps@unsafeEvalRegex[A](expr:String)(implicitevidence$3:kantan.regex.MatchDecoder[A]):Iterator[A]
+[`unsafeEvalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops.StringOps@unsafeEvalRegex[A](p:kantan.regex.Pattern)(implicitevidence$3:kantan.regex.MatchDecoder[A]):Iterator[A]

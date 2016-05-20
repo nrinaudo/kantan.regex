@@ -71,9 +71,9 @@ Regex[(Int, Int)](rx"\[(\d+), (\d+)\]")
 ```
 
 
-[`evalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops$$StringOps@evalRegex[A](expr:String,group:Int)(implicitevidence$2:kantan.regex.GroupDecoder[A]):Iterator[kantan.regex.RegexResult[A]]
-[`asRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops$$CompilableOps@asRegex[A](group:Int)(implicitevidence$6:kantan.regex.GroupDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.CompileResult[kantan.regex.Regex[kantan.regex.DecodeResult[A]]]
-[`asUnsafeRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops$$CompilableOps@asUnsafeRegex[A](implicitevidence$7:kantan.regex.MatchDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
+[`evalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
+[`asRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops.CompilerOps@asRegex[A](implicitevidence$1:kantan.regex.MatchDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.CompileResult[kantan.regex.Regex[kantan.regex.DecodeResult[A]]]
+[`asUnsafeRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops.CompilerOps@asUnsafeRegex[A](implicitevidence$3:kantan.regex.MatchDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
 [`Regex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.Regex
 [`Regex.apply`]::{{ site.baseUrl }}/api/index.html#kantan.regex.Regex$@apply[A](pattern:kantan.regex.Pattern)(implicitda:kantan.regex.MatchDecoder[A]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
 [`CompileResult`]:{{ site.baseUrl}}/api/index.html#kantan.regex.package@CompileResult[A]=kantan.codecs.Result[kantan.regex.CompileError,A]
