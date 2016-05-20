@@ -14,17 +14,14 @@
  * limitations under the License.
  */
 
-package kantan
+package kantan.regex.literals
 
-import kantan.codecs.{Decoder, Result}
+import kantan.regex._
 
-package object regex {
-  type Pattern = java.util.regex.Pattern
+class RegexLiteral(val sc: StringContext) extends AnyVal {
+  def rx(args: Any*): Pattern = macro quasiquote
+}
 
-  type GroupDecoder[A] = Decoder[Option[String], A, DecodeError, codecs.type]
-  type MatchDecoder[A] = Decoder[Match, A, DecodeError, codecs.type]
-
-  type DecodeResult[A]  = Result[DecodeError, A]
-  type RegexResult[A]   = Result[RegexError, A]
-  type CompileResult[A] = Result[CompileError, A]
+trait ToRegexLiteral {
+  implicit def toRegexLiteral(sc: StringContext): RegexLiteral = new RegexLiteral(sc)
 }

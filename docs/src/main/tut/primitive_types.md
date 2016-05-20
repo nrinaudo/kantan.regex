@@ -19,8 +19,15 @@ The first, naive approach would to simply match digits and turn matches into int
 regular expression:
 
 ```tut:silent
-val digits = """\d+"""
+import kantan.regex.literals._ 
+
+val digits = rx"\d+"
 ```
+
+Note the way the regular expression was declared: the `rx` bit lets the compiler know that the following string literal
+is a regular expression and should be validated. Had our expression been invalid, it would have been detected at
+compile time.
+
 
 In order to evaluate that, we'll first need to import the kantan.regex syntax:
 
@@ -52,7 +59,7 @@ Looking at the results however, we see that we didn't really achieve what we set
 matched, but was. In order to solve this, we need to change our regular expression to something more precise, such as:
 
 ```tut
-val regex = """\[(\d+)\]"""
+val regex = rx"\[(\d+)\]"
 ```
 
 The problem here is that matches of this expression are not valid ints - they are surrounded by brackets. This
@@ -89,7 +96,7 @@ val input = "Nothing of note happened on 2009-01-06"
 And we can now decode this easily:
 
 ```tut
-input.evalRegex[DateTime]("""\d\d\d\d-\d\d-\d\d""").foreach(println _)
+input.evalRegex[DateTime](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
 ```
 
 

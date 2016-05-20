@@ -16,46 +16,28 @@
 
 package kantan.regex.ops
 
-import kantan.codecs.Result
-import kantan.regex.{Compiler, Regex, _}
+import kantan.regex.{Regex, _}
+import scala.language.experimental.macros
 
 /** Enriches `String` with useful regex-related syntax. */
 final class StringOps(val str: String) extends AnyVal {
-  private def eval[A](s: String, r: CompileResult[Regex[DecodeResult[A]]]): Iterator[RegexResult[A]] =
-    r.map(_.eval(s)).recover { case e ⇒ Iterator(Result.failure(e)) }.get
+  private def eval[A](s: String, r: Regex[DecodeResult[A]]): Iterator[DecodeResult[A]] =
+    r.eval(s)
 
   /** Shorthand for [[Regex.eval]]. */
   def evalRegex[A](r: Regex[A]): Iterator[A] = r.eval(str)
 
-  /** Compiles and evaluates the specified regular expression against this string. */
-  def evalRegex[A: MatchDecoder](expr: String): Iterator[RegexResult[A]] =
-    eval(str, Compiler[String].compile(expr))
+  def evalRegex[A: MatchDecoder](p: Pattern): Iterator[DecodeResult[A]] =
+    eval(str, Regex[A](p))
 
-  /** Compiles and evaluates the specified regular expression against this string.
-    *
-    * This method is useful when extracting simple types (that is, types that have a [[GroupDecoder]]) from groups
-    * rather than entire matches.
-    *
-    * For example, imagine that we have the following regular expression: `\[(\d+)\]`. Each match will contain the
-    * wrapping brackets - `[123]`, for example. In order to only extract information from the first group rather
-    * than the entire match, one would write:
-    * {{{
-    *   str.evalRegex[Int]("\\[(\\d+)\\]", 1)
-    * }}}
-    *
-    * @param expr  regular expression to compile and evaluate.
-    * @param group index of the group from which to extract data in each match.
-    */
-  def evalRegex[A: GroupDecoder](expr: String, group: Int): Iterator[RegexResult[A]] =
-    eval(str, Compiler[String].compile(expr, group))
+  def evalRegex[A: GroupDecoder](p: Pattern, group: Int): Iterator[DecodeResult[A]] =
+    eval(str, Regex[A](p)(MatchDecoder.fromGroup(group)))
 
-  /** Unsafe version of [[evalRegex[A](expr:String)*]] .*/
-  def unsafeEvalRegex[A: MatchDecoder](expr: String): Iterator[A] =
-    evalRegex(Compiler[String].unsafeCompile[A](expr)).map(_.get)
+  def unsafeEvalRegex[A: MatchDecoder](p: Pattern): Iterator[A] =
+    evalRegex(p).map(_.get)
 
-  /** Unsafe version of [[evalRegex[A](expr:String,group:Int)*]] .*/
-  def unsafeEvalRegex[A: GroupDecoder](expr: String, group: Int): Iterator[A] =
-    evalRegex(Compiler[String].unsafeCompile[A](expr, group)).map(_.get)
+  def unsafeEvalRegex[A: GroupDecoder](p: Pattern, group: Int): Iterator[A] =
+    evalRegex(p, group).map(_.get)
 }
 
 trait ToStringOps {

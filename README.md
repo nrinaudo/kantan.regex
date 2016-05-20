@@ -18,14 +18,15 @@ Documentation and tutorials are available on the [companion site](https://nrinau
 those looking for a few quick examples:
 
 ```scala
-import kantan.regex.ops._
+import kantan.regex._
+import kantan.regex.all._
 
 // Returns an iterator on all parts of str that look like a positive integer
-str.evalRegex[Int]("""\d+""")
+str.evalRegex[Int](rx"\d+")
 
 // Returns an iterator on all parts of str that look like an (x, y) point. Points
 // are represented as a Tuple2[Int, Int] 
-str.evalRegex[(Int, Int)]("""\((\d+), (\d+)\)""")
+str.evalRegex[(Int, Int)](rx"\((\d+), (\d+)\)")
 
 // Declares a new Point case class and how to extract it regular expression matches.
 case class Point(x: Int, y: Int)
@@ -33,10 +34,10 @@ implicit val decoder = MatchDecoder.decoder(1, 2)(Point.apply)
 
 // Returns an iterator on all parts of str that look like an (x, y) point. Points
 // are represented as Point.
-str.evalRegex[Point]("""\((\d+), (\d+)\)""")
+str.evalRegex[Point](rx"\((\d+), (\d+)\)")
 
 // A somewhat contrived example where the z-coordinate of a point is optional:
-str.evalRegex[(Int, Int, Option[Int])]("""\[(\d+), (\d+)(?:, (\d+))?\]""")
+str.evalRegex[(Int, Int, Option[Int])](rx"\[(\d+), (\d+)(?:, (\d+))?\]")
 ```
 
 kantan.regex is distributed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0.html).

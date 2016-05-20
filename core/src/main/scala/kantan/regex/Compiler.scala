@@ -16,7 +16,7 @@
 
 package kantan.regex
 
-import java.util.regex.{Matcher, Pattern}
+import java.util.regex.Matcher
 
 /** Type class for types that can be compiled to instances of [[Regex]].
   *
@@ -49,12 +49,7 @@ object Compiler {
   /** Creates a new [[Compiler]] instance from a function that turns `A` into a `Pattern`. */
   def fromPattern[A](f: A ⇒ CompileResult[Pattern]): Compiler[A] = new Compiler[A] {
     override def compile[B](expr: A)(implicit db: MatchDecoder[B]): CompileResult[Regex[DecodeResult[B]]] =
-      f(expr).map { pattern ⇒
-        new Regex[DecodeResult[B]] {
-          override def eval(s: String) = new MatchIterator(pattern.matcher(s)).map(m ⇒ db.decode(m))
-          override def toString = pattern.toString
-        }
-      }
+      f(expr).map(p ⇒ Regex.apply(p))
   }
 
   /** Provides compilation for Scala Regexes. */
@@ -62,7 +57,7 @@ object Compiler {
   /** Provides compilation for Java Patterns. */
   implicit val pattern: Compiler[Pattern] = fromPattern(p ⇒ CompileResult.success(p))
   /** Provides compilation for Strings. */
-  implicit val string: Compiler[String] = fromPattern(s ⇒ CompileResult(Pattern.compile(s)))
+  implicit val string: Compiler[String] = fromPattern(s ⇒ CompileResult(java.util.regex.Pattern.compile(s)))
 }
 
 private class MatchIterator(val matcher: Matcher) extends Iterator[Match] {

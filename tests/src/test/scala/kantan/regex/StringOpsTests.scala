@@ -17,48 +17,29 @@
 package kantan.regex
 
 import kantan.codecs.laws.{IllegalString, LegalString}
-import kantan.regex.ops._
+import kantan.regex.all._
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
 class StringOpsTests extends FunSuite with GeneratorDrivenPropertyChecks {
   test("evalRegex should succeed for valid regular expressions") {
     forAll { value: LegalString[Int] ⇒
-      assert(value.encoded.evalRegex[Int]("-?\\d+").toList == List(DecodeResult.success(value.decoded)))
-      assert(value.encoded.evalRegex[Int]("-?\\d+", 0).toList == List(DecodeResult.success(value.decoded)))
+      assert(value.encoded.evalRegex[Int](rx"-?\d+").toList == List(DecodeResult.success(value.decoded)))
+      assert(value.encoded.evalRegex[Int](rx"-?\d+", 0).toList == List(DecodeResult.success(value.decoded)))
       assert(value.encoded.evalRegex("-?\\d+".asUnsafeRegex[Int]).toList == List(DecodeResult.success(value.decoded)))
     }
 
     forAll { value: IllegalString[Int] ⇒
-      assert(value.encoded.evalRegex[Int]("-?\\d+").forall(_.isFailure))
-      assert(value.encoded.evalRegex[Int]("-?\\d+", 0).forall(_.isFailure))
+      assert(value.encoded.evalRegex[Int](rx"-?\d+").forall(_.isFailure))
+      assert(value.encoded.evalRegex[Int](rx"-?\d+", 0).forall(_.isFailure))
       assert(value.encoded.evalRegex("-?\\d+".asUnsafeRegex[Int]).forall(_.isFailure))
     }
   }
 
   test("unsafeEvalRegex should succeed for valid regular expressions and valid matches") {
     forAll { value: LegalString[Int] ⇒
-      assert(value.encoded.unsafeEvalRegex[Int]("-?\\d+").toList == List(value.decoded))
-      assert(value.encoded.unsafeEvalRegex[Int]("-?\\d+", 0).toList == List(value.decoded))
+      assert(value.encoded.unsafeEvalRegex[Int](rx"-?\d+").toList == List(value.decoded))
+      assert(value.encoded.unsafeEvalRegex[Int](rx"-?\d+", 0).toList == List(value.decoded))
     }
-  }
-
-  test("unsafeEvalRegex should fail for valid regular expressions and invalid matches") {
-    forAll { value: IllegalString[Int] ⇒
-      intercept[Exception](value.encoded.unsafeEvalRegex[Int](".*").toList)
-      intercept[Exception](value.encoded.unsafeEvalRegex[Int](".*", 0).toList)
-      ()
-    }
-  }
-
-  test("evalRegex should fail for invalid regular expressions") {
-    assert("foobar".evalRegex[Int]("[").forall(_.isFailure))
-    assert("foobar".evalRegex[Int]("[", 0).forall(_.isFailure))
-  }
-
-  test("unsafeEvalRegex should fail for invalid regular expressions") {
-    intercept[Exception]("foobar".unsafeEvalRegex[Int]("["))
-    intercept[Exception]("foobar".unsafeEvalRegex[Int]("[", 0))
-    ()
   }
 }

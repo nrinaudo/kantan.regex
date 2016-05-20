@@ -25,4 +25,9 @@ object Regex {
   def apply[A](f: String ⇒ Iterator[A]): Regex[A] = new Regex[A] {
     override def eval(str: String) = f(str)
   }
+
+  def apply[A](pattern: Pattern)(implicit da: MatchDecoder[A]): Regex[DecodeResult[A]] = new Regex[DecodeResult[A]] {
+    override def eval(s: String) = new MatchIterator(pattern.matcher(s)).map(m ⇒ da.decode(m))
+    override def toString = pattern.toString
+  }
 }

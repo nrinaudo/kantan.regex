@@ -26,6 +26,7 @@ lazy val compilerOptions = Seq("-deprecation",
   "-language:existentials",
   "-language:higherKinds",
   "-language:implicitConversions",
+  "-language:experimental.macros",
   "-unchecked",
   "-Xfatal-warnings",
   "-Xlint",
@@ -42,9 +43,16 @@ lazy val baseSettings = Seq(
     Resolver.sonatypeRepo("releases"),
     Resolver.sonatypeRepo("snapshots")
   ),
+  libraryDependencies ++= macroDependencies(scalaVersion.value),
   coverageExcludedPackages := "kantan\\.regex\\.laws\\..*",
   incOptions  := incOptions.value.withNameHashing(true)
 )
+
+def macroDependencies(v: String): List[ModuleID] =
+  ("org.scala-lang" % "scala-reflect" % v % "provided") :: {
+    if(v.startsWith("2.10")) List(compilerPlugin("org.scalamacros" % "paradise" % "2.0.1" cross CrossVersion.full))
+    else Nil
+  }
 
 lazy val noPublishSettings = Seq(
   publish         := (),

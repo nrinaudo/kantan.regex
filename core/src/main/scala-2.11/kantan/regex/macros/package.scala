@@ -14,17 +14,8 @@
  * limitations under the License.
  */
 
-package kantan
+package kantan.regex
 
-import kantan.codecs.{Decoder, Result}
-
-package object regex {
-  type Pattern = java.util.regex.Pattern
-
-  type GroupDecoder[A] = Decoder[Option[String], A, DecodeError, codecs.type]
-  type MatchDecoder[A] = Decoder[Match, A, DecodeError, codecs.type]
-
-  type DecodeResult[A]  = Result[DecodeError, A]
-  type RegexResult[A]   = Result[RegexError, A]
-  type CompileResult[A] = Result[CompileError, A]
+package object macros {
+  type Context = scala.reflect.macros.blackbox.Context
 }
