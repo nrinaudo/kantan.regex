@@ -60,4 +60,16 @@ package object generic {
   /** End case for [[coproductGroupDecoder]], fails the decoding process. */
   implicit val cnilGroupDecoder: GroupDecoder[CNil] =
     GroupDecoder(_ ⇒ DecodeResult.typeError("Failed to decode coproduct"))
+
+
+
+  // - ADT decoders ----------------------------------------------------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+  implicit def adtGroupDecoder[A, R <: Coproduct]
+  (implicit gen: Generic.Aux[A, R], dr: GroupDecoder[R]): GroupDecoder[A] =
+    GroupDecoder(group ⇒ dr.decode(group).map(gen.from))
+
+  implicit def adtMatchDecoder[A, R <: Coproduct]
+  (implicit gen: Generic.Aux[A, R], dr: MatchDecoder[R]): MatchDecoder[A] =
+    MatchDecoder(m ⇒ dr.decode(m).map(gen.from))
 }
