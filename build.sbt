@@ -11,6 +11,7 @@ val scalazVersion        = "7.2.2"
 val disciplineVersion    = "0.4"
 val jodaVersion          = "2.9.3"
 val jodaConvertVersion   = "1.8.1"
+val shapelessVersion     = "2.3.0"
 
 lazy val buildSettings = Seq(
   organization       := "com.nrinaudo",
@@ -85,7 +86,7 @@ lazy val root = Project(id = "kantan-regex", base = file("."))
   .settings(moduleName := "root")
   .settings(allSettings)
   .settings(noPublishSettings)
-  .aggregate(core, docs, laws, tests, cats, scalaz, jodaTime)
+  .aggregate(core, docs, laws, tests, cats, scalaz, jodaTime, generic)
   .dependsOn(core)
   .settings(
     initialCommands in console :=
@@ -145,6 +146,19 @@ lazy val scalaz = project
     "com.nrinaudo"  %% "kantan.codecs-scalaz"      % kantanCodecsVersion,
     "com.nrinaudo"  %% "kantan.codecs-scalaz-laws" % kantanCodecsVersion % "test",
     "org.scalatest" %% "scalatest"                 % scalatestVersion    % "test"
+  ))
+  .dependsOn(core, laws % "test")
+  .enablePlugins(AutomateHeaderPlugin)
+
+lazy val generic = project
+  .settings(
+    moduleName := "kantan.regex-generic",
+    name       := "generic"
+  )
+  .settings(allSettings: _*)
+  .settings(libraryDependencies ++= Seq(
+    "com.chuusai"                %% "shapeless"            % shapelessVersion,
+    "org.scalatest"              %% "scalatest"            % scalatestVersion           % "test"
   ))
   .dependsOn(core, laws % "test")
   .enablePlugins(AutomateHeaderPlugin)
