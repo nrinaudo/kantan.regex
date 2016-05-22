@@ -14,12 +14,6 @@
  * limitations under the License.
  */
 
-package kantan.regex.generic
+package kantan.regex.export
 
-import kantan.regex.{Match, _}
-
-/** Custom [[MatchDecoder]] implementation for decoding `HList`. */
-trait DerivedMatchDecoder[A] extends MatchDecoder[A] {
-  def decodeFrom(e: Match, index: Int): DecodeResult[A]
-  override def decode(e: Match) = decodeFrom(e, 1)
-}
+case class Exported[A](value: A) extends AnyVal

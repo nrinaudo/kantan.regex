@@ -18,6 +18,7 @@ package kantan.regex
 
 import kantan.codecs.Decoder
 import kantan.codecs.strings._
+import kantan.regex.export.Exported
 
 object GroupDecoder {
   def apply[A](implicit da: GroupDecoder[A]): GroupDecoder[A] = da
@@ -27,6 +28,8 @@ object GroupDecoder {
 }
 
 trait GroupDecoderInstances {
+  implicit def groupFromExported[A](implicit ea: Exported[GroupDecoder[A]]): GroupDecoder[A] = ea.value
+
   implicit def fromString[A](implicit da: StringDecoder[A]): GroupDecoder[A] =
     GroupDecoder(_.map(da.mapError(DecodeError.TypeError.apply).decode)
       .getOrElse(DecodeResult.emptyGroup))

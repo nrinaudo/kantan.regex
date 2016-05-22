@@ -17,6 +17,7 @@
 package kantan.regex
 
 import kantan.codecs.Decoder
+import kantan.regex.export.Exported
 import scala.annotation.tailrec
 import scala.collection.generic.CanBuildFrom
 import scala.collection.mutable
@@ -57,6 +58,8 @@ object MatchDecoder extends GeneratedMatchDecoders {
 
 /** Declares default [[MatchDecoder]] instances. */
 trait MatchDecoderInstances {
+  implicit def matchFromExported[A](implicit ea: Exported[MatchDecoder[A]]): MatchDecoder[A] = ea.value
+
   /** Turns a [[GroupDecoder]] into a [[MatchDecoder]] by having it look at the entire match rather than a specific
     * group. */
   implicit def fromGroup[A](implicit da: GroupDecoder[A]): MatchDecoder[A] = MatchDecoder.fromGroup(0)

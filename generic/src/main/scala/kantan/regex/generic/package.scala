@@ -16,6 +16,7 @@
 
 package kantan.regex
 
+import kantan.regex.export.Exported
 import shapeless._
 
 package object generic {
@@ -65,25 +66,43 @@ package object generic {
 
   // - Case class decoders ---------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
-  /** Provides [[MatchDecoder]] instances for case classes where all fields have a [[GroupDecoder]]. */
+  /** Provides [[MatchDecoder]] instances for case classes where all fields have a [[GroupDecoder]].
+    *
+    * Note that the returned decoder is wrapped in an [[Exported]] to prevent it from having a higher priority than
+    * default decoders.
+    */
   implicit def caseClassMatchDecoder[A, R <: HList]
-  (implicit gen: Generic.Aux[A, R], ev: R <:< HList, dr: MatchDecoder[R]): MatchDecoder[A] =
-    MatchDecoder(s ⇒ dr.decode(s).map(gen.from))
+  (implicit gen: Generic.Aux[A, R], ev: R <:< HList, dr: MatchDecoder[R]): Exported[MatchDecoder[A]] =
+    Exported(MatchDecoder(s ⇒ dr.decode(s).map(gen.from)))
 
-  /** Provides [[GroupDecoder]] instances for case classes with exactly one field, provided it has a[[GroupDecoder]]. */
+  /** Provides [[GroupDecoder]] instances for case classes with exactly one field, provided it has a[[GroupDecoder]].
+    *
+    * Note that the returned decoder is wrapped in an [[Exported]] to prevent it from having a higher priority than
+    * default decoders.
+    */
   implicit def caseClassGroupDecoder[A, R <: HList]
-    (implicit gen: Generic.Aux[A, R], ev: R <:< HList, dr: GroupDecoder[R]): GroupDecoder[A] =
-      GroupDecoder(s ⇒ dr.decode(s).map(gen.from))
+  (implicit gen: Generic.Aux[A, R], ev: R <:< HList, dr: GroupDecoder[R]): Exported[GroupDecoder[A]] =
+    Exported(GroupDecoder(s ⇒ dr.decode(s).map(gen.from)))
 
 
 
   // - Sumt ype decoders -----------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
+  /** Provides [[GroupDecoder]] instances for sum types where all alternatives have a [[GroupDecoder]].
+    *
+    * Note that the returned decoder is wrapped in an [[Exported]] to prevent it from having a higher priority than
+    * default decoders.
+    */
   implicit def sumTypeMatchDecoder[A, R <: Coproduct]
-  (implicit gen: Generic.Aux[A, R], dr: MatchDecoder[R]): MatchDecoder[A] =
-    MatchDecoder(m ⇒ dr.decode(m).map(gen.from))
+  (implicit gen: Generic.Aux[A, R], dr: MatchDecoder[R]): Exported[MatchDecoder[A]] =
+    Exported(MatchDecoder(m ⇒ dr.decode(m).map(gen.from)))
 
+  /** Provides [[MatchDecoder]] instances for sum types where all alternatives have a [[MatchDecoder]].
+    *
+    * Note that the returned decoder is wrapped in an [[Exported]] to prevent it from having a higher priority than
+    * default decoders.
+    */
   implicit def sumTypeGroupDecoder[A, R <: Coproduct]
-  (implicit gen: Generic.Aux[A, R], dr: GroupDecoder[R]): GroupDecoder[A] =
-    GroupDecoder(group ⇒ dr.decode(group).map(gen.from))
+  (implicit gen: Generic.Aux[A, R], dr: GroupDecoder[R]): Exported[GroupDecoder[A]] =
+    Exported(GroupDecoder(group ⇒ dr.decode(group).map(gen.from)))
 }
