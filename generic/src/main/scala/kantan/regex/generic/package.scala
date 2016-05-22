@@ -55,21 +55,35 @@ package object generic {
 
   /** End case for [[coproductMatchDecoder]], fails the decoding process. */
   implicit val cnilMatchDecoder: MatchDecoder[CNil] =
-    MatchDecoder(_ ⇒ DecodeResult.typeError("Failed to decode coproduct"))
+    MatchDecoder(m ⇒ DecodeResult.typeError(s"Failed to decode $m as a coproduct"))
 
   /** End case for [[coproductGroupDecoder]], fails the decoding process. */
   implicit val cnilGroupDecoder: GroupDecoder[CNil] =
-    GroupDecoder(_ ⇒ DecodeResult.typeError("Failed to decode coproduct"))
+    GroupDecoder(g ⇒ DecodeResult.typeError(s"Failed to decode $g as a coproduct"))
 
 
 
-  // - ADT decoders ----------------------------------------------------------------------------------------------------
+  // - Case class decoders ---------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
-  implicit def adtGroupDecoder[A, R <: Coproduct]
-  (implicit gen: Generic.Aux[A, R], dr: GroupDecoder[R]): GroupDecoder[A] =
-    GroupDecoder(group ⇒ dr.decode(group).map(gen.from))
+  /** Provides [[MatchDecoder]] instances for case classes where all fields have a [[GroupDecoder]]. */
+  implicit def caseClassMatchDecoder[A, R <: HList]
+  (implicit gen: Generic.Aux[A, R], ev: R <:< HList, dr: MatchDecoder[R]): MatchDecoder[A] =
+    MatchDecoder(s ⇒ dr.decode(s).map(gen.from))
 
-  implicit def adtMatchDecoder[A, R <: Coproduct]
+  /** Provides [[GroupDecoder]] instances for case classes with exactly one field, provided it has a[[GroupDecoder]]. */
+  implicit def caseClassGroupDecoder[A, R <: HList]
+    (implicit gen: Generic.Aux[A, R], ev: R <:< HList, dr: GroupDecoder[R]): GroupDecoder[A] =
+      GroupDecoder(s ⇒ dr.decode(s).map(gen.from))
+
+
+
+  // - Sumt ype decoders -----------------------------------------------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+  implicit def sumTypeMatchDecoder[A, R <: Coproduct]
   (implicit gen: Generic.Aux[A, R], dr: MatchDecoder[R]): MatchDecoder[A] =
     MatchDecoder(m ⇒ dr.decode(m).map(gen.from))
+
+  implicit def sumTypeGroupDecoder[A, R <: Coproduct]
+  (implicit gen: Generic.Aux[A, R], dr: GroupDecoder[R]): GroupDecoder[A] =
+    GroupDecoder(group ⇒ dr.decode(group).map(gen.from))
 }
