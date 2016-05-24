@@ -156,8 +156,9 @@ lazy val generic = project
   )
   .settings(allSettings: _*)
   .settings(libraryDependencies ++= Seq(
-    "com.nrinaudo"  %% "kantan.codecs-shapeless" % kantanCodecsVersion,
-    "org.scalatest" %% "scalatest"               % scalatestVersion           % "test"
+    "com.nrinaudo"  %% "kantan.codecs-shapeless"      % kantanCodecsVersion,
+    "com.nrinaudo"  %% "kantan.codecs-shapeless-laws" % kantanCodecsVersion  % "test",
+    "org.scalatest" %% "scalatest"                    % scalatestVersion     % "test"
   ))
   .dependsOn(core, laws % "test")
   .enablePlugins(AutomateHeaderPlugin)

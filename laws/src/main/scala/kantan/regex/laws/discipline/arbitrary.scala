@@ -72,6 +72,7 @@ trait ArbitraryInstances {
     Arbitrary(la.arbitrary.map(_.mapEncoded(Option.apply).mapDecoded(Option.apply)))
 
 
+
   // - Arbitrary matches -----------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   private def toMatch(str: String): Match = {

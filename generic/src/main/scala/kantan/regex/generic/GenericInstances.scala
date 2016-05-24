@@ -17,9 +17,14 @@
 package kantan.regex.generic
 
 import kantan.regex.{DecodeResult, GroupDecoder, Match, MatchDecoder, _}
-import shapeless.{:+:, ::, CNil, Coproduct, HList, HNil, Inl, Inr}
+import shapeless._
 
-trait GenericInstances {
+trait LowPrirityGenericInstances {
+  implicit def hlistSingletonMatchDecoder[H](implicit dh: MatchDecoder[H]): MatchDecoder[H :: HNil] =
+      dh.map(_ :: HNil)
+}
+
+trait GenericInstances extends LowPrirityGenericInstances {
   // - HList decoders --------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   /** [[MatchDecoder]] instance for `HList`, provided all elements in the `HList` have a [[GroupDecoder]]. */
@@ -39,7 +44,6 @@ trait GenericInstances {
 
   /** [[GroupDecoder]] for `HList` of size 1, provided the single element has a [[GroupDecoder]]. */
   implicit def hlistGroupDecoder[H](implicit dh: GroupDecoder[H]): GroupDecoder[H :: HNil] = dh.map(h ⇒ h :: HNil)
-
 
 
   // - Coproduct decoders ----------------------------------------------------------------------------------------------
