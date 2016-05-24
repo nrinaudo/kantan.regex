@@ -20,7 +20,7 @@ import java.util.regex.Pattern
 import kantan.codecs.shapeless.laws._
 import kantan.codecs.shapeless.laws.discipline.arbitrary._
 import kantan.regex.Match
-import kantan.regex.all._
+import kantan.regex.implicits._
 import kantan.regex.laws.{IllegalMatch, LegalMatch}
 import kantan.regex.laws.discipline.MatchDecoderTests
 import org.scalacheck.Arbitrary

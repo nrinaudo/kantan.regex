@@ -40,7 +40,7 @@ an implicit [`DateFormat`] instance in scope, and will decode using that format.
 We could for example declare a formatter for something ISO 8601-like:
 
 ```tut:silent
-import kantan.regex.all._
+import kantan.regex.implicits._
 import java.util.{Locale, Date}
 
 implicit val formatter = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)

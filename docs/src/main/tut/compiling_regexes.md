@@ -23,7 +23,7 @@ regular expression, which we can compile with the [`asRegex`] method:
 
 ```tut:silent
 import kantan.regex._
-import kantan.regex.all._
+import kantan.regex.implicits._
 
 val regex = rx"\[(\d+), (\d+)\]".asRegex[(Int, Int)].get
 ```

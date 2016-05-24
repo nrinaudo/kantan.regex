@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-package kantan.regex
+package kantan.regex.ops
 
-package object ops extends AllOps
+trait AllOps extends ToStringOps with ToCompilerOps

@@ -15,7 +15,7 @@ as soon as possible.
 There are various ways of enabling the feature, the simplest and most common one being to import [`kantan.regex.all._`]:
 
 ```tut:silent
-import kantan.regex.all._
+import kantan.regex.implicits._
 ```
 
 This will also bring kantan.regex syntax in scope though, so if you only want the literals, you can simply import

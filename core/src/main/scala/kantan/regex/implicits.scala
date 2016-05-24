@@ -17,6 +17,6 @@
 package kantan.regex
 
 import kantan.regex.literals.ToRegexLiteral
-import kantan.regex.ops.{ToCompilerOps, ToStringOps}
+import kantan.regex.ops.AllOps
 
-object all extends ToRegexLiteral with ToStringOps with ToCompilerOps
+object implicits extends ToRegexLiteral with AllOps

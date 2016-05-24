@@ -17,7 +17,7 @@
 package kantan.regex
 
 import kantan.codecs.laws.{IllegalString, LegalString}
-import kantan.regex.all._
+import kantan.regex.implicits._
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
