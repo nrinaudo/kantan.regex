@@ -1,6 +1,6 @@
 # kantan.regex
 
-[![Build Status](https://travis-ci.org/nrinaudo/kantan.regex.svg)](https://travis-ci.org/nrinaudo/kantan.regex)
+[![Build Status](https://travis-ci.org/nrinaudo/kantan.regex.svg?branch=master)](https://travis-ci.org/nrinaudo/kantan.regex)
 [![codecov](https://codecov.io/gh/nrinaudo/kantan.regex/branch/master/graph/badge.svg)](https://codecov.io/gh/nrinaudo/kantan.regex)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.nrinaudo/kantan.regex_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.nrinaudo/kantan.regex_2.11)
 [![Join the chat at https://gitter.im/nrinaudo/kantan.regex](https://img.shields.io/badge/gitter-join%20chat-52c435.svg)](https://gitter.im/nrinaudo/kantan.regex)
@@ -19,7 +19,7 @@ those looking for a few quick examples:
 
 ```scala
 import kantan.regex._
-import kantan.regex.all._
+import kantan.regex.implicits._
 
 // Returns an iterator on all parts of str that look like a positive integer
 str.evalRegex[Int](rx"\d+")
