@@ -44,7 +44,7 @@ lazy val baseSettings = Seq(
     Resolver.sonatypeRepo("snapshots")
   ),
   libraryDependencies ++= macroDependencies(scalaVersion.value),
-  coverageExcludedPackages := "kantan\\.regex\\.laws\\..*",
+  ScoverageSbtPlugin.ScoverageKeys.coverageExcludedPackages := "kantan\\.regex\\.laws\\..*",
   incOptions  := incOptions.value.withNameHashing(true)
 )
 
