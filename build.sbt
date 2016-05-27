@@ -40,6 +40,7 @@ lazy val baseSettings = Seq(
   scalacOptions ++= compilerOptions ++ (
     CrossVersion.partialVersion(scalaVersion.value) match {
       case Some((2, 11)) => Seq("-Ywarn-unused-import")
+      case Some((2, 10)) => Seq("-Xdivergence211")
       case _ => Nil
     }
   ),
