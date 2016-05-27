@@ -1,10 +1,6 @@
 package kantan.regex
 
-import kantan.codecs.laws._
-import kantan.codecs.laws.CodecValue.{IllegalValue, LegalValue}
-import kantan.regex.laws.{IllegalMatch, LegalMatch, MatchValue}
 import kantan.regex.laws.discipline.MatchDecoderTests
-import org.scalacheck.Arbitrary
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline

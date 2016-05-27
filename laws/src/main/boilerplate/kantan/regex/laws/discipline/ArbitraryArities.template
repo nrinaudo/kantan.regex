@@ -2,7 +2,6 @@ package kantan.regex.laws.discipline
 
 import java.util.regex.Pattern
 import kantan.codecs.laws._
-import kantan.codecs.laws.CodecValue.{IllegalValue, LegalValue}
 import kantan.regex._
 import kantan.regex.laws._
 import org.scalacheck.Arbitrary

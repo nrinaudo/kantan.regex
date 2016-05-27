@@ -16,7 +16,7 @@
 
 package kantan.regex.generic
 
-import kantan.regex.{DecodeResult, GroupDecoder, Match, MatchDecoder, _}
+import kantan.regex._
 import shapeless._
 
 trait LowPrirityGenericInstances {

@@ -16,8 +16,7 @@
 
 package kantan.regex.ops
 
-import kantan.regex.{Regex, _}
-import scala.language.experimental.macros
+import kantan.regex._
 
 /** Enriches `String` with useful regex-related syntax. */
 final class StringOps(val str: String) extends AnyVal {
