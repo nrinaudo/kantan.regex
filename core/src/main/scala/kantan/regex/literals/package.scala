@@ -19,7 +19,7 @@ package kantan.regex
 import kantan.regex.macros._
 
 package object literals extends ToRegexLiteral {
-  def quasiquote(c: Context)(args: c.Expr[Any]*): c.Expr[Pattern] = {
+  def rxImpl(c: Context)(args: c.Expr[Any]*): c.Expr[Pattern] = {
     import c.universe._
     import java.util.regex.Pattern
 
