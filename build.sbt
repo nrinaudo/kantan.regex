@@ -3,14 +3,11 @@ import com.typesafe.sbt.SbtSite.SiteKeys._
 import UnidocKeys._
 import de.heikoseeberger.sbtheader.license.Apache2_0
 
-val kantanCodecsVersion  = "0.1.6-SNAPSHOT"
-val catsVersion          = "0.5.0"
-val scalatestVersion     = "3.0.0-M9"
-val scalaCheckVersion    = "1.12.5"
-val scalazVersion        = "7.2.2"
-val disciplineVersion    = "0.4"
-val jodaVersion          = "2.9.3"
+val jodaVersion          = "2.9.4"
 val jodaConvertVersion   = "1.8.1"
+val kantanCodecsVersion  = "0.1.6-SNAPSHOT"
+val macroParadiseVersion = "2.1.0"
+val scalatestVersion     = "3.0.0-M9"
 
 lazy val buildSettings = Seq(
   organization       := "com.nrinaudo",
@@ -57,12 +54,6 @@ lazy val baseSettings = Seq(
   incOptions  := incOptions.value.withNameHashing(true)
 )
 
-def macroDependencies(v: String): List[ModuleID] =
-  ("org.scala-lang" % "scala-reflect" % v % "provided") :: {
-    if(v.startsWith("2.10")) List(compilerPlugin("org.scalamacros" % "paradise" % "2.0.1" cross CrossVersion.full))
-    else Nil
-  }
-
 lazy val noPublishSettings = Seq(
   publish         := (),
   publishLocal    := (),
@@ -95,12 +86,13 @@ lazy val root = Project(id = "kantan-regex", base = file("."))
   .settings(allSettings)
   .settings(noPublishSettings)
   .aggregate(core, docs, laws, tests, cats, scalaz, jodaTime, generic)
-  .dependsOn(core)
+  .dependsOn(core, generic)
   .settings(
     initialCommands in console :=
     """
       |import kantan.regex._
-      |import kantan.regex.ops._
+      |import kantan.regex.implicits._
+      |import kantan.regex.generic._
     """.stripMargin
   )
   .enablePlugins(AutomateHeaderPlugin)
@@ -178,9 +170,7 @@ lazy val laws = project
     name       := "laws"
   )
   .settings(libraryDependencies ++= Seq(
-    "com.nrinaudo"   %% "kantan.codecs-laws" % kantanCodecsVersion,
-    "org.scalacheck" %% "scalacheck" % scalaCheckVersion,
-    "org.typelevel"  %% "discipline" % disciplineVersion
+    "com.nrinaudo" %% "kantan.codecs-laws" % kantanCodecsVersion
   ))
   .enablePlugins(spray.boilerplate.BoilerplatePlugin)
   .settings(allSettings: _*)
@@ -226,5 +216,10 @@ lazy val docs = project
   .settings(noPublishSettings:_*)
   .dependsOn(core)
 
+def macroDependencies(v: String): List[ModuleID] =
+  ("org.scala-lang" % "scala-reflect" % v % "provided") :: {
+    if(v.startsWith("2.10")) List(compilerPlugin("org.scalamacros" % "paradise" % macroParadiseVersion cross CrossVersion.full))
+    else Nil
+  }
 
 addCommandAlias("validate", "; clean; scalastyle; test:scalastyle; coverage; test; coverageReport; coverageAggregate; docs/makeSite")
