@@ -19,7 +19,7 @@ package kantan.regex.literals
 import kantan.regex._
 
 class RegexLiteral(val sc: StringContext) extends AnyVal {
-  def rx(args: Any*): Pattern = macro rxImpl
+  def rx(args: Any*): Pattern = macro LiteralMacros.rxImpl
 }
 
 trait ToRegexLiteral {

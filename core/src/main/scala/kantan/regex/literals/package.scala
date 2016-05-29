@@ -16,25 +16,4 @@
 
 package kantan.regex
 
-import kantan.regex.macros._
-
-package object literals extends ToRegexLiteral {
-  def rxImpl(c: Context)(args: c.Expr[Any]*): c.Expr[Pattern] = {
-    import c.universe._
-    import java.util.regex.Pattern
-
-    c.prefix.tree match {
-      case Apply(_, List(Apply(_, List(lit@Literal(Constant(regex: String)))))) ⇒
-        try {
-          Pattern.compile(regex)
-          reify(Pattern.compile(c.Expr[String](lit).splice))
-        }
-        catch {
-          case e: Exception ⇒ c.abort(c.enclosingPosition, s"Illegal regular expression: $regex")
-        }
-
-      case _ ⇒
-        c.abort(c.enclosingPosition, s"rx can only be used on string literals")
-    }
-  }
-}
+package object literals extends ToRegexLiteral
