@@ -5,7 +5,7 @@ section: tutorial
 sort: 1
 ---
 When working with regular expressions, it's fairly common to want to extract matches and turn them into useful types -
-a depressingly recurrent scenario being to extract simple integers from strings.
+a depressingly recurrent scenario being extracting simple integers from strings.
 
 Let's imagine that we get the following string and are interested in the integers between brackets: 
 

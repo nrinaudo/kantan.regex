@@ -46,7 +46,7 @@ import java.util.{Locale, Date}
 implicit val formatter = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
 ```
 
-And we're now capable of decoding XML content as dates:
+And we're now capable of decoding matches as dates:
 
 ```tut
 "2000-01-00T00:00:00.000".evalRegex[Date](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
@@ -139,7 +139,6 @@ the notion of an optional match is... odd.
 [`InputStream`]:https://docs.oracle.com/javase/7/docs/api/java/io/InputStream.html
 [`File`]:https://docs.oracle.com/javase/7/docs/api/java/io/File.html
 [`Path`]:https://docs.oracle.com/javase/7/docs/api/java/nio/file/Path.html
-[`XmlSource`]:{{ site.baseUrl }}/api/#kantan.xpath.XmlSource
 [`GroupDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]
 [`Date`]:https://docs.oracle.com/javase/7/docs/api/java/util/Date.html
 [`DateFormat`]:https://docs.oracle.com/javase/7/docs/api/java/text/DateFormat.html
