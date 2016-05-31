@@ -195,7 +195,6 @@ lazy val docs = project
     "joda-time" % "joda-time"    % jodaVersion,
     "org.joda"  % "joda-convert" % jodaConvertVersion
   ))
-
   .settings(
     apiURL := Some(url("http://nrinaudo.github.io/kantan.regex/api/")),
     scalacOptions in (ScalaUnidoc, unidoc) ++= Seq(
@@ -214,7 +213,7 @@ lazy val docs = project
                                  "*.eot" | "*.svg" | "*.ttf" | "*.woff" | "*.woff2" | "*.otf"
   )
   .settings(noPublishSettings:_*)
-  .dependsOn(core)
+  .dependsOn(core, jodaTime, generic)
 
 def macroDependencies(v: String): List[ModuleID] =
   ("org.scala-lang" % "scala-reflect" % v % "provided") :: {

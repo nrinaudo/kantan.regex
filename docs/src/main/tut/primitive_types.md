@@ -19,7 +19,7 @@ The first, naive approach would to simply match digits and turn matches into int
 regular expression:
 
 ```tut:silent
-import kantan.regex.literals._ 
+import kantan.regex.implicits._ 
 
 val digits = rx"\d+"
 ```
@@ -27,13 +27,6 @@ val digits = rx"\d+"
 Note the way the regular expression was declared: the `rx` bit lets the compiler know that the following string literal
 is a regular expression and should be validated. Had our expression been invalid, it would have been detected at
 compile time.
-
-
-In order to evaluate that, we'll first need to import the kantan.regex syntax:
-
-```tut:silent
-import kantan.regex.ops._
-```
 
 And we can now simply call the [`evalRegex`] method that enriches strings:
 
@@ -83,6 +76,9 @@ import org.joda.time.format.ISODateTimeFormat
 
 implicit val jodaDateTime: GroupDecoder[DateTime] = {
   val format = ISODateTimeFormat.date()
+  
+  // Summon an existing GroupDecoder[String] instance and modifies its behaviour,
+  // rather than build a new decoder from scratch.
   GroupDecoder[String].mapResult(s ⇒ DecodeResult(format.parseDateTime(s)))
 }
 ```

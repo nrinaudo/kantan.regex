@@ -18,7 +18,7 @@ package kantan.regex.literals
 
 import kantan.regex._
 
-class RegexLiteral(val sc: StringContext) extends AnyVal {
+final class RegexLiteral(val sc: StringContext) extends AnyVal {
   def rx(args: Any*): Pattern = macro LiteralMacros.rxImpl
 }
 

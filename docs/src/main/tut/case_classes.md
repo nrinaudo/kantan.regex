@@ -11,15 +11,15 @@ provide more meaningful types.
 Let's take the following input and attempt to extract the bits between brackets: 
 
 ```tut:silent
-val input = "[1, 2] and [3, false]"
+val input = "(1, 2) and (3, false)"
 ```
 
 This could be achieved with the following regular expression:
 
 ```tut:silent
-import kantan.regex.literals._
+import kantan.regex.implicits._
 
-val regex = rx"\[(\d+), (\d+|true|false)\]"
+val regex = rx"\((\d+), (\d+|true|false)\)"
 ```
 
 And since we're trying to demonstrate case class extraction, let's extract data to the following case class:
@@ -29,12 +29,11 @@ case class WeirdPoint(x: Int, y: Either[Int, Boolean])
 ```
 
 In order to extract complex (as in, composed of more than one value) types, we need to provide instances of
-[`MatchDecoder`] for them. This is done with one of [`MatchDecoder`]'s many helper methods - [`ordered`], in our case,
-since match groups and case class fields are in the same order:
+[`MatchDecoder`] for them. We can create a new one with one of [`MatchDecoder`]'s many helper methods - [`ordered`], 
+in our case, since match groups and case class fields are in the same order:
 
 ```tut:silent
 import kantan.regex._
-import kantan.regex.ops._
 
 implicit val decoder: MatchDecoder[WeirdPoint] = MatchDecoder.ordered(WeirdPoint.apply _)
 ```
@@ -44,6 +43,22 @@ And that's all there is to it. Now that we have this decoder in place, we can ju
 ```tut
 input.evalRegex[WeirdPoint](regex).foreach(println _)
 ```
+
+It's possible to automate this process through the [shapeless](http://shapeless.io)-backed [generic](generic.html)
+module. Let's first import the module and declare a new case class:
+
+```tut:silent
+import kantan.regex.generic._
+
+case class Foo(x: Int, y: Either[Int, Boolean])
+```
+
+And without any further work, we can decode instances of `Foo`:
+
+```tut
+input.evalRegex[Foo](regex).foreach(println _)
+```
+
 
 [`evalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
 [`MatchDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]

@@ -21,6 +21,9 @@ in your SBT build file:
 // Core library, included automatically if any other module is imported.
 libraryDependencies += "com.nrinaudo" %% "kantan.regex" % "@VERSION@"
 
+// Provides generic instance derivation through shapeless.
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-generic" % "@VERSION@"
+
 // Provides scalaz type class instances.
 libraryDependencies += "com.nrinaudo" %% "kantan.regex-scalaz" % "@VERSION@"
 

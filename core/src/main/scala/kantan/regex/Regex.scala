@@ -16,7 +16,7 @@
 
 package kantan.regex
 
-trait Regex[A]  { self ⇒
+trait Regex[A] { self ⇒
   def map[B](f: A ⇒ B): Regex[B] = Regex(s ⇒ self.eval(s).map(f))
   def eval(str: String): Iterator[A]
 }
