@@ -34,21 +34,35 @@ The rest of this post will be a simple list of supported types.
 
 ### Case class of arity 1
 
+Any class of arity 1 such that the type of its sole field has a [`GroupDecoder`] has a [`GroupDecoder`] itself.
+
+Let's take a simple `Wrapper` class as an example:
+
 ```tut:silent
 case class Wrapper[A](a: A)
 ```
+
+Without any further work, we can decode instances of `Wrapper`:
 
 ```tut
 "123 and then 456".evalRegex[Wrapper[Int]](rx"\d+").foreach(println _)
 ```
 
+
 ### Sum types
+
+Any sum type such that each of its alternatives has a [`GroupDecoder`] get a [`GroupDecoder`] for free.
+
+For example, the following `Or` type:
 
 ```tut:silent
 sealed abstract class Or[+A, +B]
 case class Left[A](value: A) extends Or[A, Nothing]
 case class Right[B](value: B) extends Or[Nothing, B]
 ```
+
+If both `A` and `B` have a [`GroupDecoder`], then both `Left` and `Right`, being unary case classes, also do. If both
+`Left` and `Right` have a [`GroupDecoder`], all of `Or[A, B]`'s alternatives do and `Or[A, B]` also does:
 
 ```tut
 "(123) and then (true)".evalRegex[Int Or Boolean](rx"\((\d+|true|false)\)", 1).foreach(println _)
@@ -59,9 +73,15 @@ case class Right[B](value: B) extends Or[Nothing, B]
 
 ### Case classes
 
+Any case class of arity one or more such that all of its fields have a [`MatchDecoder`] get a [`MatchDecoder`] for free.
+
+For example, a silly [`Tuple2`] implementation:
+
 ```tut:silent
 case class CustomTuple2[A, B](a: A, b: B)
 ```
+
+If both `A` and `B` have [`MatchDecoder`] instances, so does `CustomTuple2[A, B]`:
 
 ```tut
 "(1, false) and then (3, true)".evalRegex[CustomTuple2[Int, Boolean]](rx"\((\d+), (true|false)\)").foreach(println _)
@@ -69,6 +89,12 @@ case class CustomTuple2[A, B](a: A, b: B)
 
 ### Sum types
 
+Finally, any sum type such that all its alternatives have a [`MatchDecoder`] gets a [`MatchDecoder`] instance for free:
+
 ```tut
 "(1, false) and then (3, foobar)".evalRegex[CustomTuple2[Int, Boolean] Or CustomTuple2[Int, String]](rx"\((\d+), ([a-z]+)\)").foreach(println _)
 ```
+
+[`GroupDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]
+[`MatchDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]
+[`Tuple2`]:http://www.scala-lang.org/api/current/index.html#scala.Tuple2
