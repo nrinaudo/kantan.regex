@@ -27,14 +27,26 @@ package object regex {
 
   // - Decoder types ---------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
+  /** Type class for types that can be decoded from capturing groups.
+    *
+    * See the [[GroupDecoder$ companion object]] for instance creation methods.
+    */
   type GroupDecoder[A] = Decoder[Option[String], A, DecodeError, codecs.type]
+
+  /** Type class for type that can be decoded from regular expression matches.
+    *
+    * See the [[MatchDecoder$ companion object]] for instance creation methods.
+    */
   type MatchDecoder[A] = Decoder[Match, A, DecodeError, codecs.type]
 
 
 
   // - Result types ----------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
+  /** Result type for decoding operations. */
   type DecodeResult[A]  = Result[DecodeError, A]
-  type RegexResult[A]   = Result[RegexError, A]
+  /** Result type for compilation operations. */
   type CompileResult[A] = Result[CompileError, A]
+  /** Result type for all regex related operations (encompasses both [[DecodeResult]] and [[CompileResult]]. */
+  type RegexResult[A]   = Result[RegexError, A]
 }
