@@ -19,4 +19,6 @@ package kantan.regex
 import kantan.regex.literals.ToRegexLiteral
 import kantan.regex.ops.AllOps
 
+/** Provides a convenient way to bring [[ops syntax]] and [[literals]] in scope with a single import.
+  */
 object implicits extends ToRegexLiteral with AllOps

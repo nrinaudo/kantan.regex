@@ -19,11 +19,21 @@ package kantan
 import kantan.codecs.{Decoder, Result}
 
 package object regex {
+  // - Convenience aliases ---------------------------------------------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
   type Pattern = java.util.regex.Pattern
 
+
+
+  // - Decoder types ---------------------------------------------------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
   type GroupDecoder[A] = Decoder[Option[String], A, DecodeError, codecs.type]
   type MatchDecoder[A] = Decoder[Match, A, DecodeError, codecs.type]
 
+
+
+  // - Result types ----------------------------------------------------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
   type DecodeResult[A]  = Result[DecodeError, A]
   type RegexResult[A]   = Result[RegexError, A]
   type CompileResult[A] = Result[CompileError, A]

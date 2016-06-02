@@ -16,4 +16,5 @@
 
 package kantan.regex
 
+/** Acts as a type tag for regex-specific [[kantan.codecs.Decoder]] instances. */
 object codecs extends GroupDecoderInstances with MatchDecoderInstances with TupleDecoders

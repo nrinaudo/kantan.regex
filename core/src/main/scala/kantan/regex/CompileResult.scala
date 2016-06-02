@@ -18,7 +18,15 @@ package kantan.regex
 
 import kantan.codecs.Result
 
+/** Provides creation methods for [[CompileResult]]. */
 object CompileResult {
+  /** Creates a successful compilation result containing the specified value. */
   def success[A](a: A): CompileResult[A] = Result.success(a)
+
+  /** Creates a new [[CompileResult]] with the specified value.
+    *
+    * If an exception is thrown during evaluation of the specified by-name parameter, the returned value will be a
+    * failure. Otherwise, it will be a success.
+    */
   def apply[A](a: ⇒ A): CompileResult[A] = Result.nonFatal(a).leftMap(CompileError.apply)
 }

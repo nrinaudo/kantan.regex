@@ -18,12 +18,27 @@ package kantan.regex
 
 import kantan.codecs.Result
 
+/** Provides construction methods for [[DecodeResult]]. */
 object DecodeResult {
   def apply[A](a: ⇒ A): DecodeResult[A] = Result.nonFatal(a).leftMap(DecodeError.TypeError.apply)
+
+  /** Creates a new successful decode result with the specified value. */
   def success[A](a: A): DecodeResult[A] = Result.success(a)
+
+  /** Creates a new [[kantan.regex.DecodeError.TypeError TypeError]] failure with the specified error message. */
   def typeError(str: String): DecodeResult[Nothing] = Result.failure(DecodeError.TypeError(str))
+
+  /** Creates a new [[kantan.regex.DecodeError.TypeError TypeError]] failure with the specified error. */
   def typeError(e: Exception): DecodeResult[Nothing] = Result.failure(DecodeError.TypeError(e))
+
+  /** Creates a new [[kantan.regex.DecodeError.NoSuchGroupId NoSuchgroupId]] failure for the specified group id. */
   def noSuchGroupId(id: Int): DecodeResult[Nothing] = Result.failure(DecodeError.NoSuchGroupId(id))
+
+  /** Creates a new [[kantan.regex.DecodeError.NoSuchGroupName NoSuchGroupName]] failure for the specified group
+    * name.
+    */
   def noSuchGroupName(name: String): DecodeResult[Nothing] = Result.failure(DecodeError.NoSuchGroupName(name))
+
+  /** Creates a new [[kantan.regex.DecodeError.EmptyGroup EmptyGroup]] failure. */
   val emptyGroup: DecodeResult[Nothing] = Result.failure(DecodeError.EmptyGroup)
 }
