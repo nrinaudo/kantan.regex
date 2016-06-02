@@ -51,6 +51,7 @@ The following instance for cats type classes are provided:
 * [`Functor`] for all decoders ([`GroupDecoder`] and [`MatchDecoder`]).
 * [`Order`] for all result types ([`DecodeResult`], [`RegexResult`] and [`CompileResult`]).
 * [`Show`] for all result types.
+* [`Monoid`] for all result types.
 * [`Traverse`] for all result types.
 * [`Monad`] for all result types.
 * [`BiFunctor`] for all result types.
@@ -66,3 +67,5 @@ The following instance for cats type classes are provided:
 [`RegexResult`]:{{ site.baseUrl}}/api/index.html#kantan.regex.package@RegexResult[A]=kantan.codecs.Result[kantan.regex.RegexError,A]
 [`DecodeResult`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]
 [`CompileResult`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@CompileResult[A]=kantan.codecs.Result[kantan.regex.CompileError,A]
+[`Xor`]:http://typelevel.org/cats/api/#cats.data.Xor
+[`Monoid`]:http://typelevel.org/cats/api/index.html#cats.package@Monoid[A]=cats.kernel.Monoid[A]
