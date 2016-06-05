@@ -49,7 +49,7 @@
       
           <div id="comment" class="fullcommenttop"><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/core/src/main/scala/kantan/regex/package.scala" target="_blank">package.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></div>
         </div></div>
         
 
@@ -121,7 +121,7 @@
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Result type for compilation operations.</p>
     </li><li name="kantan.regex.Compiler" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="Compiler[E]extendsAnyRef"></a>
       <a id="Compiler[E]:Compiler[E]"></a>
@@ -131,16 +131,21 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="Compiler.html"><span class="name">Compiler</span></a><span class="tparams">[<span name="E">E</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <a href="Compiler.html"><span class="name">Compiler</span></a><span class="tparams">[<span name="E">E</span>]</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.package@Compiler[E]extendsAnyRef" title="Permalink" target="_top">
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Type class for types that can be compiled to instances of <a href="Regex.html" class="extype" name="kantan.regex.Regex">Regex</a>.</p><div class="fullcomment"><div class="comment cmt"><p>Type class for types that can be compiled to instances of <a href="Regex.html" class="extype" name="kantan.regex.Regex">Regex</a>.</p><p>The vast majority of the time, there should be no reason to interact with this as default instances are provided
-for most types anyone's likely to need.
-</p></div></div>
+      <p class="shortcomment cmt">Type class for types that can be compiled to instances of <a href="Regex.html" class="extype" name="kantan.regex.Regex">Regex</a>.</p><div class="fullcomment"><div class="comment cmt"><p>Type class for types that can be compiled to instances of <a href="Regex.html" class="extype" name="kantan.regex.Regex">Regex</a>.</p><p>While regular expression <a href="literals/package.html" class="extype" name="kantan.regex.literals">literals</a> are usually the preferred way of creating instances of <a href="Regex.html" class="extype" name="kantan.regex.Regex">Regex</a>, they don't
+fit all possible situations - one might imagine, for example, a scenario where a regular expression is created
+dynamically before being compiled.</p><p><a href="Compiler.html" class="extype" name="kantan.regex.Compiler">Compiler</a> is provided for these cases where literals are not an option. The preferred way of using it is to
+make sure the corresponding <a href="ops/CompilerOps.html" class="extype" name="kantan.regex.ops.CompilerOps">syntax</a> is in scope and use the <code>asRegex</code> method:</p><pre><span class="cmt">// Obtain a regular expression as a string somehow.</span>
+<span class="kw">val</span> regex: <span class="std">String</span> = ???
+
+<span class="cmt">// Promote it to a Regex[Int]</span>
+regex.asRegex[<span class="std">Int</span>]</pre></div></div>
     </li><li name="kantan.regex.DecodeError" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="DecodeErrorextendsRegexError"></a>
       <a id="DecodeError:DecodeError"></a>
@@ -174,7 +179,7 @@ for most types anyone's likely to need.
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Result type for decoding operations.</p>
     </li><li name="kantan.regex.GeneratedMatchDecoders" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="GeneratedMatchDecodersextendsAnyRef"></a>
       <a id="GeneratedMatchDecoders:GeneratedMatchDecoders"></a>
@@ -184,7 +189,7 @@ for most types anyone's likely to need.
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="GeneratedMatchDecoders.html"><span class="name">GeneratedMatchDecoders</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <a href="GeneratedMatchDecoders.html"><span class="name">GeneratedMatchDecoders</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.package@GeneratedMatchDecodersextendsAnyRef" title="Permalink" target="_top">
@@ -192,7 +197,7 @@ for most types anyone's likely to need.
       </a>
     </span>
       
-    </li><li name="kantan.regex.GroupDecoder" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="kantan.regex.GroupDecoder" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]"></a>
       <a id="GroupDecoder[A]:GroupDecoder[A]"></a>
       <h4 class="signature">
@@ -208,7 +213,8 @@ for most types anyone's likely to need.
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Type class for types that can be decoded from capturing groups.</p><div class="fullcomment"><div class="comment cmt"><p>Type class for types that can be decoded from capturing groups.</p><p>See the <a href="GroupDecoder$.html" class="extype" name="kantan.regex.GroupDecoder">companion object</a> for instance creation methods.
+</p></div></div>
     </li><li name="kantan.regex.GroupDecoderInstances" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="GroupDecoderInstancesextendsAnyRef"></a>
       <a id="GroupDecoderInstances:GroupDecoderInstances"></a>
@@ -218,15 +224,15 @@ for most types anyone's likely to need.
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="GroupDecoderInstances.html"><span class="name">GroupDecoderInstances</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <a href="GroupDecoderInstances.html"><span class="name">GroupDecoderInstances</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.package@GroupDecoderInstancesextendsAnyRef" title="Permalink" target="_top">
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
-    </li><li name="kantan.regex.Match" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Declares all default <a href="#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a> instances.</p>
+    </li><li name="kantan.regex.Match" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="MatchextendsAnyRef"></a>
       <a id="Match:Match"></a>
       <h4 class="signature">
@@ -235,15 +241,18 @@ for most types anyone's likely to need.
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="Match.html"><span class="name">Match</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <a href="Match.html"><span class="name">Match</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.package@MatchextendsAnyRef" title="Permalink" target="_top">
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
-    </li><li name="kantan.regex.MatchDecoder" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Represents a single match in a regular expression evaluation.</p><div class="fullcomment"><div class="comment cmt"><p>Represents a single match in a regular expression evaluation.</p><p>It's usually better not to interact with <a href="Match.html" class="extype" name="kantan.regex.Match">Match</a> directly - more often than not, adapting existing instances of
+<a href="#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> is the better solution. When in a situation where you *must* deal with such values directly,
+it's important not to hold onto them: due to the way kantan.regex works internally, <a href="Match.html" class="extype" name="kantan.regex.Match">Match</a> is mutable.
+</p></div></div>
+    </li><li name="kantan.regex.MatchDecoder" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]"></a>
       <a id="MatchDecoder[A]:MatchDecoder[A]"></a>
       <h4 class="signature">
@@ -259,7 +268,8 @@ for most types anyone's likely to need.
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Type class for type that can be decoded from regular expression matches.</p><div class="fullcomment"><div class="comment cmt"><p>Type class for type that can be decoded from regular expression matches.</p><p>See the <a href="MatchDecoder$.html" class="extype" name="kantan.regex.MatchDecoder">companion object</a> for instance creation methods.
+</p></div></div>
     </li><li name="kantan.regex.MatchDecoderInstances" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="MatchDecoderInstancesextendsAnyRef"></a>
       <a id="MatchDecoderInstances:MatchDecoderInstances"></a>
@@ -269,7 +279,7 @@ for most types anyone's likely to need.
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="MatchDecoderInstances.html"><span class="name">MatchDecoderInstances</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <a href="MatchDecoderInstances.html"><span class="name">MatchDecoderInstances</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.package@MatchDecoderInstancesextendsAnyRef" title="Permalink" target="_top">
@@ -277,6 +287,23 @@ for most types anyone's likely to need.
       </a>
     </span>
       <p class="shortcomment cmt">Declares default <a href="#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> instances.</p>
+    </li><li name="kantan.regex.Pattern" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Pattern=java.util.regex.Pattern"></a>
+      <a id="Pattern:Pattern"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Pattern</span><span class="result"> = <span class="extype" name="java.util.regex.Pattern">java.util.regex.Pattern</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@Pattern=java.util.regex.Pattern" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="kantan.regex.Regex" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="Regex[A]extendsAnyRef"></a>
       <a id="Regex[A]:Regex[A]"></a>
@@ -286,7 +313,7 @@ for most types anyone's likely to need.
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="Regex.html"><span class="name">Regex</span></a><span class="tparams">[<span name="A">A</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <a href="Regex.html"><span class="name">Regex</span></a><span class="tparams">[<span name="A">A</span>]</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.package@Regex[A]extendsAnyRef" title="Permalink" target="_top">
@@ -327,7 +354,7 @@ for most types anyone's likely to need.
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Result type for all regex related operations (encompasses both <a href="#DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]" class="extmbr" name="kantan.regex.DecodeResult">DecodeResult</a> and <a href="#CompileResult[A]=kantan.codecs.Result[kantan.regex.CompileError,A]" class="extmbr" name="kantan.regex.CompileResult">CompileResult</a>.</p>
     </li><li name="kantan.regex.TupleDecoders" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="TupleDecodersextendsAnyRef"></a>
       <a id="TupleDecoders:TupleDecoders"></a>
@@ -337,7 +364,7 @@ for most types anyone's likely to need.
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="TupleDecoders.html"><span class="name">TupleDecoders</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <a href="TupleDecoders.html"><span class="name">TupleDecoders</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.package@TupleDecodersextendsAnyRef" title="Permalink" target="_top">
@@ -368,7 +395,7 @@ for most types anyone's likely to need.
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Provides creation methods for <a href="#CompileResult[A]=kantan.codecs.Result[kantan.regex.CompileError,A]" class="extmbr" name="kantan.regex.CompileResult">CompileResult</a>.</p>
     </li><li name="kantan.regex.Compiler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Compiler"></a>
       <a id="Compiler:Compiler"></a>
@@ -419,7 +446,7 @@ for most types anyone's likely to need.
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Provides construction methods for <a href="#DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]" class="extmbr" name="kantan.regex.DecodeResult">DecodeResult</a>.</p>
     </li><li name="kantan.regex.GroupDecoder" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="GroupDecoder"></a>
       <a id="GroupDecoder:GroupDecoder"></a>
@@ -436,7 +463,7 @@ for most types anyone's likely to need.
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Provides instance creation and summoning methods for <a href="#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>.</p>
     </li><li name="kantan.regex.MatchDecoder" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="MatchDecoder"></a>
       <a id="MatchDecoder:MatchDecoder"></a>
@@ -490,7 +517,41 @@ complicated types.
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
+      <p class="shortcomment cmt">Acts as a type tag for regex-specific <a href="https://nrinaudo.github.io/kantan.codecs/api/index.html#kantan.codecs.Decoder" class="extype" target="_top">kantan.codecs.Decoder</a> instances.</p>
+    </li><li name="kantan.regex.generic" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="generic"></a>
+      <a id="generic:generic"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="generic/package.html"><span class="name">generic</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@generic" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
+    </li><li name="kantan.regex.implicits" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="implicits"></a>
+      <a id="implicits:implicits"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="implicits$.html"><span class="name">implicits</span></a><span class="result"> extends <a href="literals/ToRegexLiteral.html" class="extype" name="kantan.regex.literals.ToRegexLiteral">ToRegexLiteral</a> with <a href="ops/AllOps.html" class="extype" name="kantan.regex.ops.AllOps">AllOps</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@implicits" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Provides a convenient way to bring <a href="ops/package.html" class="extype" name="kantan.regex.ops">syntax</a> and <a href="literals/package.html" class="extype" name="kantan.regex.literals">literals</a> in scope with a single import.</p>
     </li><li name="kantan.regex.laws" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="laws"></a>
       <a id="laws:laws"></a>
@@ -504,6 +565,23 @@ complicated types.
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.package@laws" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.literals" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="literals"></a>
+      <a id="literals:literals"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="literals/package.html"><span class="name">literals</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@literals" title="Permalink" target="_top">
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -535,9 +613,9 @@ complicated types.
 
         <div id="inheritedMembers">
         <div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
-              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
             </div>
         
         </div>

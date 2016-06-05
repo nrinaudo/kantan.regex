@@ -45,13 +45,13 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">StringOps</span><span class="result"> extends <span class="extype" name="scala.AnyVal">AnyVal</span></span>
+        <span class="name">StringOps</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyVal" class="extype" target="_top">AnyVal</a></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Enriches <code>String</code> with useful regex-related syntax.</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/core/src/main/scala/kantan/regex/ops/StringOps.scala" target="_blank">StringOps.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyVal">AnyVal</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyVal" class="extype" target="_top">AnyVal</a>, <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></div>
         </div></div>
         
 
@@ -123,7 +123,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#kantan.regex.ops.StringOps@!=(x$1:Any):Boolean" title="Permalink" target="_top">
@@ -157,7 +157,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#kantan.regex.ops.StringOps@==(x$1:Any):Boolean" title="Permalink" target="_top">
@@ -182,43 +182,40 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="kantan.regex.ops.StringOps#evalRegex" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="evalRegex[A](expr:String,group:Int)(implicitevidence$2:kantan.regex.GroupDecoder[A]):Iterator[kantan.regex.RegexResult[A]]"></a>
-      <a id="evalRegex[A](String,Int)(GroupDecoder[A]):Iterator[RegexResult[A]]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">evalRegex</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="expr">expr: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="group">group: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>[<span class="extype" name="kantan.regex.ops.StringOps.evalRegex.A">A</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Iterator">Iterator</span>[<a href="../package.html#RegexResult[A]=kantan.codecs.Result[kantan.regex.RegexError,A]" class="extmbr" name="kantan.regex.RegexResult">RegexResult</a>[<span class="extype" name="kantan.regex.ops.StringOps.evalRegex.A">A</span>]]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#kantan.regex.ops.StringOps@evalRegex[A](expr:String,group:Int)(implicitevidence$2:kantan.regex.GroupDecoder[A]):Iterator[kantan.regex.RegexResult[A]]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Compiles and evaluates the specified regular expression against this string.</p><div class="fullcomment"><div class="comment cmt"><p>Compiles and evaluates the specified regular expression against this string.</p><p>This method is useful when extracting simple types (that is, types that have a <a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>) from groups
-rather than entire matches.</p><p>For example, imagine that we have the following regular expression: <code>\[(\d+)\]</code>. Each match will contain the
-wrapping brackets - <code>[123]</code>, for example. In order to only extract information from the first group rather
-than the entire match, one would write:</p><pre>str.evalRegex[<span class="std">Int</span>](<span class="lit">"\\[(\\d+)\\]"</span>, <span class="num">1</span>)</pre></div><dl class="paramcmts block"><dt class="param">expr</dt><dd class="cmt"><p>regular expression to compile and evaluate.</p></dd><dt class="param">group</dt><dd class="cmt"><p>index of the group from which to extract data in each match.</p></dd></dl></div>
     </li><li name="kantan.regex.ops.StringOps#evalRegex" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="evalRegex[A](expr:String)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.RegexResult[A]]"></a>
-      <a id="evalRegex[A](String)(MatchDecoder[A]):Iterator[RegexResult[A]]"></a>
+      <a id="evalRegex[A](p:kantan.regex.Pattern,group:Int)(implicitevidence$2:kantan.regex.GroupDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]"></a>
+      <a id="evalRegex[A](Pattern,Int)(GroupDecoder[A]):Iterator[DecodeResult[A]]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">evalRegex</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="expr">expr: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="../package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a>[<span class="extype" name="kantan.regex.ops.StringOps.evalRegex.A">A</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Iterator">Iterator</span>[<a href="../package.html#RegexResult[A]=kantan.codecs.Result[kantan.regex.RegexError,A]" class="extmbr" name="kantan.regex.RegexResult">RegexResult</a>[<span class="extype" name="kantan.regex.ops.StringOps.evalRegex.A">A</span>]]</span>
+        <span class="name">evalRegex</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="p">p: <a href="../package.html#Pattern=java.util.regex.Pattern" class="extmbr" name="kantan.regex.Pattern">Pattern</a></span>, <span name="group">group: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>[<span class="extype" name="kantan.regex.ops.StringOps.evalRegex.A">A</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Iterator">Iterator</span>[<a href="../package.html#DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]" class="extmbr" name="kantan.regex.DecodeResult">DecodeResult</a>[<span class="extype" name="kantan.regex.ops.StringOps.evalRegex.A">A</span>]]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#kantan.regex.ops.StringOps@evalRegex[A](expr:String)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.RegexResult[A]]" title="Permalink" target="_top">
+      <a href="../../../index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern,group:Int)(implicitevidence$2:kantan.regex.GroupDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Compiles and evaluates the specified regular expression against this string.</p>
+      
+    </li><li name="kantan.regex.ops.StringOps#evalRegex" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]"></a>
+      <a id="evalRegex[A](Pattern)(MatchDecoder[A]):Iterator[DecodeResult[A]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">evalRegex</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="p">p: <a href="../package.html#Pattern=java.util.regex.Pattern" class="extmbr" name="kantan.regex.Pattern">Pattern</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="../package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a>[<span class="extype" name="kantan.regex.ops.StringOps.evalRegex.A">A</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Iterator">Iterator</span>[<a href="../package.html#DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]" class="extmbr" name="kantan.regex.DecodeResult">DecodeResult</a>[<span class="extype" name="kantan.regex.ops.StringOps.evalRegex.A">A</span>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="kantan.regex.ops.StringOps#evalRegex" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="evalRegex[A](r:kantan.regex.Regex[A]):Iterator[A]"></a>
       <a id="evalRegex[A](Regex[A]):Iterator[A]"></a>
@@ -245,7 +242,7 @@ than the entire match, one would write:</p><pre>str.evalRegex[<span class="std">
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.Class">Class</span>[_ &lt;: <span class="extype" name="scala.AnyVal">AnyVal</span>]</span>
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.Class">Class</span>[_ &lt;: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyVal" class="extype" target="_top">AnyVal</a>]</span>
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#kantan.regex.ops.StringOps@getClass():Class[_&lt;:AnyVal]" title="Permalink" target="_top">
@@ -305,39 +302,39 @@ than the entire match, one would write:</p><pre>str.evalRegex[<span class="std">
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="kantan.regex.ops.StringOps#unsafeEvalRegex" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="unsafeEvalRegex[A](expr:String,group:Int)(implicitevidence$4:kantan.regex.GroupDecoder[A]):Iterator[A]"></a>
-      <a id="unsafeEvalRegex[A](String,Int)(GroupDecoder[A]):Iterator[A]"></a>
+      <a id="unsafeEvalRegex[A](p:kantan.regex.Pattern,group:Int)(implicitevidence$4:kantan.regex.GroupDecoder[A]):Iterator[A]"></a>
+      <a id="unsafeEvalRegex[A](Pattern,Int)(GroupDecoder[A]):Iterator[A]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">unsafeEvalRegex</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="expr">expr: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="group">group: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>[<span class="extype" name="kantan.regex.ops.StringOps.unsafeEvalRegex.A">A</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Iterator">Iterator</span>[<span class="extype" name="kantan.regex.ops.StringOps.unsafeEvalRegex.A">A</span>]</span>
+        <span class="name">unsafeEvalRegex</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="p">p: <a href="../package.html#Pattern=java.util.regex.Pattern" class="extmbr" name="kantan.regex.Pattern">Pattern</a></span>, <span name="group">group: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>[<span class="extype" name="kantan.regex.ops.StringOps.unsafeEvalRegex.A">A</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Iterator">Iterator</span>[<span class="extype" name="kantan.regex.ops.StringOps.unsafeEvalRegex.A">A</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#kantan.regex.ops.StringOps@unsafeEvalRegex[A](expr:String,group:Int)(implicitevidence$4:kantan.regex.GroupDecoder[A]):Iterator[A]" title="Permalink" target="_top">
+      <a href="../../../index.html#kantan.regex.ops.StringOps@unsafeEvalRegex[A](p:kantan.regex.Pattern,group:Int)(implicitevidence$4:kantan.regex.GroupDecoder[A]):Iterator[A]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Unsafe version of <a href="#evalRegex[A](expr:String,group:Int)(implicitevidence$2:kantan.regex.GroupDecoder[A]):Iterator[kantan.regex.RegexResult[A]]" class="extmbr" name="kantan.regex.ops.StringOps#evalRegex">evalRegex[A](expr:String,group:Int)*</a> .</p>
+      
     </li><li name="kantan.regex.ops.StringOps#unsafeEvalRegex" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="unsafeEvalRegex[A](expr:String)(implicitevidence$3:kantan.regex.MatchDecoder[A]):Iterator[A]"></a>
-      <a id="unsafeEvalRegex[A](String)(MatchDecoder[A]):Iterator[A]"></a>
+      <a id="unsafeEvalRegex[A](p:kantan.regex.Pattern)(implicitevidence$3:kantan.regex.MatchDecoder[A]):Iterator[A]"></a>
+      <a id="unsafeEvalRegex[A](Pattern)(MatchDecoder[A]):Iterator[A]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">unsafeEvalRegex</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="expr">expr: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="../package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a>[<span class="extype" name="kantan.regex.ops.StringOps.unsafeEvalRegex.A">A</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Iterator">Iterator</span>[<span class="extype" name="kantan.regex.ops.StringOps.unsafeEvalRegex.A">A</span>]</span>
+        <span class="name">unsafeEvalRegex</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="p">p: <a href="../package.html#Pattern=java.util.regex.Pattern" class="extmbr" name="kantan.regex.Pattern">Pattern</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="../package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a>[<span class="extype" name="kantan.regex.ops.StringOps.unsafeEvalRegex.A">A</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Iterator">Iterator</span>[<span class="extype" name="kantan.regex.ops.StringOps.unsafeEvalRegex.A">A</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#kantan.regex.ops.StringOps@unsafeEvalRegex[A](expr:String)(implicitevidence$3:kantan.regex.MatchDecoder[A]):Iterator[A]" title="Permalink" target="_top">
+      <a href="../../../index.html#kantan.regex.ops.StringOps@unsafeEvalRegex[A](p:kantan.regex.Pattern)(implicitevidence$3:kantan.regex.MatchDecoder[A]):Iterator[A]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Unsafe version of <a href="#evalRegex[A](expr:String)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.RegexResult[A]]" class="extmbr" name="kantan.regex.ops.StringOps#evalRegex">evalRegex[A](expr:String)*</a> .</p>
+      
     </li></ol>
             </div>
 
@@ -348,9 +345,9 @@ than the entire match, one would write:</p><pre>str.evalRegex[<span class="std">
 
         <div id="inheritedMembers">
         <div class="parent" name="scala.AnyVal">
-              <h3>Inherited from <span class="extype" name="scala.AnyVal">AnyVal</span></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyVal" class="extype" target="_top">AnyVal</a></h3>
             </div><div class="parent" name="scala.Any">
-              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
             </div>
         
         </div>

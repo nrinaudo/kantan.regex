@@ -40,20 +40,20 @@ an implicit [`DateFormat`] instance in scope, and will decode using that format.
 We could for example declare a formatter for something ISO 8601-like:
 
 ```scala
-import kantan.regex.ops._
+import kantan.regex.implicits._
 import java.util.{Locale, Date}
 
 implicit val formatter = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
 ```
 
-And we're now capable of decoding XML content as dates:
+And we're now capable of decoding matches as dates:
 
 ```scala
-scala> "2000-01-00T00:00:00.000".evalRegex[Date]("""\d\d\d\d-\d\d-\d\d""").foreach(println _)
+scala> "2000-01-00T00:00:00.000".evalRegex[Date](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
 Success(Fri Dec 31 00:00:00 CET 1999)
 ```
 
-Note that kantan.regex has a joda-time module, a very well thought out alternative to [`Date`]. 
+Note that kantan.regex has a [joda-time](joda.html) module, a very well thought out alternative to [`Date`]. 
 
 ### `Either`
 
@@ -65,7 +65,7 @@ This is useful for dodgy string data where the type of a value is not well defin
 sometimes a boolean, for example:
 
 ```scala
-scala> "[123] [true]".evalRegex[Either[Int, Boolean]]("""\[(\d+|true|false)\]""", 1).foreach(println _)
+scala> "[123] [true]".evalRegex[Either[Int, Boolean]](rx"\[(\d+|true|false)\]", 1).foreach(println _)
 Success(Left(123))
 Success(Right(true))
 ```
@@ -77,7 +77,7 @@ For any type `A` that has a [`GroupDecoder`], there exists a [`GroupDecoder[Opti
 This is particularly useful for optional groups. For example:
 
 ```scala
-scala> "[123], []".evalRegex[Option[Int]]("""\[(\d+)?\]""", 1).foreach(println _)
+scala> "[123], []".evalRegex[Option[Int]](rx"\[(\d+)?\]", 1).foreach(println _)
 Success(Some(123))
 Success(None)
 ```
@@ -103,7 +103,7 @@ Tuples composed of types that each have a [`GroupDecoder`] automatically have a 
 assuming that the value of group 1 corresponds to the first field in the tuple, group 2 to the second, ...
 
 ```scala
-scala> "[1, true] and then [3, false]".evalRegex[(Int, Boolean)]("""\[(\d+), ([a-z]+)\]""").foreach(println _)
+scala> "[1, true] and then [3, false]".evalRegex[(Int, Boolean)](rx"\[(\d+), ([a-z]+)\]").foreach(println _)
 Success((1,true))
 Success((3,false))
 ```
@@ -117,7 +117,7 @@ For any two types `A` and `B` that each have a [`MatchDecoder`], there exists a
 This works essentially the same way as [`GroupDecoder`] for [`Either`]:
 
 ```scala
-scala> "[123, true] [456, foo]".evalRegex[Either[(Int, Boolean), (Int, String)]]("""\[(\d+), ([a-z]+)\]""").foreach(println _)
+scala> "[123, true] [456, foo]".evalRegex[Either[(Int, Boolean), (Int, String)]](rx"\[(\d+), ([a-z]+)\]").foreach(println _)
 Success(Left((123,true)))
 Success(Right((456,foo)))
 ```
@@ -148,10 +148,9 @@ the notion of an optional match is... odd.
 [`InputStream`]:https://docs.oracle.com/javase/7/docs/api/java/io/InputStream.html
 [`File`]:https://docs.oracle.com/javase/7/docs/api/java/io/File.html
 [`Path`]:https://docs.oracle.com/javase/7/docs/api/java/nio/file/Path.html
-[`XmlSource`]:{{ site.baseUrl }}/api/#kantan.xpath.XmlSource
 [`GroupDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]
 [`Date`]:https://docs.oracle.com/javase/7/docs/api/java/util/Date.html
 [`DateFormat`]:https://docs.oracle.com/javase/7/docs/api/java/text/DateFormat.html
 [`MatchDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]
 [`Either`]:http://www.scala-lang.org/api/current/index.html#scala.util.Either
-[`evalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops$$StringOps@evalRegex[A](expr:String,group:Int)(implicitevidence$2:kantan.regex.GroupDecoder[A]):Iterator[kantan.regex.RegexResult[A]]
+[`evalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]

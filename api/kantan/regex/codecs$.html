@@ -49,9 +49,9 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/core/src/main/scala/kantan/regex/Codecs.scala" target="_blank">Codecs.scala</a></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Acts as a type tag for regex-specific <a href="https://nrinaudo.github.io/kantan.codecs/api/index.html#kantan.codecs.Decoder" class="extype" target="_top">kantan.codecs.Decoder</a> instances.</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/core/src/main/scala/kantan/regex/Codecs.scala" target="_blank">Codecs.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="TupleDecoders.html" class="extype" name="kantan.regex.TupleDecoders">TupleDecoders</a>, <a href="MatchDecoderInstances.html" class="extype" name="kantan.regex.MatchDecoderInstances">MatchDecoderInstances</a>, <a href="GroupDecoderInstances.html" class="extype" name="kantan.regex.GroupDecoderInstances">GroupDecoderInstances</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="TupleDecoders.html" class="extype" name="kantan.regex.TupleDecoders">TupleDecoders</a>, <a href="MatchDecoderInstances.html" class="extype" name="kantan.regex.MatchDecoderInstances">MatchDecoderInstances</a>, <a href="GroupDecoderInstances.html" class="extype" name="kantan.regex.GroupDecoderInstances">GroupDecoderInstances</a>, <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></div>
         </div></div>
         
 
@@ -103,7 +103,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.codecs$@!=(x$1:Any):Boolean" title="Permalink" target="_top">
@@ -137,7 +137,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.codecs$@==(x$1:Any):Boolean" title="Permalink" target="_top">
@@ -171,7 +171,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.codecs$@clone():Object" title="Permalink" target="_top">
@@ -201,7 +201,11 @@
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="GroupDecoderInstances.html" class="extype" name="kantan.regex.GroupDecoderInstances">GroupDecoderInstances</a></dd></dl></div>
+      <p class="shortcomment cmt">Turns a <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder[A</a>] and <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder[B</a>] into a
+<a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder[Either[A, B</a>]].</p><div class="fullcomment"><div class="comment cmt"><p>Turns a <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder[A</a>] and <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder[B</a>] into a
+<a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder[Either[A, B</a>]].</p><p>This means that, provided you know how to decode an <code>A</code> and a <code>B</code>, you will always have free support for
+<code>Either[A, B]</code>.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="GroupDecoderInstances.html" class="extype" name="kantan.regex.GroupDecoderInstances">GroupDecoderInstances</a></dd></dl></div>
     </li><li name="kantan.regex.MatchDecoderInstances#eitherMatch" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eitherMatch[A,B](implicitevidence$1:kantan.regex.MatchDecoder[A],implicitevidence$2:kantan.regex.MatchDecoder[B]):kantan.regex.MatchDecoder[Either[A,B]]"></a>
       <a id="eitherMatch[A,B](MatchDecoder[A],MatchDecoder[B]):MatchDecoder[Either[A,B]]"></a>
@@ -228,7 +232,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.codecs$@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -245,7 +249,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.codecs$@equals(x$1:Any):Boolean" title="Permalink" target="_top">
@@ -285,7 +289,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">fromCbf</span><span class="tparams">[<span name="F">F<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="A">A</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="da">da: <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>[<a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Option" class="extype" target="_top">Option</a>[<span class="extype" name="kantan.regex.MatchDecoderInstances.fromCbf.A">A</span>]]</span>, <span name="cbf">cbf: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.collection.generic.CanBuildFrom" class="extype" target="_top">CanBuildFrom</a>[<span class="extype" name="scala.Nothing">Nothing</span>, <span class="extype" name="kantan.regex.MatchDecoderInstances.fromCbf.A">A</span>, <span class="extype" name="kantan.regex.MatchDecoderInstances.fromCbf.F">F</span>[<span class="extype" name="kantan.regex.MatchDecoderInstances.fromCbf.A">A</span>]]</span>)</span><span class="result">: <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a>[<span class="extype" name="kantan.regex.MatchDecoderInstances.fromCbf.F">F</span>[<span class="extype" name="kantan.regex.MatchDecoderInstances.fromCbf.A">A</span>]]</span>
+        <span class="name">fromCbf</span><span class="tparams">[<span name="F">F<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="A">A</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="da">da: <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>[<a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Option" class="extype" target="_top">Option</a>[<span class="extype" name="kantan.regex.MatchDecoderInstances.fromCbf.A">A</span>]]</span>, <span name="cbf">cbf: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.collection.generic.CanBuildFrom" class="extype" target="_top">CanBuildFrom</a>[<a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Nothing" class="extype" target="_top">Nothing</a>, <span class="extype" name="kantan.regex.MatchDecoderInstances.fromCbf.A">A</span>, <span class="extype" name="kantan.regex.MatchDecoderInstances.fromCbf.F">F</span>[<span class="extype" name="kantan.regex.MatchDecoderInstances.fromCbf.A">A</span>]]</span>)</span><span class="result">: <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a>[<span class="extype" name="kantan.regex.MatchDecoderInstances.fromCbf.F">F</span>[<span class="extype" name="kantan.regex.MatchDecoderInstances.fromCbf.A">A</span>]]</span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.codecs$@fromCbf[F[_],A](implicitda:kantan.regex.GroupDecoder[Option[A]],implicitcbf:scala.collection.generic.CanBuildFrom[Nothing,A,F[A]]):kantan.regex.MatchDecoder[F[A]]" title="Permalink" target="_top">
@@ -328,7 +332,8 @@ group.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a 
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="GroupDecoderInstances.html" class="extype" name="kantan.regex.GroupDecoderInstances">GroupDecoderInstances</a></dd></dl></div>
+      <p class="shortcomment cmt">Turns a <code>StringDecoder</code> instance into a <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a> one.</p><div class="fullcomment"><div class="comment cmt"><p>Turns a <code>StringDecoder</code> instance into a <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a> one.</p><p>This provides free support for all primitive types (as well as a few convenience ones, such as <code>java.io.File</code>).
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="GroupDecoderInstances.html" class="extype" name="kantan.regex.GroupDecoderInstances">GroupDecoderInstances</a></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <a id="getClass():Class[_]"></a>
@@ -389,7 +394,7 @@ group.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a 
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.codecs$@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
@@ -447,7 +452,8 @@ group.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a 
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="GroupDecoderInstances.html" class="extype" name="kantan.regex.GroupDecoderInstances">GroupDecoderInstances</a></dd></dl></div>
+      <p class="shortcomment cmt">Turns a <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder[A</a>] into a <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder[Option[A</a>]].</p><div class="fullcomment"><div class="comment cmt"><p>Turns a <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder[A</a>] into a <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder[Option[A</a>]].</p><p>This means that, provided you know how to decode an <code>A</code>, you will always have free support for <code>Option[A]</code>.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="GroupDecoderInstances.html" class="extype" name="kantan.regex.GroupDecoderInstances">GroupDecoderInstances</a></dd></dl></div>
     </li><li name="kantan.regex.MatchDecoderInstances#optMatch" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="optMatch[A](implicitda:kantan.regex.GroupDecoder[Option[A]]):kantan.regex.MatchDecoder[Option[A]]"></a>
       <a id="optMatch[A](GroupDecoder[Option[A]]):MatchDecoder[Option[A]]"></a>
@@ -958,9 +964,9 @@ group.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a 
             </div><div class="parent" name="kantan.regex.GroupDecoderInstances">
               <h3>Inherited from <a href="GroupDecoderInstances.html" class="extype" name="kantan.regex.GroupDecoderInstances">GroupDecoderInstances</a></h3>
             </div><div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
-              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
             </div>
         
         </div>

@@ -5,7 +5,7 @@ section: tutorial
 sort: 1
 ---
 When working with regular expressions, it's fairly common to want to extract matches and turn them into useful types -
-a depressingly recurrent scenario being to extract simple integers from strings.
+a depressingly recurrent scenario being extracting simple integers from strings.
 
 Let's imagine that we get the following string and are interested in the integers between brackets: 
 
@@ -19,20 +19,20 @@ The first, naive approach would to simply match digits and turn matches into int
 regular expression:
 
 ```scala
-val digits = """\d+"""
+import kantan.regex.implicits._ 
+
+val digits = rx"\d+"
 ```
 
-In order to evaluate that, we'll first need to import the kantan.regex syntax:
-
-```scala
-import kantan.regex.ops._
-```
+Note the way the regular expression was declared: the `rx` bit lets the compiler know that the following string literal
+is a regular expression and should be validated. Had our expression been invalid, it would have been detected at
+compile time.
 
 And we can now simply call the [`evalRegex`] method that enriches strings:
 
 ```scala
 scala> val results = input.evalRegex[Int](digits)
-results: Iterator[kantan.regex.RegexResult[Int]] = non-empty iterator
+results: Iterator[kantan.regex.DecodeResult[Int]] = non-empty iterator
 
 scala> results.foreach(println _)
 Success(123)
@@ -56,8 +56,8 @@ Looking at the results however, we see that we didn't really achieve what we set
 matched, but was. In order to solve this, we need to change our regular expression to something more precise, such as:
 
 ```scala
-scala> val regex = """\[(\d+)\]"""
-regex: String = \[(\d+)\]
+scala> val regex = rx"\[(\d+)\]"
+regex: kantan.regex.Pattern = \[(\d+)\]
 ```
 
 The problem here is that matches of this expression are not valid ints - they are surrounded by brackets. This
@@ -83,6 +83,9 @@ import org.joda.time.format.ISODateTimeFormat
 
 implicit val jodaDateTime: GroupDecoder[DateTime] = {
   val format = ISODateTimeFormat.date()
+  
+  // Summon an existing GroupDecoder[String] instance and modifies its behaviour,
+  // rather than build a new decoder from scratch.
   GroupDecoder[String].mapResult(s ⇒ DecodeResult(format.parseDateTime(s)))
 }
 ```
@@ -96,17 +99,17 @@ val input = "Nothing of note happened on 2009-01-06"
 And we can now decode this easily:
 
 ```scala
-scala> input.evalRegex[DateTime]("""\d\d\d\d-\d\d-\d\d""").foreach(println _)
+scala> input.evalRegex[DateTime](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
 Success(2009-01-06T00:00:00.000+01:00)
 ```
 
 
 [`Regex`]:{{ site.baseUrl }}/api/#kantan.regex.Regex
-[`evalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops$$StringOps@evalRegex[A](expr:String,group:Int)(implicitevidence$2:kantan.regex.GroupDecoder[A]):Iterator[kantan.regex.RegexResult[A]]
+[`evalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
 [`Iterator`]:http://www.scala-lang.org/api/current/index.html#scala.collection.Iterator
 [`Int`]:http://www.scala-lang.org/api/current/index.html#scala.Int
 [`DecodeResult`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]
 [`MatchDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]
 [`DateTime`]:http://www.joda.org/joda-time/apidocs/org/joda/time/DateTime.html
 [`GroupDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]
-[`unsafeEvalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops$$StringOps@unsafeEvalRegex[A](expr:String)(implicitevidence$3:kantan.regex.MatchDecoder[A]):Iterator[A]
+[`unsafeEvalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops.StringOps@unsafeEvalRegex[A](p:kantan.regex.Pattern)(implicitevidence$3:kantan.regex.MatchDecoder[A]):Iterator[A]
