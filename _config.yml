@@ -3,10 +3,6 @@ markdown: kramdown
 highlighter: rouge
 baseurl: /kantan.regex
 
-kramdown:
-  input: GFM
-  hard_wrap: false
-
 collections:
   tut:
     output: true
