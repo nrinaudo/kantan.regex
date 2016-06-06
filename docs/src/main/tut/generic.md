@@ -2,7 +2,7 @@
 layout: tutorial
 title: "Generic Module"
 section: tutorial
-sort: 8
+sort_order: 8
 ---
 While kantan.regex goes out of its way to provide [default instance](default_instances.html) for as many types as it can,
 some are made problematic by my desire to avoid runtime reflection. Fortunately, [shapeless](http://shapeless.io)

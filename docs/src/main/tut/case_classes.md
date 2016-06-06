@@ -2,7 +2,7 @@
 layout: tutorial
 title: "Extracting case classes"
 section: tutorial
-sort: 3
+sort_order: 3
 ---
 We've already seen how to extract [primitive types](primitive_types.html) and [tuples](tuples.html) from regular
 expression matches, but a more common requirement is to extract case classes - often preferable to tuples, since they

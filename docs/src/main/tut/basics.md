@@ -2,7 +2,7 @@
 layout: tutorial
 title: "Basics"
 section: tutorial
-sort: 0
+sort_order: 0
 ---
 There are a few concepts to get familiar with before getting to grips with kantan.regex proper.
 

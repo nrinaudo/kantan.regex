@@ -2,7 +2,7 @@
 layout: tutorial
 title: "Compiling regular expressions for reuse"
 section: tutorial
-sort: 6
+sort_order: 6
 ---
 In the examples we've seen so far, regular expressions were passed around as [`Pattern`]s. This can be inefficient, as
 kantan.regex needs to bake in the decoding code in patterns each time they are evaluated against some input.
@@ -48,7 +48,7 @@ val regex = """\((\d+), (\d+)\)""".asRegex[(Int, Int)].get
 ```
 
 Note that we had to call [`get`] on the result: [`asRegex`] returns a [`CompileResult`] instance to protect against
-ill-formed regular expressions. 
+ill-formed regular expressions.
 
 Now that we have this instance of [`Regex`], we can simply pass it as parameter to [`evalRegex`]:
 
@@ -62,7 +62,7 @@ Any type that has an implicit instance of [`Compiler`] in scope can be compiled 
 instances of [`Compiler`] for [`Pattern`] and [`scala.util.matching.Regex`], although they're not often useful - if you
 have a [`Pattern`], just pass that to [`Regex.apply`], and if you have a [`scala.util.matching.Regex`], you can just
 call [`pattern`] to get the underlying [`Pattern`].
- 
+
 
 
 

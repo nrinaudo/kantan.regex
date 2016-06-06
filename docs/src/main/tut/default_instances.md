@@ -2,7 +2,7 @@
 layout: tutorial
 title: "Default instances"
 section: tutorial
-sort: 7
+sort_order: 7
 ---
 
 
@@ -29,12 +29,12 @@ The following types have [`GroupDecoder`] instances available out of the box:
 
 ### `java.util.Date`
 
-There also is a default [`GroupDecoder`] instance available for [`Date`], but this one is slightly more complicated. 
-There are so many different ways of writing dates that there is no reasonable default behaviour - one might argue that 
+There also is a default [`GroupDecoder`] instance available for [`Date`], but this one is slightly more complicated.
+There are so many different ways of writing dates that there is no reasonable default behaviour - one might argue that
 defaulting to ISO 8601 might make sense, but there doesn't appear to be a sane way of implementing that in Java’s crusty
 date / time API.
 
-Instead of providing a default implementation that is likely going to be incorrect for most people, kantan.regex expects 
+Instead of providing a default implementation that is likely going to be incorrect for most people, kantan.regex expects
 an implicit [`DateFormat`] instance in scope, and will decode using that format.
 
 We could for example declare a formatter for something ISO 8601-like:
@@ -52,7 +52,7 @@ And we're now capable of decoding matches as dates:
 "2000-01-00T00:00:00.000".evalRegex[Date](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
 ```
 
-Note that kantan.regex has a [joda-time](joda.html) module, a very well thought out alternative to [`Date`]. 
+Note that kantan.regex has a [joda-time](joda.html) module, a very well thought out alternative to [`Date`].
 
 ### `Either`
 
@@ -60,7 +60,7 @@ For any two types `A` and `B` that each have a [`GroupDecoder`], there exists a
 [`GroupDecoder[Either[A, B]]`][`GroupDecoder`].
 
 
-This is useful for dodgy string data where the type of a value is not well defined - it might sometimes be an int, 
+This is useful for dodgy string data where the type of a value is not well defined - it might sometimes be an int,
 sometimes a boolean, for example:
 
 ```tut
