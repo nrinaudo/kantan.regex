@@ -2,19 +2,19 @@
 layout: tutorial
 title: "Scala cats module"
 section: tutorial
-sort: 10
+sort_order: 10
 ---
 Kantan.regex has a [cats](https://github.com/typelevel/cats) module that is, in its current incarnation, fairly bare
 bones: it provides decoders for [`Xor`] as well as a few useful type class instances.
- 
+
 The `cats` module can be used by adding the following dependency to your `build.sbt`:
- 
+
 ```scala
 libraryDependencies += "com.nrinaudo" %% "kantan.regex-cats" % "0.1.2"
 ```
- 
+
 You then need to import the corresponding package:
- 
+
 ```scala
 import kantan.regex.cats._
 ```

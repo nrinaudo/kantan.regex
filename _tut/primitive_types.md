@@ -2,12 +2,12 @@
 layout: tutorial
 title: "Extracting primitive types"
 section: tutorial
-sort: 1
+sort_order: 1
 ---
 When working with regular expressions, it's fairly common to want to extract matches and turn them into useful types -
 a depressingly recurrent scenario being extracting simple integers from strings.
 
-Let's imagine that we get the following string and are interested in the integers between brackets: 
+Let's imagine that we get the following string and are interested in the integers between brackets:
 
 ```scala
 val input = "lorem ipsum [123] dolor si amet [456] DO NOT MATCH THIS 789."
@@ -19,7 +19,7 @@ The first, naive approach would to simply match digits and turn matches into int
 regular expression:
 
 ```scala
-import kantan.regex.implicits._ 
+import kantan.regex.implicits._
 
 val digits = rx"\d+"
 ```
@@ -40,12 +40,12 @@ Success(456)
 Success(789)
 ```
 
-There are a few important things happening here. First, note the type parameter to [`evalRegex`]: this tells 
+There are a few important things happening here. First, note the type parameter to [`evalRegex`]: this tells
 kantan.regex how to interpret each match. In our case, we want ints.
 
 Second, `results` is an [`Iterator`]: regular expressions are evaluated lazily.
 
-Lastly, even though we requested results of type [`Int`], we got [`Success[Int]`][`DecodeResult`] values instead. This 
+Lastly, even though we requested results of type [`Int`], we got [`Success[Int]`][`DecodeResult`] values instead. This
 makes regular expression evaluation safe: errors are wrapped in a failure value rather than turned into exceptions.
 Should you not really care about safety, you can use [`unsafeEvalRegex`] and get raw ints.
 
@@ -83,7 +83,7 @@ import org.joda.time.format.ISODateTimeFormat
 
 implicit val jodaDateTime: GroupDecoder[DateTime] = {
   val format = ISODateTimeFormat.date()
-  
+
   // Summon an existing GroupDecoder[String] instance and modifies its behaviour,
   // rather than build a new decoder from scratch.
   GroupDecoder[String].mapResult(s ⇒ DecodeResult(format.parseDateTime(s)))
@@ -91,7 +91,7 @@ implicit val jodaDateTime: GroupDecoder[DateTime] = {
 ```
 
 Here's an example of a string with a valid ISO date:
- 
+
 ```scala
 val input = "Nothing of note happened on 2009-01-06"
 ```

@@ -2,7 +2,7 @@
 layout: tutorial
 title: "Extracting arbitrary types"
 section: tutorial
-sort: 4
+sort_order: 4
 ---
 Sometimes, you're trying to extract content from strings into something that is neither a
 [primitive type](primitive_types.html), a [tuple](tuples.html) or a [case class](case_classes.html). Dealing with

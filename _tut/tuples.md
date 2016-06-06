@@ -2,7 +2,7 @@
 layout: tutorial
 title: "Extracting tuples"
 section: tutorial
-sort: 2
+sort_order: 2
 ---
 We've seen in a [previous tutorial](primitive_types.html) how to extract simple types from matches in a regular
 expression. Sometimes, however, matches contain more than one interesting value, each in a separate group.
@@ -22,7 +22,7 @@ import kantan.regex.implicits._
 val regex = rx"\((\d+), (\d+)\)"
 ```
 
-Note how the "interesting" parts are each in their own group, this is critical to kantan.regex behaving properly. 
+Note how the "interesting" parts are each in their own group, this is critical to kantan.regex behaving properly.
 
 
 We can then proceed to extract our points as `(Int, Int)` exactly like we did before for simple types, through
