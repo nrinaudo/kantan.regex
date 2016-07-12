@@ -49,6 +49,6 @@ And that's it, we're done: we can now [`evalRegex`] as usual, with the right typ
 input.evalRegex[Point](regex).foreach(println _)
 ```
 
-[`evalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
-[`MatchDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]
-[`ordered`]:{{ site.baseUrl }}/api/index.html#kantan.regex.MatchDecoder$@ordered[A1,A2,A3,O](f:(A1,A2,A3)=>O)(implicitda1:kantan.regex.GroupDecoder[A1],implicitda2:kantan.regex.GroupDecoder[A2],implicitda3:kantan.regex.GroupDecoder[A3]):kantan.regex.MatchDecoder[O]
+[`evalRegex`]:{{ site.baseurl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
+[`MatchDecoder`]:{{ site.baseurl }}/api/index.html#kantan.regex.package@MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]
+[`ordered`]:{{ site.baseurl }}/api/index.html#kantan.regex.MatchDecoder$@ordered[A1,A2,A3,O](f:(A1,A2,A3)=>O)(implicitda1:kantan.regex.GroupDecoder[A1],implicitda2:kantan.regex.GroupDecoder[A2],implicitda3:kantan.regex.GroupDecoder[A3]):kantan.regex.MatchDecoder[O]

@@ -66,14 +66,14 @@ call [`pattern`] to get the underlying [`Pattern`].
 
 
 
-[`evalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
-[`asRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops.CompilerOps@asRegex[A](implicitevidence$1:kantan.regex.MatchDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.CompileResult[kantan.regex.Regex[kantan.regex.DecodeResult[A]]]
-[`asUnsafeRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops.CompilerOps@asUnsafeRegex[A](implicitevidence$3:kantan.regex.MatchDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
-[`Regex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.Regex
-[`Regex.apply`]:{{ site.baseUrl }}/api/index.html#kantan.regex.Regex$@apply[A](pattern:kantan.regex.Pattern)(implicitda:kantan.regex.MatchDecoder[A]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
-[`CompileResult`]:{{ site.baseUrl}}/api/index.html#kantan.regex.package@CompileResult[A]=kantan.codecs.Result[kantan.regex.CompileError,A]
+[`evalRegex`]:{{ site.baseurl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
+[`asRegex`]:{{ site.baseurl }}/api/index.html#kantan.regex.ops.CompilerOps@asRegex[A](implicitevidence$1:kantan.regex.MatchDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.CompileResult[kantan.regex.Regex[kantan.regex.DecodeResult[A]]]
+[`asUnsafeRegex`]:{{ site.baseurl }}/api/index.html#kantan.regex.ops.CompilerOps@asUnsafeRegex[A](implicitevidence$3:kantan.regex.MatchDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
+[`Regex`]:{{ site.baseurl }}/api/index.html#kantan.regex.Regex
+[`Regex.apply`]:{{ site.baseurl }}/api/index.html#kantan.regex.Regex$@apply[A](pattern:kantan.regex.Pattern)(implicitda:kantan.regex.MatchDecoder[A]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
+[`CompileResult`]:{{ site.baseurl}}/api/index.html#kantan.regex.package@CompileResult[A]=kantan.codecs.Result[kantan.regex.CompileError,A]
 [`get`]:https://nrinaudo.github.io/kantan.codecs/api/index.html#kantan.codecs.Result@get:S
-[`Compiler`]:{{ site.baseUrl }}/api/#kantan.regex.Compiler
+[`Compiler`]:{{ site.baseurl }}/api/#kantan.regex.Compiler
 [`scala.util.matching.Regex`]:http://www.scala-lang.org/api/current/index.html#scala.util.matching.Regex
 [`Pattern`]:https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
 [`pattern`]:http://www.scala-lang.org/api/current/index.html#scala.util.matching.Regex@pattern:java.util.regex.Pattern
