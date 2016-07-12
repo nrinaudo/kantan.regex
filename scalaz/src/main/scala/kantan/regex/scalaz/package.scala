@@ -24,5 +24,5 @@ package object scalaz extends ScalazInstances {
   implicit val compileErrorEq: Equal[CompileError] = Equal.equalA[CompileError]
   implicit val decodeErrorEq: Equal[DecodeError] = Equal.equalA[DecodeError]
 
-  implicit val regexShow: Show[Regex] = Show.showFromToString[Regex]
+  implicit def regexShow[A]: Show[Regex[A]] = Show.showFromToString[Regex[A]]
 }

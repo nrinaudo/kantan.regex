@@ -30,5 +30,5 @@ package object cats extends CatsInstances {
 
   // - Show instances -----------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
-  implicit val regexShow: Show[Regex] = Show.fromToString[Regex]
+  implicit def regexShow[A]: Show[Regex[A]] = Show.fromToString[Regex[A]]
 }
