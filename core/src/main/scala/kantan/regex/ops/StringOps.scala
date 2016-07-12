@@ -30,7 +30,7 @@ final class StringOps(val str: String) extends AnyVal {
     eval(str, Regex[A](p))
 
   def evalRegex[A: GroupDecoder](p: Pattern, group: Int): Iterator[DecodeResult[A]] =
-    eval(str, Regex[A](p)(MatchDecoder.fromGroup(group)))
+    eval(str, Regex[A](p, group))
 
   def unsafeEvalRegex[A: MatchDecoder](p: Pattern): Iterator[A] =
     evalRegex(p).map(_.get)

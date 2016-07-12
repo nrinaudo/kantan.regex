@@ -23,4 +23,6 @@ import kantan.codecs.scalaz.ScalazInstances
 package object scalaz extends ScalazInstances {
   implicit val compileErrorEq: Equal[CompileError] = Equal.equalA[CompileError]
   implicit val decodeErrorEq: Equal[DecodeError] = Equal.equalA[DecodeError]
+
+  implicit val regexShow: Show[Regex] = Show.showFromToString[Regex]
 }

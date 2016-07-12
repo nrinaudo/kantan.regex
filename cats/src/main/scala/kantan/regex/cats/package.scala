@@ -17,6 +17,7 @@
 package kantan.regex
 
 import _root_.cats.Eq
+import _root_.cats.Show
 import kantan.codecs.cats.CatsInstances
 
 package object cats extends CatsInstances {
@@ -24,4 +25,10 @@ package object cats extends CatsInstances {
   // -------------------------------------------------------------------------------------------------------------------
   implicit val compileErrorEq: Eq[CompileError] = Eq.fromUniversalEquals[CompileError]
   implicit val decodeErrorEq: Eq[DecodeError] = Eq.fromUniversalEquals[DecodeError]
+
+
+
+  // - Show instances -----------------------------------------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+  implicit val regexShow: Show[Regex] = Show.fromToString[Regex]
 }

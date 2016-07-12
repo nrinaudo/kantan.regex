@@ -73,7 +73,7 @@ object Compiler {
   /** Creates a new [[Compiler]] instance from a function that turns `A` into a `Pattern`. */
   def fromPattern[A](f: A ⇒ CompileResult[Pattern]): Compiler[A] = new Compiler[A] {
     override def compile[B](expr: A)(implicit db: MatchDecoder[B]): CompileResult[Regex[DecodeResult[B]]] =
-      f(expr).map(p ⇒ Regex.apply(p))
+      f(expr).map(p ⇒ Regex(p))
   }
 
   /** Provides compilation for Scala Regexes. */

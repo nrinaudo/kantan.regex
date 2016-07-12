@@ -30,4 +30,7 @@ object Regex {
     override def eval(s: String) = new MatchIterator(pattern.matcher(s)).map(m ⇒ da.decode(m))
     override def toString = pattern.toString
   }
+
+  def apply[A: GroupDecoder](pattern: Pattern, group: Int): Regex[DecodeResult[A]] =
+    Regex(pattern)(MatchDecoder.fromGroup(group))
 }
