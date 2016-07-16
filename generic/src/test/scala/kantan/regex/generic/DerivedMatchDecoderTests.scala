@@ -16,10 +16,10 @@
 
 package kantan.regex.generic
 
-import java.util.regex.Pattern
+import kantan.codecs.laws.CodecValue
 import kantan.codecs.shapeless.laws._
 import kantan.codecs.shapeless.laws.discipline.arbitrary._
-import kantan.regex.Match
+import kantan.regex._
 import kantan.regex.implicits._
 import kantan.regex.laws.{IllegalMatch, LegalMatch}
 import kantan.regex.laws.discipline.MatchDecoderTests
@@ -38,15 +38,16 @@ class DerivedMatchDecoderTests extends FunSuite with GeneratorDrivenPropertyChec
   case class Simple(i: Int)
   case class Complex(i: Int, b: Boolean, c: Option[Byte])
 
-  implicit val arbLegal: Arbitrary[LegalMatch[Or[Complex, Simple]]] = arbLegalValue((o: Or[Complex, Simple]) ⇒ o match {
-    case Left(Complex(i, b, c)) ⇒
-      toMatch(rx"(-?\d+) (true|false) (-?\d+)?", i.toString, b.toString, c.fold("")(_.toString))
+  implicit val arbLegal: Arbitrary[LegalMatch[Or[Complex, Simple]]] =
+    CodecValue.arbLegalValue((o: Or[Complex, Simple]) ⇒ o match {
+      case Left(Complex(i, b, c)) ⇒
+        toMatch(rx"(-?\d+) (true|false) (-?\d+)?", i.toString, b.toString, c.fold("")(_.toString))
 
-    case Right(Simple(i)) ⇒ toMatch(rx"(-?\d+)", i.toString)
+      case Right(Simple(i)) ⇒ toMatch(rx"(-?\d+)", i.toString)
 
-  })
+    })
 
-  implicit val arbIllegal: Arbitrary[IllegalMatch[Or[Complex, Simple]]] = arbIllegalValue { (m: Match) ⇒
+  implicit val arbIllegal: Arbitrary[IllegalMatch[Or[Complex, Simple]]] = CodecValue.arbIllegalValue { (m: Match) ⇒
     if(m.length >= 3) {
       m.decode[Int](1).isFailure ||
       m.decode[Boolean](2).isFailure ||

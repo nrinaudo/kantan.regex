@@ -16,7 +16,7 @@
 
 package kantan.regex.scalaz
 
-import kantan.regex.Match
+import kantan.regex.{codecs, Match}
 import kantan.regex.laws.discipline._
 import kantan.regex.scalaz.arbitrary._
 import org.scalatest.FunSuite
@@ -25,11 +25,11 @@ import org.typelevel.discipline.scalatest.Discipline
 import scalaz.Maybe
 
 class MaybeDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
-  implicit val legalMaybeGroup = arbLegalMaybe[Option[String], Int]
-  implicit val illegalMaybeGroup = arbIllegalMaybe[Option[String], Int]
+  implicit val legalMaybeGroup = arbLegalMaybe[Option[String], Int, codecs.type]
+  implicit val illegalMaybeGroup = arbIllegalMaybe[Option[String], Int, codecs.type]
 
-  implicit val legalMaybeMatch = arbLegalMaybe[Match, Int]
-  implicit val illegalMaybeMatch = arbIllegalMaybe[Match, Int]
+  implicit val legalMaybeMatch = arbLegalMaybe[Match, Int, codecs.type]
+  implicit val illegalMaybeMatch = arbIllegalMaybe[Match, Int, codecs.type]
 
   checkAll("GroupDecoder[Maybe[Int]]", GroupDecoderTests[Maybe[Int]].decoder[Int, Int])
   checkAll("MatchDecoder[Maybe[Int]]", MatchDecoderTests[Maybe[Int]].decoder[Int, Int])

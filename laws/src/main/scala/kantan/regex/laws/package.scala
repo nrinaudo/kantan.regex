@@ -23,11 +23,11 @@ package object laws {
   type GroupDecoderLaws[A] = DecoderLaws[Option[String], A, DecodeError, codecs.type]
   type MatchDecoderLaws[A] = DecoderLaws[Match, A, DecodeError, codecs.type]
 
-  type LegalGroup[A]   = LegalValue[Option[String], A]
-  type IllegalGroup[A] = IllegalValue[Option[String], A]
-  type GroupValue[A]   = CodecValue[Option[String], A]
+  type LegalGroup[A]   = LegalValue[Option[String], A, codecs.type]
+  type IllegalGroup[A] = IllegalValue[Option[String], A, codecs.type]
+  type GroupValue[A]   = CodecValue[Option[String], A, codecs.type]
 
-  type LegalMatch[A]   = LegalValue[Match, A]
-  type IllegalMatch[A] = IllegalValue[Match, A]
-  type MatchValue[A]   = CodecValue[Match, A]
+  type LegalMatch[A]   = LegalValue[Match, A, codecs.type]
+  type IllegalMatch[A] = IllegalValue[Match, A, codecs.type]
+  type MatchValue[A]   = CodecValue[Match, A, codecs.type]
 }

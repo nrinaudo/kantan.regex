@@ -16,6 +16,7 @@
 
 package kantan.regex.generic
 
+import kantan.codecs.shapeless.ShapelessInstances
 import kantan.regex._
 import shapeless._
 
@@ -24,7 +25,7 @@ trait LowPrirityGenericInstances {
       dh.map(_ :: HNil)
 }
 
-trait GenericInstances extends LowPrirityGenericInstances {
+trait GenericInstances extends ShapelessInstances with LowPrirityGenericInstances {
   // - HList decoders --------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   /** [[MatchDecoder]] instance for `HList`, provided all elements in the `HList` have a [[GroupDecoder]]. */
@@ -48,21 +49,8 @@ trait GenericInstances extends LowPrirityGenericInstances {
 
   // - Coproduct decoders ----------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
-  /** [[GroupDecoder]] instance for `Coproduct`s, provided all alternatives have a [[GroupDecoder]]. */
-  implicit def coproductGroupDecoder[H, T <: Coproduct]
-  (implicit dh: GroupDecoder[H], dt: GroupDecoder[T]): GroupDecoder[H :+: T] =
-    GroupDecoder(m ⇒ dh.decode(m).map(Inl.apply).orElse(dt.decode(m).map(Inr.apply)))
-
-  /** [[MatchDecoder]] instance for `Coproduct`s, provided all alternatives have a [[MatchDecoder]]. */
-  implicit def coproductMatchDecoder[H, T <: Coproduct]
-  (implicit dh: MatchDecoder[H], dt: MatchDecoder[T]): MatchDecoder[H :+: T] =
-    MatchDecoder(m ⇒ dh.decode(m).map(Inl.apply).orElse(dt.decode(m).map(Inr.apply)))
-
-  /** End case for [[coproductMatchDecoder]], fails the decoding process. */
   implicit val cnilMatchDecoder: MatchDecoder[CNil] =
-    MatchDecoder(m ⇒ DecodeResult.typeError(s"Failed to decode $m as a coproduct"))
-
-  /** End case for [[coproductGroupDecoder]], fails the decoding process. */
+    cnilDecoder(m ⇒ DecodeError.TypeError(s"Failed to decode $m as a coproduct"))
   implicit val cnilGroupDecoder: GroupDecoder[CNil] =
-    GroupDecoder(g ⇒ DecodeResult.typeError(s"Failed to decode $g as a coproduct"))
+    cnilDecoder(g ⇒ DecodeError.TypeError(s"Failed to decode $g as a coproduct"))
 }

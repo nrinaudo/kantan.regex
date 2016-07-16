@@ -54,22 +54,22 @@ trait ArbitraryInstances {
   // - Arbitrary groups -----------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   implicit def arbLegalGroup[A](implicit la: Arbitrary[LegalString[A]]): Arbitrary[LegalGroup[A]] =
-    Arbitrary(la.arbitrary.map(_.mapEncoded(Option.apply)))
+    Arbitrary(la.arbitrary.map(_.mapEncoded(Option.apply).tag[codecs.type]))
 
   implicit def arbIllegalGroup[A](implicit la: Arbitrary[IllegalString[A]]): Arbitrary[IllegalGroup[A]] =
     Arbitrary(Gen.oneOf(
-      la.arbitrary.map(_.mapEncoded(Option.apply)),
-      Gen.const(CodecValue.IllegalValue[Option[String], A](Option.empty))
+      la.arbitrary.map(_.mapEncoded(Option.apply).tag[codecs.type]),
+      Gen.const(CodecValue.IllegalValue[Option[String], A, codecs.type](Option.empty))
     ))
 
   implicit def arbLegalGroupOpt[A](implicit la: Arbitrary[LegalString[A]]): Arbitrary[LegalGroup[Option[A]]] =
     Arbitrary(Gen.oneOf(
-      la.arbitrary.map(_.mapEncoded(Option.apply).mapDecoded(Option.apply)),
-      Gen.const(CodecValue.LegalValue[Option[String], Option[A]](Option.empty, Option.empty))
+      la.arbitrary.map(_.mapEncoded(Option.apply).mapDecoded(Option.apply).tag[codecs.type]),
+      Gen.const(CodecValue.LegalValue[Option[String], Option[A], codecs.type](Option.empty, Option.empty))
     ))
 
   implicit def arbIllegalGroupOpt[A](implicit la: Arbitrary[IllegalString[A]]): Arbitrary[IllegalGroup[Option[A]]] =
-    Arbitrary(la.arbitrary.map(_.mapEncoded(Option.apply).mapDecoded(Option.apply)))
+    Arbitrary(la.arbitrary.map(_.mapEncoded(Option.apply).mapDecoded(Option.apply).tag[codecs.type]))
 
 
 
@@ -82,8 +82,8 @@ trait ArbitraryInstances {
   }
 
   implicit def arbLegalMatch[A](implicit la: Arbitrary[LegalString[A]]): Arbitrary[LegalMatch[A]] =
-    Arbitrary(la.arbitrary.map(_.mapEncoded(toMatch)))
+    Arbitrary(la.arbitrary.map(_.mapEncoded(toMatch).tag[codecs.type]))
 
   implicit def arbIllegalMatch[A](implicit ia: Arbitrary[IllegalString[A]]): Arbitrary[IllegalMatch[A]] =
-    Arbitrary (ia.arbitrary.map(_.mapEncoded(toMatch)))
+    Arbitrary (ia.arbitrary.map(_.mapEncoded(toMatch).tag[codecs.type]))
 }

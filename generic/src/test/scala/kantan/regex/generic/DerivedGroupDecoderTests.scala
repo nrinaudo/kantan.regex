@@ -16,23 +16,22 @@
 
 package kantan.regex.generic
 
+import kantan.codecs.laws.CodecValue
 import kantan.codecs.shapeless.laws._
 import kantan.codecs.shapeless.laws.discipline.arbitrary._
+import kantan.regex.laws.LegalGroup
 import kantan.regex.laws.discipline.GroupDecoderTests
+import org.scalacheck.Arbitrary
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
-import scala.util.Try
 
 class DerivedGroupDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
-  implicit val arbLegal = arbLegalValue((o: Or[Int, Boolean]) ⇒ o match {
-    case Left(i) ⇒ Option(i.toString)
-    case Right(b) ⇒ Option(b.toString)
-  })
-
-  implicit val arbIllegal = arbIllegalValue[Option[String], Or[Int, Boolean]] { os ⇒
-    os.forall(s ⇒ Try(s.toInt).isFailure && Try(s.toBoolean).isFailure)
-  }
+  implicit val arbLegal: Arbitrary[LegalGroup[Int Or Boolean]] = CodecValue.arbLegalValue((o: Or[Int, Boolean]) ⇒
+    o match {
+      case Left(i) ⇒ Option(i.toString)
+      case Right(b) ⇒ Option(b.toString)
+    })
 
   checkAll("GroupDecoder[Or[Int, Boolean]]", GroupDecoderTests[Or[Int, Boolean]].decoder[Byte, String])
 }
