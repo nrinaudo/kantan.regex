@@ -16,20 +16,21 @@
 
 package kantan.regex.scalaz
 
-
-import kantan.regex.laws.discipline._
+import kantan.regex.laws._
+import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
 import kantan.regex.scalaz.arbitrary._
+import org.scalacheck.Arbitrary
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 import scalaz.\/
 
 class DisjunctionDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
-  implicit val legalDisjunctionGroup = arbLegalGroup[Int \/ Boolean]
-  implicit val illegalDisjunctionGroup = arbIllegalGroup[Int \/ Boolean]
+  implicit val legalGroup: Arbitrary[LegalGroup[Int \/ Boolean]] = arbLegalDisjunction
+  implicit val illegalGroup: Arbitrary[IllegalGroup[Int \/ Boolean]] = arbIllegalDisjunction
+  implicit val legalMatch: Arbitrary[LegalMatch[Int \/ Boolean]] = arbLegalDisjunction
+  implicit val illegalMatch: Arbitrary[IllegalMatch[Int \/ Boolean]] = arbIllegalDisjunction
 
-  implicit val legalDisjunctionMatch = arbLegalMatch[Int \/ Boolean]
-  implicit val illegalDisjunctionMatch = arbIllegalMatch[Int \/ Boolean]
 
   checkAll("GroupDecoder[Int \\/ Boolean]", GroupDecoderTests[Int \/ Boolean].decoder[Int, Int])
   checkAll("MatchDecoder[Int \\/ Boolean]", MatchDecoderTests[Int \/ Boolean].decoder[Int, Int])

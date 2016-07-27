@@ -16,20 +16,21 @@
 
 package kantan.regex.cats
 
-import cats.data.Xor
-import kantan.regex._
+import _root_.cats.data.Xor
 import kantan.regex.cats.arbitrary._
-import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
+import kantan.regex.laws._
+import kantan.regex.laws.discipline._
+import org.scalacheck.Arbitrary
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
-class XorDecoderTests  extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
-  implicit val legalGroup = arbLegalXor[Option[String], Int, Boolean, codecs.type]
-  implicit val illegalGroup = arbIllegalXor[Option[String], Int, Boolean, codecs.type]
-
-  implicit val legalMatch = arbLegalXor[Match, Int, Boolean, codecs.type]
-  implicit val illegalMatch = arbIllegalXor[Match, Int, Boolean, codecs.type]
+class XorDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+  // These are necessary to disambiguate between the free LegalGroup and free LegalValue[Xor] implicits.
+  implicit val legalGroup: Arbitrary[LegalGroup[Int Xor Boolean]] = arbLegalXor
+  implicit val illegalGroup: Arbitrary[IllegalGroup[Int Xor Boolean]] = arbIllegalXor
+  implicit val legalMatch: Arbitrary[LegalMatch[Int Xor Boolean]] = arbLegalXor
+  implicit val illegalMatch: Arbitrary[IllegalMatch[Int Xor Boolean]] = arbIllegalXor
 
   checkAll("GroupDecoder[Int Xor Boolean]", GroupDecoderTests[Int Xor Boolean].decoder[Int, Int])
   checkAll("MatchDecoder[Int Xor Boolean]", MatchDecoderTests[Int Xor Boolean].decoder[Int, Int])

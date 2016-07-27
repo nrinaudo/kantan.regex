@@ -17,9 +17,8 @@
 package kantan.regex.joda.time
 
 
-import kantan.codecs.strings.joda.time.laws.discipline.arbitrary._
+import arbitrary._
 import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
-import kantan.regex.laws.discipline.arbitrary._
 import org.joda.time.DateTime
 import org.joda.time.format.ISODateTimeFormat
 import org.scalatest.FunSuite

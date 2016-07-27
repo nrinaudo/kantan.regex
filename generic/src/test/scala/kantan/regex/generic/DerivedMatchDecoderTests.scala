@@ -16,12 +16,11 @@
 
 package kantan.regex.generic
 
-import kantan.codecs.laws.CodecValue
 import kantan.codecs.shapeless.laws._
-import kantan.codecs.shapeless.laws.discipline.arbitrary._
-import kantan.regex._
+import kantan.regex.{Match, Pattern}
+import kantan.regex.generic.arbitrary._
 import kantan.regex.implicits._
-import kantan.regex.laws.{IllegalMatch, LegalMatch}
+import kantan.regex.laws.LegalMatch
 import kantan.regex.laws.discipline.MatchDecoderTests
 import org.scalacheck.Arbitrary
 import org.scalatest.FunSuite
@@ -29,17 +28,17 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
 class DerivedMatchDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+  case class Simple(i: Int)
+  case class Complex(i: Int, b: Boolean, c: Option[Byte])
+
   def toMatch(p: Pattern, is: String*): Match = {
     val matcher = p.matcher(is.mkString(" "))
     matcher.find()
     new Match(matcher)
   }
 
-  case class Simple(i: Int)
-  case class Complex(i: Int, b: Boolean, c: Option[Byte])
-
   implicit val arbLegal: Arbitrary[LegalMatch[Or[Complex, Simple]]] =
-    CodecValue.arbLegalValue((o: Or[Complex, Simple]) ⇒ o match {
+    arbLegalValue((o: Or[Complex, Simple]) ⇒ o match {
       case Left(Complex(i, b, c)) ⇒
         toMatch(rx"(-?\d+) (true|false) (-?\d+)?", i.toString, b.toString, c.fold("")(_.toString))
 
@@ -47,15 +46,5 @@ class DerivedMatchDecoderTests extends FunSuite with GeneratorDrivenPropertyChec
 
     })
 
-  implicit val arbIllegal: Arbitrary[IllegalMatch[Or[Complex, Simple]]] = CodecValue.arbIllegalValue { (m: Match) ⇒
-    if(m.length >= 3) {
-      m.decode[Int](1).isFailure ||
-      m.decode[Boolean](2).isFailure ||
-      m.decode[Byte](3).isFailure
-    }
-    else if(m.length >= 1) m.decode[Int](1).isFailure
-    else true
-  }(Arbitrary(implicitly[Arbitrary[String]].arbitrary.map(s ⇒ toMatch(rx".*", s))))
-
-  checkAll("MatchDecoder[Or[Complex, Simple]]", MatchDecoderTests[Or[Complex, Simple]].decoder[Byte, Float])
+  checkAll("MatchDecoder[Complex Or Simple]", MatchDecoderTests[Complex Or Simple].decoder[Byte, Float])
 }
