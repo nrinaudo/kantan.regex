@@ -23,14 +23,12 @@ import kantan.codecs.scalaz.ScalazInstances
 package object scalaz extends ScalazInstances {
   // - Regex instances -------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
-  implicit def regexShow[A]: Show[Regex[A]] = Show.showFromToString[Regex[A]]
-
   implicit val regexFunctor: Functor[Regex] = new Functor[Regex] {
     override def map[A, B](fa: Regex[A])(f: A ⇒ B) = fa.map(f)
   }
 
   // - Equal instances for errors --------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
-  implicit val compileErrorEqual: Equal[CompileError] = Equal.equalA[CompileError]
-  implicit val decodeErrorEqual: Equal[DecodeError] = Equal.equalA[DecodeError]
+  implicit val compileErrorEqual: Equal[CompileError] = Equal.equalA
+  implicit val decodeErrorEqual: Equal[DecodeError] = Equal.equalA
 }

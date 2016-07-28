@@ -16,14 +16,12 @@
 
 package kantan.regex
 
-import _root_.cats.{Eq, Functor, Show}
+import _root_.cats._
 import kantan.codecs.cats.CatsInstances
 
 package object cats extends CatsInstances {
   // - Regex instances -------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
-  implicit def regexShow[A]: Show[Regex[A]] = Show.fromToString[Regex[A]]
-
   implicit val regexFunctor: Functor[Regex] = new Functor[Regex] {
     override def map[A, B](fa: Regex[A])(f: A ⇒ B) = fa.map(f)
   }
@@ -31,6 +29,6 @@ package object cats extends CatsInstances {
 
   // - Eq instances for errors -----------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
-  implicit val compileErrorEq: Eq[CompileError] = Eq.fromUniversalEquals[CompileError]
-  implicit val decodeErrorEq: Eq[DecodeError] = Eq.fromUniversalEquals[DecodeError]
+  implicit val compileErrorEq: Eq[CompileError] = Eq.fromUniversalEquals
+  implicit val decodeErrorEq: Eq[DecodeError] = Eq.fromUniversalEquals
 }
