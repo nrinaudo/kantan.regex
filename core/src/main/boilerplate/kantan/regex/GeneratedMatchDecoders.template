@@ -8,22 +8,12 @@ trait GeneratedMatchDecoders {
     } yield f([#a1#])
   }
 
-  def ordered[[#A1#], O](f: ([#A1#]) ⇒ O)(implicit [#da1: GroupDecoder[A1]#]): MatchDecoder[O] = decoder([#1#])(f)
-
-  def decoder[[#A1#], O]([#n1: String#])(f: ([#A1#]) ⇒ O)(implicit [#da1: GroupDecoder[A1]#]): MatchDecoder[O] = MatchDecoder { m ⇒
-    for {
-      [#a1 ← m.decode[A1](n1)#
-      ]
-    } yield f([#a1#])
-  }#
+  def ordered[[#A1#], O](f: ([#A1#]) ⇒ O)(implicit [#da1: GroupDecoder[A1]#]): MatchDecoder[O] = decoder([#1#])(f)#
 
   ]
 
   [#def tuple[[#A1#]]([#i1: Int#])(implicit [#da1: GroupDecoder[A1]#]): MatchDecoder[Tuple1[[#A1#]]] =
-    decoder([#i1#])(Tuple1.apply[[#A1#]])
-
-  def tuple[[#A1#]]([#n1: String#])(implicit [#da1: GroupDecoder[A1]#]): MatchDecoder[Tuple1[[#A1#]]] =
-    decoder([#n1#])(Tuple1.apply[[#A1#]])#
+    decoder([#i1#])(Tuple1.apply[[#A1#]])#
 
   ]
 }

@@ -17,7 +17,6 @@
 package kantan.regex
 
 import java.util.regex.Matcher
-import kantan.codecs.Result
 
 /** Represents a single match in a regular expression evaluation.
   *
@@ -33,10 +32,6 @@ class Match private[regex] (private val matcher: Matcher) {
   def decode[A](index: Int)(implicit da: GroupDecoder[A]): DecodeResult[A] =
     if(index < 0 || index > length) DecodeResult.noSuchGroupId(index)
     else                            da.decode(Option(matcher.group(index)))
-
-  /** Attempts to decode group `name` as a value of type `A`. */
-  def decode[A](name: String)(implicit da: GroupDecoder[A]): DecodeResult[A] =
-    Result.nonFatalOr(DecodeError.NoSuchGroupName(name))(matcher.group(name)).flatMap(v ⇒ da.decode(Option(v)))
 
   override def toString = matcher.toString
 }

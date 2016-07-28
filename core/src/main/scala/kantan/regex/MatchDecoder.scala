@@ -46,13 +46,6 @@ object MatchDecoder extends GeneratedMatchDecoders {
     */
   def fromGroup[A](index: Int)(implicit da: GroupDecoder[A]): MatchDecoder[A] =
     MatchDecoder(_.decode(index))
-
-  /** Creates a new [[MatchDecoder]] for a type that already has a [[GroupDecoder]].
-    *
-    * @param name name of the group that should be extracted.
-    */
-  def fromGroup[A](name: String)(implicit da: GroupDecoder[A]): MatchDecoder[A] =
-    MatchDecoder(_.decode(name))
 }
 
 /** Declares default [[MatchDecoder]] instances. */

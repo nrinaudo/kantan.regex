@@ -36,8 +36,4 @@ class DecodeResultTests extends FunSuite with GeneratorDrivenPropertyChecks {
   test("DecodeResult.noSuchGroupId should return a failure ") {
     forAll { i: Int ⇒ assert(DecodeResult.noSuchGroupId(i) == Result.Failure(DecodeError.NoSuchGroupId(i)))}
   }
-
-  test("DecodeResult.noSuchGroupName should return a failure ") {
-    forAll { s: String ⇒ assert(DecodeResult.noSuchGroupName(s) == Result.Failure(DecodeError.NoSuchGroupName(s)))}
-  }
 }

@@ -49,16 +49,4 @@ class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks {
       assert(regex.eval(is.mkString(" ")).next == DecodeResult.noSuchGroupId(index))
     }
   }
-
-  test("Non-existing named groups should generate a NoSuchGroupName") {
-    def noSuchName(id: String): MatchDecoder[Int] = MatchDecoder[Int] { (m: Match) ⇒
-      m.decode[Int](id)
-    }
-
-    forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int]), Gen.identifier) { (is, id) ⇒
-      implicit val decoder = noSuchName(id)
-      val regex = is.map(_ ⇒ "(-?\\d+)").mkString(" ").asUnsafeRegex[Int]
-      assert(regex.eval(is.mkString(" ")).next == DecodeResult.noSuchGroupName(id))
-    }
-  }
 }

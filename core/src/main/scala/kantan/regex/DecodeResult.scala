@@ -34,11 +34,6 @@ object DecodeResult {
   /** Creates a new [[kantan.regex.DecodeError.NoSuchGroupId NoSuchgroupId]] failure for the specified group id. */
   def noSuchGroupId(id: Int): DecodeResult[Nothing] = Result.failure(DecodeError.NoSuchGroupId(id))
 
-  /** Creates a new [[kantan.regex.DecodeError.NoSuchGroupName NoSuchGroupName]] failure for the specified group
-    * name.
-    */
-  def noSuchGroupName(name: String): DecodeResult[Nothing] = Result.failure(DecodeError.NoSuchGroupName(name))
-
   /** Creates a new [[kantan.regex.DecodeError.EmptyGroup EmptyGroup]] failure. */
   val emptyGroup: DecodeResult[Nothing] = Result.failure(DecodeError.EmptyGroup)
 }
