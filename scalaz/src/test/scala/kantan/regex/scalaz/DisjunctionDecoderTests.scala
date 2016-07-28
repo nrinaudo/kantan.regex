@@ -31,7 +31,6 @@ class DisjunctionDecoderTests extends FunSuite with GeneratorDrivenPropertyCheck
   implicit val legalMatch: Arbitrary[LegalMatch[Int \/ Boolean]] = arbLegalDisjunction
   implicit val illegalMatch: Arbitrary[IllegalMatch[Int \/ Boolean]] = arbIllegalDisjunction
 
-
   checkAll("GroupDecoder[Int \\/ Boolean]", GroupDecoderTests[Int \/ Boolean].decoder[Int, Int])
   checkAll("MatchDecoder[Int \\/ Boolean]", MatchDecoderTests[Int \/ Boolean].decoder[Int, Int])
 }
