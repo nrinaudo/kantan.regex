@@ -16,7 +16,7 @@
 
 package kantan.regex
 
-import kantan.regex.ops._
+import kantan.regex.implicits._
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
@@ -32,4 +32,8 @@ class RegexTests extends FunSuite with GeneratorDrivenPropertyChecks {
     assert("[".asRegex[Int].isFailure)
   }
 
+  test("Regexes obtained from a pattern should have that pattern as a toString") {
+    val pattern = rx"-?\d+"
+    assert(Regex[Int](pattern).toString == pattern.toString)
+  }
 }
