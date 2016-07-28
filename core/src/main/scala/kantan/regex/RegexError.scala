@@ -25,7 +25,7 @@ final case class CompileError(cause: Throwable) extends RegexError {
 
   override def equals(obj: Any) = obj match {
     case CompileError(cause2) ⇒ cause.getClass == cause2.getClass
-    case _                 ⇒ false
+    case _                    ⇒ false
   }
 
   override def hashCode(): Int = cause.hashCode()

@@ -17,6 +17,7 @@
 package kantan.regex
 
 import kantan.codecs.Result
+import kantan.codecs.Result.Failure
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
@@ -31,6 +32,16 @@ class DecodeResultTests extends FunSuite with GeneratorDrivenPropertyChecks {
 
   test("DecodeResult.apply should return a failure on 'bad' values") {
     forAll { e: Exception ⇒ assert(DecodeResult(throw e) == Result.Failure(DecodeError.TypeError(e)))}
+  }
+
+  test("DecodeResult.typeError should return a failure") {
+    forAll { e: Exception ⇒
+      assert(DecodeResult.typeError(e) == Result.Failure(DecodeError.TypeError(e)))
+      assert(DecodeResult.typeError(e.getMessage) match {
+        case Failure(DecodeError.TypeError(t)) ⇒ t.getMessage == e.getMessage
+        case _                                 ⇒ false
+      })
+    }
   }
 
   test("DecodeResult.noSuchGroupId should return a failure ") {
