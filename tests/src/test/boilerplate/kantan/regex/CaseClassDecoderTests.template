@@ -8,7 +8,7 @@ import org.typelevel.discipline.scalatest.Discipline
 
 class CaseClassDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
   [#case class Class1([#i1: Int#])
-  implicit val decoder1: MatchDecoder[Class1] = MatchDecoder.decoder([#1#])(Class1.apply)
+  implicit val decoder1: MatchDecoder[Class1] = MatchDecoder.ordered(Class1.apply _)
   implicit val arbLegalClass1 = kantan.regex.laws.discipline.arbitrary.arbLegalCaseClass1(Class1.apply)
   implicit val arbIllegalClass1 = kantan.regex.laws.discipline.arbitrary.arbIllegalCaseClass1[[#Int#], Class1]#
 
