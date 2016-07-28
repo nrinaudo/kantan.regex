@@ -28,7 +28,7 @@ final case class CompileError(cause: Throwable) extends RegexError {
     case _                    ⇒ false
   }
 
-  override def hashCode(): Int = cause.hashCode()
+  override def hashCode(): Int = CompileError.hashCode * 31 + cause.getClass.hashCode()
 }
 
 object DecodeError {
@@ -44,7 +44,7 @@ object DecodeError {
       case _                 ⇒ false
     }
 
-    override def hashCode(): Int = cause.hashCode()
+    override def hashCode(): Int = TypeError.hashCode * 31 + cause.getClass.hashCode()
   }
 
   object TypeError {

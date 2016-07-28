@@ -20,7 +20,7 @@ import java.util.regex.Pattern
 import kantan.codecs.Result
 import kantan.codecs.laws._
 import kantan.regex._
-import kantan.regex.DecodeError.NoSuchGroupId
+import kantan.regex.DecodeError.{NoSuchGroupId, TypeError}
 import kantan.regex.laws._
 import org.scalacheck.{Arbitrary, Gen}
 import org.scalacheck.Arbitrary.{arbitrary => arb}
@@ -32,12 +32,15 @@ trait ArbitraryInstances extends kantan.codecs.laws.discipline.ArbitraryInstance
                                  with kantan.regex.laws.discipline.ArbitraryArities {
   // - Arbitrary errors ------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
+
   implicit val arbCompileError: Arbitrary[CompileError] =
-    Arbitrary(const(CompileError(new Exception)))
+    Arbitrary(arbException.arbitrary.map(e ⇒ CompileError(e)))
+  implicit val arbTypeError: Arbitrary[TypeError] =
+    Arbitrary(arbException.arbitrary.map(e ⇒ TypeError(e)))
   implicit val arbNoSuchGroupId: Arbitrary[NoSuchGroupId] =
     Arbitrary(arb[Int].map(NoSuchGroupId.apply))
   implicit val arbDecodeError: Arbitrary[DecodeError] =
-    Arbitrary(oneOf(arb[NoSuchGroupId], const(DecodeError.TypeError(new Exception))))
+    Arbitrary(oneOf(arb[NoSuchGroupId], arbTypeError.arbitrary))
   implicit val arbRegexError: Arbitrary[RegexError] =
     Arbitrary(oneOf(arb[DecodeError], arb[CompileError]))
 

@@ -16,22 +16,45 @@
 
 package kantan.regex
 
+import kantan.regex.laws.discipline.arbitrary._
 import kantan.regex.DecodeError.TypeError
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
 class ErrorTests extends FunSuite with GeneratorDrivenPropertyChecks {
-  test("CompileError") {
-    forAll { (t1: Throwable, t2: Throwable) ⇒
-      assert((CompileError(t1) == CompileError(t2)) == (t1.getClass == t2.getClass))
-      assert((CompileError(t1).hashCode() == CompileError(t2).hashCode()) == (t1.getClass == t2.getClass))
+  test("CompileErrors should be equal if the underlying exceptions have the same class") {
+    forAll { (e1: CompileError, e2: RegexError) ⇒
+      assert((e1 == e2) == ((e1, e2) match {
+        case (CompileError(t1), CompileError(t2)) ⇒ t1.getClass == t2.getClass
+        case _                                    ⇒ false
+      }))
     }
   }
 
-  test("TypeError") {
-    forAll { (t1: Throwable, t2: Throwable) ⇒
-      assert((TypeError(t1) == TypeError(t2)) == (t1.getClass == t2.getClass))
-      assert((TypeError(t1).hashCode() == TypeError(t2).hashCode()) == (t1.getClass == t2.getClass))
+  test("CompileErrors should have identical hashCodes if the underlying exceptions have the same class") {
+    forAll { (e1: CompileError, e2: RegexError) ⇒
+      assert((e1.hashCode() == e2.hashCode()) == ((e1, e2) match {
+        case (CompileError(t1), CompileError(t2)) ⇒ t1.getClass == t2.getClass
+        case _                                    ⇒ false
+      }))
+    }
+  }
+
+  test("TypeErrors should be equal if the underlying exceptions have the same class") {
+    forAll { (e1: TypeError, e2: RegexError) ⇒
+      assert((e1 == e2) == ((e1, e2) match {
+        case (TypeError(t1), TypeError(t2)) ⇒ t1.getClass == t2.getClass
+        case _                              ⇒ false
+      }))
+    }
+  }
+
+  test("TypeErrors should have identical hashCodes if the underlying exceptions have the same class") {
+    forAll { (e1: TypeError, e2: RegexError) ⇒
+      assert((e1.hashCode() == e2.hashCode()) == ((e1, e2) match {
+        case (TypeError(t1), TypeError(t2)) ⇒ t1.getClass == t2.getClass
+        case _                              ⇒ false
+      }))
     }
   }
 }
