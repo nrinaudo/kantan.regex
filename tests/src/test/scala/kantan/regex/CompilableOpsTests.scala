@@ -16,7 +16,7 @@
 
 package kantan.regex
 
-import kantan.regex.ops._
+import kantan.regex.implicits._
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
@@ -24,6 +24,12 @@ class CompilableOpsTests extends FunSuite with GeneratorDrivenPropertyChecks {
   test("asRegex should succeed for valid regular expressions") {
     assert("\\d+".asRegex[Int].isSuccess)
     assert("\\d+".asRegex[Int](1).isSuccess)
+
+    assert(rx"\\d+".asRegex[Int].isSuccess)
+    assert(rx"\\d+".asRegex[Int](1).isSuccess)
+
+    assert("\\d+".r.asRegex[Int].isSuccess)
+    assert("\\d+".r.asRegex[Int](1).isSuccess)
   }
 
   test("asRegex should fail for invalid regular expressions") {
@@ -34,6 +40,12 @@ class CompilableOpsTests extends FunSuite with GeneratorDrivenPropertyChecks {
   test("asUnsafeRegex should succeed for valid regular expressions") {
     "\\d+".asUnsafeRegex[Int]
     "\\d+".asUnsafeRegex[Int](1)
+
+    rx"\\d+".asUnsafeRegex[Int]
+    rx"\\d+".asUnsafeRegex[Int](1)
+
+    "\\d+".r.asUnsafeRegex[Int]
+    "\\d+".r.asUnsafeRegex[Int](1)
     ()
   }
 
