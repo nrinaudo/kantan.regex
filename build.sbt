@@ -221,4 +221,4 @@ def macroDependencies(v: String): List[ModuleID] =
     else Nil
   }
 
-addCommandAlias("validate", "; clean; scalastyle; test:scalastyle; coverage; test; coverageReport; coverageAggregate; docs/makeSite")
+addCommandAlias("validate", "; clean; scalastyle; test:scalastyle; docs/makeSite")

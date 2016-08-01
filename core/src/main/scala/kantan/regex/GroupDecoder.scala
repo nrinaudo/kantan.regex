@@ -48,7 +48,7 @@ trait GroupDecoderInstances {
     * This provides free support for all primitive types (as well as a few convenience ones, such as `java.io.File`).
     */
   implicit def fromString[A](implicit da: StringDecoder[A]): GroupDecoder[A] =
-    GroupDecoder(_.map(da.mapError(DecodeError.TypeError.apply).decode)
+    GroupDecoder(_.map(da.mapError { error ⇒ DecodeError.TypeError(error.getMessage, error.getCause)}.decode)
       .getOrElse(DecodeResult.emptyGroup))
 
   /** Turns a [[GroupDecoder GroupDecoder[A]]] into a [[GroupDecoder GroupDecoder[Option[A]]]].
