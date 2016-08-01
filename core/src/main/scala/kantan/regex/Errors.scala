@@ -21,12 +21,12 @@ sealed abstract class RegexError extends Exception with Product with Serializabl
 
 /** Describes errors that occur while compiling a regular expression. */
 sealed case class CompileError(message: String) extends RegexError {
-  override final def getMessage = message
+  override final val getMessage = message
 }
 
 object CompileError {
   def apply(msg: String, t: Throwable): CompileError = new CompileError(msg) {
-    override def getCause = t
+    override val getCause = t
   }
 
   def apply(t: Throwable): CompileError = CompileError(Option(t.getMessage).getOrElse("Compile error"), t)
@@ -40,12 +40,12 @@ object DecodeError {
   final case class NoSuchGroupId(id: Int) extends DecodeError
 
   sealed case class TypeError(message: String) extends DecodeError {
-    override final def getMessage = message
+    override final val getMessage = message
   }
 
   object TypeError {
     def apply(msg: String, t: Throwable): TypeError = new TypeError(msg) {
-      override def getCause = t
+      override val getCause = t
     }
 
     def apply(t: Throwable): TypeError = TypeError(Option(t.getMessage).getOrElse("Type error"), t)
