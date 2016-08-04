@@ -51,7 +51,7 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/core/src/main/scala/kantan/regex/RegexError.scala" target="_blank">RegexError.scala</a></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/core/src/main/scala/kantan/regex/Errors.scala" target="_blank">Errors.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Serializable" class="extype" target="_top">Serializable</a>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></div>
         </div></div>
@@ -92,7 +92,24 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="kantan.regex.DecodeError.NoSuchGroupId" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="kantan.regex.DecodeError.EmptyGroup" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="EmptyGroupextendsDecodeErrorwithProductwithSerializable"></a>
+      <a id="EmptyGroup:EmptyGroup"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="DecodeError$$EmptyGroup.html"><span class="name">EmptyGroup</span></a><span class="params">()</span><span class="result"> extends <a href="DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.DecodeError$@EmptyGroupextendsDecodeErrorwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.DecodeError.NoSuchGroupId" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="NoSuchGroupIdextendsDecodeErrorwithProductwithSerializable"></a>
       <a id="NoSuchGroupId:NoSuchGroupId"></a>
       <h4 class="signature">
@@ -109,33 +126,16 @@
       </a>
     </span>
       
-    </li><li name="kantan.regex.DecodeError.NoSuchGroupName" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="NoSuchGroupNameextendsDecodeErrorwithProductwithSerializable"></a>
-      <a id="NoSuchGroupName:NoSuchGroupName"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">final </span>
-        <span class="kind">case class</span>
-      </span>
-      <span class="symbol">
-        <a href="DecodeError$$NoSuchGroupName.html"><span class="name">NoSuchGroupName</span></a><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#kantan.regex.DecodeError$@NoSuchGroupNameextendsDecodeErrorwithProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      
     </li><li name="kantan.regex.DecodeError.TypeError" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="TypeErrorextendsDecodeErrorwithProductwithSerializable"></a>
       <a id="TypeError:TypeError"></a>
       <h4 class="signature">
       <span class="modifier_kind">
-        <span class="modifier">final </span>
+        <span class="modifier">sealed </span>
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="DecodeError$$TypeError.html"><span class="name">TypeError</span></a><span class="params">(<span name="cause">cause: <span class="extype" name="scala.Throwable">Throwable</span></span>)</span><span class="result"> extends <a href="DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="DecodeError$$TypeError.html"><span class="name">TypeError</span></a><span class="params">(<span name="message">message: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.DecodeError$@TypeErrorextendsDecodeErrorwithProductwithSerializable" title="Permalink" target="_top">
@@ -201,23 +201,6 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="kantan.regex.DecodeError.EmptyGroup" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="EmptyGroup"></a>
-      <a id="EmptyGroup:EmptyGroup"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a href="DecodeError$$EmptyGroup$.html"><span class="name">EmptyGroup</span></a><span class="result"> extends <a href="DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#kantan.regex.DecodeError$@EmptyGroup" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      
     </li><li name="kantan.regex.DecodeError.TypeError" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="TypeError"></a>
       <a id="TypeError:TypeError"></a>

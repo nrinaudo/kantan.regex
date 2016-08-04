@@ -147,7 +147,28 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="kantan.regex.Regex#apply" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="kantan.regex.Regex#apply" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="apply[A](pattern:kantan.regex.Pattern,group:Int)(implicitevidence$1:kantan.regex.GroupDecoder[A]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]"></a>
+      <a id="apply[A](Pattern,Int)(GroupDecoder[A]):Regex[DecodeResult[A]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">apply</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="pattern">pattern: <a href="package.html#Pattern=java.util.regex.Pattern" class="extmbr" name="kantan.regex.Pattern">Pattern</a></span>, <span name="group">group: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>[<span class="extype" name="kantan.regex.Regex.apply.A">A</span>]</span>)</span><span class="result">: <a href="Regex.html" class="extype" name="kantan.regex.Regex">Regex</a>[<a href="package.html#DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]" class="extmbr" name="kantan.regex.DecodeResult">DecodeResult</a>[<span class="extype" name="kantan.regex.Regex.apply.A">A</span>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.Regex$@apply[A](pattern:kantan.regex.Pattern,group:Int)(implicitevidence$1:kantan.regex.GroupDecoder[A]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Turns the specified pattern into a <a href="Regex.html" class="extype" name="kantan.regex.Regex">Regex</a>.</p><div class="fullcomment"><div class="comment cmt"><p>Turns the specified pattern into a <a href="Regex.html" class="extype" name="kantan.regex.Regex">Regex</a>.</p><p>Decoding is achieved by applying whatever <a href="package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a> is in scope for <code>A</code> on group index <code>group</code> of each
+match.</p><p>This method is made with <a href="literals/RegexLiteral.html" class="extype" name="kantan.regex.literals.RegexLiteral">literals</a> in mind. Should you be working with
+other types (such as non-literal strings, for instance), <a href="ops/CompilerOps.html" class="extype" name="kantan.regex.ops.CompilerOps">kantan.regex.ops.CompilerOps</a> might prove more
+helpful.
+</p></div></div>
+    </li><li name="kantan.regex.Regex#apply" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="apply[A](pattern:kantan.regex.Pattern)(implicitda:kantan.regex.MatchDecoder[A]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]"></a>
       <a id="apply[A](Pattern)(MatchDecoder[A]):Regex[DecodeResult[A]]"></a>
       <h4 class="signature">
@@ -163,24 +184,10 @@
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
-    </li><li name="kantan.regex.Regex#apply" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="apply[A](f:String=&gt;Iterator[A]):kantan.regex.Regex[A]"></a>
-      <a id="apply[A]((String)⇒Iterator[A]):Regex[A]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">apply</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <span class="extype" name="scala.Iterator">Iterator</span>[<span class="extype" name="kantan.regex.Regex.apply.A">A</span>]</span>)</span><span class="result">: <a href="Regex.html" class="extype" name="kantan.regex.Regex">Regex</a>[<span class="extype" name="kantan.regex.Regex.apply.A">A</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#kantan.regex.Regex$@apply[A](f:String=&gt;Iterator[A]):kantan.regex.Regex[A]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      
+      <p class="shortcomment cmt">Turns the specified pattern into a <a href="Regex.html" class="extype" name="kantan.regex.Regex">Regex</a>.</p><div class="fullcomment"><div class="comment cmt"><p>Turns the specified pattern into a <a href="Regex.html" class="extype" name="kantan.regex.Regex">Regex</a>.</p><p>Decoding is achieved by applying whatever <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> is in scope for <code>A</code> on each match.</p><p>This method is made with <a href="literals/RegexLiteral.html" class="extype" name="kantan.regex.literals.RegexLiteral">literals</a> in mind. Should you be working with
+other types (such as non-literal strings, for instance), <a href="ops/CompilerOps.html" class="extype" name="kantan.regex.ops.CompilerOps">kantan.regex.ops.CompilerOps</a> might prove more
+helpful.
+</p></div></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>

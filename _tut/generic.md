@@ -12,7 +12,7 @@ for more common types and patterns.
 The `generic` module can be used by adding the following dependency to your `build.sbt`:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-generic" % "0.1.2"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-generic" % "0.1.3"
 ```
 
 If you're using Scala 2.10.x, you should also add the macro paradise plugin to your build:
@@ -103,6 +103,6 @@ Success(Left(CustomTuple2(1,false)))
 Success(Right(CustomTuple2(3,foobar)))
 ```
 
-[`GroupDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]
-[`MatchDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]
+[`GroupDecoder`]:{{ site.baseurl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]
+[`MatchDecoder`]:{{ site.baseurl }}/api/index.html#kantan.regex.package@MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]
 [`Tuple2`]:http://www.scala-lang.org/api/current/index.html#scala.Tuple2

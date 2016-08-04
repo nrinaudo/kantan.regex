@@ -54,7 +54,7 @@ Success(456)
 Success(789)
 ```
 
-[`kantan.regex.implicits._`]:{{ site.baseUrl }}/api/#kantan.regex.implicits$
-[`kantan.regex.literals._`]:{{ site.baseUrl }}/api/#kantan.regex.literals.package
-[`rx`]:{{ site.baseUrl }}/api/index.html#kantan.regex.literals.RegexLiteral@rx(args:Any*):kantan.regex.Pattern
-[`evalRegex`]:{{ site.baseUrl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
+[`kantan.regex.implicits._`]:{{ site.baseurl }}/api/#kantan.regex.implicits$
+[`kantan.regex.literals._`]:{{ site.baseurl }}/api/#kantan.regex.literals.package
+[`rx`]:{{ site.baseurl }}/api/index.html#kantan.regex.literals.RegexLiteral@rx(args:Any*):kantan.regex.Pattern
+[`evalRegex`]:{{ site.baseurl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]

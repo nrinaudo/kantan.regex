@@ -11,7 +11,7 @@ support for it through a dedicated module.
 The `joda-time` module can be used by adding the following dependency to your `build.sbt`:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.1.2"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.1.3"
 ```
 
 You then need to import the corresponding package:
@@ -61,4 +61,4 @@ Success(2015-01-09)
 [`LocalDateTime`]:http://joda-time.sourceforge.net/apidocs/org/joda/time/LocalDateTime.html
 [`LocalTime`]:http://joda-time.sourceforge.net/apidocs/org/joda/time/LocalTime.html
 [`DateTimeFormat`]:http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html
-[`GroupDecoder`]:{{ site.baseUrl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]
+[`GroupDecoder`]:{{ site.baseurl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]

@@ -93,18 +93,18 @@
       <a id="CompileError:CompileError"></a>
       <h4 class="signature">
       <span class="modifier_kind">
-        <span class="modifier">final </span>
+        <span class="modifier">sealed </span>
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="CompileError.html"><span class="name">CompileError</span></a><span class="params">(<span name="cause">cause: <span class="extype" name="scala.Throwable">Throwable</span></span>)</span><span class="result"> extends <a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="CompileError.html"><span class="name">CompileError</span></a><span class="params">(<span name="message">message: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#kantan.regex.package@CompileErrorextendsRegexErrorwithProductwithSerializable" title="Permalink" target="_top">
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Describes errors that occur while compiling a regular expression.</p>
     </li><li name="kantan.regex.CompileResult" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="CompileResult[A]=kantan.codecs.Result[kantan.regex.CompileError,A]"></a>
       <a id="CompileResult[A]:CompileResult[A]"></a>
@@ -320,9 +320,9 @@ it's important not to hold onto them: due to the way kantan.regex works internal
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Compiled version of a regular expression.</p>
     </li><li name="kantan.regex.RegexError" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="RegexErrorextendsProductwithSerializable"></a>
+      <a id="RegexErrorextendsExceptionwithProductwithSerializable"></a>
       <a id="RegexError:RegexError"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -330,14 +330,14 @@ it's important not to hold onto them: due to the way kantan.regex works internal
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="RegexError.html"><span class="name">RegexError</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="RegexError.html"><span class="name">RegexError</span></a><span class="result"> extends <span class="extype" name="scala.Exception">Exception</span> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#kantan.regex.package@RegexErrorextendsProductwithSerializable" title="Permalink" target="_top">
+      <a href="../../index.html#kantan.regex.package@RegexErrorextendsExceptionwithProductwithSerializable" title="Permalink" target="_top">
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Root class for all regular expression related errors.</p>
     </li><li name="kantan.regex.RegexResult" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="RegexResult[A]=kantan.codecs.Result[kantan.regex.RegexError,A]"></a>
       <a id="RegexResult[A]:RegexResult[A]"></a>
@@ -379,7 +379,24 @@ it's important not to hold onto them: due to the way kantan.regex works internal
 
         <div id="values" class="values members">
               <h3>Value Members</h3>
-              <ol><li name="kantan.regex.CompileResult" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="kantan.regex.CompileError" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CompileError"></a>
+      <a id="CompileError:CompileError"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CompileError$.html"><span class="name">CompileError</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.package@CompileError" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.regex.CompileResult" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="CompileResult"></a>
       <a id="CompileResult:CompileResult"></a>
       <h4 class="signature">
