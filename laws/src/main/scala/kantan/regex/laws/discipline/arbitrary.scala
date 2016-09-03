@@ -77,7 +77,7 @@ trait ArbitraryInstances extends kantan.codecs.laws.discipline.ArbitraryInstance
   // - Arbitrary matches -----------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   private def toMatch(str: String): Match = {
-    val matcher = Pattern.compile(".*").matcher(str)
+    val matcher = Pattern.compile("(?smiU).*").matcher(str)
     matcher.find()
     new Match(matcher)
   }
