@@ -5,7 +5,6 @@ val kindProjectorVersion = "0.8.1"
 val macroParadiseVersion = "2.1.0"
 val scalatestVersion     = "3.0.0-M9"
 
-
 kantanProject in ThisBuild := "regex"
 
 

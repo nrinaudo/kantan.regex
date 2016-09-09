@@ -37,9 +37,7 @@ class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks {
   }
 
   test("Out of bound groups should generate a NoSuchGroupId") {
-    def outOfBounds(i: Int): MatchDecoder[Int] = MatchDecoder[Int] { (m: Match) ⇒
-      m.decode[Int](i)
-    }
+    def outOfBounds(i: Int): MatchDecoder[Int] = MatchDecoder.from(_.decode[Int](i))
 
     forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int]), Arbitrary.arbitrary[Int].suchThat(_ != -1)) { (is, offset) ⇒
       val index = is.length + 1 + offset

@@ -1,7 +1,7 @@
 package kantan.regex
 
 trait GeneratedMatchDecoders {
-  [#def decoder[[#A1#], O]([#i1: Int#])(f: ([#A1#]) ⇒ O)(implicit [#da1: GroupDecoder[A1]#]): MatchDecoder[O] = MatchDecoder { m ⇒
+  [#def decoder[[#A1#], O]([#i1: Int#])(f: ([#A1#]) ⇒ O)(implicit [#da1: GroupDecoder[A1]#]): MatchDecoder[O] = MatchDecoder.from { m ⇒
     for {
       [#a1 ← m.decode[A1](i1)#
       ]

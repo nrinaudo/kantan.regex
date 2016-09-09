@@ -24,8 +24,8 @@ class RegressionTests extends FunSuite {
   class A
   class B
 
-  implicit val groupDecoderA: GroupDecoder[A] = GroupDecoder(s ⇒ DecodeResult.success(new A))
-  implicit val groupDecoderB: GroupDecoder[B] = GroupDecoder(s ⇒ DecodeResult.success(new B))
+  implicit val groupDecoderA: GroupDecoder[A] = GroupDecoder.from(_ ⇒ DecodeResult.success(new A))
+  implicit val groupDecoderB: GroupDecoder[B] = GroupDecoder.from(_ ⇒ DecodeResult.success(new B))
 
   test("Option decoders should be available for types that do not have a StringDecoder") {
     GroupDecoder[Option[A]]

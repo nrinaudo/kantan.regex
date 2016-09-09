@@ -36,9 +36,10 @@ object GroupDecoder {
     *   GroupDecoder[A].map(f)
     * }}}
     */
-  def apply[A](f: Option[String] ⇒ DecodeResult[A]): GroupDecoder[A] = new GroupDecoder[A] {
-    override def decode(e: Option[String]) = f(e)
-  }
+  def from[A](f: Option[String] ⇒ DecodeResult[A]): GroupDecoder[A] = Decoder.from(f)
+
+  @deprecated("use from instead (see https://github.com/nrinaudo/kantan.regex/issues/8)", "0.1.3")
+  def apply[A](f: Option[String] ⇒ DecodeResult[A]): GroupDecoder[A] = GroupDecoder.from(f)
 }
 
 /** Declares all default [[GroupDecoder]] instances. */
@@ -48,7 +49,7 @@ trait GroupDecoderInstances {
     * This provides free support for all primitive types (as well as a few convenience ones, such as `java.io.File`).
     */
   implicit def fromString[A](implicit da: StringDecoder[A]): GroupDecoder[A] =
-    GroupDecoder(_.map(da.mapError { error ⇒ DecodeError.TypeError(error.getMessage, error.getCause)}.decode)
+    GroupDecoder.from(_.map(da.mapError { error ⇒ DecodeError.TypeError(error.getMessage, error.getCause)}.decode)
       .getOrElse(DecodeResult.emptyGroup))
 
   /** Turns a [[GroupDecoder GroupDecoder[A]]] into a [[GroupDecoder GroupDecoder[Option[A]]]].

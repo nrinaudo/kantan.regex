@@ -37,15 +37,17 @@ object MatchDecoder extends GeneratedMatchDecoders {
   def apply[A](implicit da: MatchDecoder[A]): MatchDecoder[A] = da
 
   /** Creates a new instance of [[MatchDecoder]] from the specified function. */
-  def apply[A](f: Match ⇒ DecodeResult[A]): MatchDecoder[A] =
-    Decoder[Match, A, DecodeError, codecs.type](f)
+  def from[A](f: Match ⇒ DecodeResult[A]): MatchDecoder[A] = Decoder.from(f)
+
+  @deprecated("use from instead (see https://github.com/nrinaudo/kantan.regex/issues/8)", "0.1.3")
+  def apply[A](f: Match ⇒ DecodeResult[A]): MatchDecoder[A] = MatchDecoder.from(f)
 
   /** Creates a new [[MatchDecoder]] for a type that already has a [[GroupDecoder]].
     *
     * @param index index (from 1) of the group that should be extracted.
     */
   def fromGroup[A](index: Int)(implicit da: GroupDecoder[A]): MatchDecoder[A] =
-    MatchDecoder(_.decode(index))
+    MatchDecoder.from(_.decode(index))
 }
 
 /** Declares default [[MatchDecoder]] instances. */
@@ -60,7 +62,7 @@ trait MatchDecoderInstances {
 
   /** Provides an instance of [[MatchDecoder]] for `Option[A]`, provided `A` has a [[MatchDecoder]]. */
   implicit def optMatch[A](implicit da: GroupDecoder[Option[A]]): MatchDecoder[Option[A]] =
-    MatchDecoder.fromGroup[Option[A]](0)(GroupDecoder { os ⇒
+    MatchDecoder.fromGroup[Option[A]](0)(GroupDecoder.from { os ⇒
       da.decode(os.filter(_.nonEmpty))
     })
 
@@ -69,7 +71,7 @@ trait MatchDecoderInstances {
   // initially assumed: matching "12345" against "(\d)*" will not result in 5 groups, but 2: "12345" and "5".
   implicit def fromCbf[F[_], A]
   (implicit da: GroupDecoder[Option[A]], cbf: CanBuildFrom[Nothing, A, F[A]]): MatchDecoder[F[A]] =
-    MatchDecoder[F[A]] { (m: Match) ⇒
+    MatchDecoder.from { m ⇒
       @tailrec
       def loop(i: Int, curr: DecodeResult[mutable.Builder[A, F[A]]]): DecodeResult[F[A]] =
         if(i > m.length || !curr.isSuccess) curr.map(_.result())
