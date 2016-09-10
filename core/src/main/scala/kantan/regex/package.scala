@@ -43,6 +43,12 @@ package object regex {
 
   // - Result types ----------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
+  type Success[A] = Result.Success[A]
+  val Success = Result.Success
+
+  type Failure[A] = Result.Failure[A]
+  val Failure = Result.Failure
+
   /** Result type for decoding operations. */
   type DecodeResult[A]  = Result[DecodeError, A]
   /** Result type for compilation operations. */

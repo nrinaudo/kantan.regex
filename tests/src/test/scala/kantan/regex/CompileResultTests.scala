@@ -16,20 +16,19 @@
 
 package kantan.regex
 
-import kantan.codecs.Result
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
 class CompileResultTests extends FunSuite with GeneratorDrivenPropertyChecks {
   test("CompileResult.success should return a success") {
-    forAll { i: Int ⇒ assert(CompileResult.success(i) == Result.Success(i))}
+    forAll { i: Int ⇒ assert(CompileResult.success(i) == Success(i))}
   }
 
   test("CompileResult.apply should return a success on 'good' values") {
-    forAll { i: Int ⇒ assert(CompileResult(i) == Result.Success(i))}
+    forAll { i: Int ⇒ assert(CompileResult(i) == Success(i))}
   }
 
   test("CompileResult.apply should return a failure on 'bad' values") {
-    forAll { e: Exception ⇒ assert(CompileResult(throw e) == Result.Failure(CompileError(e)))}
+    forAll { e: Exception ⇒ assert(CompileResult(throw e) == Failure(CompileError(e)))}
   }
 }
