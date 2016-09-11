@@ -148,23 +148,6 @@ complicated types.
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="kantan.regex.MatchDecoder#apply" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="apply[A](f:kantan.regex.Match=&gt;kantan.regex.DecodeResult[A]):kantan.regex.MatchDecoder[A]"></a>
-      <a id="apply[A]((Match)⇒DecodeResult[A]):MatchDecoder[A]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">apply</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="f">f: (<a href="Match.html" class="extype" name="kantan.regex.Match">Match</a>) ⇒ <a href="package.html#DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]" class="extmbr" name="kantan.regex.DecodeResult">DecodeResult</a>[<span class="extype" name="kantan.regex.MatchDecoder.apply.A">A</span>]</span>)</span><span class="result">: <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a>[<span class="extype" name="kantan.regex.MatchDecoder.apply.A">A</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#kantan.regex.MatchDecoder$@apply[A](f:kantan.regex.Match=&gt;kantan.regex.DecodeResult[A]):kantan.regex.MatchDecoder[A]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Creates a new instance of <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> from the specified function.</p>
     </li><li name="kantan.regex.MatchDecoder#apply" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="apply[A](implicitda:kantan.regex.MatchDecoder[A]):kantan.regex.MatchDecoder[A]"></a>
       <a id="apply[A](MatchDecoder[A]):MatchDecoder[A]"></a>
@@ -654,6 +637,23 @@ complicated types.
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="kantan.regex.MatchDecoder#from" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="from[A](f:kantan.regex.Match=&gt;kantan.regex.DecodeResult[A]):kantan.regex.MatchDecoder[A]"></a>
+      <a id="from[A]((Match)⇒DecodeResult[A]):MatchDecoder[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">from</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="f">f: (<a href="Match.html" class="extype" name="kantan.regex.Match">Match</a>) ⇒ <a href="package.html#DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]" class="extmbr" name="kantan.regex.DecodeResult">DecodeResult</a>[<span class="extype" name="kantan.regex.MatchDecoder.from.A">A</span>]</span>)</span><span class="result">: <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a>[<span class="extype" name="kantan.regex.MatchDecoder.from.A">A</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.MatchDecoder$@from[A](f:kantan.regex.Match=&gt;kantan.regex.DecodeResult[A]):kantan.regex.MatchDecoder[A]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Creates a new instance of <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> from the specified function.</p>
     </li><li name="kantan.regex.MatchDecoder#fromGroup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="fromGroup[A](index:Int)(implicitda:kantan.regex.GroupDecoder[A]):kantan.regex.MatchDecoder[A]"></a>
       <a id="fromGroup[A](Int)(GroupDecoder[A]):MatchDecoder[A]"></a>
@@ -1630,7 +1630,30 @@ complicated types.
 
         
 
-        
+        <div id="values" class="values members">
+              <h3>Deprecated Value Members</h3>
+              <ol><li name="kantan.regex.MatchDecoder#apply" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="apply[A](f:kantan.regex.Match=&gt;kantan.regex.DecodeResult[A]):kantan.regex.MatchDecoder[A]"></a>
+      <a id="apply[A]((Match)⇒DecodeResult[A]):MatchDecoder[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 0.1.3) use from instead (see https://github.com/nrinaudo/kantan.regex/issues/8)">apply</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="f">f: (<a href="Match.html" class="extype" name="kantan.regex.Match">Match</a>) ⇒ <a href="package.html#DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]" class="extmbr" name="kantan.regex.DecodeResult">DecodeResult</a>[<span class="extype" name="kantan.regex.MatchDecoder.apply.A">A</span>]</span>)</span><span class="result">: <a href="package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a>[<span class="extype" name="kantan.regex.MatchDecoder.apply.A">A</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#kantan.regex.MatchDecoder$@apply[A](f:kantan.regex.Match=&gt;kantan.regex.DecodeResult[A]):kantan.regex.MatchDecoder[A]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.1.3)</i> use from instead (see https://github.com/nrinaudo/kantan.regex/issues/8)</p></dd></dl></div>
+    </li></ol>
+            </div>
         </div>
 
         <div id="inheritedMembers">
