@@ -21,20 +21,19 @@ import kantan.regex._
 import shapeless._
 
 trait LowPrirityGenericInstances {
-  implicit def hlistSingletonMatchDecoder[H](implicit dh: MatchDecoder[H]): MatchDecoder[H :: HNil] =
-      dh.map(_ :: HNil)
+  implicit def hlistSingletonMatchDecoder[H: MatchDecoder]: MatchDecoder[H :: HNil] =
+      MatchDecoder[H].map(_ :: HNil)
 }
 
 trait GenericInstances extends ShapelessInstances with LowPrirityGenericInstances {
   // - HList decoders --------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   /** [[MatchDecoder]] instance for `HList`, provided all elements in the `HList` have a [[GroupDecoder]]. */
-  implicit def hlistMatchDecoder[H, T <: HList]
-  (implicit dh: GroupDecoder[H], dt: DerivedMatchDecoder[T]): DerivedMatchDecoder[H :: T] =
+  implicit def hlistMatchDecoder[H: GroupDecoder, T <: HList: DerivedMatchDecoder]: DerivedMatchDecoder[H :: T] =
     new DerivedMatchDecoder[H :: T] {
       override def decodeFrom(e: Match, index: Int): DecodeResult[H :: T] = for {
         h ← e.decode[H](index)
-        t ← dt.decodeFrom(e, index + 1)
+        t ← DerivedMatchDecoder[T].decodeFrom(e, index + 1)
       } yield h :: t
     }
 
@@ -44,7 +43,7 @@ trait GenericInstances extends ShapelessInstances with LowPrirityGenericInstance
   }
 
   /** [[GroupDecoder]] for `HList` of size 1, provided the single element has a [[GroupDecoder]]. */
-  implicit def hlistGroupDecoder[H](implicit dh: GroupDecoder[H]): GroupDecoder[H :: HNil] = dh.map(h ⇒ h :: HNil)
+  implicit def hlistGroupDecoder[H: GroupDecoder]: GroupDecoder[H :: HNil] = GroupDecoder[H].map(h ⇒ h :: HNil)
 
 
   // - Coproduct decoders ----------------------------------------------------------------------------------------------

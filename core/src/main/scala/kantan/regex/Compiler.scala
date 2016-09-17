@@ -68,11 +68,11 @@ object Compiler {
     *
     * This is a convenience method and equivalent to calling `implicitly[Compiler[A]]`
     */
-  def apply[A](implicit ca: Compiler[A]): Compiler[A] = ca
+  def apply[A](implicit ev: Compiler[A]): Compiler[A] = macro imp.summon[Compiler[A]]
 
   /** Creates a new [[Compiler]] instance from a function that turns `A` into a `Pattern`. */
   def fromPattern[A](f: A ⇒ CompileResult[Pattern]): Compiler[A] = new Compiler[A] {
-    override def compile[B](expr: A)(implicit db: MatchDecoder[B]): CompileResult[Regex[DecodeResult[B]]] =
+    override def compile[B: MatchDecoder](expr: A): CompileResult[Regex[DecodeResult[B]]] =
       f(expr).map(p ⇒ Regex(p))
   }
 

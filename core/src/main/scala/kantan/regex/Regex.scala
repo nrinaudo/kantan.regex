@@ -36,8 +36,8 @@ object Regex {
     * other types (such as non-literal strings, for instance), [[kantan.regex.ops.CompilerOps]] might prove more
     * helpful.
     */
-  def apply[A](pattern: Pattern)(implicit da: MatchDecoder[A]): Regex[DecodeResult[A]] = new Regex[DecodeResult[A]] {
-    override def eval(s: String) = new MatchIterator(pattern.matcher(s)).map(m ⇒ da.decode(m))
+  def apply[A: MatchDecoder](pattern: Pattern): Regex[DecodeResult[A]] = new Regex[DecodeResult[A]] {
+    override def eval(s: String) = new MatchIterator(pattern.matcher(s)).map(m ⇒ MatchDecoder[A].decode(m))
     override def toString = pattern.toString
   }
 

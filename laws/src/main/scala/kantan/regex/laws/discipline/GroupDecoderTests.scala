@@ -23,6 +23,6 @@ import kantan.regex.laws.discipline.arbitrary._
 import org.scalacheck.Arbitrary
 
 object GroupDecoderTests {
-  def apply[A](implicit la: GroupDecoderLaws[A], al: Arbitrary[LegalGroup[A]]): GroupDecoderTests[A] =
+  def apply[A: GroupDecoderLaws](implicit al: Arbitrary[LegalGroup[A]]): GroupDecoderTests[A] =
     DecoderTests[Option[String], A, DecodeError, codecs.type]
 }

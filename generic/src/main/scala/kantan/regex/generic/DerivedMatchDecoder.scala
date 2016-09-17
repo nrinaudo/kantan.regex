@@ -23,3 +23,7 @@ trait DerivedMatchDecoder[A] extends MatchDecoder[A] {
   def decodeFrom(e: Match, index: Int): DecodeResult[A]
   override def decode(e: Match) = decodeFrom(e, 1)
 }
+
+object DerivedMatchDecoder {
+  def apply[A](implicit ev: DerivedMatchDecoder[A]): DerivedMatchDecoder[A] = macro imp.summon[DerivedMatchDecoder[A]]
+}

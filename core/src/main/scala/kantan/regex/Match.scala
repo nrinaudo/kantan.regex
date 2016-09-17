@@ -29,9 +29,9 @@ class Match private[regex] (private val matcher: Matcher) {
   val length: Int = matcher.groupCount()
 
   /** Attempts to decode group `index` as a value of type `A`. */
-  def decode[A](index: Int)(implicit da: GroupDecoder[A]): DecodeResult[A] =
+  def decode[A: GroupDecoder](index: Int): DecodeResult[A] =
     if(index < 0 || index > length) DecodeResult.noSuchGroupId(index)
-    else                            da.decode(Option(matcher.group(index)))
+    else                            GroupDecoder[A].decode(Option(matcher.group(index)))
 
   override def toString = matcher.toString
 }

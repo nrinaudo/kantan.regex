@@ -25,7 +25,7 @@ object GroupDecoder {
     *
     * This is a convenience method and equivalent to calling `implicitly[GroupDecoder[A]]`
     */
-  def apply[A](implicit da: GroupDecoder[A]): GroupDecoder[A] = da
+  def apply[A](implicit ev: GroupDecoder[A]): GroupDecoder[A] = macro imp.summon[GroupDecoder[A]]
 
   /** Creates a new instance of [[GroupDecoder]] from the specified function.
     *
@@ -48,15 +48,16 @@ trait GroupDecoderInstances {
     *
     * This provides free support for all primitive types (as well as a few convenience ones, such as `java.io.File`).
     */
-  implicit def fromString[A](implicit da: StringDecoder[A]): GroupDecoder[A] =
-    GroupDecoder.from(_.map(da.mapError { error ⇒ DecodeError.TypeError(error.getMessage, error.getCause)}.decode)
+  implicit def fromString[A: StringDecoder]: GroupDecoder[A] =
+    GroupDecoder.from(_.map(StringDecoder[A]
+      .mapError { error ⇒ DecodeError.TypeError(error.getMessage, error.getCause)}.decode)
       .getOrElse(DecodeResult.emptyGroup))
 
   /** Turns a [[GroupDecoder GroupDecoder[A]]] into a [[GroupDecoder GroupDecoder[Option[A]]]].
     *
     * This means that, provided you know how to decode an `A`, you will always have free support for `Option[A]`.
     */
-  implicit def optGroupDecoder[A](implicit da: GroupDecoder[A]): GroupDecoder[Option[A]] =
+  implicit def optGroupDecoder[A: GroupDecoder]: GroupDecoder[Option[A]] =
     Decoder.optionalDecoder
 
   /** Turns a [[GroupDecoder GroupDecoder[A]]] and [[GroupDecoder GroupDecoder[B]]] into a

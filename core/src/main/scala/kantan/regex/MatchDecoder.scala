@@ -34,7 +34,7 @@ object MatchDecoder extends GeneratedMatchDecoders {
     *
     * This is just a convenience method and equivalent to calling `implicitly[MatchDecoder[A]]`
     */
-  def apply[A](implicit da: MatchDecoder[A]): MatchDecoder[A] = da
+  def apply[A](implicit ev: MatchDecoder[A]): MatchDecoder[A] = macro imp.summon[MatchDecoder[A]]
 
   /** Creates a new instance of [[MatchDecoder]] from the specified function. */
   def from[A](f: Match ⇒ DecodeResult[A]): MatchDecoder[A] = Decoder.from(f)
@@ -46,7 +46,7 @@ object MatchDecoder extends GeneratedMatchDecoders {
     *
     * @param index index (from 1) of the group that should be extracted.
     */
-  def fromGroup[A](index: Int)(implicit da: GroupDecoder[A]): MatchDecoder[A] =
+  def fromGroup[A: GroupDecoder](index: Int): MatchDecoder[A] =
     MatchDecoder.from(_.decode(index))
 }
 
@@ -54,7 +54,7 @@ object MatchDecoder extends GeneratedMatchDecoders {
 trait MatchDecoderInstances {
   /** Turns a [[GroupDecoder]] into a [[MatchDecoder]] by having it look at the entire match rather than a specific
     * group. */
-  implicit def fromGroup[A](implicit da: GroupDecoder[A]): MatchDecoder[A] = MatchDecoder.fromGroup(0)
+  implicit def fromGroup[A: GroupDecoder]: MatchDecoder[A] = MatchDecoder.fromGroup(0)
 
   /** Provides an instance of [[MatchDecoder]] for `Either[A, B]`, provided both `A` and `B` have a [[MatchDecoder]]. */
   implicit def eitherMatch[A: MatchDecoder, B: MatchDecoder]: MatchDecoder[Either[A, B]] =
