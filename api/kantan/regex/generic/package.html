@@ -146,7 +146,24 @@
 
         <div id="values" class="values members">
               <h3>Value Members</h3>
-              <ol><li name="kantan.codecs.shapeless.ShapelessInstances#caseClassDecoder" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+              <ol><li name="kantan.regex.generic.DerivedMatchDecoder" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DerivedMatchDecoder"></a>
+      <a id="DerivedMatchDecoder:DerivedMatchDecoder"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="DerivedMatchDecoder$.html"><span class="name">DerivedMatchDecoder</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#kantan.regex.generic.package@DerivedMatchDecoder" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="kantan.codecs.shapeless.ShapelessInstances#caseClassDecoder" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="caseClassDecoder[E,D,F,T,H&lt;:shapeless.HList](implicitgen:shapeless.Generic.Aux[D,H],implicitdr:shapeless.Lazy[kantan.codecs.Decoder[E,H,F,T]]):kantan.codecs.export.DerivedDecoder[E,D,F,T]"></a>
       <a id="caseClassDecoder[E,D,F,T,H&lt;:HList](Aux[D,H],Lazy[Decoder[E,H,F,T]]):DerivedDecoder[E,D,F,T]"></a>
       <h4 class="signature">
@@ -283,7 +300,7 @@
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ShapelessInstances</dd></dl></div>
     </li><li name="kantan.regex.generic.GenericInstances#hlistGroupDecoder" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="hlistGroupDecoder[H](implicitdh:kantan.regex.GroupDecoder[H]):kantan.regex.GroupDecoder[shapeless.::[H,shapeless.HNil]]"></a>
+      <a id="hlistGroupDecoder[H](implicitevidence$4:kantan.regex.GroupDecoder[H]):kantan.regex.GroupDecoder[shapeless.::[H,shapeless.HNil]]"></a>
       <a id="hlistGroupDecoder[H](GroupDecoder[H]):GroupDecoder[::[H,HNil]]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -291,16 +308,16 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">hlistGroupDecoder</span><span class="tparams">[<span name="H">H</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="dh">dh: <a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>[<span class="extype" name="kantan.regex.generic.GenericInstances.hlistGroupDecoder.H">H</span>]</span>)</span><span class="result">: <a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>[<span class="extype" name="shapeless.::">::</span>[<span class="extype" name="kantan.regex.generic.GenericInstances.hlistGroupDecoder.H">H</span>, <span class="extype" name="shapeless.HNil">HNil</span>]]</span>
+        <span class="name">hlistGroupDecoder</span><span class="tparams">[<span name="H">H</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>[<span class="extype" name="kantan.regex.generic.GenericInstances.hlistGroupDecoder.H">H</span>]</span>)</span><span class="result">: <a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>[<span class="extype" name="shapeless.::">::</span>[<span class="extype" name="kantan.regex.generic.GenericInstances.hlistGroupDecoder.H">H</span>, <span class="extype" name="shapeless.HNil">HNil</span>]]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#kantan.regex.generic.package@hlistGroupDecoder[H](implicitdh:kantan.regex.GroupDecoder[H]):kantan.regex.GroupDecoder[shapeless.::[H,shapeless.HNil]]" title="Permalink" target="_top">
+      <a href="../../../index.html#kantan.regex.generic.package@hlistGroupDecoder[H](implicitevidence$4:kantan.regex.GroupDecoder[H]):kantan.regex.GroupDecoder[shapeless.::[H,shapeless.HNil]]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"><a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a> for <code>HList</code> of size 1, provided the single element has a <a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>.</p><div class="fullcomment"><div class="comment cmt"><p><a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a> for <code>HList</code> of size 1, provided the single element has a <a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="GenericInstances.html" class="extype" name="kantan.regex.generic.GenericInstances">GenericInstances</a></dd></dl></div>
     </li><li name="kantan.regex.generic.GenericInstances#hlistMatchDecoder" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="hlistMatchDecoder[H,T&lt;:shapeless.HList](implicitdh:kantan.regex.GroupDecoder[H],implicitdt:kantan.regex.generic.DerivedMatchDecoder[T]):kantan.regex.generic.DerivedMatchDecoder[shapeless.::[H,T]]"></a>
+      <a id="hlistMatchDecoder[H,T&lt;:shapeless.HList](implicitevidence$2:kantan.regex.GroupDecoder[H],implicitevidence$3:kantan.regex.generic.DerivedMatchDecoder[T]):kantan.regex.generic.DerivedMatchDecoder[shapeless.::[H,T]]"></a>
       <a id="hlistMatchDecoder[H,T&lt;:HList](GroupDecoder[H],DerivedMatchDecoder[T]):DerivedMatchDecoder[::[H,T]]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -308,16 +325,16 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">hlistMatchDecoder</span><span class="tparams">[<span name="H">H</span>, <span name="T">T &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="dh">dh: <a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>[<span class="extype" name="kantan.regex.generic.GenericInstances.hlistMatchDecoder.H">H</span>]</span>, <span name="dt">dt: <a href="DerivedMatchDecoder.html" class="extype" name="kantan.regex.generic.DerivedMatchDecoder">DerivedMatchDecoder</a>[<span class="extype" name="kantan.regex.generic.GenericInstances.hlistMatchDecoder.T">T</span>]</span>)</span><span class="result">: <a href="DerivedMatchDecoder.html" class="extype" name="kantan.regex.generic.DerivedMatchDecoder">DerivedMatchDecoder</a>[<span class="extype" name="shapeless.::">::</span>[<span class="extype" name="kantan.regex.generic.GenericInstances.hlistMatchDecoder.H">H</span>, <span class="extype" name="kantan.regex.generic.GenericInstances.hlistMatchDecoder.T">T</span>]]</span>
+        <span class="name">hlistMatchDecoder</span><span class="tparams">[<span name="H">H</span>, <span name="T">T &lt;: <span class="extype" name="shapeless.HList">HList</span></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>[<span class="extype" name="kantan.regex.generic.GenericInstances.hlistMatchDecoder.H">H</span>]</span>, <span name="arg1">arg1: <a href="DerivedMatchDecoder.html" class="extype" name="kantan.regex.generic.DerivedMatchDecoder">DerivedMatchDecoder</a>[<span class="extype" name="kantan.regex.generic.GenericInstances.hlistMatchDecoder.T">T</span>]</span>)</span><span class="result">: <a href="DerivedMatchDecoder.html" class="extype" name="kantan.regex.generic.DerivedMatchDecoder">DerivedMatchDecoder</a>[<span class="extype" name="shapeless.::">::</span>[<span class="extype" name="kantan.regex.generic.GenericInstances.hlistMatchDecoder.H">H</span>, <span class="extype" name="kantan.regex.generic.GenericInstances.hlistMatchDecoder.T">T</span>]]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#kantan.regex.generic.package@hlistMatchDecoder[H,T&lt;:shapeless.HList](implicitdh:kantan.regex.GroupDecoder[H],implicitdt:kantan.regex.generic.DerivedMatchDecoder[T]):kantan.regex.generic.DerivedMatchDecoder[shapeless.::[H,T]]" title="Permalink" target="_top">
+      <a href="../../../index.html#kantan.regex.generic.package@hlistMatchDecoder[H,T&lt;:shapeless.HList](implicitevidence$2:kantan.regex.GroupDecoder[H],implicitevidence$3:kantan.regex.generic.DerivedMatchDecoder[T]):kantan.regex.generic.DerivedMatchDecoder[shapeless.::[H,T]]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"><a href="../package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> instance for <code>HList</code>, provided all elements in the <code>HList</code> have a <a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>.</p><div class="fullcomment"><div class="comment cmt"><p><a href="../package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a> instance for <code>HList</code>, provided all elements in the <code>HList</code> have a <a href="../package.html#GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.GroupDecoder">GroupDecoder</a>.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="GenericInstances.html" class="extype" name="kantan.regex.generic.GenericInstances">GenericInstances</a></dd></dl></div>
     </li><li name="kantan.regex.generic.LowPrirityGenericInstances#hlistSingletonMatchDecoder" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="hlistSingletonMatchDecoder[H](implicitdh:kantan.regex.MatchDecoder[H]):kantan.regex.MatchDecoder[shapeless.::[H,shapeless.HNil]]"></a>
+      <a id="hlistSingletonMatchDecoder[H](implicitevidence$1:kantan.regex.MatchDecoder[H]):kantan.regex.MatchDecoder[shapeless.::[H,shapeless.HNil]]"></a>
       <a id="hlistSingletonMatchDecoder[H](MatchDecoder[H]):MatchDecoder[::[H,HNil]]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -325,10 +342,10 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">hlistSingletonMatchDecoder</span><span class="tparams">[<span name="H">H</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="dh">dh: <a href="../package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a>[<span class="extype" name="kantan.regex.generic.LowPrirityGenericInstances.hlistSingletonMatchDecoder.H">H</span>]</span>)</span><span class="result">: <a href="../package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a>[<span class="extype" name="shapeless.::">::</span>[<span class="extype" name="kantan.regex.generic.LowPrirityGenericInstances.hlistSingletonMatchDecoder.H">H</span>, <span class="extype" name="shapeless.HNil">HNil</span>]]</span>
+        <span class="name">hlistSingletonMatchDecoder</span><span class="tparams">[<span name="H">H</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="../package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a>[<span class="extype" name="kantan.regex.generic.LowPrirityGenericInstances.hlistSingletonMatchDecoder.H">H</span>]</span>)</span><span class="result">: <a href="../package.html#MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]" class="extmbr" name="kantan.regex.MatchDecoder">MatchDecoder</a>[<span class="extype" name="shapeless.::">::</span>[<span class="extype" name="kantan.regex.generic.LowPrirityGenericInstances.hlistSingletonMatchDecoder.H">H</span>, <span class="extype" name="shapeless.HNil">HNil</span>]]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#kantan.regex.generic.package@hlistSingletonMatchDecoder[H](implicitdh:kantan.regex.MatchDecoder[H]):kantan.regex.MatchDecoder[shapeless.::[H,shapeless.HNil]]" title="Permalink" target="_top">
+      <a href="../../../index.html#kantan.regex.generic.package@hlistSingletonMatchDecoder[H](implicitevidence$1:kantan.regex.MatchDecoder[H]):kantan.regex.MatchDecoder[shapeless.::[H,shapeless.HNil]]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
