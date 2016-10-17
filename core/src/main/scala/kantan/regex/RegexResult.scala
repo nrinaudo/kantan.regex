@@ -18,7 +18,4 @@ package kantan.regex
 
 import kantan.codecs.ResultCompanion
 
-/** Provides creation methods for [[CompileResult]]. */
-object CompileResult extends ResultCompanion.WithDefault[CompileError] {
-  override protected def fromThrowable(t: Throwable) = CompileError(t)
-}
+object RegexResult extends ResultCompanion.Simple[RegexError]

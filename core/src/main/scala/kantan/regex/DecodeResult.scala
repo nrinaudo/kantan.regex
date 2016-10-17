@@ -16,14 +16,11 @@
 
 package kantan.regex
 
-import kantan.codecs.Result
+import kantan.codecs.{Result, ResultCompanion}
 
 /** Provides construction methods for [[DecodeResult]]. */
-object DecodeResult {
-  def apply[A](a: ⇒ A): DecodeResult[A] = Result.nonFatal(a).leftMap(DecodeError.TypeError.apply)
-
-  /** Creates a new successful decode result with the specified value. */
-  def success[A](a: A): DecodeResult[A] = Result.success(a)
+object DecodeResult extends ResultCompanion.WithDefault[DecodeError] {
+  override protected def fromThrowable(t: Throwable) = DecodeError.TypeError(t)
 
   /** Creates a new [[kantan.regex.DecodeError.TypeError TypeError]] failure with the specified error message. */
   def typeError(str: String): DecodeResult[Nothing] = Result.failure(DecodeError.TypeError(str))
