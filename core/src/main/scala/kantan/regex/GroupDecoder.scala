@@ -16,30 +16,19 @@
 
 package kantan.regex
 
-import kantan.codecs.Decoder
-import kantan.codecs.strings._
+import kantan.codecs.{Decoder, DecoderCompanion}
+import kantan.codecs.strings.StringDecoder
 
 /** Provides instance creation and summoning methods for [[GroupDecoder]]. */
-object GroupDecoder {
+object GroupDecoder extends DecoderCompanion[Option[String], DecodeError, codecs.type] {
   /** Summons an implicit instance of [[[GroupDecoder GroupDecoder[A]]] if one can be found.
     *
     * This is a convenience method and equivalent to calling `implicitly[GroupDecoder[A]]`
     */
   def apply[A](implicit ev: GroupDecoder[A]): GroupDecoder[A] = macro imp.summon[GroupDecoder[A]]
 
-  /** Creates a new instance of [[GroupDecoder]] from the specified function.
-    *
-    * Before using this method, consider summoning an existing instance of [[GroupDecoder]] and adapting that. If you
-    * want a [[[GroupDecoder GroupDecoder[B]]]], already have a [[[GroupDecoder GroupDecoder[A]]]] and can write a
-    * function `f` of type `A ⇒ B`, then it's probably better to write:
-    * {{{
-    *   GroupDecoder[A].map(f)
-    * }}}
-    */
-  def from[A](f: Option[String] ⇒ DecodeResult[A]): GroupDecoder[A] = Decoder.from(f)
-
   @deprecated("use from instead (see https://github.com/nrinaudo/kantan.regex/issues/8)", "0.1.3")
-  def apply[A](f: Option[String] ⇒ DecodeResult[A]): GroupDecoder[A] = GroupDecoder.from(f)
+  def apply[A](f: Option[String] ⇒ DecodeResult[A]): GroupDecoder[A] = from(f)
 }
 
 /** Declares all default [[GroupDecoder]] instances. */

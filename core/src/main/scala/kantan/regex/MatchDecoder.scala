@@ -16,7 +16,7 @@
 
 package kantan.regex
 
-import kantan.codecs.Decoder
+import kantan.codecs.{Decoder, DecoderCompanion}
 import scala.annotation.tailrec
 import scala.collection.generic.CanBuildFrom
 import scala.collection.mutable
@@ -29,15 +29,12 @@ import scala.collection.mutable
   * Otherwise, the `ordered` or `decoder` methods make it simple to create [[MatchDecoder]] instances for more
   * complicated types.
   */
-object MatchDecoder extends GeneratedMatchDecoders {
+object MatchDecoder extends GeneratedMatchDecoders with DecoderCompanion[Match, DecodeError, codecs.type] {
   /** Summons an implicit instance of [[MatchDecoder]] if it exists, fails compilation if it does not.
     *
     * This is just a convenience method and equivalent to calling `implicitly[MatchDecoder[A]]`
     */
   def apply[A](implicit ev: MatchDecoder[A]): MatchDecoder[A] = macro imp.summon[MatchDecoder[A]]
-
-  /** Creates a new instance of [[MatchDecoder]] from the specified function. */
-  def from[A](f: Match ⇒ DecodeResult[A]): MatchDecoder[A] = Decoder.from(f)
 
   @deprecated("use from instead (see https://github.com/nrinaudo/kantan.regex/issues/8)", "0.1.3")
   def apply[A](f: Match ⇒ DecodeResult[A]): MatchDecoder[A] = MatchDecoder.from(f)
@@ -46,8 +43,7 @@ object MatchDecoder extends GeneratedMatchDecoders {
     *
     * @param index index (from 1) of the group that should be extracted.
     */
-  def fromGroup[A: GroupDecoder](index: Int): MatchDecoder[A] =
-    MatchDecoder.from(_.decode(index))
+  def fromGroup[A: GroupDecoder](index: Int): MatchDecoder[A] = from(_.decode(index))
 }
 
 /** Declares default [[MatchDecoder]] instances. */
