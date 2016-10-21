@@ -63,9 +63,9 @@ The following instance for cats type classes are provided:
 [`Traverse`]:http://typelevel.org/cats/api/index.html#cats.Traverse
 [`Monad`]:http://typelevel.org/cats/api/index.html#cats.Monad
 [`GroupDecoder`]:{{ site.baseurl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]
-[`MatchDecoder`]:{{ site.baseurl}}/api/index.html#kantan.regex.package@MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]
-[`RegexResult`]:{{ site.baseurl}}/api/index.html#kantan.regex.package@RegexResult[A]=kantan.codecs.Result[kantan.regex.RegexError,A]
-[`DecodeResult`]:{{ site.baseurl }}/api/index.html#kantan.regex.package@DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]
-[`CompileResult`]:{{ site.baseurl }}/api/index.html#kantan.regex.package@CompileResult[A]=kantan.codecs.Result[kantan.regex.CompileError,A]
+[`MatchDecoder`]:{{ site.baseurl }}/api/index.html#kantan.regex.package$$MatchDecoder
+[`RegexResult`]:{{ site.baseurl}}/api/index.html#kantan.regex.package$$RegexResult
+[`DecodeResult`]:{{ site.baseurl }}/api/index.html#kantan.regex.package$$DecodeResult
+[`CompileResult`]:{{ site.baseurl }}/api/index.html#kantan.regex.package$$CompileResult
 [`Xor`]:http://typelevel.org/cats/api/#cats.data.Xor
 [`Monoid`]:http://typelevel.org/cats/api/index.html#cats.package@Monoid[A]=cats.kernel.Monoid[A]

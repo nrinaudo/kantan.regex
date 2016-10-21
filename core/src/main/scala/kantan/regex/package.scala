@@ -30,12 +30,16 @@ package object regex {
   /** Type class for types that can be decoded from capturing groups.
     *
     * See the [[GroupDecoder$ companion object]] for instance creation methods.
+    *
+    * @documentable
     */
   type GroupDecoder[A] = Decoder[Option[String], A, DecodeError, codecs.type]
 
   /** Type class for type that can be decoded from regular expression matches.
     *
     * See the [[MatchDecoder$ companion object]] for instance creation methods.
+    *
+    * @documentable
     */
   type MatchDecoder[A] = Decoder[Match, A, DecodeError, codecs.type]
 
@@ -49,10 +53,21 @@ package object regex {
   type Failure[A] = Result.Failure[A]
   val Failure = Result.Failure
 
-  /** Result type for decoding operations. */
+  /** Result type for decoding operations.
+    *
+    * @documentable
+    */
   type DecodeResult[A]  = Result[DecodeError, A]
-  /** Result type for compilation operations. */
+
+  /** Result type for compilation operations.
+    *
+    * @documentable
+    */
   type CompileResult[A] = Result[CompileError, A]
-  /** Result type for all regex related operations (encompasses both [[DecodeResult]] and [[CompileResult]]. */
+
+  /** Result type for all regex related operations (encompasses both [[DecodeResult]] and [[CompileResult]].
+    *
+    * @documentable
+    */
   type RegexResult[A]   = Result[RegexError, A]
 }

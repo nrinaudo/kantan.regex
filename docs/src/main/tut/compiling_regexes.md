@@ -71,7 +71,7 @@ call [`pattern`] to get the underlying [`Pattern`].
 [`asUnsafeRegex`]:{{ site.baseurl }}/api/index.html#kantan.regex.ops.CompilerOps@asUnsafeRegex[A](implicitevidence$3:kantan.regex.MatchDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
 [`Regex`]:{{ site.baseurl }}/api/index.html#kantan.regex.Regex
 [`Regex.apply`]:{{ site.baseurl }}/api/index.html#kantan.regex.Regex$@apply[A](pattern:kantan.regex.Pattern)(implicitda:kantan.regex.MatchDecoder[A]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
-[`CompileResult`]:{{ site.baseurl}}/api/index.html#kantan.regex.package@CompileResult[A]=kantan.codecs.Result[kantan.regex.CompileError,A]
+[`CompileResult`]:{{ site.baseurl }}/api/index.html#kantan.regex.package$$CompileResult
 [`get`]:https://nrinaudo.github.io/kantan.codecs/api/index.html#kantan.codecs.Result@get:S
 [`Compiler`]:{{ site.baseurl }}/api/#kantan.regex.Compiler
 [`scala.util.matching.Regex`]:http://www.scala-lang.org/api/current/index.html#scala.util.matching.Regex
