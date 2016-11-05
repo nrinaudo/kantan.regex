@@ -45,7 +45,7 @@ trait ArbitraryInstances extends kantan.codecs.laws.discipline.ArbitraryInstance
     Arbitrary(oneOf(arb[DecodeError], arb[CompileError]))
 
   implicit val cogenRegexDecodeError: Cogen[DecodeError] = Cogen { (seed: Seed, err: DecodeError) ⇒ err match {
-    case DecodeError.EmptyGroup()     ⇒ seed
+    case DecodeError.EmptyGroup       ⇒ seed
     case DecodeError.NoSuchGroupId(i) ⇒ imp[Cogen[Int]].perturb(seed, i)
     case DecodeError.TypeError(msg)   ⇒ imp[Cogen[String]].perturb(seed, msg)
   }}
