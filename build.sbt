@@ -1,7 +1,7 @@
 // - Dependency versions -----------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
 val kantanCodecsVersion  = "0.1.10-SNAPSHOT"
-val scalatestVersion     = "3.0.1-SNAP1"
+val scalatestVersion     = "3.0.0"
 
 kantanProject in ThisBuild := "regex"
 
