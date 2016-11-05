@@ -35,6 +35,7 @@ object CompileError {
 sealed abstract class DecodeError extends RegexError
 
 object DecodeError {
+  // TODO: can this be made into an object?
   final case class EmptyGroup() extends DecodeError
 
   final case class NoSuchGroupId(id: Int) extends DecodeError

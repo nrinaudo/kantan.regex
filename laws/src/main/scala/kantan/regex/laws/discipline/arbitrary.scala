@@ -22,9 +22,10 @@ import kantan.codecs.laws._
 import kantan.regex._
 import kantan.regex.DecodeError.{NoSuchGroupId, TypeError}
 import kantan.regex.laws._
-import org.scalacheck.{Arbitrary, Gen}
+import org.scalacheck.{Arbitrary, Cogen, Gen}
 import org.scalacheck.Arbitrary.{arbitrary => arb}
 import org.scalacheck.Gen._
+import org.scalacheck.rng.Seed
 
 object arbitrary extends kantan.regex.laws.discipline.ArbitraryInstances
 
@@ -32,7 +33,6 @@ trait ArbitraryInstances extends kantan.codecs.laws.discipline.ArbitraryInstance
                                  with kantan.regex.laws.discipline.ArbitraryArities {
   // - Arbitrary errors ------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
-
   implicit val arbCompileError: Arbitrary[CompileError] =
     Arbitrary(arbException.arbitrary.map(e ⇒ CompileError(e)))
   implicit val arbTypeError: Arbitrary[TypeError] =
@@ -43,6 +43,13 @@ trait ArbitraryInstances extends kantan.codecs.laws.discipline.ArbitraryInstance
     Arbitrary(oneOf(arb[NoSuchGroupId], arbTypeError.arbitrary))
   implicit val arbRegexError: Arbitrary[RegexError] =
     Arbitrary(oneOf(arb[DecodeError], arb[CompileError]))
+
+  implicit val cogenRegexDecodeError: Cogen[DecodeError] = Cogen { (seed: Seed, err: DecodeError) ⇒ err match {
+    case DecodeError.EmptyGroup()     ⇒ seed
+    case DecodeError.NoSuchGroupId(i) ⇒ imp[Cogen[Int]].perturb(seed, i)
+    case DecodeError.TypeError(msg)   ⇒ imp[Cogen[String]].perturb(seed, msg)
+  }}
+
 
 
   // - Arbitrary results -----------------------------------------------------------------------------------------------
@@ -76,7 +83,9 @@ trait ArbitraryInstances extends kantan.codecs.laws.discipline.ArbitraryInstance
 
   // - Arbitrary matches -----------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
-  private def toMatch(str: String): Match = {
+  implicit val cogenMatch: Cogen[Match] = Cogen.cogenString.contramap(_.toString)
+
+  def toMatch(str: String): Match = {
     val matcher = Pattern.compile("(?smiU).*").matcher(str)
     matcher.find()
     new Match(matcher)

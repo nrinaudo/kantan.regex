@@ -2,14 +2,30 @@ package kantan.regex
 
 import kantan.regex.laws.discipline.arbitrary._
 import kantan.regex.laws.discipline.MatchDecoderTests
+import org.scalacheck.{Arbitrary, Cogen}
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
-class CaseClassDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
-  [#case class Class1([#i1: Int#])
+object Class1 {
+  implicit val arb: Arbitrary[Class1]         = Arbitrary(Arbitrary.arbitrary[Int].map((Class1.apply _)))
+  implicit val cogen: Cogen[Class1]           = Cogen.cogenList[Int].contramap(f ⇒ List(f.f1))
   implicit val decoder1: MatchDecoder[Class1] = MatchDecoder.ordered(Class1.apply _)
-  implicit val arbLegalClass1 = kantan.regex.laws.discipline.arbitrary.arbLegalCaseClass1(Class1.apply)
+}
+case class Class1(f1: Int)
+
+[2..#object Class1 {
+  implicit val arb: Arbitrary[Class1]         = Arbitrary(Arbitrary.arbitrary[Tuple1[[#Int#]]].map((Class1.apply _).tupled))
+  implicit val cogen: Cogen[Class1]           = Cogen.cogenList[Int].contramap(f ⇒ List([#f.f1#]))
+  implicit val decoder1: MatchDecoder[Class1] = MatchDecoder.ordered(Class1.apply _)
+}
+case class Class1([#f1: Int#])#
+
+]
+
+
+class CaseClassDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+  [#implicit val arbLegalClass1 = kantan.regex.laws.discipline.arbitrary.arbLegalCaseClass1(Class1.apply)
   implicit val arbIllegalClass1 = kantan.regex.laws.discipline.arbitrary.arbIllegalCaseClass1[[#Int#], Class1]#
 
   ]

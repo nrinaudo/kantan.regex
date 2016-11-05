@@ -20,9 +20,11 @@ import kantan.codecs.laws.discipline.DecoderTests
 import kantan.regex._
 import kantan.regex.laws._
 import kantan.regex.laws.discipline.arbitrary._
-import org.scalacheck.Arbitrary
+import org.scalacheck.{Arbitrary, Cogen}
 
 object MatchDecoderTests {
-  def apply[A: MatchDecoderLaws](implicit al: Arbitrary[LegalMatch[A]]): MatchDecoderTests[A] =
-      DecoderTests[Match, A, DecodeError, codecs.type]
+  implicit val arbMatch: Arbitrary[Match] = Arbitrary(Arbitrary.arbitrary[String].map(toMatch))
+
+  def apply[A: MatchDecoderLaws: Arbitrary: Cogen](implicit al: Arbitrary[LegalMatch[A]]): MatchDecoderTests[A] =
+    DecoderTests[Match, A, DecodeError, codecs.type]
 }

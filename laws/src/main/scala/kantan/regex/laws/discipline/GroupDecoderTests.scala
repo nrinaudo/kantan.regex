@@ -20,9 +20,9 @@ import kantan.codecs.laws.discipline.DecoderTests
 import kantan.regex._
 import kantan.regex.laws.{GroupDecoderLaws, LegalGroup}
 import kantan.regex.laws.discipline.arbitrary._
-import org.scalacheck.Arbitrary
+import org.scalacheck.{Arbitrary, Cogen}
 
 object GroupDecoderTests {
-  def apply[A: GroupDecoderLaws](implicit al: Arbitrary[LegalGroup[A]]): GroupDecoderTests[A] =
+  def apply[A: GroupDecoderLaws: Arbitrary: Cogen](implicit al: Arbitrary[LegalGroup[A]]): GroupDecoderTests[A] =
     DecoderTests[Option[String], A, DecodeError, codecs.type]
 }

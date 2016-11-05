@@ -24,6 +24,7 @@ import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 import scalaz.Maybe
+import scalaz.scalacheck.ScalazArbitrary._
 
 class MaybeDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
   implicit val legalGroup: Arbitrary[LegalGroup[Maybe[Int]]] = arbLegalMaybe

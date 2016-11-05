@@ -5,7 +5,7 @@ section: tutorial
 sort_order: 10
 ---
 Kantan.regex has a [cats](https://github.com/typelevel/cats) module that is, in its current incarnation, fairly bare
-bones: it provides decoders for [`Xor`] as well as a few useful type class instances.
+bones: it simply provides a few useful type class instances.
 
 The `cats` module can be used by adding the following dependency to your `build.sbt`:
 
@@ -17,31 +17,6 @@ You then need to import the corresponding package:
 
 ```tut:silent
 import kantan.regex.cats._
-```
-
-
-## `Xor` decoder
-
-The `cats` module provides a [`GroupDecoder`] instance for [`Xor`]: for any type `A` and `B` that each have a
-[`GroupDecoder`] instance, there exists a [`GroupDecoder`] instance for `A Xor B`.
-
-First, a few imports:
-
-```tut:silent
-import cats.data.Xor
-import kantan.regex.implicits._
-```
-
-We can then simply write the following:
-
-```tut
-"[123] [true]".evalRegex[Int Xor Boolean](rx"\[(\d+|true|false)\]", 1).foreach(println _)
-```
-
-This also applies to [`MatchDecoder`] instances:
-
-```tut
-"(1, true) and then (2, foo)".evalRegex[(Int, Boolean) Xor (Int, String)](rx"\((\d+), ([a-z]+)\)").foreach(println _)
 ```
 
 ## Cats instances
@@ -67,5 +42,4 @@ The following instance for cats type classes are provided:
 [`RegexResult`]:{{ site.baseurl}}/api/index.html#kantan.regex.package$$RegexResult
 [`DecodeResult`]:{{ site.baseurl }}/api/index.html#kantan.regex.package$$DecodeResult
 [`CompileResult`]:{{ site.baseurl }}/api/index.html#kantan.regex.package$$CompileResult
-[`Xor`]:http://typelevel.org/cats/api/#cats.data.Xor
 [`Monoid`]:http://typelevel.org/cats/api/index.html#cats.package@Monoid[A]=cats.kernel.Monoid[A]
