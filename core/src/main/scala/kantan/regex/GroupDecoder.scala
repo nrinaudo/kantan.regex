@@ -26,9 +26,6 @@ object GroupDecoder extends DecoderCompanion[Option[String], DecodeError, codecs
     * This is a convenience method and equivalent to calling `implicitly[GroupDecoder[A]]`
     */
   def apply[A](implicit ev: GroupDecoder[A]): GroupDecoder[A] = macro imp.summon[GroupDecoder[A]]
-
-  @deprecated("use from instead (see https://github.com/nrinaudo/kantan.regex/issues/8)", "0.1.3")
-  def apply[A](f: Option[String] ⇒ DecodeResult[A]): GroupDecoder[A] = from(f)
 }
 
 /** Declares all default [[GroupDecoder]] instances. */

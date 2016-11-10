@@ -36,9 +36,6 @@ object MatchDecoder extends GeneratedMatchDecoders with DecoderCompanion[Match, 
     */
   def apply[A](implicit ev: MatchDecoder[A]): MatchDecoder[A] = macro imp.summon[MatchDecoder[A]]
 
-  @deprecated("use from instead (see https://github.com/nrinaudo/kantan.regex/issues/8)", "0.1.3")
-  def apply[A](f: Match ⇒ DecodeResult[A]): MatchDecoder[A] = MatchDecoder.from(f)
-
   /** Creates a new [[MatchDecoder]] for a type that already has a [[GroupDecoder]].
     *
     * @param index index (from 1) of the group that should be extracted.
