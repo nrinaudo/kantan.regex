@@ -21,8 +21,10 @@ import kantan.regex.joda.time._
 ```
 
 There are so many different ways of serialising dates that kantan.regex doesn't have a default implementation - whatever
-the choice, it would end up more often wrong than right. What you can do, however, is declare an implicit
-[`DateTimeFormat`]. This will get you a [`GroupDecoder`] instance for the following types:
+the choice, it would end up more often wrong than right. 
+
+If you can provide a [`DateTimeFormat`] instance, however, you can easily get [`GroupDecoder`] instance for the 
+following types:
 
 * [`DateTime`]
 * [`LocalDate`]
@@ -37,12 +39,13 @@ import kantan.regex.implicits._
 val input = "[12-10-1978] and [09-01-2015]"
 ```
 
-We'd first need to declare the appropriate [`DateTimeFormat`]:
+We'd simply need to create the appropriate decoder through:
 
 ```tut:silent
 import org.joda.time.format._
+import kantan.regex.joda.time._
 
-implicit val format = DateTimeFormat.forPattern("DD-MM-yyyy")
+implicit val decoder = localDateDecoder(DateTimeFormat.forPattern("DD-MM-yyyy"))
 ```
 
 And we're done, as far as decoding is concerned. We only need to get a regular expression together and evaluate it:

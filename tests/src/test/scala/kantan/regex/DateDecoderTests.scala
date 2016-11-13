@@ -18,6 +18,7 @@ package kantan.regex
 
 import java.text.SimpleDateFormat
 import java.util.{Date, Locale}
+import kantan.codecs.strings.StringCodec
 import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
 import kantan.regex.laws.discipline.arbitrary._
 import org.scalatest.FunSuite
@@ -25,7 +26,7 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
 class DateDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
-  implicit val formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.ENGLISH)
+  implicit val codec = StringCodec.dateCodec(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.ENGLISH))
 
   checkAll("GroupDecoder[Date]", GroupDecoderTests[Date].decoder[Int, Int])
   checkAll("MatchDecoder[Date]", MatchDecoderTests[Date].decoder[Int, Int])

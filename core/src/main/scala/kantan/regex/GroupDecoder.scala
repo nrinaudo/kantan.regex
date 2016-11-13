@@ -16,6 +16,8 @@
 
 package kantan.regex
 
+import java.text.DateFormat
+import java.util.Date
 import kantan.codecs.{Decoder, DecoderCompanion}
 import kantan.codecs.strings.StringDecoder
 
@@ -26,6 +28,8 @@ object GroupDecoder extends DecoderCompanion[Option[String], DecodeError, codecs
     * This is a convenience method and equivalent to calling `implicitly[GroupDecoder[A]]`
     */
   def apply[A](implicit ev: GroupDecoder[A]): GroupDecoder[A] = macro imp.summon[GroupDecoder[A]]
+
+  def dateDecoder(format: DateFormat): GroupDecoder[Date] = codecs.fromString(StringDecoder.dateDecoder(format))
 }
 
 /** Declares all default [[GroupDecoder]] instances. */

@@ -36,16 +36,17 @@ There are so many different ways of writing dates that there is no reasonable de
 defaulting to ISO 8601 might make sense, but there doesn't appear to be a sane way of implementing that in Java’s crusty
 date / time API.
 
-Instead of providing a default implementation that is likely going to be incorrect for most people, kantan.regex expects
-an implicit [`DateFormat`] instance in scope, and will decode using that format.
+Instead of providing a default implementation that is likely going to be incorrect for most people, kantan.regex 
+provides easy tools for creating decoders from an instance of [`DateFormat`].
 
 We could for example declare a formatter for something ISO 8601-like:
 
 ```tut:silent
 import kantan.regex.implicits._
+import kantan.regex.GroupDecoder
 import java.util.{Locale, Date}
 
-implicit val formatter = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+implicit val dateDecoder = GroupDecoder.dateDecoder(new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH))
 ```
 
 And we're now capable of decoding matches as dates:
