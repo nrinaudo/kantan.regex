@@ -23,7 +23,7 @@ This will also bring kantan.regex syntax in scope though, so if you only want th
 [`kantan.regex.literals._`].
 
 This lets you create new regular expression by prefixing string literals with [`rx`]:
- 
+
 ```tut
 rx"\d+"
 
@@ -31,7 +31,7 @@ rx"[ -~]"
 ```
 
 And, as promised, this fails *at compile time* if the regular expression is not valid:
- 
+
 ```tut:fail
 rx"[abc"
 ```
@@ -46,7 +46,7 @@ strings using kantan.regex is through the [`evalRegex`] method that enriches str
 "123 and some text followed by 456 and then 789".evalRegex[Int](rx"\d+").foreach(println _)
 ```
 
-[`kantan.regex.implicits._`]:{{ site.baseurl }}/api/#kantan.regex.implicits$
-[`kantan.regex.literals._`]:{{ site.baseurl }}/api/#kantan.regex.literals.package
-[`rx`]:{{ site.baseurl }}/api/index.html#kantan.regex.literals.RegexLiteral@rx(args:Any*):kantan.regex.Pattern
-[`evalRegex`]:{{ site.baseurl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
+[`kantan.regex.implicits._`]:{{ site.baseurl }}/api/kantan/regex/implicits$.html
+[`kantan.regex.literals._`]:{{ site.baseurl }}/api/kantan/regex/literals/index.html
+[`rx`]:{{ site.baseurl }}/api/kantan/regex/literals/RegexLiteral.html#rx(args:Any*):kantan.regex.Pattern
+[`evalRegex`]:{{ site.baseurl }}/api/kantan/regex/ops/StringOps.html#evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]

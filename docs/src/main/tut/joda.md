@@ -21,9 +21,9 @@ import kantan.regex.joda.time._
 ```
 
 There are so many different ways of serialising dates that kantan.regex doesn't have a default implementation - whatever
-the choice, it would end up more often wrong than right. 
+the choice, it would end up more often wrong than right.
 
-If you can provide a [`DateTimeFormat`] instance, however, you can easily get [`GroupDecoder`] instance for the 
+If you can provide a [`DateTimeFormat`] instance, however, you can easily get [`GroupDecoder`] instance for the
 following types:
 
 * [`DateTime`]
@@ -62,4 +62,4 @@ input.evalRegex[org.joda.time.LocalDate](rx"\[(\d\d-\d\d-\d\d\d\d)\]", 1).foreac
 [`LocalDateTime`]:http://joda-time.sourceforge.net/apidocs/org/joda/time/LocalDateTime.html
 [`LocalTime`]:http://joda-time.sourceforge.net/apidocs/org/joda/time/LocalTime.html
 [`DateTimeFormat`]:http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html
-[`GroupDecoder`]:{{ site.baseurl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]
+[`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html

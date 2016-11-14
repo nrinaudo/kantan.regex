@@ -31,15 +31,15 @@ The following instance for cats type classes are provided:
 * [`Monad`] for all result types.
 * [`BiFunctor`] for all result types.
 
-[`Functor`]:http://typelevel.org/cats/api/#cats.Functor
-[`BiFunctor`]:http://typelevel.org/cats/api/#cats.functor.Bifunctor
-[`Order`]:http://typelevel.org/cats/api/index.html#cats.package@Order[A]=cats.kernel.Order[A]
-[`Show`]:http://typelevel.org/cats/api/index.html#cats.Show
-[`Traverse`]:http://typelevel.org/cats/api/index.html#cats.Traverse
-[`Monad`]:http://typelevel.org/cats/api/index.html#cats.Monad
-[`GroupDecoder`]:{{ site.baseurl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]
-[`MatchDecoder`]:{{ site.baseurl }}/api/index.html#kantan.regex.package$$MatchDecoder
-[`RegexResult`]:{{ site.baseurl}}/api/index.html#kantan.regex.package$$RegexResult
-[`DecodeResult`]:{{ site.baseurl }}/api/index.html#kantan.regex.package$$DecodeResult
-[`CompileResult`]:{{ site.baseurl }}/api/index.html#kantan.regex.package$$CompileResult
-[`Monoid`]:http://typelevel.org/cats/api/index.html#cats.package@Monoid[A]=cats.kernel.Monoid[A]
+[`Functor`]:http://typelevel.org/cats/api/cats/Functor.html
+[`BiFunctor`]:http://typelevel.org/cats/api/cats/functor/Bifunctor.html
+[`Order`]:http://typelevel.org/cats/api/cats/kernel/Order.html
+[`Show`]:http://typelevel.org/cats/api/cats/Show.html
+[`Traverse`]:http://typelevel.org/cats/api/cats/Traverse.html
+[`Monad`]:http://typelevel.org/cats/api/cats/Monad.html
+[`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html
+[`MatchDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$MatchDecoder.html
+[`RegexResult`]:{{ site.baseurl}}/api/kantan/regex/RegexResult$.html
+[`DecodeResult`]:{{ site.baseurl }}/api/kantan/regex/package$$DecodeResult$.html
+[`CompileResult`]:{{ site.baseurl }}/api/kantan/regex/CompileResult$.html
+[`Monoid`]:http://typelevel.org/cats/api/cats/kernel/Monoid.html
