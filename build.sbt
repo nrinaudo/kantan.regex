@@ -1,3 +1,7 @@
+import sbtunidoc.Plugin.UnidocKeys._
+
+
+
 // - Dependency versions -----------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
 val kantanCodecsVersion  = "0.1.10-SNAPSHOT"
@@ -20,13 +24,17 @@ lazy val root = Project(id = "kantan-regex", base = file("."))
       |import kantan.regex.generic._
     """.stripMargin
   )
-  .aggregate(core, docs, laws, tests, cats, scalaz, jodaTime, generic)
+  .aggregate((
+    Seq[ProjectReference](core, docs, laws, tests, cats, scalaz, jodaTime, generic) ++
+      ifJava8(Seq(java8))
+  ):_*)
   .dependsOn(core, generic)
 
 lazy val tests = project
   .enablePlugins(UnpublishedPlugin)
   .enablePlugins(spray.boilerplate.BoilerplatePlugin)
   .dependsOn(core, cats, laws, generic, jodaTime, scalaz)
+  .aggregate(ifJava8(Seq(java8)):_*)
   .settings(libraryDependencies ++= Seq(
     "org.scalatest" %% "scalatest"                    % scalatestVersion    % "test",
     "com.nrinaudo"  %% "kantan.codecs-cats-laws"      % kantanCodecsVersion % "test",
@@ -36,6 +44,9 @@ lazy val tests = project
   ))
 
 lazy val docs = project
+  .settings(unidocProjectFilter in (ScalaUnidoc, unidoc) :=
+    inAnyProject -- inProjects(ifNotJava8(Seq(java8)):_*)
+  )
   .enablePlugins(DocumentationPlugin)
   .dependsOn(core, jodaTime, generic, cats, scalaz)
 
@@ -74,6 +85,24 @@ lazy val jodaTime = Project(id = "joda-time", base = file("joda-time"))
   .enablePlugins(PublishedPlugin)
   .dependsOn(core)
   .settings(libraryDependencies += "com.nrinaudo" %% "kantan.codecs-joda-time" % kantanCodecsVersion)
+
+
+
+// - java8 projects ----------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
+lazy val java8 = project
+  .settings(
+    moduleName    := "kantan.regex-java8",
+    name          := "java8"
+  )
+  .enablePlugins(PublishedPlugin)
+  .dependsOn(core, laws)
+  .settings(libraryDependencies ++= Seq(
+    "com.nrinaudo"  %% "kantan.codecs-java8"      % kantanCodecsVersion,
+    "com.nrinaudo"  %% "kantan.codecs-java8-laws" % kantanCodecsVersion % "test",
+    "org.scalatest" %% "scalatest"                % scalatestVersion    % "test"
+  ))
+
 
 
 

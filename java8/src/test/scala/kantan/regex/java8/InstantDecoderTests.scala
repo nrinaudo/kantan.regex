@@ -14,14 +14,16 @@
  * limitations under the License.
  */
 
-package kantan.regex.joda
+package kantan.regex.java8
 
-import kantan.codecs.strings.joda.time._
+import java.time.Instant
+import kantan.regex.java8.arbitrary._
+import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
+import org.scalatest.FunSuite
+import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.typelevel.discipline.scalatest.Discipline
 
-/** Brings all joda time instances in scope.
-  *
-  * Note that this is a convenience - the exact same effect can be achieved by importing
-  * `kantan.codec.strings.joda.time._`. The sole purpose of this is to keep things simple for users that don't want or
-  * need to learn about kantan.regex's internals.
-  */
-package object time extends JodaTimeInstances
+class InstantDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+  checkAll("GroupDecoder[Instant]", GroupDecoderTests[Instant].decoder[Int, Int])
+  checkAll("MatchDecoder[Instant]", MatchDecoderTests[Instant].decoder[Int, Int])
+}

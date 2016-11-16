@@ -14,14 +14,7 @@
  * limitations under the License.
  */
 
-package kantan.regex.joda
+package kantan.regex.java8
 
-import kantan.codecs.strings.joda.time._
-
-/** Brings all joda time instances in scope.
-  *
-  * Note that this is a convenience - the exact same effect can be achieved by importing
-  * `kantan.codec.strings.joda.time._`. The sole purpose of this is to keep things simple for users that don't want or
-  * need to learn about kantan.regex's internals.
-  */
-package object time extends JodaTimeInstances
+object arbitrary extends kantan.regex.laws.discipline.ArbitraryInstances with
+                         kantan.codecs.strings.java8.laws.discipline.ArbitraryInstances
