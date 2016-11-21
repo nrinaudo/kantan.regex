@@ -20,11 +20,7 @@ You then need to import the corresponding package:
 import kantan.regex.joda.time._
 ```
 
-There are so many different ways of serialising dates that kantan.regex doesn't have a default implementation - whatever
-the choice, it would end up more often wrong than right.
-
-If you can provide a [`DateTimeFormat`] instance, however, you can easily get [`GroupDecoder`] instance for the
-following types:
+kantan.regex has default, ISO 8601 compliant [`GroupDecoder`] instances for the following types:
 
 * [`DateTime`]
 * [`LocalDate`]
@@ -36,16 +32,24 @@ Let's imagine for example that we want to extract dates from the following strin
 ```tut:silent
 import kantan.regex.implicits._
 
-val input = "[12-10-1978] and [09-01-2015]"
+val input = "[1978-10-12] and [2015-09-01]"
 ```
 
-We'd simply need to create the appropriate decoder through:
+This is directly supported:
+
+```tut
+input.evalRegex[org.joda.time.LocalDate](rx"\[(\d\d\d\d-\d\d-\d\d)\]", 1).foreach(println _)
+```
+
+It is, of course, possible to declare your own [`GroupDecoder`]. This is, for example, how you'd create a custom
+[`GroupDecoder[LocalDate]`][`GroupDecoder`]:
 
 ```tut:silent
 import org.joda.time.format._
-import kantan.regex.joda.time._
 
-implicit val decoder = localDateDecoder(DateTimeFormat.forPattern("DD-MM-yyyy"))
+val input = "[12-10-1978] and [01-09-2015]"
+
+implicit val decoder = localDateDecoder(DateTimeFormat.forPattern("dd-MM-yyyy"))
 ```
 
 And we're done, as far as decoding is concerned. We only need to get a regular expression together and evaluate it:
