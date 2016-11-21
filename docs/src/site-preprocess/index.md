@@ -21,6 +21,9 @@ in your SBT build file:
 // Core library, included automatically if any other module is imported.
 libraryDependencies += "com.nrinaudo" %% "kantan.regex" % "@VERSION@"
 
+// Java 8 date and time instances.
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "@VERSION@"
+
 // Provides generic instance derivation through shapeless.
 libraryDependencies += "com.nrinaudo" %% "kantan.regex-generic" % "@VERSION@"
 
