@@ -17,6 +17,7 @@
 package kantan.regex.java8
 
 import java.time.LocalDateTime
+import kantan.regex._
 import kantan.regex.java8.arbitrary._
 import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
 import org.scalatest.FunSuite
@@ -24,6 +25,9 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
 class LocalDateTimeDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+  // This is apparently necessary for Scala 2.10
+  implicit val decoder: GroupDecoder[LocalDateTime] = defaultLocalDateTimeDecoder.value
+
   checkAll("GroupDecoder[LocalDateTime]", GroupDecoderTests[LocalDateTime].decoder[Int, Int])
   checkAll("MatchDecoder[LocalDateTime]", MatchDecoderTests[LocalDateTime].decoder[Int, Int])
 }

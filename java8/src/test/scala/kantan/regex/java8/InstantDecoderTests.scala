@@ -17,6 +17,7 @@
 package kantan.regex.java8
 
 import java.time.Instant
+import kantan.regex.GroupDecoder
 import kantan.regex.java8.arbitrary._
 import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
 import org.scalatest.FunSuite
@@ -24,6 +25,9 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
 class InstantDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+  // This is apparently necessary for Scala 2.10
+  implicit val decoder: GroupDecoder[Instant] = defaultInstantDecoder.value
+
   checkAll("GroupDecoder[Instant]", GroupDecoderTests[Instant].decoder[Int, Int])
   checkAll("MatchDecoder[Instant]", MatchDecoderTests[Instant].decoder[Int, Int])
 }
