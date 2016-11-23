@@ -9,7 +9,7 @@ kantan.regex API - we still support Java 7. There is, however, a dedicated optio
 adding the following line to your `build.sbt` file:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "0.1.5"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "0.1.6"
 ```
 
 You then need to import the corresponding package:
