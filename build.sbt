@@ -4,7 +4,7 @@ import sbtunidoc.Plugin.UnidocKeys._
 
 // - Dependency versions -----------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
-val kantanCodecsVersion  = "0.1.10-SNAPSHOT"
+val kantanCodecsVersion  = "0.1.10"
 val scalatestVersion     = "3.0.1"
 
 kantanProject in ThisBuild := "regex"
