@@ -24,17 +24,15 @@ lazy val root = Project(id = "kantan-regex", base = file("."))
       |import kantan.regex.generic._
     """.stripMargin
   )
-  .aggregate((
-    Seq[ProjectReference](core, docs, laws, tests, cats, scalaz, jodaTime, generic) ++
-      ifJava8(Seq(java8))
-  ):_*)
+  .aggregate(core, docs, laws, tests, cats, scalaz, jodaTime, generic)
+  .aggregate(ifJava8[ProjectReference](java8):_*)
   .dependsOn(core, generic)
 
 lazy val tests = project
   .enablePlugins(UnpublishedPlugin)
   .enablePlugins(spray.boilerplate.BoilerplatePlugin)
   .dependsOn(core, cats, laws, generic, jodaTime, scalaz)
-  .aggregate(ifJava8(Seq(java8)):_*)
+  .aggregate(ifJava8[ProjectReference](java8):_*)
   .settings(libraryDependencies ++= Seq(
     "org.scalatest" %% "scalatest"                    % scalatestVersion    % "test",
     "com.nrinaudo"  %% "kantan.codecs-cats-laws"      % kantanCodecsVersion % "test",
@@ -45,10 +43,11 @@ lazy val tests = project
 
 lazy val docs = project
   .settings(unidocProjectFilter in (ScalaUnidoc, unidoc) :=
-    inAnyProject -- inProjects(ifNotJava8(Seq(java8)):_*)
+    inAnyProject -- inProjects(ifNotJava8[ProjectReference](java8):_*)
   )
   .enablePlugins(DocumentationPlugin)
   .dependsOn(core, jodaTime, generic, cats, scalaz)
+  .dependsOn(ifJava8[ClasspathDep[ProjectReference]](java8):_*)
 
 
 
