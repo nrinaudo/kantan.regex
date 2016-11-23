@@ -36,16 +36,17 @@ There are so many different ways of writing dates that there is no reasonable de
 defaulting to ISO 8601 might make sense, but there doesn't appear to be a sane way of implementing that in Java’s crusty
 date / time API.
 
-Instead of providing a default implementation that is likely going to be incorrect for most people, kantan.regex expects
-an implicit [`DateFormat`] instance in scope, and will decode using that format.
+Instead of providing a default implementation that is likely going to be incorrect for most people, kantan.regex
+provides easy tools for creating decoders from an instance of [`DateFormat`].
 
-We could for example declare a formatter for something ISO 8601-like:
+We could for example declare a decoder for something ISO 8601-like:
 
 ```scala
 import kantan.regex.implicits._
+import kantan.regex.GroupDecoder
 import java.util.{Locale, Date}
 
-implicit val formatter = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+implicit val dateDecoder = GroupDecoder.dateDecoder(new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH))
 ```
 
 And we're now capable of decoding matches as dates:
@@ -132,14 +133,14 @@ Now, I know for a fact this works - I have tests for it. I just can't really thi
 the notion of an optional match is... odd.
 
 
-[`BigInt`]:http://www.scala-lang.org/api/current/index.html#scala.math.BigInt
-[`BigDecimal`]:http://www.scala-lang.org/api/current/index.html#scala.math.BigDecimal
+[`BigDecimal`]:http://www.scala-lang.org/api/current/scala/math/BigDecimal.html
+[`BigInt`]:http://www.scala-lang.org/api/current/scala/math/BigInt.html
 [`Byte`]:https://docs.oracle.com/javase/7/docs/api/java/lang/Byte.html
 [`Char`]:https://docs.oracle.com/javase/7/docs/api/java/lang/Character.html
 [`Boolean`]:https://docs.oracle.com/javase/7/docs/api/java/lang/Boolean.html
 [`Double`]:https://docs.oracle.com/javase/7/docs/api/java/lang/Double.html
 [`Float`]:https://docs.oracle.com/javase/7/docs/api/java/lang/Float.html
-[`Int`]:https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html
+[`Int`]:http://www.scala-lang.org/api/current/scala/Int.html
 [`Long`]:https://docs.oracle.com/javase/7/docs/api/java/lang/Long.html
 [`Short`]:https://docs.oracle.com/javase/7/docs/api/java/lang/Short.html
 [`String`]:https://docs.oracle.com/javase/7/docs/api/java/lang/String.html
@@ -150,9 +151,9 @@ the notion of an optional match is... odd.
 [`InputStream`]:https://docs.oracle.com/javase/7/docs/api/java/io/InputStream.html
 [`File`]:https://docs.oracle.com/javase/7/docs/api/java/io/File.html
 [`Path`]:https://docs.oracle.com/javase/7/docs/api/java/nio/file/Path.html
-[`GroupDecoder`]:{{ site.baseurl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]
+[`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html
 [`Date`]:https://docs.oracle.com/javase/7/docs/api/java/util/Date.html
 [`DateFormat`]:https://docs.oracle.com/javase/7/docs/api/java/text/DateFormat.html
-[`MatchDecoder`]:{{ site.baseurl }}/api/index.html#kantan.regex.package@MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]
-[`Either`]:http://www.scala-lang.org/api/current/index.html#scala.util.Either
-[`evalRegex`]:{{ site.baseurl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
+[`MatchDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$MatchDecoder.html
+[`Either`]:http://www.scala-lang.org/api/current/scala/util/Either.html
+[`evalRegex`]:{{ site.baseurl }}/api/kantan/regex/ops/StringOps.html#evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]

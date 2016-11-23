@@ -67,19 +67,19 @@ Success((5,6))
 Any type that has an implicit instance of [`Compiler`] in scope can be compiled the way strings are. There are also
 instances of [`Compiler`] for [`Pattern`] and [`scala.util.matching.Regex`], although they're not often useful - if you
 have a [`Pattern`], just pass that to [`Regex.apply`], and if you have a [`scala.util.matching.Regex`], you can just
-call [`pattern`] to get the underlying [`Pattern`].
+call [`pattern`][`Regex.pattern`] to get the underlying [`Pattern`].
 
 
 
 
-[`evalRegex`]:{{ site.baseurl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
-[`asRegex`]:{{ site.baseurl }}/api/index.html#kantan.regex.ops.CompilerOps@asRegex[A](implicitevidence$1:kantan.regex.MatchDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.CompileResult[kantan.regex.Regex[kantan.regex.DecodeResult[A]]]
+[`evalRegex`]:{{ site.baseurl }}/api/kantan/regex/ops/StringOps.html#evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
+[`asRegex`]:{{ site.baseurl }}/api/kantan/regex/ops/CompilerOps.html#asRegex[A](implicitevidence$1:kantan.regex.MatchDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.CompileResult[kantan.regex.Regex[kantan.regex.DecodeResult[A]]]
 [`asUnsafeRegex`]:{{ site.baseurl }}/api/index.html#kantan.regex.ops.CompilerOps@asUnsafeRegex[A](implicitevidence$3:kantan.regex.MatchDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
-[`Regex`]:{{ site.baseurl }}/api/index.html#kantan.regex.Regex
-[`Regex.apply`]:{{ site.baseurl }}/api/index.html#kantan.regex.Regex$@apply[A](pattern:kantan.regex.Pattern)(implicitda:kantan.regex.MatchDecoder[A]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
-[`CompileResult`]:{{ site.baseurl}}/api/index.html#kantan.regex.package@CompileResult[A]=kantan.codecs.Result[kantan.regex.CompileError,A]
+[`Regex`]:{{ site.baseurl }}/api/kantan/regex/Regex.html
+[`Regex.apply`]:{{ site.baseurl }}/api/kantan/regex/Regex$.html#apply[A](pattern:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
+[`CompileResult`]:{{ site.baseurl }}/api/kantan/regex/package$$CompileResult.html
 [`get`]:https://nrinaudo.github.io/kantan.codecs/api/index.html#kantan.codecs.Result@get:S
-[`Compiler`]:{{ site.baseurl }}/api/#kantan.regex.Compiler
-[`scala.util.matching.Regex`]:http://www.scala-lang.org/api/current/index.html#scala.util.matching.Regex
-[`Pattern`]:https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
-[`pattern`]:http://www.scala-lang.org/api/current/index.html#scala.util.matching.Regex@pattern:java.util.regex.Pattern
+[`Compiler`]:{{ site.baseurl }}/api/kantan/regex/Compiler.html
+[`scala.util.matching.Regex`]:http://www.scala-lang.org/api/current/scala/util/matching/Regex.html
+[`Pattern`]:{{ site.baseurl }}/api/kantan/regex/index.html#Pattern=java.util.regex.Pattern
+[`Regex.pattern`]:http://www.scala-lang.org/api/current/scala/util/matching/Regex.html#pattern:java.util.regex.Pattern

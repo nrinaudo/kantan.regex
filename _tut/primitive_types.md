@@ -104,12 +104,12 @@ Success(2009-01-06T00:00:00.000+01:00)
 ```
 
 
-[`Regex`]:{{ site.baseurl }}/api/#kantan.regex.Regex
-[`evalRegex`]:{{ site.baseurl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
-[`Iterator`]:http://www.scala-lang.org/api/current/index.html#scala.collection.Iterator
-[`Int`]:http://www.scala-lang.org/api/current/index.html#scala.Int
-[`DecodeResult`]:{{ site.baseurl }}/api/index.html#kantan.regex.package@DecodeResult[A]=kantan.codecs.Result[kantan.regex.DecodeError,A]
-[`MatchDecoder`]:{{ site.baseurl }}/api/index.html#kantan.regex.package@MatchDecoder[A]=kantan.codecs.Decoder[kantan.regex.Match,A,kantan.regex.DecodeError,kantan.regex.codecs.type]
+[`Regex`]:{{ site.baseurl }}/api/kantan/regex/Regex.html
+[`evalRegex`]:{{ site.baseurl }}/api/kantan/regex/ops/StringOps.html#evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
+[`Iterator`]:http://www.scala-lang.org/api/current/scala/collection/Iterator.html
+[`Int`]:http://www.scala-lang.org/api/current/scala/Int.html
+[`DecodeResult`]:{{ site.baseurl }}/api/kantan/regex/package$$DecodeResult.html
+[`MatchDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$MatchDecoder.html
 [`DateTime`]:http://www.joda.org/joda-time/apidocs/org/joda/time/DateTime.html
-[`GroupDecoder`]:{{ site.baseurl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]
-[`unsafeEvalRegex`]:{{ site.baseurl }}/api/index.html#kantan.regex.ops.StringOps@unsafeEvalRegex[A](p:kantan.regex.Pattern)(implicitevidence$3:kantan.regex.MatchDecoder[A]):Iterator[A]
+[`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html
+[`unsafeEvalRegex`]:{{ site.baseurl }}/api/kantan/regex/ops/StringOps.html#unsafeEvalRegex[A](p:kantan.regex.Pattern)(implicitevidence$3:kantan.regex.MatchDecoder[A]):Iterator[A]

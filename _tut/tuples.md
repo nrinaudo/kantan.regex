@@ -77,5 +77,5 @@ Success(Left((3,4)))
 Success(Left((5,6)))
 ```
 
-[`evalRegex`]:{{ site.baseurl }}/api/index.html#kantan.regex.ops.StringOps@evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
-[`Either`]:http://www.scala-lang.org/api/current/index.html#scala.util.Either
+[`evalRegex`]:{{ site.baseurl }}/api/kantan/regex/ops/StringOps.html#evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
+[`Either`]:http://www.scala-lang.org/api/current/scala/util/Either.html

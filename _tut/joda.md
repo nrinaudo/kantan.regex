@@ -11,7 +11,7 @@ support for it through a dedicated module.
 The `joda-time` module can be used by adding the following dependency to your `build.sbt`:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.1.5"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.1.6"
 ```
 
 You then need to import the corresponding package:
@@ -20,9 +20,7 @@ You then need to import the corresponding package:
 import kantan.regex.joda.time._
 ```
 
-There are so many different ways of serialising dates that kantan.regex doesn't have a default implementation - whatever
-the choice, it would end up more often wrong than right. What you can do, however, is declare an implicit
-[`DateTimeFormat`]. This will get you a [`GroupDecoder`] instance for the following types:
+kantan.regex has default, ISO 8601 compliant [`GroupDecoder`] instances for the following types:
 
 * [`DateTime`]
 * [`LocalDate`]
@@ -34,23 +32,34 @@ Let's imagine for example that we want to extract dates from the following strin
 ```scala
 import kantan.regex.implicits._
 
-val input = "[12-10-1978] and [09-01-2015]"
+val input = "[1978-10-12] and [2015-09-01]"
 ```
 
-We'd first need to declare the appropriate [`DateTimeFormat`]:
+This is directly supported:
+
+```scala
+scala> input.evalRegex[org.joda.time.LocalDate](rx"\[(\d\d\d\d-\d\d-\d\d)\]", 1).foreach(println _)
+Success(1978-10-12)
+Success(2015-09-01)
+```
+
+It is, of course, possible to declare your own [`GroupDecoder`]. This is, for example, how you'd create a custom
+[`GroupDecoder[LocalDate]`][`GroupDecoder`]:
 
 ```scala
 import org.joda.time.format._
 
-implicit val format = DateTimeFormat.forPattern("DD-MM-yyyy")
+val input = "[12-10-1978] and [01-09-2015]"
+
+implicit val decoder = localDateDecoder(DateTimeFormat.forPattern("dd-MM-yyyy"))
 ```
 
 And we're done, as far as decoding is concerned. We only need to get a regular expression together and evaluate it:
 
 ```scala
 scala> input.evalRegex[org.joda.time.LocalDate](rx"\[(\d\d-\d\d-\d\d\d\d)\]", 1).foreach(println _)
-Success(1978-01-12)
-Success(2015-01-09)
+Success(1978-10-12)
+Success(2015-09-01)
 ```
 
 
@@ -61,4 +70,4 @@ Success(2015-01-09)
 [`LocalDateTime`]:http://joda-time.sourceforge.net/apidocs/org/joda/time/LocalDateTime.html
 [`LocalTime`]:http://joda-time.sourceforge.net/apidocs/org/joda/time/LocalTime.html
 [`DateTimeFormat`]:http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html
-[`GroupDecoder`]:{{ site.baseurl }}/api/index.html#kantan.regex.package@GroupDecoder[A]=kantan.codecs.Decoder[Option[String],A,kantan.regex.DecodeError,kantan.regex.codecs.type]
+[`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html
