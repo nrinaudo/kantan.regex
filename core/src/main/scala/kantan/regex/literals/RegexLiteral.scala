@@ -16,12 +16,25 @@
 
 package kantan.regex.literals
 
-import kantan.regex._
+import contextual._
+import java.util.regex.{Pattern, PatternSyntaxException}
 
-final class RegexLiteral(val sc: StringContext) extends AnyVal {
-  def rx(args: Any*): Pattern = macro LiteralMacros.rxImpl
-}
+object RegexLiteral extends Interpolator {
+  def contextualize(interpolation: StaticInterpolation): Seq[ContextType] = {
+    interpolation.parts.foreach {
+      case lit@Literal(_, _) ⇒
+        try Pattern.compile(interpolation.literals.head) catch {
+          case p: PatternSyntaxException ⇒
 
-trait ToRegexLiteral {
-  implicit def toRegexLiteral(sc: StringContext): RegexLiteral = new RegexLiteral(sc)
+            // We take only the interesting part of the error message
+            val message = p.getMessage.split(" near").head
+            interpolation.error(lit, p.getIndex - 1, message)
+        }
+      case hole@Hole(_, _) ⇒
+        interpolation.abort(hole, "substitution is not supported")
+    }
+    Nil
+  }
+
+  def evaluate(interpolation: RuntimeInterpolation): Pattern = Pattern.compile(interpolation.parts.mkString)
 }

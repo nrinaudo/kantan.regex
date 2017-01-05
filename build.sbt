@@ -4,6 +4,7 @@ import sbtunidoc.Plugin.UnidocKeys._
 
 // - Dependency versions -----------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
+val contextualVersion    = "1.0.0"
 val kantanCodecsVersion  = "0.1.10"
 val scalatestVersion     = "3.0.1"
 
@@ -60,7 +61,10 @@ lazy val core = project
   )
   .enablePlugins(PublishedPlugin)
   .enablePlugins(spray.boilerplate.BoilerplatePlugin)
-  .settings(libraryDependencies += "com.nrinaudo" %% "kantan.codecs" % kantanCodecsVersion)
+  .settings(libraryDependencies ++= Seq(
+    "com.nrinaudo"   %% "kantan.codecs" % kantanCodecsVersion,
+    "com.propensive" %% "contextual"    % contextualVersion
+  ))
 
 lazy val laws = project
   .settings(
@@ -70,7 +74,7 @@ lazy val laws = project
   .enablePlugins(PublishedPlugin)
   .enablePlugins(spray.boilerplate.BoilerplatePlugin)
   .dependsOn(core)
-  .settings(libraryDependencies += "com.nrinaudo" %% "kantan.codecs-laws" % kantanCodecsVersion)
+  .settings(libraryDependencies += "com.nrinaudo"   %% "kantan.codecs-laws" % kantanCodecsVersion)
 
 
 
