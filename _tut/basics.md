@@ -26,19 +26,19 @@ This lets you create new regular expression by prefixing string literals with [`
 
 ```scala
 scala> rx"\d+"
-res0: kantan.regex.Pattern = \d+
+res0: java.util.regex.Pattern = \d+
 
 scala> rx"[ -~]"
-res1: kantan.regex.Pattern = [ -~]
+res1: java.util.regex.Pattern = [ -~]
 ```
 
 And, as promised, this fails *at compile time* if the regular expression is not valid:
 
 ```scala
 scala> rx"[abc"
-<console>:16: error: Illegal regular expression: [abc
+<console>:16: error: Unclosed character class
        rx"[abc"
-       ^
+            ^
 ```
 
 ## Simple evaluation

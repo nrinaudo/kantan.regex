@@ -57,7 +57,7 @@ matched, but was. In order to solve this, we need to change our regular expressi
 
 ```scala
 scala> val regex = rx"\[(\d+)\]"
-regex: kantan.regex.Pattern = \[(\d+)\]
+regex: java.util.regex.Pattern = \[(\d+)\]
 ```
 
 The problem here is that matches of this expression are not valid ints - they are surrounded by brackets. This
