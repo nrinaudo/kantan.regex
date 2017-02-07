@@ -16,38 +16,24 @@
 
 package kantan.regex
 
+import kantan.codecs._
+
 /** Root class for all regular expression related errors. */
-sealed abstract class RegexError extends Exception with Product with Serializable
+sealed abstract class RegexError(msg: String) extends Error(msg)
 
 /** Describes errors that occur while compiling a regular expression. */
-sealed case class CompileError(message: String) extends RegexError {
-  override final val getMessage = message
-}
+sealed case class CompileError(message: String) extends RegexError(message)
 
-object CompileError {
-  def apply(msg: String, t: Throwable): CompileError = new CompileError(msg) {
-    override val getCause = t
-  }
+object CompileError extends ErrorCompanion("an unspecified compile error occurred")(s ⇒ new CompileError(s))
 
-  def apply(t: Throwable): CompileError = CompileError(Option(t.getMessage).getOrElse("Compile error"), t)
-}
-
-sealed abstract class DecodeError extends RegexError
+sealed abstract class DecodeError(msg: String) extends RegexError(msg)
 
 object DecodeError {
-  case object EmptyGroup extends DecodeError
+  case object EmptyGroup extends DecodeError("an empty group was found")
 
-  final case class NoSuchGroupId(id: Int) extends DecodeError
+  final case class NoSuchGroupId(id: Int) extends DecodeError(s"no group exist with identifier $id")
 
-  sealed case class TypeError(message: String) extends DecodeError {
-    override final val getMessage = message
-  }
+  sealed case class TypeError(message: String) extends DecodeError(message)
 
-  object TypeError {
-    def apply(msg: String, t: Throwable): TypeError = new TypeError(msg) {
-      override val getCause = t
-    }
-
-    def apply(t: Throwable): TypeError = TypeError(Option(t.getMessage).getOrElse("Type error"), t)
-  }
+  object TypeError extends ErrorCompanion("an unspecified type error occurred")(s ⇒ new TypeError(s))
 }
