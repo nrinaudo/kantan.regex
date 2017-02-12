@@ -21,7 +21,7 @@ lazy val root = Project(id = "kantan-regex", base = file("."))
 
 lazy val docs = project
   .settings(unidocProjectFilter in (ScalaUnidoc, unidoc) :=
-    inAnyProject -- inProjectsIf(java8Supported)(java8)
+    inAnyProject -- inProjectsIf(!java8Supported)(java8)
   )
   .enablePlugins(DocumentationPlugin)
   .dependsOn(core, jodaTime, generic, cats, scalaz)
