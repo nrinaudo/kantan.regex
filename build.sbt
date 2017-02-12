@@ -3,6 +3,7 @@ import sbtunidoc.Plugin.UnidocKeys._
 kantanProject in ThisBuild := "regex"
 
 
+
 // - root projects -----------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
 lazy val root = Project(id = "kantan-regex", base = file("."))
@@ -17,16 +18,16 @@ lazy val root = Project(id = "kantan-regex", base = file("."))
     """.stripMargin
   )
   .aggregate(core, docs, laws, cats, scalaz, jodaTime, generic)
-  .aggregate(ifJava8[ProjectReference](java8):_*)
+  .aggregateIf(java8Supported)(java8)
   .dependsOn(core, generic)
 
 lazy val docs = project
   .settings(unidocProjectFilter in (ScalaUnidoc, unidoc) :=
-    inAnyProject -- inProjects(ifNotJava8[ProjectReference](java8):_*)
+    inAnyProject -- inProjectsIf(java8Supported)(java8)
   )
   .enablePlugins(DocumentationPlugin)
   .dependsOn(core, jodaTime, generic, cats, scalaz)
-  .dependsOn(ifJava8[ClasspathDep[ProjectReference]](java8):_*)
+  .dependsOnIf(java8Supported)(java8)
 
 
 
