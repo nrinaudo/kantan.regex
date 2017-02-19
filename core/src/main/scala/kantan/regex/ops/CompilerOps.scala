@@ -19,22 +19,22 @@ package kantan.regex.ops
 import kantan.regex.{Compiler, _}
 
 /** Provides useful syntax for types that have a [[Compiler]] instance. */
-final class CompilerOps[S](val expr: S) extends AnyVal {
+final class CompilerOps[S: Compiler](val expr: S) {
   /** Compiles this value as a [[Regex]]. */
-  def asRegex[A: MatchDecoder](implicit cs: Compiler[S]): CompileResult[Regex[DecodeResult[A]]] =
-    cs.compile(expr)
-  def asRegex[A: GroupDecoder](group: Int)(implicit cs: Compiler[S]): CompileResult[Regex[DecodeResult[A]]] =
-    cs.compile(expr, group)
+  def asRegex[A: MatchDecoder]: CompileResult[Regex[DecodeResult[A]]] =
+    Compiler[S].compile(expr)
+  def asRegex[A: GroupDecoder](group: Int): CompileResult[Regex[DecodeResult[A]]] =
+    Compiler[S].compile(expr, group)
 
-  def asUnsafeRegex[A: MatchDecoder](implicit cs: Compiler[S]): Regex[DecodeResult[A]] = cs.unsafeCompile(expr)
+  def asUnsafeRegex[A: MatchDecoder]: Regex[DecodeResult[A]] = Compiler[S].unsafeCompile(expr)
 
   /** Unsafe version of [[asRegex[A](group:Int)*]]. */
-  def asUnsafeRegex[A: GroupDecoder](group: Int)(implicit cs: Compiler[S]): Regex[DecodeResult[A]] =
-    cs.unsafeCompile(expr, group)
+  def asUnsafeRegex[A: GroupDecoder](group: Int): Regex[DecodeResult[A]] =
+    Compiler[S].unsafeCompile(expr, group)
 }
 
 trait ToCompilerOps {
-  implicit def toRegexCompilerOps[A](a: A): CompilerOps[A] = new CompilerOps(a)
+  implicit def toRegexCompilerOps[A: Compiler](a: A): CompilerOps[A] = new CompilerOps(a)
 }
 
 object compiler extends ToCompilerOps
