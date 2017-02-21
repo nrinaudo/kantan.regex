@@ -27,6 +27,7 @@ import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
+@SuppressWarnings(Array("org.wartremover.warts.Null"))
 class DerivedMatchDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
   case class Simple(i: Int)
   case class Complex(i: Int, b: Boolean, c: Option[Byte])

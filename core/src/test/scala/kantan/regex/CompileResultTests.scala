@@ -19,6 +19,7 @@ package kantan.regex
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
+@SuppressWarnings(Array("org.wartremover.warts.Throw"))
 class CompileResultTests extends FunSuite with GeneratorDrivenPropertyChecks {
   test("CompileResult.success should return a success") {
     forAll { i: Int ⇒ assert(CompileResult.success(i) == Success(i))}

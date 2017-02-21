@@ -19,6 +19,7 @@ package kantan.regex.literals
 import contextual._
 import java.util.regex.{Pattern, PatternSyntaxException}
 
+@SuppressWarnings(Array("org.wartremover.warts.TraversableOps"))
 object RegexLiteral extends Interpolator {
   def contextualize(interpolation: StaticInterpolation): Seq[ContextType] = {
     interpolation.parts.foreach {

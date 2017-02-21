@@ -18,6 +18,7 @@ package kantan.regex.laws.discipline
 
 import imp.imp
 import java.util.regex.Pattern
+import kantan.codecs.Result
 import kantan.codecs.laws._
 import kantan.regex._
 import kantan.regex.DecodeError.{NoSuchGroupId, TypeError}
@@ -55,7 +56,10 @@ trait ArbitraryInstances extends kantan.codecs.laws.discipline.ArbitraryInstance
   // - Arbitrary results -----------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   implicit def arbDecodeResult[A: Arbitrary]: Arbitrary[DecodeResult[A]] =
-    Arbitrary(oneOf(imp[Arbitrary[A]].arbitrary.map(Success.apply), arbDecodeError.arbitrary.map(Failure.apply)))
+    Arbitrary(oneOf(
+      imp[Arbitrary[A]].arbitrary.map(Result.success),
+      arbDecodeError.arbitrary.map(Result.failure)
+    ))
 
 
 

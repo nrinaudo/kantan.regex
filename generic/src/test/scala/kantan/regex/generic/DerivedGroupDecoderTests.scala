@@ -25,6 +25,7 @@ import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
+@SuppressWarnings(Array("org.wartremover.warts.Null"))
 class DerivedGroupDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
   implicit val arbLegal: Arbitrary[LegalGroup[Int Or Boolean]] = arbLegalValue((o: Or[Int, Boolean]) ⇒
     o match {

@@ -29,7 +29,7 @@ class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks {
     }
 
     forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int])) { (is: List[Int]) ⇒
-      implicit val decoder = validating(is.length)
+      implicit val decoder: MatchDecoder[List[Int]] = validating(is.length)
 
       val regex = is.map(_ ⇒ "(-?\\d+)").mkString(" ").asUnsafeRegex[List[Int]].map(_.get)
       assert(regex.eval(is.mkString(" ")).next == is)
@@ -42,7 +42,7 @@ class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks {
     forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int]), Arbitrary.arbitrary[Int].suchThat(_ != -1)) { (is, offset) ⇒
       val index = is.length + 1 + offset
 
-      implicit val decoder = outOfBounds(index)
+      implicit val decoder: MatchDecoder[Int] = outOfBounds(index)
       val regex = is.map(_ ⇒ "(-?\\d+)").mkString(" ").asUnsafeRegex[Int]
       assert(regex.eval(is.mkString(" ")).next == DecodeResult.noSuchGroupId(index))
     }

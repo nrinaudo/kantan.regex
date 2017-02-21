@@ -20,6 +20,7 @@ import kantan.regex.implicits._
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
+@SuppressWarnings(Array("org.wartremover.warts.While"))
 class MatchIteratorTests extends FunSuite with GeneratorDrivenPropertyChecks {
   def toMatchIterator(is: List[Int]): Iterator[Int] = Regex[Int](rx"-?\d+").eval(is.mkString(" ")).map(_.get)
 

@@ -25,7 +25,7 @@ val regex = rx"\((\d+), (\d+|true|false)\)"
 And since we're trying to demonstrate case class extraction, let's extract data to the following case class:
 
 ```tut:silent
-case class WeirdPoint(x: Int, y: Either[Int, Boolean])
+final case class WeirdPoint(x: Int, y: Either[Int, Boolean])
 ```
 
 In order to extract complex (as in, composed of more than one value) types, we need to provide instances of
@@ -50,7 +50,7 @@ module. Let's first import the module and declare a new case class:
 ```tut:silent
 import kantan.regex.generic._
 
-case class Foo(x: Int, y: Either[Int, Boolean])
+final case class Foo(x: Int, y: Either[Int, Boolean])
 ```
 
 And without any further work, we can decode instances of `Foo`:

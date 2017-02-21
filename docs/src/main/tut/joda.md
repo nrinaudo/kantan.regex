@@ -45,11 +45,13 @@ It is, of course, possible to declare your own [`GroupDecoder`]. This is, for ex
 [`GroupDecoder[LocalDate]`][`GroupDecoder`]:
 
 ```tut:silent
-import org.joda.time.format._
+import kantan.regex._
+import org.joda.time.LocalDate
+import org.joda.time.format.DateTimeFormat
 
 val input = "[12-10-1978] and [01-09-2015]"
 
-implicit val decoder = localDateDecoder(DateTimeFormat.forPattern("dd-MM-yyyy"))
+implicit val decoder: GroupDecoder[LocalDate] = localDateDecoder(DateTimeFormat.forPattern("dd-MM-yyyy"))
 ```
 
 And we're done, as far as decoding is concerned. We only need to get a regular expression together and evaluate it:

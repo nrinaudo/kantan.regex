@@ -84,6 +84,7 @@ object Compiler {
   implicit val string: Compiler[String] = fromPattern(s ⇒ CompileResult(java.util.regex.Pattern.compile(s)))
 }
 
+@SuppressWarnings(Array("org.wartremover.warts.Var"))
 private class MatchIterator(val matcher: Matcher) extends Iterator[Match] {
   var nextSeen = false
   val m = new Match(matcher)
@@ -92,6 +93,8 @@ private class MatchIterator(val matcher: Matcher) extends Iterator[Match] {
     if(!nextSeen) nextSeen = matcher.find()
     nextSeen
   }
+
+  @SuppressWarnings(Array("org.wartremover.warts.Throw"))
   override def next(): Match = {
     if(!hasNext) throw new NoSuchElementException
     nextSeen = false

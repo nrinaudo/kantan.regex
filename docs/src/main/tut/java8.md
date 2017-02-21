@@ -46,8 +46,10 @@ It's also possible to provide your own format. For example, for [`LocalDateTime`
 
 ```tut:silent
 import java.time.format.DateTimeFormatter
+import java.time.LocalDate
+import kantan.regex._
 
-implicit val decoder = localDateDecoder(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+implicit val decoder: GroupDecoder[LocalDate] = localDateDecoder(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 
 val input = "[10/12/1978] and [09/01/2015]"
 ```
