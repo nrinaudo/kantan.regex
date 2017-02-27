@@ -9,7 +9,7 @@ kantan.regex API - we still support Java 7. There is, however, a dedicated optio
 adding the following line to your `build.sbt` file:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "0.1.6"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "0.1.8"
 ```
 
 You then need to import the corresponding package:
@@ -48,8 +48,10 @@ It's also possible to provide your own format. For example, for [`LocalDateTime`
 
 ```scala
 import java.time.format.DateTimeFormatter
+import java.time.LocalDate
+import kantan.regex._
 
-implicit val decoder = localDateDecoder(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+implicit val decoder: GroupDecoder[LocalDate] = localDateDecoder(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 
 val input = "[10/12/1978] and [09/01/2015]"
 ```

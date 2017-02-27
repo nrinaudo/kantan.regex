@@ -44,9 +44,10 @@ We could for example declare a decoder for something ISO 8601-like:
 ```scala
 import kantan.regex.implicits._
 import kantan.regex.GroupDecoder
+import java.text.SimpleDateFormat
 import java.util.{Locale, Date}
 
-implicit val dateDecoder = GroupDecoder.dateDecoder(new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH))
+implicit val dateDecoder: GroupDecoder[Date] = GroupDecoder.dateDecoder(new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH))
 ```
 
 And we're now capable of decoding matches as dates:

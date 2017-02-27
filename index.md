@@ -14,27 +14,27 @@ kantan.regex is a library for extracting useful types from regular expression ma
 
 kantan.regex is currently available for Scala 2.10, 2.11 and 2.12.
 
-The current version is `0.1.7`, which can be added to your project with one or more of the following line(s)
+The current version is `0.1.8`, which can be added to your project with one or more of the following line(s)
 in your SBT build file:
 
 ```scala
 // Core library, included automatically if any other module is imported.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex" % "0.1.7"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex" % "0.1.8"
 
 // Java 8 date and time instances.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "0.1.7"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "0.1.8"
 
 // Provides generic instance derivation through shapeless.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-generic" % "0.1.7"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-generic" % "0.1.8"
 
 // Provides scalaz type class instances.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-scalaz" % "0.1.7"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-scalaz" % "0.1.8"
 
 // Provides cats type class instances.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-cats" % "0.1.7"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-cats" % "0.1.8"
 
 // Provides joda-time decoders.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.1.7"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.1.8"
 ```
 
 ## Motivation
