@@ -40,7 +40,7 @@ trait GroupDecoderInstances {
     */
   implicit def fromString[A: StringDecoder]: GroupDecoder[A] =
     GroupDecoder.from(_.map(StringDecoder[A]
-      .mapError { error ⇒ DecodeError.TypeError(error.getMessage, error.getCause)}.decode)
+      .leftMap { error ⇒ DecodeError.TypeError(error.getMessage, error.getCause)}.decode)
       .getOrElse(DecodeResult.emptyGroup))
 
   /** Turns a [[GroupDecoder GroupDecoder[A]]] into a [[GroupDecoder GroupDecoder[Option[A]]]].
