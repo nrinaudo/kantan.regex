@@ -18,6 +18,7 @@ package kantan.regex
 
 import java.text.SimpleDateFormat
 import java.util.{Date, Locale}
+import kantan.codecs.laws.discipline.SerializableTests
 import kantan.codecs.strings.StringCodec
 import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
 import kantan.regex.laws.discipline.arbitrary._
@@ -30,5 +31,8 @@ class DateDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with 
     StringCodec.dateCodec(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.ENGLISH))
 
   checkAll("GroupDecoder[Date]", GroupDecoderTests[Date].decoder[Int, Int])
+  checkAll("GroupDecoder[Date]", SerializableTests[GroupDecoder[Date]].serializable)
+
   checkAll("MatchDecoder[Date]", MatchDecoderTests[Date].decoder[Int, Int])
+  checkAll("MatchDecoder[Date]", SerializableTests[MatchDecoder[Date]].serializable)
 }

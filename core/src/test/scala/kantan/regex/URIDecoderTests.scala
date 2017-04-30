@@ -17,6 +17,7 @@
 package kantan.regex
 
 import java.net.URI
+import kantan.codecs.laws.discipline.SerializableTests
 import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
 import kantan.regex.laws.discipline.arbitrary._
 import org.scalatest.FunSuite
@@ -25,5 +26,8 @@ import org.typelevel.discipline.scalatest.Discipline
 
 class URIDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
   checkAll("GroupDecoder[URI]", GroupDecoderTests[URI].decoder[Int, Int])
+  checkAll("GroupDecoder[URI]", SerializableTests[GroupDecoder[URI]].serializable)
+
   checkAll("MatchDecoder[URI]", MatchDecoderTests[URI].decoder[Int, Int])
+  checkAll("MatchDecoder[URI]", SerializableTests[MatchDecoder[URI]].serializable)
 }

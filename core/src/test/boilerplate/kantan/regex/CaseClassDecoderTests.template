@@ -16,6 +16,7 @@
 
 package kantan.regex
 
+import kantan.codecs.laws.discipline.SerializableTests
 import kantan.regex.laws._
 import kantan.regex.laws.discipline.arbitrary._
 import kantan.regex.laws.discipline.MatchDecoderTests
@@ -47,6 +48,8 @@ class CaseClassDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks 
 
   ]
 
-  [#checkAll("MatchDecoder[Class1]", MatchDecoderTests[Class1].decoder[Int, Int])#
+  [#checkAll("MatchDecoder[Class1]", MatchDecoderTests[Class1].decoder[Int, Int])
+  checkAll("MatchDecoder[Class1]", SerializableTests[MatchDecoder[Class1]].serializable)#
+
   ]
 }

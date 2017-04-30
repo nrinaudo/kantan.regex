@@ -16,8 +16,9 @@
 
 package kantan.regex.generic
 
+import kantan.codecs.laws.discipline.SerializableTests
 import kantan.codecs.shapeless.laws._
-import kantan.regex.{Match, Pattern}
+import kantan.regex.{Match, MatchDecoder, Pattern}
 import kantan.regex.generic.arbitrary._
 import kantan.regex.implicits._
 import kantan.regex.laws.LegalMatch
@@ -27,8 +28,7 @@ import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
-@SuppressWarnings(Array("org.wartremover.warts.Null"))
-class DerivedMatchDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+object Instances {
   case class Simple(i: Int)
   case class Complex(i: Int, b: Boolean, c: Option[Byte])
 
@@ -46,6 +46,12 @@ class DerivedMatchDecoderTests extends FunSuite with GeneratorDrivenPropertyChec
       case Right(Simple(i)) ⇒ toMatch(rx"(-?\d+)", i.toString)
 
     })
+}
 
+@SuppressWarnings(Array("org.wartremover.warts.Null"))
+class DerivedMatchDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+  import Instances._
+  
   checkAll("MatchDecoder[Complex Or Simple]", MatchDecoderTests[Complex Or Simple].decoder[Byte, Float])
+  checkAll("MatchDecoder[Complex Or Simple]", SerializableTests[MatchDecoder[Complex Or Simple]].serializable)
 }

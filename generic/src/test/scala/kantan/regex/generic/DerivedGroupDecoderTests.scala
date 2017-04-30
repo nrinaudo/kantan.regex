@@ -16,7 +16,9 @@
 
 package kantan.regex.generic
 
+import kantan.codecs.laws.discipline.SerializableTests
 import kantan.codecs.shapeless.laws._
+import kantan.regex.GroupDecoder
 import kantan.regex.generic.arbitrary._
 import kantan.regex.laws.LegalGroup
 import kantan.regex.laws.discipline.GroupDecoderTests
@@ -34,4 +36,5 @@ class DerivedGroupDecoderTests extends FunSuite with GeneratorDrivenPropertyChec
     })
 
   checkAll("GroupDecoder[Int Or Boolean]", GroupDecoderTests[Int Or Boolean].decoder[Byte, String])
+  checkAll("GroupDecoder[Int Or Boolean]", SerializableTests[GroupDecoder[Int Or Boolean]].serializable)
 }

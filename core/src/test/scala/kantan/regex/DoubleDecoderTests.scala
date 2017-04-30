@@ -16,6 +16,7 @@
 
 package kantan.regex
 
+import kantan.codecs.laws.discipline.SerializableTests
 import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
 import kantan.regex.laws.discipline.arbitrary._
 import org.scalatest.FunSuite
@@ -24,5 +25,8 @@ import org.typelevel.discipline.scalatest.Discipline
 
 class DoubleDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
   checkAll("GroupDecoder[Double]", GroupDecoderTests[Double].decoder[Int, Int])
+  checkAll("GroupDecoder[Double]", SerializableTests[GroupDecoder[Double]].serializable)
+
   checkAll("MatchDecoder[Double]", MatchDecoderTests[Double].decoder[Int, Int])
+  checkAll("MatchDecoder[Double]", SerializableTests[MatchDecoder[Double]].serializable)
 }
