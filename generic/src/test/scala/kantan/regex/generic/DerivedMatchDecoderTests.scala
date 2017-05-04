@@ -51,7 +51,7 @@ object Instances {
 @SuppressWarnings(Array("org.wartremover.warts.Null"))
 class DerivedMatchDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
   import Instances._
-  
+
   checkAll("MatchDecoder[Complex Or Simple]", MatchDecoderTests[Complex Or Simple].decoder[Byte, Float])
   checkAll("MatchDecoder[Complex Or Simple]", SerializableTests[MatchDecoder[Complex Or Simple]].serializable)
 }

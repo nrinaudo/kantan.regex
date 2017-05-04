@@ -16,9 +16,24 @@
 
 package kantan.regex
 
+import java.time._
+import kantan.codecs.export.Exported
 import kantan.codecs.strings.StringDecoder
 import kantan.codecs.strings.java8.TimeDecoderCompanion
 
 package object java8 extends TimeDecoderCompanion[Option[String], DecodeError, codecs.type] {
   override def decoderFrom[D](d: StringDecoder[D]) = codecs.fromString(d)
+
+  implicit val defaultInstantGroupDecoder: Exported[GroupDecoder[Instant]] =
+    Exported(defaultInstantDecoder)
+  implicit val defaultZonedDateTimeGroupDecoder: Exported[GroupDecoder[ZonedDateTime]] =
+    Exported(defaultZonedDateTimeDecoder)
+  implicit val defaultOffsetDateTimeGroupDecoder: Exported[GroupDecoder[OffsetDateTime]] =
+    Exported(defaultOffsetDateTimeDecoder)
+  implicit val defaultLocalDateTimeGroupDecoder: Exported[GroupDecoder[LocalDateTime]] =
+    Exported(defaultLocalDateTimeDecoder)
+  implicit val defaultLocalDateGroupDecoder: Exported[GroupDecoder[LocalDate]] =
+    Exported(defaultLocalDateDecoder)
+  implicit val defaultLocalTimeGroupDecoder: Exported[GroupDecoder[LocalTime]] =
+    Exported(defaultLocalTimeDecoder)
 }

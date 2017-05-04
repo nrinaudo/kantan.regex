@@ -16,9 +16,11 @@
 
 package kantan.regex.joda
 
+import kantan.codecs.export.Exported
 import kantan.codecs.strings.StringDecoder
 import kantan.codecs.strings.joda.time._
 import kantan.regex._
+import org.joda.time.{DateTime, LocalDate, LocalDateTime, LocalTime}
 
 /** Brings all joda time instances in scope.
   *
@@ -28,4 +30,13 @@ import kantan.regex._
   */
 package object time extends JodaTimeDecoderCompanion[Option[String], DecodeError, codecs.type] {
   override def decoderFrom[D](d: StringDecoder[D]) = codecs.fromString(d)
+
+  implicit val defaultDateTimeGroupDecoder: Exported[GroupDecoder[DateTime]] =
+    Exported(defaultDateTimeDecoder)
+  implicit val defaultLocalDateTimeGroupDecoder: Exported[GroupDecoder[LocalDateTime]] =
+    Exported(defaultLocalDateTimeDecoder)
+  implicit val defaultLocalDateGroupDecoder: Exported[GroupDecoder[LocalDate]] =
+    Exported(defaultLocalDateDecoder)
+  implicit val defaultLocalTimeGroupDecoder: Exported[GroupDecoder[LocalTime]] =
+    Exported(defaultLocalTimeDecoder)
 }

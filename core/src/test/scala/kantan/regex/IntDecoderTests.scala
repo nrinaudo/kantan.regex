@@ -24,9 +24,9 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.typelevel.discipline.scalatest.Discipline
 
 class IntDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
-    checkAll("GroupDecoder[Int]", GroupDecoderTests[Int].decoder[Int, Int])
-    checkAll("GroupDecoder[Int]", SerializableTests[GroupDecoder[Int]].serializable)
+  checkAll("GroupDecoder[Int]", GroupDecoderTests[Int].decoder[Int, Int])
+  checkAll("GroupDecoder[Int]", SerializableTests[GroupDecoder[Int]].serializable)
 
-    checkAll("MatchDecoder[Int]", MatchDecoderTests[Int].decoder[Int, Int])
-    checkAll("MatchDecoder[Int]", SerializableTests[MatchDecoder[Int]].serializable)
+  checkAll("MatchDecoder[Int]", MatchDecoderTests[Int].decoder[Int, Int])
+  checkAll("MatchDecoder[Int]", SerializableTests[MatchDecoder[Int]].serializable)
 }
