@@ -16,9 +16,10 @@
 
 package kantan.regex
 
-import kantan.codecs.{Decoder, DecoderCompanion}
+import kantan.codecs.Decoder
+import kantan.codecs.DecoderCompanion
+import kantan.codecs.collection.HasBuilder
 import scala.annotation.tailrec
-import scala.collection.generic.CanBuildFrom
 import scala.collection.mutable
 
 /** Provides useful methods for [[MatchDecoder]] instance summoning and creation.
@@ -63,7 +64,7 @@ trait MatchDecoderInstances {
   // This is more of a hack and not terribly satisfactory, since regular expressions are much more limitted than I
   // initially assumed: matching "12345" against "(\d)*" will not result in 5 groups, but 2: "12345" and "5".
   implicit def fromCbf[F[_], A]
-  (implicit da: GroupDecoder[Option[A]], cbf: CanBuildFrom[Nothing, A, F[A]]): MatchDecoder[F[A]] =
+  (implicit da: GroupDecoder[Option[A]], cbf: HasBuilder[F, A]): MatchDecoder[F[A]] =
     MatchDecoder.from { m ⇒
       @tailrec
       def loop(i: Int, curr: DecodeResult[mutable.Builder[A, F[A]]]): DecodeResult[F[A]] =
@@ -76,6 +77,6 @@ trait MatchDecoderInstances {
           fa
         })
 
-      loop(1, DecodeResult.success(cbf()))
+      loop(1, DecodeResult.success(cbf.newBuilder))
     }
 }
