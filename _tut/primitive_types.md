@@ -86,7 +86,7 @@ implicit val jodaDateTime: GroupDecoder[DateTime] = {
 
   // Summon an existing GroupDecoder[String] instance and modifies its behaviour,
   // rather than build a new decoder from scratch.
-  GroupDecoder[String].mapResult(s ⇒ DecodeResult(format.parseDateTime(s)))
+  GroupDecoder[String].emap(s ⇒ DecodeResult(format.parseDateTime(s)))
 }
 ```
 

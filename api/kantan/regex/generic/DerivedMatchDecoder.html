@@ -383,6 +383,22 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="kantan.regex.generic.DerivedMatchDecoder">DerivedMatchDecoder</a> → Decoder</dd></dl></div>
+    </li><li name="kantan.codecs.Decoder#emap" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="emap[DD](f:D=&gt;kantan.codecs.Result[F,DD]):kantan.codecs.Decoder[E,DD,F,T]"></a><a id="emap[DD]((A)⇒Result[DecodeError,DD]):Decoder[Match,DD,DecodeError,codecs.type]"></a>
+      <span class="permalink">
+      <a href="../../../kantan/regex/generic/DerivedMatchDecoder.html#emap[DD](f:D=&gt;kantan.codecs.Result[F,DD]):kantan.codecs.Decoder[E,DD,F,T]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">emap</span><span class="tparams">[<span name="DD">DD</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="kantan.regex.generic.DerivedMatchDecoder.A">A</span>) ⇒ <span class="extype" name="kantan.codecs.Result">Result</span>[<a href="../DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a>, <span class="extype" name="kantan.codecs.Decoder.emap.DD">DD</span>]</span>)</span><span class="result">: <span class="extype" name="kantan.codecs.Decoder">Decoder</span>[<a href="../Match.html" class="extype" name="kantan.regex.Match">Match</a>, <span class="extype" name="kantan.codecs.Decoder.emap.DD">DD</span>, <a href="../DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a>, <a href="../codecs$.html" class="extype" name="kantan.regex.codecs">codecs</a>.type]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Decoder</dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -485,6 +501,22 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="kantan.codecs.Decoder#leftMap" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="leftMap[FF](f:F=&gt;FF):kantan.codecs.Decoder[E,D,FF,T]"></a><a id="leftMap[FF]((DecodeError)⇒FF):Decoder[Match,A,FF,codecs.type]"></a>
+      <span class="permalink">
+      <a href="../../../kantan/regex/generic/DerivedMatchDecoder.html#leftMap[FF](f:F=&gt;FF):kantan.codecs.Decoder[E,D,FF,T]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">leftMap</span><span class="tparams">[<span name="FF">FF</span>]</span><span class="params">(<span name="f">f: (<a href="../DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a>) ⇒ <span class="extype" name="kantan.codecs.Decoder.leftMap.FF">FF</span></span>)</span><span class="result">: <span class="extype" name="kantan.codecs.Decoder">Decoder</span>[<a href="../Match.html" class="extype" name="kantan.regex.Match">Match</a>, <span class="extype" name="kantan.regex.generic.DerivedMatchDecoder.A">A</span>, <span class="extype" name="kantan.codecs.Decoder.leftMap.FF">FF</span>, <a href="../codecs$.html" class="extype" name="kantan.regex.codecs">codecs</a>.type]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Decoder</dd></dl></div>
     </li><li name="kantan.codecs.Decoder#map" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="map[DD](f:D=&gt;DD):kantan.codecs.Decoder[E,DD,F,T]"></a><a id="map[DD]((A)⇒DD):Decoder[Match,DD,DecodeError,codecs.type]"></a>
       <span class="permalink">
@@ -498,38 +530,6 @@
       </span>
       <span class="symbol">
         <span class="name">map</span><span class="tparams">[<span name="DD">DD</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="kantan.regex.generic.DerivedMatchDecoder.A">A</span>) ⇒ <span class="extype" name="kantan.codecs.Decoder.map.DD">DD</span></span>)</span><span class="result">: <span class="extype" name="kantan.codecs.Decoder">Decoder</span>[<a href="../Match.html" class="extype" name="kantan.regex.Match">Match</a>, <span class="extype" name="kantan.codecs.Decoder.map.DD">DD</span>, <a href="../DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a>, <a href="../codecs$.html" class="extype" name="kantan.regex.codecs">codecs</a>.type]</span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Decoder</dd></dl></div>
-    </li><li name="kantan.codecs.Decoder#mapError" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="mapError[FF](f:F=&gt;FF):kantan.codecs.Decoder[E,D,FF,T]"></a><a id="mapError[FF]((DecodeError)⇒FF):Decoder[Match,A,FF,codecs.type]"></a>
-      <span class="permalink">
-      <a href="../../../kantan/regex/generic/DerivedMatchDecoder.html#mapError[FF](f:F=&gt;FF):kantan.codecs.Decoder[E,D,FF,T]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">mapError</span><span class="tparams">[<span name="FF">FF</span>]</span><span class="params">(<span name="f">f: (<a href="../DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a>) ⇒ <span class="extype" name="kantan.codecs.Decoder.mapError.FF">FF</span></span>)</span><span class="result">: <span class="extype" name="kantan.codecs.Decoder">Decoder</span>[<a href="../Match.html" class="extype" name="kantan.regex.Match">Match</a>, <span class="extype" name="kantan.regex.generic.DerivedMatchDecoder.A">A</span>, <span class="extype" name="kantan.codecs.Decoder.mapError.FF">FF</span>, <a href="../codecs$.html" class="extype" name="kantan.regex.codecs">codecs</a>.type]</span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Decoder</dd></dl></div>
-    </li><li name="kantan.codecs.Decoder#mapResult" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="mapResult[DD](f:D=&gt;kantan.codecs.Result[F,DD]):kantan.codecs.Decoder[E,DD,F,T]"></a><a id="mapResult[DD]((A)⇒Result[DecodeError,DD]):Decoder[Match,DD,DecodeError,codecs.type]"></a>
-      <span class="permalink">
-      <a href="../../../kantan/regex/generic/DerivedMatchDecoder.html#mapResult[DD](f:D=&gt;kantan.codecs.Result[F,DD]):kantan.codecs.Decoder[E,DD,F,T]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">mapResult</span><span class="tparams">[<span name="DD">DD</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="kantan.regex.generic.DerivedMatchDecoder.A">A</span>) ⇒ <span class="extype" name="kantan.codecs.Result">Result</span>[<a href="../DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a>, <span class="extype" name="kantan.codecs.Decoder.mapResult.DD">DD</span>]</span>)</span><span class="result">: <span class="extype" name="kantan.codecs.Decoder">Decoder</span>[<a href="../Match.html" class="extype" name="kantan.regex.Match">Match</a>, <span class="extype" name="kantan.codecs.Decoder.mapResult.DD">DD</span>, <a href="../DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a>, <a href="../codecs$.html" class="extype" name="kantan.regex.codecs">codecs</a>.type]</span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Decoder</dd></dl></div>
@@ -752,7 +752,48 @@
 
         
 
-        
+        <div class="values members">
+              <h3>Deprecated Value Members</h3>
+              <ol><li name="kantan.codecs.Decoder#mapError" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mapError[FF](f:F=&gt;FF):kantan.codecs.Decoder[E,D,FF,T]"></a><a id="mapError[FF]((DecodeError)⇒FF):Decoder[Match,A,FF,codecs.type]"></a>
+      <span class="permalink">
+      <a href="../../../kantan/regex/generic/DerivedMatchDecoder.html#mapError[FF](f:F=&gt;FF):kantan.codecs.Decoder[E,D,FF,T]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 0.2.0) Use leftMap instead">mapError</span><span class="tparams">[<span name="FF">FF</span>]</span><span class="params">(<span name="f">f: (<a href="../DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a>) ⇒ <span class="extype" name="kantan.codecs.Decoder.mapError.FF">FF</span></span>)</span><span class="result">: <span class="extype" name="kantan.codecs.Decoder">Decoder</span>[<a href="../Match.html" class="extype" name="kantan.regex.Match">Match</a>, <span class="extype" name="kantan.regex.generic.DerivedMatchDecoder.A">A</span>, <span class="extype" name="kantan.codecs.Decoder.mapError.FF">FF</span>, <a href="../codecs$.html" class="extype" name="kantan.regex.codecs">codecs</a>.type]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Decoder</dd><dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.2.0)</i> Use leftMap instead</p></dd></dl></div>
+    </li><li name="kantan.codecs.Decoder#mapResult" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mapResult[DD](f:D=&gt;kantan.codecs.Result[F,DD]):kantan.codecs.Decoder[E,DD,F,T]"></a><a id="mapResult[DD]((A)⇒Result[DecodeError,DD]):Decoder[Match,DD,DecodeError,codecs.type]"></a>
+      <span class="permalink">
+      <a href="../../../kantan/regex/generic/DerivedMatchDecoder.html#mapResult[DD](f:D=&gt;kantan.codecs.Result[F,DD]):kantan.codecs.Decoder[E,DD,F,T]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 0.2.0) Use emap instead">mapResult</span><span class="tparams">[<span name="DD">DD</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="kantan.regex.generic.DerivedMatchDecoder.A">A</span>) ⇒ <span class="extype" name="kantan.codecs.Result">Result</span>[<a href="../DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a>, <span class="extype" name="kantan.codecs.Decoder.mapResult.DD">DD</span>]</span>)</span><span class="result">: <span class="extype" name="kantan.codecs.Decoder">Decoder</span>[<a href="../Match.html" class="extype" name="kantan.regex.Match">Match</a>, <span class="extype" name="kantan.codecs.Decoder.mapResult.DD">DD</span>, <a href="../DecodeError.html" class="extype" name="kantan.regex.DecodeError">DecodeError</a>, <a href="../codecs$.html" class="extype" name="kantan.regex.codecs">codecs</a>.type]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Decoder</dd><dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.2.0)</i> Use emap instead</p></dd></dl></div>
+    </li></ol>
+            </div>
         </div>
 
         <div id="inheritedMembers">
