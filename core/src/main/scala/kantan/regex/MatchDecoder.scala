@@ -31,12 +31,6 @@ import scala.collection.mutable
   * complicated types.
   */
 object MatchDecoder extends GeneratedMatchDecoders with DecoderCompanion[Match, DecodeError, codecs.type] {
-  /** Summons an implicit instance of [[MatchDecoder]] if it exists, fails compilation if it does not.
-    *
-    * This is just a convenience method and equivalent to calling `implicitly[MatchDecoder[A]]`
-    */
-  def apply[A](implicit ev: MatchDecoder[A]): MatchDecoder[A] = macro imp.summon[MatchDecoder[A]]
-
   /** Creates a new [[MatchDecoder]] for a type that already has a [[GroupDecoder]].
     *
     * @param index index (from 1) of the group that should be extracted.

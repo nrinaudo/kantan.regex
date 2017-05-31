@@ -23,12 +23,6 @@ import kantan.codecs.strings.StringDecoder
 
 /** Provides instance creation and summoning methods for [[GroupDecoder]]. */
 object GroupDecoder extends DecoderCompanion[Option[String], DecodeError, codecs.type] {
-  /** Summons an implicit instance of [[[GroupDecoder GroupDecoder[A]]] if one can be found.
-    *
-    * This is a convenience method and equivalent to calling `implicitly[GroupDecoder[A]]`
-    */
-  def apply[A](implicit ev: GroupDecoder[A]): GroupDecoder[A] = macro imp.summon[GroupDecoder[A]]
-
   def dateDecoder(format: DateFormat): GroupDecoder[Date] = codecs.fromString(StringDecoder.dateDecoder(format))
 }
 
