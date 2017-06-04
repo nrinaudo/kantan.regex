@@ -1,4 +1,5 @@
 kantanProject in ThisBuild := "regex"
+startYear in ThisBuild     := Some(2016)
 
 
 
