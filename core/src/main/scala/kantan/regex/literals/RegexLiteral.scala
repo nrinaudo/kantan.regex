@@ -21,6 +21,7 @@ import java.util.regex.{Pattern, PatternSyntaxException}
 
 @SuppressWarnings(Array("org.wartremover.warts.TraversableOps"))
 object RegexLiteral extends Interpolator {
+  type Output = Pattern
   def contextualize(interpolation: StaticInterpolation): Seq[ContextType] = {
     interpolation.parts.foreach {
       case lit@Literal(_, _) ⇒
