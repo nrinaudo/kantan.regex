@@ -35,6 +35,7 @@ import java.util.regex.Matcher
   * }}}
   */
 trait Compiler[E] {
+
   /** Compiles the specified expression into a [[Regex]]. */
   def compile[A](expr: E)(implicit db: MatchDecoder[A]): CompileResult[Regex[DecodeResult[A]]]
 
@@ -64,6 +65,7 @@ trait Compiler[E] {
 
 /** Provides default instances, instance creation and instance summoning methods. */
 object Compiler {
+
   /** Summons an implicit instance of [[[Compiler Compiler[A]]] if one can be found.
     *
     * This is a convenience method and equivalent to calling `implicitly[Compiler[A]]`
@@ -78,8 +80,10 @@ object Compiler {
 
   /** Provides compilation for Scala Regexes. */
   implicit val scalaRegex: Compiler[scala.util.matching.Regex] = fromPattern(r ⇒ CompileResult.success(r.pattern))
+
   /** Provides compilation for Java Patterns. */
   implicit val pattern: Compiler[Pattern] = fromPattern(p ⇒ CompileResult.success(p))
+
   /** Provides compilation for Strings. */
   implicit val string: Compiler[String] = fromPattern(s ⇒ CompileResult(java.util.regex.Pattern.compile(s)))
 }
@@ -87,7 +91,7 @@ object Compiler {
 @SuppressWarnings(Array("org.wartremover.warts.Var"))
 private class MatchIterator(val matcher: Matcher) extends Iterator[Match] {
   var nextSeen = false
-  val m = new Match(matcher)
+  val m        = new Match(matcher)
 
   override def hasNext = {
     if(!nextSeen) nextSeen = matcher.find()

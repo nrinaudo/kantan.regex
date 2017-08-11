@@ -28,14 +28,18 @@ object GroupDecoder extends DecoderCompanion[Option[String], DecodeError, codecs
 
 /** Declares all default [[GroupDecoder]] instances. */
 trait GroupDecoderInstances {
+
   /** Turns a `StringDecoder` instance into a [[GroupDecoder]] one.
     *
     * This provides free support for all primitive types (as well as a few convenience ones, such as `java.io.File`).
     */
   implicit def fromString[A: StringDecoder]: GroupDecoder[A] =
-    GroupDecoder.from(_.map(StringDecoder[A]
-      .leftMap { error ⇒ DecodeError.TypeError(error.getMessage, error.getCause)}.decode)
-      .getOrElse(DecodeResult.emptyGroup))
+    GroupDecoder.from {
+      _.map(StringDecoder[A].leftMap { error ⇒
+        DecodeError.TypeError(error.getMessage, error.getCause)
+      }.decode)
+        .getOrElse(DecodeResult.emptyGroup)
+    }
 
   /** Turns a [[GroupDecoder GroupDecoder[A]]] into a [[GroupDecoder GroupDecoder[Option[A]]]].
     *

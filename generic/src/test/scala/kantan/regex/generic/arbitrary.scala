@@ -16,5 +16,6 @@
 
 package kantan.regex.generic
 
-object arbitrary extends kantan.regex.laws.discipline.ArbitraryInstances
-                         with kantan.codecs.shapeless.laws.discipline.ArbitraryInstances
+object arbitrary
+    extends kantan.regex.laws.discipline.ArbitraryInstances
+    with kantan.codecs.shapeless.laws.discipline.ArbitraryInstances

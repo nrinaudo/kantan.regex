@@ -25,13 +25,14 @@ import java.util.regex.Matcher
   * it's important not to hold onto them: due to the way kantan.regex works internally, [[Match]] is mutable.
   */
 class Match private[regex] (private val matcher: Matcher) {
+
   /** Number of groups in the match. */
   val length: Int = matcher.groupCount()
 
   /** Attempts to decode group `index` as a value of type `A`. */
   def decode[A: GroupDecoder](index: Int): DecodeResult[A] =
     if(index < 0 || index > length) DecodeResult.noSuchGroupId(index)
-    else                            GroupDecoder[A].decode(Option(matcher.group(index)))
+    else GroupDecoder[A].decode(Option(matcher.group(index)))
 
   override def toString = matcher.toString
 }

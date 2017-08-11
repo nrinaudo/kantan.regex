@@ -16,8 +16,8 @@
 
 package kantan.regex
 
-import kantan.regex.laws.discipline.arbitrary._
 import kantan.regex.DecodeError.TypeError
+import kantan.regex.laws.discipline.arbitrary._
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 

@@ -16,5 +16,5 @@
 
 package kantan.regex.cats
 
-object arbitrary extends kantan.regex.laws.discipline.ArbitraryInstances
-                         with kantan.codecs.cats.laws.discipline.ArbitraryInstances
+object arbitrary
+    extends kantan.regex.laws.discipline.ArbitraryInstances with kantan.codecs.cats.laws.discipline.ArbitraryInstances

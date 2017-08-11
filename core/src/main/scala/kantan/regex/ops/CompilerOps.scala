@@ -20,6 +20,7 @@ import kantan.regex.{Compiler, _}
 
 /** Provides useful syntax for types that have a [[Compiler]] instance. */
 final class CompilerOps[S: Compiler](val expr: S) {
+
   /** Compiles this value as a [[Regex]]. */
   def asRegex[A: MatchDecoder]: CompileResult[Regex[DecodeResult[A]]] =
     Compiler[S].compile(expr)

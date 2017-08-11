@@ -1,8 +1,6 @@
 kantanProject in ThisBuild := "regex"
 startYear in ThisBuild     := Some(2016)
 
-
-
 // - root projects -----------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
 lazy val root = Project(id = "kantan-regex", base = file("."))
@@ -10,7 +8,7 @@ lazy val root = Project(id = "kantan-regex", base = file("."))
   .enablePlugins(UnpublishedPlugin)
   .settings(
     initialCommands in console :=
-    """
+      """
       |import kantan.regex._
       |import kantan.regex.implicits._
       |import kantan.regex.generic._
@@ -21,14 +19,13 @@ lazy val root = Project(id = "kantan-regex", base = file("."))
   .dependsOn(core, generic)
 
 lazy val docs = project
-  .settings(unidocProjectFilter in (ScalaUnidoc, unidoc) :=
-            inAnyProject -- inProjectsIf(!java8Supported)(java8)
+  .settings(
+    unidocProjectFilter in (ScalaUnidoc, unidoc) :=
+      inAnyProject -- inProjectsIf(!java8Supported)(java8)
   )
   .enablePlugins(DocumentationPlugin)
   .dependsOn(core, jodaTime, generic, cats, scalaz)
   .dependsOnIf(java8Supported)(java8)
-
-
 
 // - core projects -----------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
@@ -42,14 +39,16 @@ lazy val core = project
   // "optimised" behaviour.
   .settings(scalacOptions ++= (CrossVersion.partialVersion(scalaVersion.value) match {
     case Some((_, x)) if x == 12 ⇒ Seq("-Ydelambdafy:inline")
-    case _             ⇒ Seq.empty
+    case _                       ⇒ Seq.empty
   }))
   .enablePlugins(PublishedPlugin, spray.boilerplate.BoilerplatePlugin)
-  .settings(libraryDependencies ++= Seq(
-    "com.nrinaudo"   %% "kantan.codecs" % Versions.kantanCodecs,
-    "com.propensive" %% "contextual"    % Versions.contextual,
-    "org.scalatest"  %% "scalatest"     % Versions.scalatest  % "test"
-  ))
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.nrinaudo"   %% "kantan.codecs" % Versions.kantanCodecs,
+      "com.propensive" %% "contextual"    % Versions.contextual,
+      "org.scalatest"  %% "scalatest"     % Versions.scalatest % "test"
+    )
+  )
   .laws("laws")
 
 lazy val laws = project
@@ -59,9 +58,7 @@ lazy val laws = project
   )
   .enablePlugins(PublishedPlugin, spray.boilerplate.BoilerplatePlugin)
   .dependsOn(core)
-  .settings(libraryDependencies += "com.nrinaudo"   %% "kantan.codecs-laws" % Versions.kantanCodecs)
-
-
+  .settings(libraryDependencies += "com.nrinaudo" %% "kantan.codecs-laws" % Versions.kantanCodecs)
 
 // - joda-time projects ------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
@@ -72,31 +69,30 @@ lazy val jodaTime = Project(id = "joda-time", base = file("joda-time"))
   )
   .enablePlugins(PublishedPlugin)
   .dependsOn(core, laws % "test")
-  .settings(libraryDependencies ++= Seq(
-    "com.nrinaudo"  %% "kantan.codecs-joda-time"      % Versions.kantanCodecs,
-    "org.scalatest" %% "scalatest"                    % Versions.scalatest    % "test",
-    "com.nrinaudo"  %% "kantan.codecs-joda-time-laws" % Versions.kantanCodecs % "test"
-  ))
-
-
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.nrinaudo"  %% "kantan.codecs-joda-time"      % Versions.kantanCodecs,
+      "org.scalatest" %% "scalatest"                    % Versions.scalatest % "test",
+      "com.nrinaudo"  %% "kantan.codecs-joda-time-laws" % Versions.kantanCodecs % "test"
+    )
+  )
 
 // - java8 projects ----------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
 lazy val java8 = project
   .settings(
-    moduleName    := "kantan.regex-java8",
-    name          := "java8"
+    moduleName := "kantan.regex-java8",
+    name       := "java8"
   )
   .enablePlugins(PublishedPlugin)
   .dependsOn(core, laws % "test")
-  .settings(libraryDependencies ++= Seq(
-    "com.nrinaudo"  %% "kantan.codecs-java8"      % Versions.kantanCodecs,
-    "com.nrinaudo"  %% "kantan.codecs-java8-laws" % Versions.kantanCodecs % "test",
-    "org.scalatest" %% "scalatest"                % Versions.scalatest    % "test"
-  ))
-
-
-
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.nrinaudo"  %% "kantan.codecs-java8"      % Versions.kantanCodecs,
+      "com.nrinaudo"  %% "kantan.codecs-java8-laws" % Versions.kantanCodecs % "test",
+      "org.scalatest" %% "scalatest"                % Versions.scalatest % "test"
+    )
+  )
 
 // - cats projects -----------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
@@ -107,13 +103,13 @@ lazy val cats = project
   )
   .enablePlugins(PublishedPlugin)
   .dependsOn(core, laws % "test")
-  .settings(libraryDependencies ++= Seq(
-    "com.nrinaudo"  %% "kantan.codecs-cats"      % Versions.kantanCodecs,
-    "org.scalatest" %% "scalatest"               % Versions.scalatest    % "test",
-    "com.nrinaudo"  %% "kantan.codecs-cats-laws" % Versions.kantanCodecs % "test"
-  ))
-
-
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.nrinaudo"  %% "kantan.codecs-cats"      % Versions.kantanCodecs,
+      "org.scalatest" %% "scalatest"               % Versions.scalatest % "test",
+      "com.nrinaudo"  %% "kantan.codecs-cats-laws" % Versions.kantanCodecs % "test"
+    )
+  )
 
 // - scalaz projects ---------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
@@ -124,13 +120,13 @@ lazy val scalaz = project
   )
   .enablePlugins(PublishedPlugin)
   .dependsOn(core, laws % "test")
-  .settings(libraryDependencies ++= Seq(
-    "com.nrinaudo"  %% "kantan.codecs-scalaz"         % Versions.kantanCodecs,
-    "org.scalatest" %% "scalatest"                    % Versions.scalatest    % "test",
-    "com.nrinaudo"  %% "kantan.codecs-scalaz-laws"    % Versions.kantanCodecs % "test"
-  ))
-
-
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.nrinaudo"  %% "kantan.codecs-scalaz"      % Versions.kantanCodecs,
+      "org.scalatest" %% "scalatest"                 % Versions.scalatest % "test",
+      "com.nrinaudo"  %% "kantan.codecs-scalaz-laws" % Versions.kantanCodecs % "test"
+    )
+  )
 
 // - shapeless projects ------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
@@ -141,8 +137,10 @@ lazy val generic = project
   )
   .enablePlugins(PublishedPlugin)
   .dependsOn(core, laws % "test")
-  .settings(libraryDependencies ++= Seq(
-    "com.nrinaudo"  %% "kantan.codecs-shapeless"      % Versions.kantanCodecs,
-    "org.scalatest" %% "scalatest"                    % Versions.scalatest    % "test",
-    "com.nrinaudo"  %% "kantan.codecs-shapeless-laws" % Versions.kantanCodecs % "test"
-  ))
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.nrinaudo"  %% "kantan.codecs-shapeless"      % Versions.kantanCodecs,
+      "org.scalatest" %% "scalatest"                    % Versions.scalatest % "test",
+      "com.nrinaudo"  %% "kantan.codecs-shapeless-laws" % Versions.kantanCodecs % "test"
+    )
+  )

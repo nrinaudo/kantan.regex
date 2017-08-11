@@ -43,7 +43,7 @@ class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks {
       val index = is.length + 1 + offset
 
       implicit val decoder: MatchDecoder[Int] = outOfBounds(index)
-      val regex = is.map(_ ⇒ "(-?\\d+)").mkString(" ").asUnsafeRegex[Int]
+      val regex                               = is.map(_ ⇒ "(-?\\d+)").mkString(" ").asUnsafeRegex[Int]
       assert(regex.eval(is.mkString(" ")).next == DecodeResult.noSuchGroupId(index))
     }
   }

@@ -16,5 +16,5 @@
 
 package kantan.regex.scalaz
 
-object arbitrary extends kantan.regex.laws.discipline.ArbitraryInstances
-                         with kantan.codecs.scalaz.laws.discipline.ArbitraryInstances
+object arbitrary
+    extends kantan.regex.laws.discipline.ArbitraryInstances with kantan.codecs.scalaz.laws.discipline.ArbitraryInstances

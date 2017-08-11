@@ -20,18 +20,17 @@ import imp.imp
 import java.util.regex.Pattern
 import kantan.codecs.Result
 import kantan.codecs.laws._
-import kantan.regex._
-import kantan.regex.DecodeError.{NoSuchGroupId, TypeError}
+import kantan.regex._, DecodeError.{NoSuchGroupId, TypeError}
 import kantan.regex.laws._
 import org.scalacheck.{Arbitrary, Cogen, Gen}
-import org.scalacheck.Arbitrary.{arbitrary => arb}
+import org.scalacheck.Arbitrary.{arbitrary ⇒ arb}
 import org.scalacheck.Gen._
 import org.scalacheck.rng.Seed
 
 object arbitrary extends kantan.regex.laws.discipline.ArbitraryInstances
 
-trait ArbitraryInstances extends kantan.codecs.laws.discipline.ArbitraryInstances
-                                 with kantan.regex.laws.discipline.ArbitraryArities {
+trait ArbitraryInstances
+    extends kantan.codecs.laws.discipline.ArbitraryInstances with kantan.regex.laws.discipline.ArbitraryArities {
   // - Arbitrary errors ------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   implicit val arbCompileError: Arbitrary[CompileError] =
@@ -45,23 +44,23 @@ trait ArbitraryInstances extends kantan.codecs.laws.discipline.ArbitraryInstance
   implicit val arbRegexError: Arbitrary[RegexError] =
     Arbitrary(oneOf(arb[DecodeError], arb[CompileError]))
 
-  implicit val cogenRegexDecodeError: Cogen[DecodeError] = Cogen { (seed: Seed, err: DecodeError) ⇒ err match {
-    case DecodeError.EmptyGroup       ⇒ seed
-    case DecodeError.NoSuchGroupId(i) ⇒ imp[Cogen[Int]].perturb(seed, i)
-    case DecodeError.TypeError(msg)   ⇒ imp[Cogen[String]].perturb(seed, msg)
-  }}
-
-
+  implicit val cogenRegexDecodeError: Cogen[DecodeError] = Cogen { (seed: Seed, err: DecodeError) ⇒
+    err match {
+      case DecodeError.EmptyGroup       ⇒ seed
+      case DecodeError.NoSuchGroupId(i) ⇒ imp[Cogen[Int]].perturb(seed, i)
+      case DecodeError.TypeError(msg)   ⇒ imp[Cogen[String]].perturb(seed, msg)
+    }
+  }
 
   // - Arbitrary results -----------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   implicit def arbDecodeResult[A: Arbitrary]: Arbitrary[DecodeResult[A]] =
-    Arbitrary(oneOf(
-      imp[Arbitrary[A]].arbitrary.map(Result.success),
-      arbDecodeError.arbitrary.map(Result.failure)
-    ))
-
-
+    Arbitrary(
+      oneOf(
+        imp[Arbitrary[A]].arbitrary.map(Result.success),
+        arbDecodeError.arbitrary.map(Result.failure)
+      )
+    )
 
   // - Arbitrary groups -----------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
@@ -69,21 +68,23 @@ trait ArbitraryInstances extends kantan.codecs.laws.discipline.ArbitraryInstance
     Arbitrary(la.arbitrary.map(_.mapEncoded(Option.apply).tag[codecs.type]))
 
   implicit def arbIllegalGroup[A](implicit la: Arbitrary[IllegalString[A]]): Arbitrary[IllegalGroup[A]] =
-    Arbitrary(Gen.oneOf(
-      la.arbitrary.map(_.mapEncoded(Option.apply).tag[codecs.type]),
-      Gen.const(CodecValue.IllegalValue[Option[String], A, codecs.type](Option.empty))
-    ))
+    Arbitrary(
+      Gen.oneOf(
+        la.arbitrary.map(_.mapEncoded(Option.apply).tag[codecs.type]),
+        Gen.const(CodecValue.IllegalValue[Option[String], A, codecs.type](Option.empty))
+      )
+    )
 
   implicit def arbLegalGroupOpt[A](implicit la: Arbitrary[LegalString[A]]): Arbitrary[LegalGroup[Option[A]]] =
-    Arbitrary(Gen.oneOf(
-      la.arbitrary.map(_.mapEncoded(Option.apply).mapDecoded(Option.apply).tag[codecs.type]),
-      Gen.const(CodecValue.LegalValue[Option[String], Option[A], codecs.type](Option.empty, Option.empty))
-    ))
+    Arbitrary(
+      Gen.oneOf(
+        la.arbitrary.map(_.mapEncoded(Option.apply).mapDecoded(Option.apply).tag[codecs.type]),
+        Gen.const(CodecValue.LegalValue[Option[String], Option[A], codecs.type](Option.empty, Option.empty))
+      )
+    )
 
   implicit def arbIllegalGroupOpt[A](implicit la: Arbitrary[IllegalString[A]]): Arbitrary[IllegalGroup[Option[A]]] =
     Arbitrary(la.arbitrary.map(_.mapEncoded(Option.apply).mapDecoded(Option.apply).tag[codecs.type]))
-
-
 
   // - Arbitrary matches -----------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
@@ -99,5 +100,5 @@ trait ArbitraryInstances extends kantan.codecs.laws.discipline.ArbitraryInstance
     Arbitrary(la.arbitrary.map(_.mapEncoded(toMatch).tag[codecs.type]))
 
   implicit def arbIllegalMatch[A](implicit ia: Arbitrary[IllegalString[A]]): Arbitrary[IllegalMatch[A]] =
-    Arbitrary (ia.arbitrary.map(_.mapEncoded(toMatch).tag[codecs.type]))
+    Arbitrary(ia.arbitrary.map(_.mapEncoded(toMatch).tag[codecs.type]))
 }

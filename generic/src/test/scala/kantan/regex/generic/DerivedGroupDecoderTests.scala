@@ -29,11 +29,13 @@ import org.typelevel.discipline.scalatest.Discipline
 
 @SuppressWarnings(Array("org.wartremover.warts.Null"))
 class DerivedGroupDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
-  implicit val arbLegal: Arbitrary[LegalGroup[Int Or Boolean]] = arbLegalValue((o: Or[Int, Boolean]) ⇒
-    o match {
-      case Left(i) ⇒ Option(i.toString)
-      case Right(b) ⇒ Option(b.toString)
-    })
+  implicit val arbLegal: Arbitrary[LegalGroup[Int Or Boolean]] = arbLegalValue(
+    (o: Or[Int, Boolean]) ⇒
+      o match {
+        case Left(i)  ⇒ Option(i.toString)
+        case Right(b) ⇒ Option(b.toString)
+    }
+  )
 
   checkAll("GroupDecoder[Int Or Boolean]", GroupDecoderTests[Int Or Boolean].decoder[Byte, String])
   checkAll("GroupDecoder[Int Or Boolean]", SerializableTests[GroupDecoder[Int Or Boolean]].serializable)
