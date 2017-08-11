@@ -16,42 +16,44 @@
 
 package kantan.regex
 
-import org.scalatest.FunSuite
+import kantan.codecs.scalatest.ResultValues
+import org.scalatest.{FunSuite, Matchers}
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
 @SuppressWarnings(Array("org.wartremover.warts.Throw"))
-class DecodeResultTests extends FunSuite with GeneratorDrivenPropertyChecks {
+class DecodeResultTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers with ResultValues {
   test("DecodeResult.success should return a success") {
     forAll { i: Int ⇒
-      assert(DecodeResult.success(i) == Success(i))
+      DecodeResult.success(i).success.value should be(i)
     }
   }
 
   test("DecodeResult.apply should return a success on 'good' values") {
     forAll { i: Int ⇒
-      assert(DecodeResult(i) == Success(i))
+      DecodeResult(i).success.value should be(i)
     }
   }
 
   test("DecodeResult.apply should return a failure on 'bad' values") {
     forAll { e: Exception ⇒
-      assert(DecodeResult(throw e) == Failure(DecodeError.TypeError(e)))
+      DecodeResult(throw e).failure.value should be(DecodeError.TypeError(e))
     }
   }
 
   test("DecodeResult.typeError should return a failure") {
     forAll { e: Exception ⇒
-      assert(DecodeResult.typeError(e) == Failure(DecodeError.TypeError(e)))
-      assert(DecodeResult.typeError(e.getMessage) match {
-        case Failure(DecodeError.TypeError(m)) ⇒ m == e.getMessage
-        case _                                 ⇒ false
-      })
+      DecodeResult.typeError(e).failure.value should be(DecodeError.TypeError(e))
+
+      DecodeResult.typeError(e.getMessage) match {
+        case Failure(DecodeError.TypeError(m)) ⇒ m should be(e.getMessage)
+        case a                                 ⇒ fail(s"$a was not a type error")
+      }
     }
   }
 
   test("DecodeResult.noSuchGroupId should return a failure ") {
     forAll { i: Int ⇒
-      assert(DecodeResult.noSuchGroupId(i) == Failure(DecodeError.NoSuchGroupId(i)))
+      DecodeResult.noSuchGroupId(i).failure.value should be(DecodeError.NoSuchGroupId(i))
     }
   }
 }

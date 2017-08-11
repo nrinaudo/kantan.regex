@@ -18,16 +18,16 @@ package kantan.regex
 
 import kantan.regex.laws.discipline.arbitrary._
 import kantan.regex.ops._
-import org.scalatest.FunSuite
+import org.scalatest.{FunSuite, Matchers}
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
-class GroupDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks {
+class GroupDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
   test("Instances created through GroupDecoder.apply should behave as expected") {
     forAll { (s: String, f: (Option[String] ⇒ DecodeResult[Int])) ⇒
       implicit val decoder: GroupDecoder[Int] = GroupDecoder.from(f)
 
       val r = ".*".asUnsafeRegex[Int]
-      assert(r.eval(s).next == f(Some(s)))
+      r.eval(s).next should be(f(Some(s)))
     }
   }
 
@@ -35,7 +35,7 @@ class GroupDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks {
     forAll { (f: (Option[String] ⇒ DecodeResult[Int])) ⇒
       implicit val decoder: GroupDecoder[Int] = GroupDecoder.from(f)
 
-      assert(decoder.equals(GroupDecoder[Int]))
+      decoder should be theSameInstanceAs GroupDecoder[Int]
     }
   }
 }

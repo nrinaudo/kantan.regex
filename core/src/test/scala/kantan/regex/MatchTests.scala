@@ -18,13 +18,13 @@ package kantan.regex
 
 import kantan.regex.ops._
 import org.scalacheck.{Arbitrary, Gen}
-import org.scalatest.FunSuite
+import org.scalatest.{FunSuite, Matchers}
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
-class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks {
+class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
   test("length should return the expected value") {
     def validating(length: Int): MatchDecoder[List[Int]] = MatchDecoder[List[Int]].contramapEncoded { (m: Match) ⇒
-      assert(m.length == length)
+      m.length should be(length)
       m
     }
 
@@ -32,7 +32,7 @@ class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks {
       implicit val decoder: MatchDecoder[List[Int]] = validating(is.length)
 
       val regex = is.map(_ ⇒ "(-?\\d+)").mkString(" ").asUnsafeRegex[List[Int]].map(_.get)
-      assert(regex.eval(is.mkString(" ")).next == is)
+      regex.eval(is.mkString(" ")).next should be(is)
     }
   }
 
@@ -44,7 +44,7 @@ class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks {
 
       implicit val decoder: MatchDecoder[Int] = outOfBounds(index)
       val regex                               = is.map(_ ⇒ "(-?\\d+)").mkString(" ").asUnsafeRegex[Int]
-      assert(regex.eval(is.mkString(" ")).next == DecodeResult.noSuchGroupId(index))
+      regex.eval(is.mkString(" ")).next should be(DecodeResult.noSuchGroupId(index))
     }
   }
 }
