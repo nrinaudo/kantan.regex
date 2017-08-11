@@ -19,28 +19,28 @@ package kantan.regex
 import kantan.codecs.laws._
 import kantan.regex.implicits._
 import kantan.regex.laws.discipline.arbitrary._
-import org.scalatest.FunSuite
+import org.scalatest.{FunSuite, Matchers}
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
-class StringOpsTests extends FunSuite with GeneratorDrivenPropertyChecks {
+class StringOpsTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
   test("evalRegex should succeed for valid regular expressions") {
     forAll { value: LegalString[Int] ⇒
-      assert(value.encoded.evalRegex[Int](rx"-?\d+").toList == List(DecodeResult.success(value.decoded)))
-      assert(value.encoded.evalRegex[Int](rx"-?\d+", 0).toList == List(DecodeResult.success(value.decoded)))
-      assert(value.encoded.evalRegex("-?\\d+".asUnsafeRegex[Int]).toList == List(DecodeResult.success(value.decoded)))
+      value.encoded.evalRegex[Int](rx"-?\d+").toList should be(List(DecodeResult.success(value.decoded)))
+      value.encoded.evalRegex[Int](rx"-?\d+", 0).toList should be(List(DecodeResult.success(value.decoded)))
+      value.encoded.evalRegex("-?\\d+".asUnsafeRegex[Int]).toList should be(List(DecodeResult.success(value.decoded)))
     }
 
     forAll { value: IllegalString[Int] ⇒
-      assert(value.encoded.evalRegex[Int](rx"-?\d+").forall(_.isFailure))
-      assert(value.encoded.evalRegex[Int](rx"-?\d+", 0).forall(_.isFailure))
-      assert(value.encoded.evalRegex("-?\\d+".asUnsafeRegex[Int]).forall(_.isFailure))
+      every(value.encoded.evalRegex[Int](rx"-?\d+").toList) should be a 'failure
+      every(value.encoded.evalRegex[Int](rx"-?\d+", 0).toList) should be a 'failure
+      every(value.encoded.evalRegex("-?\\d+".asUnsafeRegex[Int]).toList) should be a 'failure
     }
   }
 
   test("unsafeEvalRegex should succeed for valid regular expressions and valid matches") {
     forAll { value: LegalString[Int] ⇒
-      assert(value.encoded.unsafeEvalRegex[Int](rx"-?\d+").toList == List(value.decoded))
-      assert(value.encoded.unsafeEvalRegex[Int](rx"-?\d+", 0).toList == List(value.decoded))
+      value.encoded.unsafeEvalRegex[Int](rx"-?\d+").toList should be(List(value.decoded))
+      value.encoded.unsafeEvalRegex[Int](rx"-?\d+", 0).toList should be(List(value.decoded))
     }
   }
 }

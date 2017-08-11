@@ -18,10 +18,10 @@ package kantan.regex
 
 import kantan.regex.implicits._
 import kantan.regex.laws.discipline.arbitrary._
-import org.scalatest.FunSuite
+import org.scalatest.{FunSuite, Matchers}
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
-class MatchDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks {
+class MatchDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
   test("Instances created through MatchDecoder.apply should behave as expected") {
     forAll { (s: String, f: (Match ⇒ DecodeResult[Int])) ⇒
       implicit val decoder: MatchDecoder[Int] = MatchDecoder.from(f)
@@ -30,7 +30,7 @@ class MatchDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks {
       val m = rx".*".matcher(s)
       m.find()
 
-      assert(r.eval(s).next == f(new Match(m)))
+      r.eval(s).next should be(f(new Match(m)))
     }
   }
 
@@ -38,7 +38,7 @@ class MatchDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks {
     forAll { (f: (Match ⇒ DecodeResult[Int])) ⇒
       implicit val decoder: MatchDecoder[Int] = MatchDecoder.from(f)
 
-      assert(decoder.equals(MatchDecoder[Int]))
+      decoder should be theSameInstanceAs MatchDecoder[Int]
     }
   }
 }

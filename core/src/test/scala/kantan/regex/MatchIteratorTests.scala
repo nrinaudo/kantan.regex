@@ -17,11 +17,11 @@
 package kantan.regex
 
 import kantan.regex.implicits._
-import org.scalatest.FunSuite
+import org.scalatest.{FunSuite, Matchers}
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
 @SuppressWarnings(Array("org.wartremover.warts.While"))
-class MatchIteratorTests extends FunSuite with GeneratorDrivenPropertyChecks {
+class MatchIteratorTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
   def toMatchIterator(is: List[Int]): Iterator[Int] = Regex[Int](rx"-?\d+").eval(is.mkString(" ")).map(_.get)
 
   test("MatchIterator should fail when reading more than the maximum number of elements") {
@@ -38,7 +38,7 @@ class MatchIteratorTests extends FunSuite with GeneratorDrivenPropertyChecks {
     forAll { is: List[Int] ⇒
       val it = toMatchIterator(is)
       is.indices.foreach(_ ⇒ it.next)
-      assert(!it.hasNext)
+      it.hasNext should be(false)
     }
   }
 }

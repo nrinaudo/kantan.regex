@@ -16,26 +16,27 @@
 
 package kantan.regex
 
-import org.scalatest.FunSuite
+import kantan.codecs.scalatest.ResultValues
+import org.scalatest.{FunSuite, Matchers}
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
 @SuppressWarnings(Array("org.wartremover.warts.Throw"))
-class CompileResultTests extends FunSuite with GeneratorDrivenPropertyChecks {
+class CompileResultTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers with ResultValues {
   test("CompileResult.success should return a success") {
     forAll { i: Int ⇒
-      assert(CompileResult.success(i) == Success(i))
+      CompileResult.success(i).success.value should be(i)
     }
   }
 
   test("CompileResult.apply should return a success on 'good' values") {
     forAll { i: Int ⇒
-      assert(CompileResult(i) == Success(i))
+      CompileResult(i).success.value should be(i)
     }
   }
 
   test("CompileResult.apply should return a failure on 'bad' values") {
     forAll { e: Exception ⇒
-      assert(CompileResult(throw e) == Failure(CompileError(e)))
+      CompileResult(throw e).failure.value should be(CompileError(e))
     }
   }
 }

@@ -17,23 +17,23 @@
 package kantan.regex
 
 import kantan.regex.implicits._
-import org.scalatest.FunSuite
+import org.scalatest.{FunSuite, Matchers}
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
-class RegexTests extends FunSuite with GeneratorDrivenPropertyChecks {
+class RegexTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
   test("All matches should be decoded as expected.") {
     forAll { is: List[Int] ⇒
       val regex = ("-?\\d+").asUnsafeRegex[Int].map(_.get)
-      assert(regex.eval(is.mkString(" ")).toList == is)
+      regex.eval(is.mkString(" ")).toList should be(is)
     }
   }
 
   test("Invalid regular expressions should not compile") {
-    assert("[".asRegex[Int].isFailure)
+    "[".asRegex[Int].isFailure should be(true)
   }
 
   test("Regexes obtained from a pattern should have that pattern as a toString") {
     val pattern = rx"-?\d+"
-    assert(Regex[Int](pattern).toString == pattern.toString)
+    Regex[Int](pattern).toString should be(pattern.toString)
   }
 }

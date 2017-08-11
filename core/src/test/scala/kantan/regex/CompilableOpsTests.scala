@@ -17,24 +17,24 @@
 package kantan.regex
 
 import kantan.regex.implicits._
-import org.scalatest.FunSuite
+import org.scalatest.{FunSuite, Matchers}
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
-class CompilableOpsTests extends FunSuite with GeneratorDrivenPropertyChecks {
+class CompilableOpsTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
   test("asRegex should succeed for valid regular expressions") {
-    assert("\\d+".asRegex[Int].isSuccess)
-    assert("\\d+".asRegex[Int](1).isSuccess)
+    "\\d+".asRegex[Int] should be a 'success
+    "\\d+".asRegex[Int](1) should be a 'success
 
-    assert(rx"\\d+".asRegex[Int].isSuccess)
-    assert(rx"\\d+".asRegex[Int](1).isSuccess)
+    rx"\\d+".asRegex[Int] should be a 'success
+    rx"\\d+".asRegex[Int](1) should be a 'success
 
-    assert("\\d+".r.asRegex[Int].isSuccess)
-    assert("\\d+".r.asRegex[Int](1).isSuccess)
+    "\\d+".r.asRegex[Int] should be a 'success
+    "\\d+".r.asRegex[Int](1) should be a 'success
   }
 
   test("asRegex should fail for invalid regular expressions") {
-    assert("[".asRegex[Int].isFailure)
-    assert("[".asRegex[Int](1).isFailure)
+    "[".asRegex[Int] should be a 'failure
+    "[".asRegex[Int](1) should be a 'failure
   }
 
   test("asUnsafeRegex should succeed for valid regular expressions") {
