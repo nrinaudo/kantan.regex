@@ -16,5 +16,6 @@
 
 package kantan.regex.joda.time
 
-object arbitrary extends kantan.codecs.strings.joda.time.laws.discipline.ArbitraryInstances
-                         with kantan.regex.laws.discipline.ArbitraryInstances
+object arbitrary
+    extends kantan.codecs.strings.joda.time.laws.discipline.ArbitraryInstances
+    with kantan.regex.laws.discipline.ArbitraryInstances

@@ -27,11 +27,10 @@ import scalaz.Maybe
 import scalaz.scalacheck.ScalazArbitrary._
 
 class MaybeDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
-  implicit val legalGroup: Arbitrary[LegalGroup[Maybe[Int]]] = arbLegalMaybe
+  implicit val legalGroup: Arbitrary[LegalGroup[Maybe[Int]]]     = arbLegalMaybe
   implicit val illegalGroup: Arbitrary[IllegalGroup[Maybe[Int]]] = arbIllegalMaybe
-  implicit val legalMatch: Arbitrary[LegalMatch[Maybe[Int]]] = arbLegalMaybe
+  implicit val legalMatch: Arbitrary[LegalMatch[Maybe[Int]]]     = arbLegalMaybe
   implicit val illegalMatch: Arbitrary[IllegalMatch[Maybe[Int]]] = arbIllegalMaybe
-
 
   checkAll("GroupDecoder[Maybe[Int]]", GroupDecoderTests[Maybe[Int]].decoder[Int, Int])
   checkAll("MatchDecoder[Maybe[Int]]", MatchDecoderTests[Maybe[Int]].decoder[Int, Int])

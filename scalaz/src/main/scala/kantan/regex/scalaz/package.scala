@@ -16,7 +16,6 @@
 
 package kantan.regex
 
-
 import _root_.scalaz._
 import kantan.codecs.scalaz.ScalazInstances
 
@@ -30,5 +29,5 @@ package object scalaz extends ScalazInstances {
   // - Equal instances for errors --------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   implicit val compileErrorEqual: Equal[CompileError] = Equal.equalA
-  implicit val decodeErrorEqual: Equal[DecodeError] = Equal.equalA
+  implicit val decodeErrorEqual: Equal[DecodeError]   = Equal.equalA
 }

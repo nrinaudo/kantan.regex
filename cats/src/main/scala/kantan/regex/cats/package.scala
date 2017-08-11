@@ -26,9 +26,8 @@ package object cats extends CatsInstances {
     override def map[A, B](fa: Regex[A])(f: A ⇒ B) = fa.map(f)
   }
 
-
   // - Eq instances for errors -----------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   implicit val compileErrorEq: Eq[CompileError] = Eq.fromUniversalEquals
-  implicit val decodeErrorEq: Eq[DecodeError] = Eq.fromUniversalEquals
+  implicit val decodeErrorEq: Eq[DecodeError]   = Eq.fromUniversalEquals
 }

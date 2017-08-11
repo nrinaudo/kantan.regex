@@ -23,8 +23,6 @@ package object regex {
   // -------------------------------------------------------------------------------------------------------------------
   type Pattern = java.util.regex.Pattern
 
-
-
   // - Decoder types ---------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   /** Type class for types that can be decoded from capturing groups.
@@ -43,8 +41,6 @@ package object regex {
     */
   type MatchDecoder[A] = Decoder[Match, A, DecodeError, codecs.type]
 
-
-
   // - Result types ----------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   type Success[A] = Result.Success[A]
@@ -57,7 +53,7 @@ package object regex {
     *
     * @documentable
     */
-  type DecodeResult[A]  = Result[DecodeError, A]
+  type DecodeResult[A] = Result[DecodeError, A]
 
   /** Result type for compilation operations.
     *
@@ -69,5 +65,5 @@ package object regex {
     *
     * @documentable
     */
-  type RegexResult[A]   = Result[RegexError, A]
+  type RegexResult[A] = Result[RegexError, A]
 }

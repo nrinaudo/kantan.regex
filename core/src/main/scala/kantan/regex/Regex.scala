@@ -18,6 +18,7 @@ package kantan.regex
 
 /** Compiled version of a regular expression. */
 trait Regex[A] { self ⇒
+
   /** Turns a `Regex[A]` into a `Regex[B]` by applying the specified function to each result. */
   def map[B](f: A ⇒ B): Regex[B] = new Regex[B] {
     override def eval(str: String) = self.eval(str).map(f)
@@ -28,6 +29,7 @@ trait Regex[A] { self ⇒
 }
 
 object Regex {
+
   /** Turns the specified pattern into a [[Regex]].
     *
     * Decoding is achieved by applying whatever [[MatchDecoder]] is in scope for `A` on each match.
@@ -38,7 +40,7 @@ object Regex {
     */
   def apply[A: MatchDecoder](pattern: Pattern): Regex[DecodeResult[A]] = new Regex[DecodeResult[A]] {
     override def eval(s: String) = new MatchIterator(pattern.matcher(s)).map(m ⇒ MatchDecoder[A].decode(m))
-    override def toString = pattern.toString
+    override def toString        = pattern.toString
   }
 
   /** Turns the specified pattern into a [[Regex]].

@@ -31,6 +31,7 @@ import scala.collection.mutable
   * complicated types.
   */
 object MatchDecoder extends GeneratedMatchDecoders with DecoderCompanion[Match, DecodeError, codecs.type] {
+
   /** Creates a new [[MatchDecoder]] for a type that already has a [[GroupDecoder]].
     *
     * @param index index (from 1) of the group that should be extracted.
@@ -40,6 +41,7 @@ object MatchDecoder extends GeneratedMatchDecoders with DecoderCompanion[Match, 
 
 /** Declares default [[MatchDecoder]] instances. */
 trait MatchDecoderInstances {
+
   /** Turns a [[GroupDecoder]] into a [[MatchDecoder]] by having it look at the entire match rather than a specific
     * group. */
   implicit def fromGroup[A: GroupDecoder]: MatchDecoder[A] = MatchDecoder.fromGroup(0)
@@ -57,19 +59,19 @@ trait MatchDecoderInstances {
   // TODO: there *must* be a more elegant way to write this.
   // This is more of a hack and not terribly satisfactory, since regular expressions are much more limitted than I
   // initially assumed: matching "12345" against "(\d)*" will not result in 5 groups, but 2: "12345" and "5".
-  implicit def fromCbf[F[_], A]
-  (implicit da: GroupDecoder[Option[A]], cbf: HasBuilder[F, A]): MatchDecoder[F[A]] =
+  implicit def fromCbf[F[_], A](implicit da: GroupDecoder[Option[A]], cbf: HasBuilder[F, A]): MatchDecoder[F[A]] =
     MatchDecoder.from { m ⇒
       @tailrec
       def loop(i: Int, curr: DecodeResult[mutable.Builder[A, F[A]]]): DecodeResult[F[A]] =
         if(i > m.length || !curr.isSuccess) curr.map(_.result())
-        else loop(i + 1, for {
-          fa ← curr
-          a  ← m.decode[Option[A]](i)
-        } yield {
-          a.foreach(fa += _)
-          fa
-        })
+        else
+          loop(i + 1, for {
+            fa ← curr
+            a  ← m.decode[Option[A]](i)
+          } yield {
+            a.foreach(fa += _)
+            fa
+          })
 
       loop(1, DecodeResult.success(cbf.newBuilder))
     }

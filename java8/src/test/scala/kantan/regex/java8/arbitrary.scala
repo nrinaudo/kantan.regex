@@ -16,5 +16,6 @@
 
 package kantan.regex.java8
 
-object arbitrary extends kantan.regex.laws.discipline.ArbitraryInstances with
-                         kantan.codecs.strings.java8.laws.discipline.ArbitraryInstances
+object arbitrary
+    extends kantan.regex.laws.discipline.ArbitraryInstances
+    with kantan.codecs.strings.java8.laws.discipline.ArbitraryInstances

@@ -27,9 +27,9 @@ import scalaz.\/
 import scalaz.scalacheck.ScalazArbitrary._
 
 class DisjunctionDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
-  implicit val legalGroup: Arbitrary[LegalGroup[Int \/ Boolean]] = arbLegalDisjunction
+  implicit val legalGroup: Arbitrary[LegalGroup[Int \/ Boolean]]     = arbLegalDisjunction
   implicit val illegalGroup: Arbitrary[IllegalGroup[Int \/ Boolean]] = arbIllegalDisjunction
-  implicit val legalMatch: Arbitrary[LegalMatch[Int \/ Boolean]] = arbLegalDisjunction
+  implicit val legalMatch: Arbitrary[LegalMatch[Int \/ Boolean]]     = arbLegalDisjunction
   implicit val illegalMatch: Arbitrary[IllegalMatch[Int \/ Boolean]] = arbIllegalDisjunction
 
   checkAll("GroupDecoder[Int \\/ Boolean]", GroupDecoderTests[Int \/ Boolean].decoder[Int, Int])
