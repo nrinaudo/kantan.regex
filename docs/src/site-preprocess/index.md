@@ -4,7 +4,7 @@ layout: index
 
 [![Build Status](https://travis-ci.org/nrinaudo/kantan.regex.svg?branch=master)](https://travis-ci.org/nrinaudo/kantan.regex)
 [![codecov](https://codecov.io/gh/nrinaudo/kantan.regex/branch/master/graph/badge.svg)](https://codecov.io/gh/nrinaudo/kantan.regex)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.nrinaudo/kantan.regex_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.nrinaudo/kantan.regex_2.11)
+[![Latest version](https://index.scala-lang.org/nrinaudo/kantan.regex/kantan.regex/latest.svg)](https://index.scala-lang.org/nrinaudo/kantan.regex)
 [![Join the chat at https://gitter.im/nrinaudo/kantan.regex](https://img.shields.io/badge/gitter-join%20chat-52c435.svg)](https://gitter.im/nrinaudo/kantan.regex)
 
 kantan.regex is a library for extracting useful types from regular expression matches written in the
