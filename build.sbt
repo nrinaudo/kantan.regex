@@ -12,11 +12,12 @@ lazy val root = Project(id = "kantan-regex", base = file("."))
       |import kantan.regex._
       |import kantan.regex.implicits._
       |import kantan.regex.generic._
+      |import kantan.regex.refined._
     """.stripMargin
   )
-  .aggregate(core, docs, laws, cats, scalaz, jodaTime, generic)
+  .aggregate(core, docs, laws, cats, scalaz, jodaTime, generic, refined)
   .aggregateIf(java8Supported)(java8)
-  .dependsOn(core, generic)
+  .dependsOn(core, generic, refined)
 
 lazy val docs = project
   .settings(
@@ -24,7 +25,7 @@ lazy val docs = project
       inAnyProject -- inProjectsIf(!java8Supported)(java8)
   )
   .enablePlugins(DocumentationPlugin)
-  .dependsOn(core, jodaTime, generic, cats, scalaz)
+  .dependsOn(core, jodaTime, generic, cats, scalaz, refined)
   .dependsOnIf(java8Supported)(java8)
 
 // - core projects -----------------------------------------------------------------------------------------------------
@@ -142,5 +143,22 @@ lazy val generic = project
       "com.nrinaudo" %% "kantan.codecs-shapeless"      % Versions.kantanCodecs,
       "com.nrinaudo" %% "kantan.codecs-scalatest"      % Versions.kantanCodecs % "test",
       "com.nrinaudo" %% "kantan.codecs-shapeless-laws" % Versions.kantanCodecs % "test"
+    )
+  )
+
+// - refined project ---------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
+lazy val refined = project
+  .settings(
+    moduleName := "kantan.regex-refined",
+    name       := "refined"
+  )
+  .enablePlugins(PublishedPlugin)
+  .dependsOn(core, laws % "test")
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.nrinaudo" %% "kantan.codecs-refined"      % Versions.kantanCodecs,
+      "com.nrinaudo" %% "kantan.codecs-refined-laws" % Versions.kantanCodecs % "test",
+      "com.nrinaudo" %% "kantan.codecs-scalatest"    % Versions.kantanCodecs % "test"
     )
   )
