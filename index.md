@@ -4,7 +4,7 @@ layout: index
 
 [![Build Status](https://travis-ci.org/nrinaudo/kantan.regex.svg?branch=master)](https://travis-ci.org/nrinaudo/kantan.regex)
 [![codecov](https://codecov.io/gh/nrinaudo/kantan.regex/branch/master/graph/badge.svg)](https://codecov.io/gh/nrinaudo/kantan.regex)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.nrinaudo/kantan.regex_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.nrinaudo/kantan.regex_2.11)
+[![Latest version](https://index.scala-lang.org/nrinaudo/kantan.regex/kantan.regex/latest.svg)](https://index.scala-lang.org/nrinaudo/kantan.regex)
 [![Join the chat at https://gitter.im/nrinaudo/kantan.regex](https://img.shields.io/badge/gitter-join%20chat-52c435.svg)](https://gitter.im/nrinaudo/kantan.regex)
 
 kantan.regex is a library for extracting useful types from regular expression matches written in the
@@ -12,29 +12,32 @@ kantan.regex is a library for extracting useful types from regular expression ma
 
 ## Getting started
 
-kantan.regex is currently available for Scala 2.10, 2.11 and 2.12.
+kantan.regex is currently available for Scala 2.11 and 2.12.
 
-The current version is `0.2.0`, which can be added to your project with one or more of the following line(s)
+The current version is `0.2.2`, which can be added to your project with one or more of the following line(s)
 in your SBT build file:
 
 ```scala
 // Core library, included automatically if any other module is imported.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex" % "0.2.0"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex" % "0.2.2"
 
 // Java 8 date and time instances.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "0.2.0"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "0.2.2"
 
 // Provides generic instance derivation through shapeless.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-generic" % "0.2.0"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-generic" % "0.2.2"
 
 // Provides scalaz type class instances.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-scalaz" % "0.2.0"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-scalaz" % "0.2.2"
 
 // Provides cats type class instances.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-cats" % "0.2.0"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-cats" % "0.2.2"
 
 // Provides joda-time decoders.
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.2.0"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.2.2"
+
+// Provides refined decoders.
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-refined" % "0.2.2"
 ```
 
 ## Motivation

@@ -11,7 +11,7 @@ support for it through a dedicated module.
 The `joda-time` module can be used by adding the following dependency to your `build.sbt`:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.2.0"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.2.2"
 ```
 
 You then need to import the corresponding package:
