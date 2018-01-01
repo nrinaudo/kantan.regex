@@ -9,7 +9,7 @@ kantan.regex API - we still support Java 7. There is, however, a dedicated optio
 adding the following line to your `build.sbt` file:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "0.3.1"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "0.3.2-SNAPSHOT"
 ```
 
 You then need to import the corresponding package:
@@ -60,18 +60,6 @@ And we can now simply write:
 
 ```scala
 scala> input.evalRegex[LocalDate](rx"\[(\d\d/\d\d/\d\d\d\d)\]", 1).foreach(println _)
-<console>:10: warning: Unused import
-       import kantan.regex.java8._
-                                 ^
-<console>:16: warning: Unused import
-       import java.time._
-                        ^
-<console>:18: warning: Unused import
-       import java.time.format.DateTimeFormatter
-                               ^
-<console>:21: warning: Unused import
-       import kantan.regex._
-                           ^
 Success(1978-12-10)
 Success(2015-01-09)
 ```

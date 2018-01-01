@@ -35,9 +35,6 @@ scala> val results = input.evalRegex[Int](digits)
 results: Iterator[kantan.regex.DecodeResult[Int]] = non-empty iterator
 
 scala> results.foreach(println _)
-<console>:10: warning: Unused import
-       import kantan.regex.implicits._
-                                     ^
 Success(123)
 Success(456)
 Success(789)
@@ -103,12 +100,6 @@ And we can now decode this easily:
 
 ```scala
 scala> input.evalRegex[DateTime](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
-<console>:13: warning: Unused import
-       import kantan.regex._
-                           ^
-<console>:16: warning: Unused import
-       import org.joda.time.format.ISODateTimeFormat
-                                   ^
 Success(2009-01-06T00:00:00.000+01:00)
 ```
 

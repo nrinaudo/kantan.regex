@@ -28,9 +28,6 @@ You can now pass the compiled regex to [`evalRegex`] directly, as many time as y
 
 ```scala
 scala> "(1, 2) and then (3, 4) followed by (5, 6)".evalRegex(regex).foreach(println _)
-<console>:10: warning: Unused import
-       import kantan.regex._
-                           ^
 Success((1,2))
 Success((3,4))
 Success((5,6))
@@ -60,9 +57,6 @@ Now that we have this instance of [`Regex`], we can simply pass it as parameter 
 
 ```scala
 scala> "(1, 2) and then (3, 4) followed by (5, 6)".evalRegex(regex).foreach(println _)
-<console>:10: warning: Unused import
-       import kantan.regex._
-                           ^
 Success((1,2))
 Success((3,4))
 Success((5,6))

@@ -47,9 +47,6 @@ And that's it, we're done: we can now [`evalRegex`] as usual, with the right typ
 
 ```scala
 scala> input.evalRegex[Point](regex).foreach(println _)
-<console>:16: warning: Unused import
-       import kantan.regex._
-                           ^
 Success(Point(1, 2, None))
 Success(Point(3, 4, None))
 Success(Point(5, 6, Some(7)))

@@ -8,7 +8,7 @@ kantan.regex comes with a [refined](https://github.com/fthomas/refined) module t
 by adding the following dependency to your `build.sbt`:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-refined" % "0.3.1"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-refined" % "0.3.2-SNAPSHOT"
 ```
 
 You then need to import the corresponding package:
@@ -33,12 +33,6 @@ We can then simply write the following:
 
 ```scala
 scala> "[123]".evalRegex[PositiveInt](rx"\[([+-]?\d+)\]", 1).toList
-<console>:12: warning: Unused import
-       import eu.timepit.refined.api.Refined
-                                     ^
-<console>:13: warning: Unused import
-       import eu.timepit.refined.numeric.Positive
-                                         ^
 res1: List[kantan.regex.DecodeResult[PositiveInt]] = List(Success(123))
 ```
 
@@ -46,11 +40,5 @@ And, for an error case:
 
 ```scala
 scala> "[-123]".evalRegex[PositiveInt](rx"\[([+-]?\d+)\]", 1).toList
-<console>:12: warning: Unused import
-       import eu.timepit.refined.api.Refined
-                                     ^
-<console>:13: warning: Unused import
-       import eu.timepit.refined.numeric.Positive
-                                         ^
 res2: List[kantan.regex.DecodeResult[PositiveInt]] = List(Failure(TypeError: Not acceptable: 'Predicate failed: (-123 > 0).'))
 ```

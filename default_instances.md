@@ -54,15 +54,6 @@ And we're now capable of decoding matches as dates:
 
 ```scala
 scala> "2000-01-00T00:00:00.000".evalRegex[Date](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
-<console>:12: warning: Unused import
-       import kantan.regex.GroupDecoder
-                           ^
-<console>:13: warning: Unused import
-       import java.text.SimpleDateFormat
-                        ^
-<console>:14: warning: Unused import
-       import java.util.{Locale, Date}
-                         ^
 Success(Fri Dec 31 00:00:00 CET 1999)
 ```
 
@@ -79,21 +70,6 @@ sometimes a boolean, for example:
 
 ```scala
 scala> "[123] [true]".evalRegex[Either[Int, Boolean]](rx"\[(\d+|true|false)\]", 1).foreach(println _)
-<console>:12: warning: Unused import
-       import kantan.regex.GroupDecoder
-                           ^
-<console>:13: warning: Unused import
-       import java.text.SimpleDateFormat
-                        ^
-<console>:14: warning: Unused import
-       import java.util.{Locale, Date}
-                         ^
-<console>:14: warning: Unused import
-       import java.util.{Locale, Date}
-                                 ^
-<console>:15: warning: Unused import
-       import dateDecoder
-                                           ^
 Success(Left(123))
 Success(Right(true))
 ```
@@ -106,21 +82,6 @@ This is particularly useful for optional groups. For example:
 
 ```scala
 scala> "[123], []".evalRegex[Option[Int]](rx"\[(\d+)?\]", 1).foreach(println _)
-<console>:12: warning: Unused import
-       import kantan.regex.GroupDecoder
-                           ^
-<console>:13: warning: Unused import
-       import java.text.SimpleDateFormat
-                        ^
-<console>:14: warning: Unused import
-       import java.util.{Locale, Date}
-                         ^
-<console>:14: warning: Unused import
-       import java.util.{Locale, Date}
-                                 ^
-<console>:15: warning: Unused import
-       import dateDecoder
-                                           ^
 Success(Some(123))
 Success(None)
 ```
@@ -147,21 +108,6 @@ assuming that the value of group 1 corresponds to the first field in the tuple, 
 
 ```scala
 scala> "[1, true] and then [3, false]".evalRegex[(Int, Boolean)](rx"\[(\d+), ([a-z]+)\]").foreach(println _)
-<console>:12: warning: Unused import
-       import kantan.regex.GroupDecoder
-                           ^
-<console>:13: warning: Unused import
-       import java.text.SimpleDateFormat
-                        ^
-<console>:14: warning: Unused import
-       import java.util.{Locale, Date}
-                         ^
-<console>:14: warning: Unused import
-       import java.util.{Locale, Date}
-                                 ^
-<console>:15: warning: Unused import
-       import dateDecoder
-                                           ^
 Success((1,true))
 Success((3,false))
 ```
@@ -176,21 +122,6 @@ This works essentially the same way as [`GroupDecoder`] for [`Either`]:
 
 ```scala
 scala> "[123, true] [456, foo]".evalRegex[Either[(Int, Boolean), (Int, String)]](rx"\[(\d+), ([a-z]+)\]").foreach(println _)
-<console>:12: warning: Unused import
-       import kantan.regex.GroupDecoder
-                           ^
-<console>:13: warning: Unused import
-       import java.text.SimpleDateFormat
-                        ^
-<console>:14: warning: Unused import
-       import java.util.{Locale, Date}
-                         ^
-<console>:14: warning: Unused import
-       import java.util.{Locale, Date}
-                                 ^
-<console>:15: warning: Unused import
-       import dateDecoder
-                                           ^
 Success(Left((123,true)))
 Success(Right((456,foo)))
 ```

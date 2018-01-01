@@ -11,7 +11,7 @@ support for it through a dedicated module.
 The `joda-time` module can be used by adding the following dependency to your `build.sbt`:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.3.1"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.3.2-SNAPSHOT"
 ```
 
 You then need to import the corresponding package:
@@ -60,18 +60,6 @@ And we're done, as far as decoding is concerned. We only need to get a regular e
 
 ```scala
 scala> input.evalRegex[org.joda.time.LocalDate](rx"\[(\d\d-\d\d-\d\d\d\d)\]", 1).foreach(println _)
-<console>:10: warning: Unused import
-       import kantan.regex.joda.time._
-                                     ^
-<console>:16: warning: Unused import
-       import kantan.regex._
-                           ^
-<console>:18: warning: Unused import
-       import org.joda.time.LocalDate
-                            ^
-<console>:19: warning: Unused import
-       import org.joda.time.format.DateTimeFormat
-                                   ^
 Success(1978-10-12)
 Success(2015-09-01)
 ```

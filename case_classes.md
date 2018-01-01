@@ -42,9 +42,6 @@ And that's all there is to it. Now that we have this decoder in place, we can ju
 
 ```scala
 scala> input.evalRegex[WeirdPoint](regex).foreach(println _)
-<console>:17: warning: Unused import
-       import kantan.regex._
-                           ^
 Success(WeirdPoint(1,Left(2)))
 Success(WeirdPoint(3,Right(false)))
 ```
@@ -62,12 +59,6 @@ And without any further work, we can decode instances of `Foo`:
 
 ```scala
 scala> input.evalRegex[Foo](regex).foreach(println _)
-<console>:15: warning: Unused import
-       import kantan.regex._
-                           ^
-<console>:17: warning: Unused import
-       import decoder
-                                                   ^
 Success(Foo(1,Left(2)))
 Success(Foo(3,Right(false)))
 ```
