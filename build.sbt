@@ -15,7 +15,7 @@ lazy val root = Project(id = "kantan-regex", base = file("."))
       |import kantan.regex.refined._
     """.stripMargin
   )
-  .aggregate(core, docs, laws, cats, scalaz, jodaTime, generic, refined)
+  .aggregate(cats, core, docs, enumeratum, generic, jodaTime, laws, refined, scalaz)
   .aggregateIf(java8Supported)(java8)
   .dependsOn(core, generic, refined)
 
@@ -25,7 +25,7 @@ lazy val docs = project
       inAnyProject -- inProjectsIf(!java8Supported)(java8)
   )
   .enablePlugins(DocumentationPlugin)
-  .dependsOn(core, jodaTime, generic, cats, scalaz, refined)
+  .dependsOn(cats, core, enumeratum, generic, jodaTime, refined, scalaz)
   .dependsOnIf(java8Supported)(java8)
 
 // - core projects -----------------------------------------------------------------------------------------------------
@@ -160,5 +160,22 @@ lazy val refined = project
       "com.nrinaudo" %% "kantan.codecs-refined"      % Versions.kantanCodecs,
       "com.nrinaudo" %% "kantan.codecs-refined-laws" % Versions.kantanCodecs % "test",
       "com.nrinaudo" %% "kantan.codecs-scalatest"    % Versions.kantanCodecs % "test"
+    )
+  )
+
+// - Enumeratum project ------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
+lazy val enumeratum = project
+  .settings(
+    moduleName := "kantan.regex-enumeratum",
+    name       := "enumeratum"
+  )
+  .enablePlugins(PublishedPlugin)
+  .dependsOn(core, laws % "test")
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.nrinaudo" %% "kantan.codecs-enumeratum"      % Versions.kantanCodecs,
+      "com.nrinaudo" %% "kantan.codecs-enumeratum-laws" % Versions.kantanCodecs % "test",
+      "com.nrinaudo" %% "kantan.codecs-scalatest"       % Versions.kantanCodecs % "test"
     )
   )
