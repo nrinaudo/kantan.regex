@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-package kantan.regex.java8
+package kantan.regex
+package java8
 
+import arbitrary._
 import java.time.Instant
-import kantan.codecs.laws.discipline.SerializableTests
-import kantan.regex.{GroupDecoder, MatchDecoder}
-import kantan.regex.java8.arbitrary._
-import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.typelevel.discipline.scalatest.Discipline
+import laws.discipline._
 
-class InstantDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class InstantDecoderTests extends DisciplineSuite {
+
   checkAll("GroupDecoder[Instant]", GroupDecoderTests[Instant].decoder[Int, Int])
   checkAll("GroupDecoder[Instant]", SerializableTests[GroupDecoder[Instant]].serializable)
 
   checkAll("MatchDecoder[Instant]", MatchDecoderTests[Instant].decoder[Int, Int])
   checkAll("MatchDecoder[Instant]", SerializableTests[MatchDecoder[Instant]].serializable)
+
 }

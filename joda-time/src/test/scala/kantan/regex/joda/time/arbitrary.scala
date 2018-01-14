@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-package kantan.regex.joda.time
+package kantan.regex
+package joda.time
 
 object arbitrary
     extends kantan.codecs.strings.joda.time.laws.discipline.ArbitraryInstances

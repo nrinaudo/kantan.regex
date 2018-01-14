@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-package kantan.regex.laws
+package kantan.regex
+package laws
 
-import kantan.codecs.laws.discipline.DecoderTests
-import kantan.regex._
+import kantan.codecs.laws.discipline.DisciplinePackage
 
-package object discipline {
+package object discipline extends DisciplinePackage {
+
   type GroupDecoderTests[A] = DecoderTests[Option[String], A, DecodeError, codecs.type]
   type MatchDecoderTests[A] = DecoderTests[Match, A, DecodeError, codecs.type]
+
 }

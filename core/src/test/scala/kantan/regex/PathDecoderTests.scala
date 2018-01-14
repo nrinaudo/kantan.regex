@@ -17,17 +17,14 @@
 package kantan.regex
 
 import java.nio.file.Path
-import kantan.codecs.laws.discipline.SerializableTests
-import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
-import kantan.regex.laws.discipline.arbitrary._
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.typelevel.discipline.scalatest.Discipline
+import laws.discipline._, arbitrary._
 
-class PathDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class PathDecoderTests extends DisciplineSuite {
+
   checkAll("GroupDecoder[Path]", GroupDecoderTests[Path].bijectiveDecoder[Int, Int])
   checkAll("GroupDecoder[Path]", SerializableTests[GroupDecoder[Path]].serializable)
 
   checkAll("MatchDecoder[Path]", MatchDecoderTests[Path].bijectiveDecoder[Int, Int])
   checkAll("MatchDecoder[Path]", SerializableTests[MatchDecoder[Path]].serializable)
+
 }

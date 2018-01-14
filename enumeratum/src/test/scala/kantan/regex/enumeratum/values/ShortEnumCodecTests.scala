@@ -14,17 +14,14 @@
  * limitations under the License.
  */
 
-package kantan.regex.enumeratum.values
+package kantan.regex
+package enumeratum.values
 
-import kantan.codecs.enumeratum.laws.discipline._
-import kantan.codecs.laws.discipline.SerializableTests
-import kantan.regex.{GroupDecoder, MatchDecoder}
-import kantan.regex.enumeratum.arbitrary._
-import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
-import org.scalatest.FunSuite
-import org.typelevel.discipline.scalatest.Discipline
+import enumeratum.arbitrary._
+import kantan.codecs.enumeratum.laws.discipline.EnumeratedShort
+import laws.discipline._
 
-class ShortEnumCodecTests extends FunSuite with Discipline {
+class ShortEnumCodecTests extends DisciplineSuite {
 
   checkAll("GroupDecoder[EnumeratedShort]", SerializableTests[GroupDecoder[EnumeratedShort]].serializable)
   checkAll("MatchDecoder[EnumeratedShort]", SerializableTests[MatchDecoder[EnumeratedShort]].serializable)

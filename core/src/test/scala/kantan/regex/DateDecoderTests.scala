@@ -18,15 +18,11 @@ package kantan.regex
 
 import java.text.SimpleDateFormat
 import java.util.{Date, Locale}
-import kantan.codecs.laws.discipline.SerializableTests
-import kantan.codecs.strings.StringCodec
-import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
-import kantan.regex.laws.discipline.arbitrary._
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.typelevel.discipline.scalatest.Discipline
+import kantan.codecs.strings._
+import laws.discipline._, arbitrary._
 
-class DateDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class DateDecoderTests extends DisciplineSuite {
+
   implicit val codec: StringCodec[Date] =
     StringCodec.dateCodec(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.ENGLISH))
 
@@ -35,4 +31,5 @@ class DateDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with 
 
   checkAll("MatchDecoder[Date]", MatchDecoderTests[Date].decoder[Int, Int])
   checkAll("MatchDecoder[Date]", SerializableTests[MatchDecoder[Date]].serializable)
+
 }

@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-package kantan.regex.scalaz
+package kantan.regex
+package scalaz
 
 object arbitrary
     extends kantan.regex.laws.discipline.ArbitraryInstances with kantan.codecs.scalaz.laws.discipline.ArbitraryInstances

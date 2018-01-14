@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-package kantan.regex.laws.discipline
+package kantan.regex
+package laws.discipline
 
+import DecodeError.{NoSuchGroupId, TypeError}
 import imp.imp
 import java.util.regex.Pattern
 import kantan.codecs.Result
 import kantan.codecs.laws._
-import kantan.regex._, DecodeError.{NoSuchGroupId, TypeError}
-import kantan.regex.laws._
+import laws._
 import org.scalacheck.{Arbitrary, Cogen, Gen}
 import org.scalacheck.Arbitrary.{arbitrary ⇒ arb}
 import org.scalacheck.Gen._

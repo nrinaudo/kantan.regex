@@ -14,19 +14,15 @@
  * limitations under the License.
  */
 
-package kantan.regex.generic
+package kantan.regex
+package generic
 
-import kantan.codecs.laws.discipline.SerializableTests
+import generic.arbitrary._
+import implicits._
 import kantan.codecs.shapeless.laws._
-import kantan.regex.{Match, MatchDecoder, Pattern}
-import kantan.regex.generic.arbitrary._
-import kantan.regex.implicits._
-import kantan.regex.laws.LegalMatch
-import kantan.regex.laws.discipline.MatchDecoderTests
+import laws._
+import laws.discipline._
 import org.scalacheck.Arbitrary
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.typelevel.discipline.scalatest.Discipline
 
 object Instances {
   case class Simple(i: Int)
@@ -52,9 +48,11 @@ object Instances {
 }
 
 @SuppressWarnings(Array("org.wartremover.warts.Null"))
-class DerivedMatchDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class DerivedMatchDecoderTests extends DisciplineSuite {
+
   import Instances._
 
   checkAll("MatchDecoder[Complex Or Simple]", MatchDecoderTests[Complex Or Simple].decoder[Byte, Float])
   checkAll("MatchDecoder[Complex Or Simple]", SerializableTests[MatchDecoder[Complex Or Simple]].serializable)
+
 }

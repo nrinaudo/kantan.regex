@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
-package kantan.regex.enumeratum
+package kantan.regex
+package enumeratum
 
 package object values extends kantan.codecs.enumeratum.values.DecoderInstances

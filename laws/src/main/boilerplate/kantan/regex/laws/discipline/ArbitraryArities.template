@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package kantan.regex.laws.discipline
+package kantan.regex
+package laws
+package discipline
 
 import java.util.regex.Pattern
 import kantan.codecs.laws._
-import kantan.regex._
-import kantan.regex.laws._
 import org.scalacheck.Arbitrary
 
 trait ArbitraryArities extends kantan.codecs.laws.discipline.ArbitraryInstances {

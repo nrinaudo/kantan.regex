@@ -16,9 +16,9 @@
 
 package kantan.regex
 
+import implicits._
 import kantan.codecs.laws._
-import kantan.regex.implicits._
-import kantan.regex.laws.discipline.arbitrary._
+import laws.discipline.arbitrary._
 import org.scalatest.{FunSuite, Matchers}
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 

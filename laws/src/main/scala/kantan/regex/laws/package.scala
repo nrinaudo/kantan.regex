@@ -29,4 +29,5 @@ package object laws {
   type LegalMatch[A]   = LegalValue[Match, A, codecs.type]
   type IllegalMatch[A] = IllegalValue[Match, A, codecs.type]
   type MatchValue[A]   = CodecValue[Match, A, codecs.type]
+
 }

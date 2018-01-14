@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package kantan.regex.ops
-
-import kantan.regex.{Compiler, _}
+package kantan.regex
+package ops
 
 /** Provides useful syntax for types that have a [[Compiler]] instance. */
 final class CompilerOps[S: Compiler](val expr: S) {

@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-package kantan.regex.enumeratum
+package kantan.regex
+package enumeratum
 
 object arbitrary
     extends kantan.regex.laws.discipline.ArbitraryInstances

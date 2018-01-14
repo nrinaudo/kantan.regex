@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package kantan.regex.generic
+package kantan.regex
+package generic
 
 import kantan.codecs.shapeless.ShapelessInstances
-import kantan.regex._
 import shapeless._
 
 trait LowPrirityGenericInstances {
