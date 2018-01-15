@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package kantan.regex.laws.discipline
+package kantan.regex
+package laws
+package discipline
 
-import kantan.codecs.laws.discipline.DecoderTests
-import kantan.regex._
-import kantan.regex.laws.{GroupDecoderLaws, LegalGroup}
-import kantan.regex.laws.discipline.arbitrary._
+import laws._
+import laws.discipline.arbitrary._
 import org.scalacheck.{Arbitrary, Cogen}
 
 object GroupDecoderTests {

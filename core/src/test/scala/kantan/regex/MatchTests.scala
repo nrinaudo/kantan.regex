@@ -16,7 +16,7 @@
 
 package kantan.regex
 
-import kantan.regex.ops._
+import ops._
 import org.scalacheck.{Arbitrary, Gen}
 import org.scalatest.{FunSuite, Matchers}
 import org.scalatest.prop.GeneratorDrivenPropertyChecks

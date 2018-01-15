@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-package kantan.regex.literals
+package kantan.regex
+package literals
 
 import contextual._
 import java.util.regex.{Pattern, PatternSyntaxException}

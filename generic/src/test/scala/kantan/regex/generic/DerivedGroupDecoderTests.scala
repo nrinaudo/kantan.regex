@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
-package kantan.regex.generic
+package kantan.regex
+package generic
 
-import kantan.codecs.laws.discipline.SerializableTests
+import arbitrary._
 import kantan.codecs.shapeless.laws._
-import kantan.regex.GroupDecoder
-import kantan.regex.generic.arbitrary._
-import kantan.regex.laws.LegalGroup
-import kantan.regex.laws.discipline.GroupDecoderTests
+import laws._
+import laws.discipline._
 import org.scalacheck.Arbitrary
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.typelevel.discipline.scalatest.Discipline
 
 @SuppressWarnings(Array("org.wartremover.warts.Null"))
-class DerivedGroupDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class DerivedGroupDecoderTests extends DisciplineSuite {
+
   implicit val arbLegal: Arbitrary[LegalGroup[Int Or Boolean]] = arbLegalValue(
     (o: Or[Int, Boolean]) ⇒
       o match {
@@ -39,4 +36,5 @@ class DerivedGroupDecoderTests extends FunSuite with GeneratorDrivenPropertyChec
 
   checkAll("GroupDecoder[Int Or Boolean]", GroupDecoderTests[Int Or Boolean].decoder[Byte, String])
   checkAll("GroupDecoder[Int Or Boolean]", SerializableTests[GroupDecoder[Int Or Boolean]].serializable)
+
 }

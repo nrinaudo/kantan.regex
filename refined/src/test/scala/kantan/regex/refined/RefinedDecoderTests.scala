@@ -14,22 +14,19 @@
  * limitations under the License.
  */
 
-package kantan.regex.refined
+package kantan.regex
+package refined
 
 import eu.timepit.refined.api.Refined
 import eu.timepit.refined.numeric.Positive
-import kantan.codecs.laws.discipline.SerializableTests
-import kantan.regex.{GroupDecoder, MatchDecoder}
-import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
-import kantan.regex.refined.arbitrary._
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.typelevel.discipline.scalatest.Discipline
+import laws.discipline._, arbitrary._
 
-class RefinedDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class RefinedDecoderTests extends DisciplineSuite {
+
   checkAll("GroupDecoder[Int Refined Positive]", GroupDecoderTests[Int Refined Positive].decoder[Int, Int])
   checkAll("GroupDecoder[Int Refined Positive]", SerializableTests[GroupDecoder[Int Refined Positive]].serializable)
 
   checkAll("MatchDecoder[Int Refined Positive]", MatchDecoderTests[Int Refined Positive].decoder[Int, Int])
   checkAll("MatchDecoder[Int Refined Positive]", SerializableTests[MatchDecoder[Int Refined Positive]].serializable)
+
 }

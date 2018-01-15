@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-package kantan.regex.java8
+package kantan.regex
+package java8
 
 import java.time.OffsetDateTime
-import kantan.codecs.laws.discipline.SerializableTests
-import kantan.regex._
-import kantan.regex.java8.arbitrary._
-import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.typelevel.discipline.scalatest.Discipline
+import java8.arbitrary._
+import laws.discipline._
 
-class OffsetDateTimeDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class OffsetDateTimeDecoderTests extends DisciplineSuite {
+
   checkAll("GroupDecoder[OffsetDateTime]", GroupDecoderTests[OffsetDateTime].decoder[Int, Int])
   checkAll("GroupDecoder[OffsetDateTime]", SerializableTests[GroupDecoder[OffsetDateTime]].serializable)
 
   checkAll("MatchDecoder[OffsetDateTime]", MatchDecoderTests[OffsetDateTime].decoder[Int, Int])
   checkAll("MatchDecoder[OffsetDateTime]", SerializableTests[MatchDecoder[OffsetDateTime]].serializable)
+
 }

@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
-package kantan.regex.joda.time
+package kantan.regex
+package joda.time
 
-import kantan.codecs.laws.discipline.SerializableTests
-import kantan.regex.{GroupDecoder, MatchDecoder}
-import kantan.regex.joda.time.arbitrary._
-import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
+import laws.discipline._, arbitrary._
 import org.joda.time.DateTime
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.typelevel.discipline.scalatest.Discipline
 
-class DateTimeDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class DateTimeDecoderTests extends DisciplineSuite {
+
   checkAll("GroupDecoder[DateTime]", GroupDecoderTests[DateTime].decoder[Int, Int])
   checkAll("GroupDecoder[DateTime]", SerializableTests[GroupDecoder[DateTime]].serializable)
 
   checkAll("MatchDecoder[DateTime]", MatchDecoderTests[DateTime].decoder[Int, Int])
   checkAll("MatchDecoder[DateTime]", SerializableTests[MatchDecoder[DateTime]].serializable)
+
 }

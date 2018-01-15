@@ -14,19 +14,17 @@
  * limitations under the License.
  */
 
-package kantan.regex.scalaz
+package kantan.regex
+package scalaz
 
-import kantan.regex.laws._
-import kantan.regex.laws.discipline._
-import kantan.regex.scalaz.arbitrary._
+import _root_.scalaz.Maybe
+import _root_.scalaz.scalacheck.ScalazArbitrary._
+import laws._
+import laws.discipline._, arbitrary._
 import org.scalacheck.Arbitrary
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.typelevel.discipline.scalatest.Discipline
-import scalaz.Maybe
-import scalaz.scalacheck.ScalazArbitrary._
 
-class MaybeDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class MaybeDecoderTests extends DisciplineSuite {
+
   implicit val legalGroup: Arbitrary[LegalGroup[Maybe[Int]]]     = arbLegalMaybe
   implicit val illegalGroup: Arbitrary[IllegalGroup[Maybe[Int]]] = arbIllegalMaybe
   implicit val legalMatch: Arbitrary[LegalMatch[Maybe[Int]]]     = arbLegalMaybe
@@ -34,4 +32,5 @@ class MaybeDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with
 
   checkAll("GroupDecoder[Maybe[Int]]", GroupDecoderTests[Maybe[Int]].decoder[Int, Int])
   checkAll("MatchDecoder[Maybe[Int]]", MatchDecoderTests[Maybe[Int]].decoder[Int, Int])
+
 }

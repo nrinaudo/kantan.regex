@@ -16,17 +16,14 @@
 
 package kantan.regex
 
-import kantan.codecs.laws.discipline.SerializableTests
-import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
-import kantan.regex.laws.discipline.arbitrary._
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.typelevel.discipline.scalatest.Discipline
+import laws.discipline._, arbitrary._
 
-class ByteDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class ByteDecoderTests extends DisciplineSuite {
+
   checkAll("GroupDecoder[Byte]", GroupDecoderTests[Byte].decoder[Int, Int])
   checkAll("GroupDecoder[Byte]", SerializableTests[GroupDecoder[Byte]].serializable)
 
   checkAll("MatchDecoder[Byte]", MatchDecoderTests[Byte].decoder[Int, Int])
   checkAll("MatchDecoder[Byte]", SerializableTests[MatchDecoder[Byte]].serializable)
+
 }

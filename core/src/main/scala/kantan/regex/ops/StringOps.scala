@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package kantan.regex.ops
-
-import kantan.regex._
+package kantan.regex
+package ops
 
 /** Enriches `String` with useful regex-related syntax. */
 final class StringOps(val str: String) extends AnyVal {

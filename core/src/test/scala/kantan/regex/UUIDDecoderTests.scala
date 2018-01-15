@@ -17,17 +17,14 @@
 package kantan.regex
 
 import java.util.UUID
-import kantan.codecs.laws.discipline.SerializableTests
-import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
-import kantan.regex.laws.discipline.arbitrary._
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.typelevel.discipline.scalatest.Discipline
+import laws.discipline._, arbitrary._
 
-class UUIDDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class UUIDDecoderTests extends DisciplineSuite {
+
   checkAll("GroupDecoder[UUID]", GroupDecoderTests[UUID].decoder[Int, Int])
   checkAll("GroupDecoder[UUID]", SerializableTests[GroupDecoder[UUID]].serializable)
 
   checkAll("MatchDecoder[UUID]", MatchDecoderTests[UUID].decoder[Int, Int])
   checkAll("MatchDecoder[UUID]", SerializableTests[MatchDecoder[UUID]].serializable)
+
 }

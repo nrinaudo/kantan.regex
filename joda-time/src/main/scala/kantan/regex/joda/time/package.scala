@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package kantan.regex.joda
+package kantan.regex
+package joda
 
 import kantan.codecs.export.Exported
 import kantan.codecs.strings.StringDecoder
 import kantan.codecs.strings.joda.time._
-import kantan.regex._
 import org.joda.time.{DateTime, LocalDate, LocalDateTime, LocalTime}
 
 /** Brings all joda time instances in scope.

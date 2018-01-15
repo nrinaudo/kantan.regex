@@ -17,17 +17,14 @@
 package kantan.regex
 
 import java.net.URI
-import kantan.codecs.laws.discipline.SerializableTests
-import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
-import kantan.regex.laws.discipline.arbitrary._
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.typelevel.discipline.scalatest.Discipline
+import laws.discipline._, arbitrary._
 
-class URIDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class URIDecoderTests extends DisciplineSuite {
+
   checkAll("GroupDecoder[URI]", GroupDecoderTests[URI].decoder[Int, Int])
   checkAll("GroupDecoder[URI]", SerializableTests[GroupDecoder[URI]].serializable)
 
   checkAll("MatchDecoder[URI]", MatchDecoderTests[URI].decoder[Int, Int])
   checkAll("MatchDecoder[URI]", SerializableTests[MatchDecoder[URI]].serializable)
+
 }

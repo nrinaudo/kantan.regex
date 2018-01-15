@@ -14,19 +14,17 @@
  * limitations under the License.
  */
 
-package kantan.regex.scalaz
+package kantan.regex
+package scalaz
 
-import kantan.regex.laws._
-import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
-import kantan.regex.scalaz.arbitrary._
+import _root_.scalaz.\/
+import _root_.scalaz.scalacheck.ScalazArbitrary._
+import laws._
+import laws.discipline._, arbitrary._
 import org.scalacheck.Arbitrary
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.typelevel.discipline.scalatest.Discipline
-import scalaz.\/
-import scalaz.scalacheck.ScalazArbitrary._
 
-class DisjunctionDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class DisjunctionDecoderTests extends DisciplineSuite {
+
   implicit val legalGroup: Arbitrary[LegalGroup[Int \/ Boolean]]     = arbLegalDisjunction
   implicit val illegalGroup: Arbitrary[IllegalGroup[Int \/ Boolean]] = arbIllegalDisjunction
   implicit val legalMatch: Arbitrary[LegalMatch[Int \/ Boolean]]     = arbLegalDisjunction
@@ -34,4 +32,5 @@ class DisjunctionDecoderTests extends FunSuite with GeneratorDrivenPropertyCheck
 
   checkAll("GroupDecoder[Int \\/ Boolean]", GroupDecoderTests[Int \/ Boolean].decoder[Int, Int])
   checkAll("MatchDecoder[Int \\/ Boolean]", MatchDecoderTests[Int \/ Boolean].decoder[Int, Int])
+
 }

@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-package kantan.regex.java8
+package kantan.regex
+package java8
 
 import java.time.LocalDate
-import kantan.codecs.laws.discipline.SerializableTests
-import kantan.regex._
-import kantan.regex.java8.arbitrary._
-import kantan.regex.laws.discipline.{GroupDecoderTests, MatchDecoderTests}
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.typelevel.discipline.scalatest.Discipline
+import java8.arbitrary._
+import laws.discipline._
 
-class LocalDateDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class LocalDateDecoderTests extends DisciplineSuite {
+
   checkAll("GroupDecoder[LocalDate]", GroupDecoderTests[LocalDate].decoder[Int, Int])
   checkAll("GroupDecoder[LocalDate]", SerializableTests[GroupDecoder[LocalDate]].serializable)
 
   checkAll("MatchDecoder[LocalDate]", MatchDecoderTests[LocalDate].decoder[Int, Int])
   checkAll("MatchDecoder[LocalDate]", SerializableTests[MatchDecoder[LocalDate]].serializable)
+
 }

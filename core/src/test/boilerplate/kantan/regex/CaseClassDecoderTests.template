@@ -16,14 +16,9 @@
 
 package kantan.regex
 
-import kantan.codecs.laws.discipline.SerializableTests
-import kantan.regex.laws._
-import kantan.regex.laws.discipline.arbitrary._
-import kantan.regex.laws.discipline.MatchDecoderTests
+import laws._
+import laws.discipline._, arbitrary._
 import org.scalacheck.{Arbitrary, Cogen}
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.typelevel.discipline.scalatest.Discipline
 
 object Class1 {
   implicit val arb: Arbitrary[Class1]         = Arbitrary(Arbitrary.arbitrary[Int].map((Class1.apply _)))
@@ -42,7 +37,8 @@ final case class Class1([#f1: Int#])#
 ]
 
 
-class CaseClassDecoderTests extends FunSuite with GeneratorDrivenPropertyChecks with Discipline {
+class CaseClassDecoderTests extends DisciplineSuite {
+
   [#implicit val arbLegalClass1: Arbitrary[LegalMatch[Class1]] = kantan.regex.laws.discipline.arbitrary.arbLegalCaseClass1(Class1.apply)
   implicit val arbIllegalClass1: Arbitrary[IllegalMatch[Class1]] = kantan.regex.laws.discipline.arbitrary.arbIllegalCaseClass1[[#Int#], Class1]#
 
