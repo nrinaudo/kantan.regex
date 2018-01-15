@@ -46,10 +46,4 @@ trait GenericInstances extends ShapelessInstances with LowPrirityGenericInstance
   /** [[GroupDecoder]] for `HList` of size 1, provided the single element has a [[GroupDecoder]]. */
   implicit def hlistGroupDecoder[H: GroupDecoder]: GroupDecoder[H :: HNil] = GroupDecoder[H].map(h ⇒ h :: HNil)
 
-  // - Coproduct decoders ----------------------------------------------------------------------------------------------
-  // -------------------------------------------------------------------------------------------------------------------
-  implicit val cnilMatchDecoder: MatchDecoder[CNil] =
-    cnilDecoder(m ⇒ DecodeError.TypeError(s"Failed to decode $m as a coproduct"))
-  implicit val cnilGroupDecoder: GroupDecoder[CNil] =
-    cnilDecoder(g ⇒ DecodeError.TypeError(s"Failed to decode $g as a coproduct"))
 }
