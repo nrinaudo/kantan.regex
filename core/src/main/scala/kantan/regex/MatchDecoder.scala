@@ -63,11 +63,11 @@ trait MatchDecoderInstances {
     MatchDecoder.from { m ⇒
       @tailrec
       def loop(i: Int, curr: DecodeResult[mutable.Builder[A, F[A]]]): DecodeResult[F[A]] =
-        if(i > m.length || !curr.isSuccess) curr.map(_.result())
+        if(i > m.length || !curr.isRight) curr.right.map(_.result())
         else
           loop(i + 1, for {
-            fa ← curr
-            a  ← m.decode[Option[A]](i)
+            fa ← curr.right
+            a  ← m.decode[Option[A]](i).right
           } yield {
             a.foreach(fa += _)
             fa

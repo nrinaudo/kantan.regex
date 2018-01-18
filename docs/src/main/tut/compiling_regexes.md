@@ -44,7 +44,7 @@ If you really must work with a string - for a dynamically generated regular expr
 through [`asRegex`]:
 
 ```tut:silent
-val regex = """\((\d+), (\d+)\)""".asRegex[(Int, Int)].get
+val regex = """\((\d+), (\d+)\)""".asRegex[(Int, Int)].right.get
 ```
 
 Note that we had to call [`get`] on the result: [`asRegex`] returns a [`CompileResult`] instance to protect against

@@ -20,7 +20,6 @@ package laws.discipline
 import DecodeError.{NoSuchGroupId, TypeError}
 import imp.imp
 import java.util.regex.Pattern
-import kantan.codecs.Result
 import kantan.codecs.laws._
 import laws._
 import org.scalacheck.{Arbitrary, Cogen, Gen}
@@ -58,8 +57,8 @@ trait ArbitraryInstances
   implicit def arbDecodeResult[A: Arbitrary]: Arbitrary[DecodeResult[A]] =
     Arbitrary(
       oneOf(
-        imp[Arbitrary[A]].arbitrary.map(Result.success),
-        arbDecodeError.arbitrary.map(Result.failure)
+        imp[Arbitrary[A]].arbitrary.map(DecodeResult.success),
+        arbDecodeError.arbitrary.map(DecodeResult.failure)
       )
     )
 

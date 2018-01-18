@@ -16,21 +16,21 @@
 
 package kantan.regex
 
-import kantan.codecs.{Result, ResultCompanion}
+import kantan.codecs.ResultCompanion
 
 /** Provides construction methods for [[DecodeResult]]. */
 object DecodeResult extends ResultCompanion.WithDefault[DecodeError] {
   override protected def fromThrowable(t: Throwable) = DecodeError.TypeError(t)
 
   /** Creates a new [[kantan.regex.DecodeError.TypeError TypeError]] failure with the specified error message. */
-  def typeError(str: String): DecodeResult[Nothing] = Result.failure(DecodeError.TypeError(str))
+  def typeError(str: String): DecodeResult[Nothing] = failure(DecodeError.TypeError(str))
 
   /** Creates a new [[kantan.regex.DecodeError.TypeError TypeError]] failure with the specified error. */
-  def typeError(e: Exception): DecodeResult[Nothing] = Result.failure(DecodeError.TypeError(e))
+  def typeError(e: Exception): DecodeResult[Nothing] = failure(DecodeError.TypeError(e))
 
   /** Creates a new [[kantan.regex.DecodeError.NoSuchGroupId NoSuchgroupId]] failure for the specified group id. */
-  def noSuchGroupId(id: Int): DecodeResult[Nothing] = Result.failure(DecodeError.NoSuchGroupId(id))
+  def noSuchGroupId(id: Int): DecodeResult[Nothing] = failure(DecodeError.NoSuchGroupId(id))
 
   /** Creates a new [[kantan.regex.DecodeError.EmptyGroup EmptyGroup]] failure. */
-  val emptyGroup: DecodeResult[Nothing] = Result.failure(DecodeError.EmptyGroup)
+  val emptyGroup: DecodeResult[Nothing] = failure(DecodeError.EmptyGroup)
 }

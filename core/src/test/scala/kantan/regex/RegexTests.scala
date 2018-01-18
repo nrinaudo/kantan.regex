@@ -23,13 +23,13 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 class RegexTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
   test("All matches should be decoded as expected.") {
     forAll { is: List[Int] ⇒
-      val regex = ("-?\\d+").asUnsafeRegex[Int].map(_.get)
+      val regex = ("-?\\d+").asUnsafeRegex[Int].map(_.right.get)
       regex.eval(is.mkString(" ")).toList should be(is)
     }
   }
 
   test("Invalid regular expressions should not compile") {
-    "[".asRegex[Int].isFailure should be(true)
+    "[".asRegex[Int].isLeft should be(true)
   }
 
   test("Regexes obtained from a pattern should have that pattern as a toString") {

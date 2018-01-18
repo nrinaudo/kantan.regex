@@ -31,11 +31,13 @@ final class StringOps(val str: String) extends AnyVal {
   def evalRegex[A: GroupDecoder](p: Pattern, group: Int): Iterator[DecodeResult[A]] =
     eval(str, Regex[A](p, group))
 
+  @SuppressWarnings(Array("org.wartremover.warts.EitherProjectionPartial"))
   def unsafeEvalRegex[A: MatchDecoder](p: Pattern): Iterator[A] =
-    evalRegex(p).map(_.get)
+    evalRegex(p).map(_.right.get)
 
+  @SuppressWarnings(Array("org.wartremover.warts.EitherProjectionPartial"))
   def unsafeEvalRegex[A: GroupDecoder](p: Pattern, group: Int): Iterator[A] =
-    evalRegex(p, group).map(_.get)
+    evalRegex(p, group).map(_.right.get)
 }
 
 trait ToStringOps {

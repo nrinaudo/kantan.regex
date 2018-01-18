@@ -33,8 +33,8 @@ trait GenericInstances extends ShapelessInstances with LowPrirityGenericInstance
     new DerivedMatchDecoder[H :: T] {
       override def decodeFrom(e: Match, index: Int): DecodeResult[H :: T] =
         for {
-          h ← e.decode[H](index)
-          t ← DerivedMatchDecoder[T].decodeFrom(e, index + 1)
+          h ← e.decode[H](index).right
+          t ← DerivedMatchDecoder[T].decodeFrom(e, index + 1).right
         } yield h :: t
     }
 
