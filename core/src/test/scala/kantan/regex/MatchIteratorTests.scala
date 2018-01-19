@@ -22,7 +22,7 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
 @SuppressWarnings(Array("org.wartremover.warts.While"))
 class MatchIteratorTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
-  def toMatchIterator(is: List[Int]): Iterator[Int] = Regex[Int](rx"-?\d+").eval(is.mkString(" ")).map(_.get)
+  def toMatchIterator(is: List[Int]): Iterator[Int] = Regex[Int](rx"-?\d+").eval(is.mkString(" ")).map(_.right.get)
 
   test("MatchIterator should fail when reading more than the maximum number of elements") {
     forAll { is: List[Int] ⇒

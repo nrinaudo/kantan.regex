@@ -16,44 +16,44 @@
 
 package kantan.regex
 
-import kantan.codecs.scalatest.ResultValues
 import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.EitherValues._
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
 @SuppressWarnings(Array("org.wartremover.warts.Throw"))
-class DecodeResultTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers with ResultValues {
+class DecodeResultTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
   test("DecodeResult.success should return a success") {
     forAll { i: Int ⇒
-      DecodeResult.success(i).success.value should be(i)
+      DecodeResult.success(i).right.value should be(i)
     }
   }
 
   test("DecodeResult.apply should return a success on 'good' values") {
     forAll { i: Int ⇒
-      DecodeResult(i).success.value should be(i)
+      DecodeResult(i).right.value should be(i)
     }
   }
 
   test("DecodeResult.apply should return a failure on 'bad' values") {
     forAll { e: Exception ⇒
-      DecodeResult(throw e).failure.value should be(DecodeError.TypeError(e))
+      DecodeResult(throw e).left.value should be(DecodeError.TypeError(e))
     }
   }
 
   test("DecodeResult.typeError should return a failure") {
     forAll { e: Exception ⇒
-      DecodeResult.typeError(e).failure.value should be(DecodeError.TypeError(e))
+      DecodeResult.typeError(e).left.value should be(DecodeError.TypeError(e))
 
       DecodeResult.typeError(e.getMessage) match {
-        case Failure(DecodeError.TypeError(m)) ⇒ m should be(e.getMessage)
-        case a                                 ⇒ fail(s"$a was not a type error")
+        case Left(DecodeError.TypeError(m)) ⇒ m should be(e.getMessage)
+        case a                              ⇒ fail(s"$a was not a type error")
       }
     }
   }
 
   test("DecodeResult.noSuchGroupId should return a failure ") {
     forAll { i: Int ⇒
-      DecodeResult.noSuchGroupId(i).failure.value should be(DecodeError.NoSuchGroupId(i))
+      DecodeResult.noSuchGroupId(i).left.value should be(DecodeError.NoSuchGroupId(i))
     }
   }
 }

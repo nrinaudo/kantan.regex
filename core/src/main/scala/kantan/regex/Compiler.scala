@@ -57,10 +57,12 @@ trait Compiler[E] {
     compile(expr)(MatchDecoder.fromGroup[A](group))
 
   /** Unsafe version of `compile`. */
-  def unsafeCompile[A: MatchDecoder](expr: E): Regex[DecodeResult[A]] = compile(expr).get
+  @SuppressWarnings(Array("org.wartremover.warts.EitherProjectionPartial"))
+  def unsafeCompile[A: MatchDecoder](expr: E): Regex[DecodeResult[A]] = compile(expr).right.get
 
   /** Unsafe version of `compile`. */
-  def unsafeCompile[A: GroupDecoder](expr: E, group: Int): Regex[DecodeResult[A]] = compile(expr, group).get
+  @SuppressWarnings(Array("org.wartremover.warts.EitherProjectionPartial"))
+  def unsafeCompile[A: GroupDecoder](expr: E, group: Int): Regex[DecodeResult[A]] = compile(expr, group).right.get
 }
 
 /** Provides default instances, instance creation and instance summoning methods. */
@@ -75,7 +77,7 @@ object Compiler {
   /** Creates a new [[Compiler]] instance from a function that turns `A` into a `Pattern`. */
   def fromPattern[A](f: A ⇒ CompileResult[Pattern]): Compiler[A] = new Compiler[A] {
     override def compile[B: MatchDecoder](expr: A): CompileResult[Regex[DecodeResult[B]]] =
-      f(expr).map(p ⇒ Regex(p))
+      f(expr).right.map(p ⇒ Regex(p))
   }
 
   /** Provides compilation for Scala Regexes. */

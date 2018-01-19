@@ -19,7 +19,7 @@ package kantan.regex
 trait GeneratedMatchDecoders {
   [#def decoder[[#A1: GroupDecoder#], O]([#i1: Int#])(f: ([#A1#]) ⇒ O): MatchDecoder[O] = MatchDecoder.from { m ⇒
     for {
-      [#a1 ← m.decode[A1](i1)#
+      [#a1 ← m.decode[A1](i1).right#
       ]
     } yield f([#a1#])
   }

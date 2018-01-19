@@ -31,7 +31,7 @@ class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks with Matche
     forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int])) { (is: List[Int]) ⇒
       implicit val decoder: MatchDecoder[List[Int]] = validating(is.length)
 
-      val regex = is.map(_ ⇒ "(-?\\d+)").mkString(" ").asUnsafeRegex[List[Int]].map(_.get)
+      val regex = is.map(_ ⇒ "(-?\\d+)").mkString(" ").asUnsafeRegex[List[Int]].map(_.right.get)
       regex.eval(is.mkString(" ")).next should be(is)
     }
   }

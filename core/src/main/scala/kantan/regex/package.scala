@@ -16,7 +16,7 @@
 
 package kantan
 
-import kantan.codecs.{Decoder, Result}
+import kantan.codecs.Decoder
 
 package object regex {
   // - Convenience aliases ---------------------------------------------------------------------------------------------
@@ -43,27 +43,22 @@ package object regex {
 
   // - Result types ----------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
-  type Success[A] = Result.Success[A]
-  val Success = Result.Success
-
-  type Failure[A] = Result.Failure[A]
-  val Failure = Result.Failure
 
   /** Result type for decoding operations.
     *
     * @documentable
     */
-  type DecodeResult[A] = Result[DecodeError, A]
+  type DecodeResult[A] = Either[DecodeError, A]
 
   /** Result type for compilation operations.
     *
     * @documentable
     */
-  type CompileResult[A] = Result[CompileError, A]
+  type CompileResult[A] = Either[CompileError, A]
 
   /** Result type for all regex related operations (encompasses both [[DecodeResult]] and [[CompileResult]].
     *
     * @documentable
     */
-  type RegexResult[A] = Result[RegexError, A]
+  type RegexResult[A] = Either[RegexError, A]
 }
