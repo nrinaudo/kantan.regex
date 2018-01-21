@@ -17,7 +17,6 @@
 package kantan.regex
 package laws.discipline
 
-import DecodeError.{NoSuchGroupId, TypeError}
 import imp.imp
 import java.util.regex.Pattern
 import kantan.codecs.laws._
@@ -31,24 +30,53 @@ object arbitrary extends kantan.regex.laws.discipline.ArbitraryInstances
 
 trait ArbitraryInstances
     extends kantan.codecs.laws.discipline.ArbitraryInstances with kantan.regex.laws.discipline.ArbitraryArities {
+
+  implicit def arbRegex[A: Arbitrary]: Arbitrary[Regex[A]] =
+    Arbitrary(
+      arb[String ⇒ List[A]].map(
+        f ⇒
+          new Regex[A] {
+            override def eval(str: String) = f(str).iterator
+        }
+      )
+    )
+
   // - Arbitrary errors ------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   implicit val arbCompileError: Arbitrary[CompileError] =
     Arbitrary(arbException.arbitrary.map(e ⇒ CompileError(e)))
-  implicit val arbTypeError: Arbitrary[TypeError] =
-    Arbitrary(arbException.arbitrary.map(e ⇒ TypeError(e)))
-  implicit val arbNoSuchGroupId: Arbitrary[NoSuchGroupId] =
-    Arbitrary(arb[Int].map(NoSuchGroupId.apply))
+
+  implicit val arbTypeError: Arbitrary[DecodeError.TypeError] =
+    Arbitrary(arbException.arbitrary.map(e ⇒ DecodeError.TypeError(e)))
+
+  implicit val arbNoSuchGroupId: Arbitrary[DecodeError.NoSuchGroupId] =
+    Arbitrary(arb[Int].map(DecodeError.NoSuchGroupId.apply))
+
+  implicit val arbEmptyGroup: Arbitrary[DecodeError.EmptyGroup.type] =
+    Arbitrary(Gen.const(DecodeError.EmptyGroup))
+
   implicit val arbDecodeError: Arbitrary[DecodeError] =
-    Arbitrary(oneOf(arb[NoSuchGroupId], arbTypeError.arbitrary))
+    Arbitrary(oneOf(arbNoSuchGroupId.arbitrary, arbTypeError.arbitrary, arbEmptyGroup.arbitrary))
+
   implicit val arbRegexError: Arbitrary[RegexError] =
     Arbitrary(oneOf(arb[DecodeError], arb[CompileError]))
 
+  implicit val cogenRegexCompileError: Cogen[CompileError]               = Cogen[String].contramap(_.message)
+  implicit val cogenRegexTypeError: Cogen[DecodeError.TypeError]         = Cogen[String].contramap(_.message)
+  implicit val cogenRegexNoSuchGroupId: Cogen[DecodeError.NoSuchGroupId] = Cogen[Int].contramap(_.id)
+  implicit val cogenRegexEmptyGroup: Cogen[DecodeError.EmptyGroup.type]  = Cogen[Unit].contramap(_ ⇒ ())
   implicit val cogenRegexDecodeError: Cogen[DecodeError] = Cogen { (seed: Seed, err: DecodeError) ⇒
     err match {
-      case DecodeError.EmptyGroup       ⇒ seed
-      case DecodeError.NoSuchGroupId(i) ⇒ imp[Cogen[Int]].perturb(seed, i)
-      case DecodeError.TypeError(msg)   ⇒ imp[Cogen[String]].perturb(seed, msg)
+    case error: DecodeError.TypeError ⇒ cogenRegexTypeError.perturb(seed, error)
+    case error: DecodeError.NoSuchGroupId ⇒ cogenRegexNoSuchGroupId.perturb(seed, error)
+    case error: DecodeError.EmptyGroup.type ⇒ cogenRegexEmptyGroup.perturb(seed, error)
+    }
+  }
+
+  implicit val cogenRegexError: Cogen[RegexError] = Cogen { (seed: Seed, err: RegexError) ⇒
+    err match {
+    case error: DecodeError ⇒ cogenRegexDecodeError.perturb(seed, error)
+    case error: CompileError ⇒ cogenRegexCompileError.perturb(seed, error)
     }
   }
 
@@ -101,4 +129,12 @@ trait ArbitraryInstances
 
   implicit def arbIllegalMatch[A](implicit ia: Arbitrary[IllegalString[A]]): Arbitrary[IllegalMatch[A]] =
     Arbitrary(ia.arbitrary.map(_.mapEncoded(toMatch).tag[codecs.type]))
+
+
+  // - Decoders --------------------------------------------------------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
+
+  implicit def arbGroupDecoder[A: Arbitrary]: Arbitrary[GroupDecoder[A]] =
+    Arbitrary(arb[Option[String] ⇒ DecodeResult[A]].map(GroupDecoder.from))
+
 }
