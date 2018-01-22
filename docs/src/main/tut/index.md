@@ -38,6 +38,9 @@ libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "@VERSION@"
 
 // Provides refined decoders.
 libraryDependencies += "com.nrinaudo" %% "kantan.regex-refined" % "@VERSION@"
+
+// Provides enumeratum decoders.
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-enumeratum" % "@VERSION@"
 ```
 
 ## Motivation
