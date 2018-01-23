@@ -17,17 +17,23 @@
 package kantan.regex
 
 import _root_.cats._
-import kantan.codecs.cats.CatsInstances
+import kantan.codecs.cats._
 
-package object cats extends CatsInstances {
+package object cats extends DecoderInstances with CommonInstances {
   // - Regex instances -------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   implicit val regexFunctor: Functor[Regex] = new Functor[Regex] {
     override def map[A, B](fa: Regex[A])(f: A ⇒ B) = fa.map(f)
   }
 
-  // - Eq instances for errors -----------------------------------------------------------------------------------------
+  // - Eq instances ----------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
-  implicit val compileErrorEq: Eq[CompileError] = Eq.fromUniversalEquals
-  implicit val decodeErrorEq: Eq[DecodeError]   = Eq.fromUniversalEquals
+
+  implicit val regexCompileErrorEq: Eq[CompileError]               = Eq.fromUniversalEquals
+  implicit val regexNoSuchGroupIdEq: Eq[DecodeError.NoSuchGroupId] = Eq.fromUniversalEquals
+  implicit val regexTypeErrorEq: Eq[DecodeError.TypeError]         = Eq.fromUniversalEquals
+  implicit val regexEmptyGroupEq: Eq[DecodeError.EmptyGroup.type]  = Eq.fromUniversalEquals
+  implicit val regexDecodeErrorEq: Eq[DecodeError]                 = Eq.fromUniversalEquals
+  implicit val regexRegexErrorEq: Eq[RegexError]                   = Eq.fromUniversalEquals
+
 }

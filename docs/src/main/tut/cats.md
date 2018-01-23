@@ -23,12 +23,16 @@ import kantan.regex.cats._
 
 The following instance for cats type classes are provided:
 
-* [`Functor`] for all decoders ([`GroupDecoder`] and [`MatchDecoder`]).
+* [`MonadError`] and [`SemigroupK`] for all decoders ([`GroupDecoder`] and [`MatchDecoder`]).
+* [`Functor`] for [`Regex`].
+* [`Show`] and [`Eq`] for all error types ([`RegexError`] and all its descendants).
 
-[`Functor`]:http://typelevel.org/cats/api/cats/Functor.html
-[`BiFunctor`]:http://typelevel.org/cats/api/cats/functor/Bifunctor.html
+[`MonadError`]:https://typelevel.org/cats/api/cats/MonadError.html
+[`Functor`]:https://typelevel.org/cats/api/cats/Functor.html
+[`SemigroupK`]:https://typelevel.org/cats/api/cats/SemigroupK.html
+[`Show`]:https://typelevel.org/cats/api/cats/Show.html
+[`Eq`]:https://typelevel.org/cats/api/cats/kernel/Eq.html
 [`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html
 [`MatchDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$MatchDecoder.html
-[`RegexResult`]:{{ site.baseurl}}/api/kantan/regex/RegexResult$.html
-[`DecodeResult`]:{{ site.baseurl }}/api/kantan/regex/package$$DecodeResult$.html
-[`CompileResult`]:{{ site.baseurl }}/api/kantan/regex/CompileResult$.html
+[`RegexError`]:{{ site.baseurl}}/api/kantan/regex/RegexError.html
+[`Regex`]:{{ site.baseurl}}/api/kantan/regex/Regex.html
