@@ -130,10 +130,4 @@ trait ArbitraryInstances
   implicit def arbIllegalMatch[A](implicit ia: Arbitrary[IllegalString[A]]): Arbitrary[IllegalMatch[A]] =
     Arbitrary(ia.arbitrary.map(_.mapEncoded(toMatch).tag[codecs.type]))
 
-  // - Decoders --------------------------------------------------------------------------------------------------------
-  // -------------------------------------------------------------------------------------------------------------------
-
-  implicit def arbGroupDecoder[A: Arbitrary]: Arbitrary[GroupDecoder[A]] =
-    Arbitrary(arb[Option[String] ⇒ DecodeResult[A]].map(GroupDecoder.from))
-
 }
