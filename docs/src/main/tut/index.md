@@ -41,6 +41,9 @@ libraryDependencies += "com.nrinaudo" %% "kantan.regex-refined" % "@VERSION@"
 
 // Provides enumeratum decoders.
 libraryDependencies += "com.nrinaudo" %% "kantan.regex-enumeratum" % "@VERSION@"
+
+// Provides libra decoders.
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-libra" % "@VERSION@"
 ```
 
 ## Motivation
