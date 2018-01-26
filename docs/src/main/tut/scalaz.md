@@ -58,13 +58,18 @@ The same is true for [`MatchDecoder`], although I can't really think of an examp
 
 The following instance for cats type classes are provided:
 
-* [`Functor`] for all decoders ([`GroupDecoder`] and [`MatchDecoder`]).
+* [`MonadError`] and [`Plus`] for [`GroupDecoder`].
+* [`Show`] and [`Equal`] for all error types ([`RegexError`] and all its descendants).
+* [`Functor`] for [`Regex`].
 
-[`Functor`]:https://oss.sonatype.org/service/local/repositories/releases/archive/org/scalaz/scalaz_2.11/7.2.3/scalaz_2.11-7.2.3-javadoc.jar/!/index.html#scalaz.Functor
-[`\/`]:https://oss.sonatype.org/service/local/repositories/releases/archive/org/scalaz/scalaz_2.11/7.2.3/scalaz_2.11-7.2.3-javadoc.jar/!/index.html#scalaz.$bslash$div
-[`Maybe`]:https://oss.sonatype.org/service/local/repositories/releases/archive/org/scalaz/scalaz_2.11/7.2.3/scalaz_2.11-7.2.3-javadoc.jar/!/index.html#scalaz.Maybe
+[`MonadError`]:https://static.javadoc.io/org.scalaz/scalaz_2.12/7.2.18/scalaz/MonadError.html
+[`Functor`]:https://static.javadoc.io/org.scalaz/scalaz_2.12/7.2.18/scalaz/Functor.html
+[`Plus`]:https://static.javadoc.io/org.scalaz/scalaz_2.12/7.2.18/scalaz/Plus.html
+[`Show`]:https://static.javadoc.io/org.scalaz/scalaz_2.12/7.2.18/scalaz/Show.html
+[`Equal`]:https://static.javadoc.io/org.scalaz/scalaz_2.12/7.2.18/scalaz/Equal.html
+[`\/`]:https://static.javadoc.io/org.scalaz/scalaz_2.12/7.2.18/scalaz/$bslash$div.html
+[`Maybe`]:https://static.javadoc.io/org.scalaz/scalaz_2.12/7.2.18/scalaz/Maybe.html
 [`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html
 [`MatchDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$MatchDecoder.html
-[`RegexResult`]:{{ site.baseurl}}/api/index.html#kantan.regex.package$$RegexResult
-[`DecodeResult`]:{{ site.baseurl }}/api/kantan/regex/package$$DecodeResult.html
-[`CompileResult`]:{{ site.baseurl }}/api/index.html#kantan.regex.package$$CompileResult
+[`RegexError`]:{{ site.baseurl}}/api/kantan/regex/RegexError.html
+[`Regex`]:{{ site.baseurl}}/api/kantan/regex/Regex.html
