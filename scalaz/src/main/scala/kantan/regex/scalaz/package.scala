@@ -17,17 +17,25 @@
 package kantan.regex
 
 import _root_.scalaz._
-import kantan.codecs.scalaz.ScalazInstances
+import kantan.codecs.scalaz._
 
-package object scalaz extends ScalazInstances {
+package object scalaz extends DecoderInstances with CommonInstances {
+
   // - Regex instances -------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
+
   implicit val regexFunctor: Functor[Regex] = new Functor[Regex] {
     override def map[A, B](fa: Regex[A])(f: A ⇒ B) = fa.map(f)
   }
 
-  // - Equal instances for errors --------------------------------------------------------------------------------------
+  // - Equal instances ----------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
-  implicit val compileErrorEqual: Equal[CompileError] = Equal.equalA
-  implicit val decodeErrorEqual: Equal[DecodeError]   = Equal.equalA
+
+  implicit val regexCompileErrorEqual: Equal[CompileError]               = Equal.equalA
+  implicit val regexNoSuchGroupIdEqual: Equal[DecodeError.NoSuchGroupId] = Equal.equalA
+  implicit val regexTypeErrorEqual: Equal[DecodeError.TypeError]         = Equal.equalA
+  implicit val regexEmptyGroupEqual: Equal[DecodeError.EmptyGroup.type]  = Equal.equalA
+  implicit val regexDecodeErrorEqual: Equal[DecodeError]                 = Equal.equalA
+  implicit val regexRegexErrorEqual: Equal[RegexError]                   = Equal.equalA
+
 }

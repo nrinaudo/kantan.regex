@@ -23,7 +23,7 @@ import kantan.regex.cats._
 
 The following instance for cats type classes are provided:
 
-* [`MonadError`] and [`SemigroupK`] for all decoders ([`GroupDecoder`] and [`MatchDecoder`]).
+* [`MonadError`] and [`SemigroupK`] for [`GroupDecoder`].
 * [`Functor`] for [`Regex`].
 * [`Show`] and [`Eq`] for all error types ([`RegexError`] and all its descendants).
 
