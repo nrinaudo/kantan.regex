@@ -18,7 +18,6 @@ package kantan.regex
 package scalaz
 
 import _root_.scalaz.\/
-import _root_.scalaz.scalacheck.ScalazArbitrary._
 import laws._
 import laws.discipline._, arbitrary._
 import org.scalacheck.Arbitrary
