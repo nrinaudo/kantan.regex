@@ -22,21 +22,22 @@ import kantan.codecs.strings.StringDecoder
 import kantan.codecs.strings.joda.time._
 import org.joda.time.{DateTime, LocalDate, LocalDateTime, LocalTime}
 
-/** Brings all joda time instances in scope.
+/** Declares [[kantan.regex.GroupDecoder]] instances joda-time types.
   *
-  * Note that this is a convenience - the exact same effect can be achieved by importing
-  * `kantan.codec.strings.joda.time._`. The sole purpose of this is to keep things simple for users that don't want or
-  * need to learn about kantan.regex's internals.
+  * Note that the type for default codecs might come as a surprise: the wrapping `Exported` is used to lower their
+  * priority. This is necessary because the standard use case will be to `import kantan.regex.joda.time._`, which
+  * brings both the instance creation and default instances in scope. Without this type trickery, custom instances
+  * and default ones would always clash.
   */
 package object time extends JodaTimeDecoderCompanion[Option[String], DecodeError, codecs.type] {
+
   override def decoderFrom[D](d: StringDecoder[D]) = codecs.fromString(d)
 
-  implicit val defaultDateTimeGroupDecoder: Exported[GroupDecoder[DateTime]] =
-    Exported(defaultDateTimeDecoder)
-  implicit val defaultLocalDateTimeGroupDecoder: Exported[GroupDecoder[LocalDateTime]] =
-    Exported(defaultLocalDateTimeDecoder)
-  implicit val defaultLocalDateGroupDecoder: Exported[GroupDecoder[LocalDate]] =
-    Exported(defaultLocalDateDecoder)
-  implicit val defaultLocalTimeGroupDecoder: Exported[GroupDecoder[LocalTime]] =
-    Exported(defaultLocalTimeDecoder)
+  implicit val defaultDateTimeGroupDecoder: Exported[GroupDecoder[DateTime]] = Exported(defaultDateTimeDecoder)
+  implicit val defaultLocalDateTimeGroupDecoder: Exported[GroupDecoder[LocalDateTime]] = Exported(
+    defaultLocalDateTimeDecoder
+  )
+  implicit val defaultLocalTimeGroupDecoder: Exported[GroupDecoder[LocalTime]] = Exported(defaultLocalTimeDecoder)
+  implicit val defaultLocalDateGroupDecoder: Exported[GroupDecoder[LocalDate]] = Exported(defaultLocalDateDecoder)
+
 }
