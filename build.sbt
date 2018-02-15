@@ -47,6 +47,7 @@ lazy val docs = project
       inAnyProject -- inProjectsIf(!java8Supported)(java8) -- inProjects(jsModules: _*)
   )
   .enablePlugins(DocumentationPlugin)
+  .settings(name := "docs")
   .dependsOn(catsJVM, coreJVM, enumeratumJVM, genericJVM, jodaTime, libra, refinedJVM, scalazJVM)
   .dependsOnIf(java8Supported)(java8)
 
