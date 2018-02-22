@@ -91,4 +91,4 @@ Finally, any sum type such that all its alternatives have a [`MatchDecoder`] get
 
 [`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html
 [`MatchDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$MatchDecoder.html
-[`Tuple2`]:http://www.scala-lang.org/api/current/index.html?search=Tuple2
+[`Tuple2`]:http://www.scala-lang.org/api/current/scala/Tuple2.html

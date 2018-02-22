@@ -68,11 +68,11 @@ call [`pattern`][`Regex.pattern`] to get the underlying [`Pattern`].
 
 [`evalRegex`]:{{ site.baseurl }}/api/kantan/regex/ops/StringOps.html#evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]
 [`asRegex`]:{{ site.baseurl }}/api/kantan/regex/ops/CompilerOps.html#asRegex[A](implicitevidence$1:kantan.regex.MatchDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.CompileResult[kantan.regex.Regex[kantan.regex.DecodeResult[A]]]
-[`asUnsafeRegex`]:{{ site.baseurl }}/api/index.html#kantan.regex.ops.CompilerOps@asUnsafeRegex[A](implicitevidence$3:kantan.regex.MatchDecoder[A],implicitcs:kantan.regex.Compiler[S]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
+[`asUnsafeRegex`]:{{ site.baseurl }}/api/kantan/regex/ops/CompilerOps.html#asUnsafeRegex[A](implicitevidence$4:kantan.regex.MatchDecoder[A]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
 [`Regex`]:{{ site.baseurl }}/api/kantan/regex/Regex.html
 [`Regex.apply`]:{{ site.baseurl }}/api/kantan/regex/Regex$.html#apply[A](pattern:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):kantan.regex.Regex[kantan.regex.DecodeResult[A]]
 [`CompileResult`]:{{ site.baseurl }}/api/kantan/regex/package$$CompileResult.html
-[`get`]:https://nrinaudo.github.io/kantan.codecs/api/index.html#kantan.codecs.Result@get:S
+[`get`]:http://www.scala-lang.org/api/current/scala/util/Either$$RightProjection.html#get:B
 [`Compiler`]:{{ site.baseurl }}/api/kantan/regex/Compiler.html
 [`scala.util.matching.Regex`]:http://www.scala-lang.org/api/current/scala/util/matching/Regex.html
 [`Pattern`]:{{ site.baseurl }}/api/kantan/regex/index.html#Pattern=java.util.regex.Pattern
