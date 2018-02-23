@@ -19,7 +19,7 @@ package kantan.regex
 import java.time._
 import kantan.codecs.export.Exported
 import kantan.codecs.strings.StringDecoder
-import kantan.codecs.strings.java8.TimeDecoderCompanion
+import kantan.codecs.strings.java8.{TimeDecoderCompanion, ToFormatLiteral}
 
 /** Declares [[kantan.regex.GroupDecoder]] instances for java8 date and time types.
   *
@@ -28,7 +28,7 @@ import kantan.codecs.strings.java8.TimeDecoderCompanion
   * brings both the instance creation and default instances in scope. Without this type trickery, custom instances
   * and default ones would always clash.
   */
-package object java8 extends TimeDecoderCompanion[Option[String], DecodeError, codecs.type] {
+package object java8 extends TimeDecoderCompanion[Option[String], DecodeError, codecs.type] with ToFormatLiteral {
 
   override def decoderFrom[D](d: StringDecoder[D]) = codecs.fromString(d)
 

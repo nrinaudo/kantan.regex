@@ -60,6 +60,19 @@ And we can now simply write:
 input.evalRegex[LocalDate](rx"\[(\d\d/\d\d/\d\d\d\d)\]", 1).foreach(println _)
 ```
 
+Note that while you can pass a [`DateTimeFormatter`] directly, the preferred way of dealing with pattern strings is to
+use the literal syntax provided by kantan.regex:
+
+```tut:silent
+localDateDecoder(fmt"dd-MM-yyyy")
+```
+
+The advantage is that this is checked at compile time - invalid pattern strings will cause a compilation error:
+
+```tut:fail
+localDateDecoder(fmt"FOOBAR")
+```
+
 [`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html
 [`Instant`]:https://docs.oracle.com/javase/8/docs/api/java/time/Instant.html
 [`LocalDateTime`]:https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html
@@ -67,3 +80,4 @@ input.evalRegex[LocalDate](rx"\[(\d\d/\d\d/\d\d\d\d)\]", 1).foreach(println _)
 [`ZonedDateTime`]:https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html
 [`LocalDate`]:https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html
 [`LocalTime`]:https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html
+[`DateTimeFormatter`]:https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html
