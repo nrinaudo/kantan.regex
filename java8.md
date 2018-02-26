@@ -9,7 +9,7 @@ kantan.regex API - we still support Java 7. There is, however, a dedicated optio
 adding the following line to your `build.sbt` file:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "0.3.2-SNAPSHOT"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "0.4.0"
 ```
 
 You then need to import the corresponding package:
@@ -40,8 +40,8 @@ We can decode the bracketed dates without providing an explicit decoder:
 
 ```scala
 scala> input.evalRegex[LocalDate](rx"\[(\d\d\d\d-\d\d-\d\d)\]", 1).foreach(println _)
-Success(1978-10-12)
-Success(2015-01-09)
+Right(1978-10-12)
+Right(2015-01-09)
 ```
 
 It's also possible to provide your own format. For example, for [`LocalDateTime`]:
@@ -60,8 +60,24 @@ And we can now simply write:
 
 ```scala
 scala> input.evalRegex[LocalDate](rx"\[(\d\d/\d\d/\d\d\d\d)\]", 1).foreach(println _)
-Success(1978-12-10)
-Success(2015-01-09)
+Right(1978-12-10)
+Right(2015-01-09)
+```
+
+Note that while you can pass a [`DateTimeFormatter`] directly, the preferred way of dealing with pattern strings is to
+use the literal syntax provided by kantan.regex:
+
+```scala
+localDateDecoder(fmt"dd-MM-yyyy")
+```
+
+The advantage is that this is checked at compile time - invalid pattern strings will cause a compilation error:
+
+```scala
+scala> localDateDecoder(fmt"FOOBAR")
+<console>:28: error: Invalid pattern: 'FOOBAR'
+       localDateDecoder(fmt"FOOBAR")
+                            ^
 ```
 
 [`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html
@@ -71,3 +87,4 @@ Success(2015-01-09)
 [`ZonedDateTime`]:https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html
 [`LocalDate`]:https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html
 [`LocalTime`]:https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html
+[`DateTimeFormatter`]:https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html

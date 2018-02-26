@@ -10,7 +10,7 @@ bones: it simply provides a few useful type class instances.
 The `cats` module can be used by adding the following dependency to your `build.sbt`:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-cats" % "0.3.1"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-cats" % "0.4.0"
 ```
 
 You then need to import the corresponding package:
@@ -23,23 +23,16 @@ import kantan.regex.cats._
 
 The following instance for cats type classes are provided:
 
-* [`Functor`] for all decoders ([`GroupDecoder`] and [`MatchDecoder`]).
-* [`Order`] for all result types ([`DecodeResult`], [`RegexResult`] and [`CompileResult`]).
-* [`Show`] for all result types.
-* [`Monoid`] for all result types.
-* [`Traverse`] for all result types.
-* [`Monad`] for all result types.
-* [`BiFunctor`] for all result types.
+* [`MonadError`] and [`SemigroupK`] for [`GroupDecoder`].
+* [`Functor`] for [`Regex`].
+* [`Show`] and [`Eq`] for all error types ([`RegexError`] and all its descendants).
 
-[`Functor`]:http://typelevel.org/cats/api/cats/Functor.html
-[`BiFunctor`]:http://typelevel.org/cats/api/cats/functor/Bifunctor.html
-[`Order`]:http://typelevel.org/cats/api/cats/kernel/Order.html
-[`Show`]:http://typelevel.org/cats/api/cats/Show.html
-[`Traverse`]:http://typelevel.org/cats/api/cats/Traverse.html
-[`Monad`]:http://typelevel.org/cats/api/cats/Monad.html
+[`MonadError`]:https://typelevel.org/cats/api/cats/MonadError.html
+[`Functor`]:https://typelevel.org/cats/api/cats/Functor.html
+[`SemigroupK`]:https://typelevel.org/cats/api/cats/SemigroupK.html
+[`Show`]:https://typelevel.org/cats/api/cats/Show.html
+[`Eq`]:https://typelevel.org/cats/api/cats/kernel/Eq.html
 [`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html
 [`MatchDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$MatchDecoder.html
-[`RegexResult`]:{{ site.baseurl}}/api/kantan/regex/RegexResult$.html
-[`DecodeResult`]:{{ site.baseurl }}/api/kantan/regex/package$$DecodeResult$.html
-[`CompileResult`]:{{ site.baseurl }}/api/kantan/regex/CompileResult$.html
-[`Monoid`]:http://typelevel.org/cats/api/cats/kernel/Monoid.html
+[`RegexError`]:{{ site.baseurl}}/api/kantan/regex/RegexError.html
+[`Regex`]:{{ site.baseurl}}/api/kantan/regex/Regex.html

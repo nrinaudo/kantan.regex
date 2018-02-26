@@ -40,8 +40,8 @@ Without any further work, we can decode instances of `Wrapper`:
 
 ```scala
 scala> "123 and then 456".evalRegex[Wrapper[Int]](rx"\d+").foreach(println _)
-Success(Wrapper(123))
-Success(Wrapper(456))
+Right(Wrapper(123))
+Right(Wrapper(456))
 ```
 
 
@@ -62,8 +62,8 @@ If both `A` and `B` have a [`GroupDecoder`], then both `Left` and `Right`, being
 
 ```scala
 scala> "(123) and then (true)".evalRegex[Int Or Boolean](rx"\((\d+|true|false)\)", 1).foreach(println _)
-Success(Left(123))
-Success(Right(true))
+Right(Left(123))
+Right(Right(true))
 ```
 
 
@@ -83,8 +83,8 @@ If both `A` and `B` have [`MatchDecoder`] instances, so does `CustomTuple2[A, B]
 
 ```scala
 scala> "(1, false) and then (3, true)".evalRegex[CustomTuple2[Int, Boolean]](rx"\((\d+), (true|false)\)").foreach(println _)
-Success(CustomTuple2(1,false))
-Success(CustomTuple2(3,true))
+Right(CustomTuple2(1,false))
+Right(CustomTuple2(3,true))
 ```
 
 ### Sum types
@@ -93,10 +93,10 @@ Finally, any sum type such that all its alternatives have a [`MatchDecoder`] get
 
 ```scala
 scala> "(1, false) and then (3, foobar)".evalRegex[CustomTuple2[Int, Boolean] Or CustomTuple2[Int, String]](rx"\((\d+), ([a-z]+)\)").foreach(println _)
-Success(Left(CustomTuple2(1,false)))
-Success(Right(CustomTuple2(3,foobar)))
+Right(Left(CustomTuple2(1,false)))
+Right(Right(CustomTuple2(3,foobar)))
 ```
 
 [`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html
 [`MatchDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$MatchDecoder.html
-[`Tuple2`]:http://www.scala-lang.org/api/current/index.html?search=Tuple2
+[`Tuple2`]:http://www.scala-lang.org/api/current/scala/Tuple2.html

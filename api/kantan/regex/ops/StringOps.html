@@ -168,16 +168,16 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">StringOps</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.AnyVal" class="extype" name="scala.collection.immutable.List">AnyVal</a></span>
+        <span class="name">StringOps</span><span class="result"> extends <span class="extype" name="scala.AnyVal">AnyVal</span></span>
       </span>
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Enriches <code>String</code> with useful regex-related syntax.</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/core/src/main/scala/kantan/regex/ops/StringOps.scala" target="_blank">StringOps.scala</a></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Enriches <code>String</code> with useful regex-related syntax.</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/core/shared/src/main/scala/kantan/regex/ops/StringOps.scala" target="_blank">StringOps.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.AnyVal" class="extype" name="scala.collection.immutable.List">AnyVal</a>, <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.Any" class="extype" name="scala.collection.immutable.List">Any</a></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyVal">AnyVal</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -261,7 +261,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.Any" class="extype" name="scala.collection.immutable.List">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -293,7 +293,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.Any" class="extype" name="scala.collection.immutable.List">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -373,7 +373,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.Class">Class</span>[_ &lt;: <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.AnyVal" class="extype" name="scala.collection.immutable.List">AnyVal</a>]</span>
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.Class">Class</span>[_ &lt;: <span class="extype" name="scala.AnyVal">AnyVal</span>]</span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyVal → Any</dd></dl></div>
@@ -425,7 +425,7 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="kantan.regex.ops.StringOps#unsafeEvalRegex" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="kantan.regex.ops.StringOps#unsafeEvalRegex" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="unsafeEvalRegex[A](p:kantan.regex.Pattern,group:Int)(implicitevidence$4:kantan.regex.GroupDecoder[A]):Iterator[A]"></a><a id="unsafeEvalRegex[A](Pattern,Int)(GroupDecoder[A]):Iterator[A]"></a>
       <span class="permalink">
       <a href="../../../kantan/regex/ops/StringOps.html#unsafeEvalRegex[A](p:kantan.regex.Pattern,group:Int)(implicitevidence$4:kantan.regex.GroupDecoder[A]):Iterator[A]" title="Permalink">
@@ -440,8 +440,11 @@
         <span class="name">unsafeEvalRegex</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="p">p: <a href="../index.html#Pattern=java.util.regex.Pattern" class="extmbr" name="kantan.regex.Pattern">Pattern</a></span>, <span name="group">group: <a href="http://www.scala-lang.org/api/2.12.4/scala/Int.html#scala.Int" class="extype" name="scala.Int">Int</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="../package$$GroupDecoder.html" class="extype" name="kantan.regex.GroupDecoder">GroupDecoder</a>[<span class="extype" name="kantan.regex.ops.StringOps.unsafeEvalRegex.A">A</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Iterator">Iterator</span>[<span class="extype" name="kantan.regex.ops.StringOps.unsafeEvalRegex.A">A</span>]</span>
       </span>
       
-      
-    </li><li name="kantan.regex.ops.StringOps#unsafeEvalRegex" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@SuppressWarnings</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="kantan.regex.ops.StringOps#unsafeEvalRegex" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="unsafeEvalRegex[A](p:kantan.regex.Pattern)(implicitevidence$3:kantan.regex.MatchDecoder[A]):Iterator[A]"></a><a id="unsafeEvalRegex[A](Pattern)(MatchDecoder[A]):Iterator[A]"></a>
       <span class="permalink">
       <a href="../../../kantan/regex/ops/StringOps.html#unsafeEvalRegex[A](p:kantan.regex.Pattern)(implicitevidence$3:kantan.regex.MatchDecoder[A]):Iterator[A]" title="Permalink">
@@ -456,7 +459,10 @@
         <span class="name">unsafeEvalRegex</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="p">p: <a href="../index.html#Pattern=java.util.regex.Pattern" class="extmbr" name="kantan.regex.Pattern">Pattern</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="../package$$MatchDecoder.html" class="extype" name="kantan.regex.MatchDecoder">MatchDecoder</a>[<span class="extype" name="kantan.regex.ops.StringOps.unsafeEvalRegex.A">A</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Iterator">Iterator</span>[<span class="extype" name="kantan.regex.ops.StringOps.unsafeEvalRegex.A">A</span>]</span>
       </span>
       
-      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@SuppressWarnings</span><span class="args">()</span>
+              
+        </dd></dl></div>
     </li>
               </ol>
             </div>
@@ -468,9 +474,9 @@
 
         <div id="inheritedMembers">
         <div class="parent" name="scala.AnyVal">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.AnyVal" class="extype" name="scala.collection.immutable.List">AnyVal</a></h3>
+              <h3>Inherited from <span class="extype" name="scala.AnyVal">AnyVal</span></h3>
             </div><div class="parent" name="scala.Any">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.Any" class="extype" name="scala.collection.immutable.List">Any</a></h3>
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
             </div>
         
         </div>

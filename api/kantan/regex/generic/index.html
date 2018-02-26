@@ -129,7 +129,43 @@
                         <span class="separator"></span>
                         <a class="trait" href="LowPrirityGenericInstances.html" title=""></a>
                         <a href="LowPrirityGenericInstances.html" title="">LowPrirityGenericInstances</a>
-                      </li><li name="kantan.regex.laws" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+                      </li><li name="kantan.regex.java8" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="java8"></a><a id="java8:java8"></a>
+      <span class="permalink">
+      <a href="../../kantan/regex/index.html#java8" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="Declares kantan.regex.GroupDecoder instances for java8 date and time types." href="../java8/index.html"><span class="name">java8</span></a>
+      </span>
+      
+      <p class="shortcomment cmt">Declares <a href="../package$$GroupDecoder.html" class="extype" name="kantan.regex.GroupDecoder">kantan.regex.GroupDecoder</a> instances for java8 date and time types.</p><div class="fullcomment"><div class="comment cmt"><p>Declares <a href="../package$$GroupDecoder.html" class="extype" name="kantan.regex.GroupDecoder">kantan.regex.GroupDecoder</a> instances for java8 date and time types.</p><p>Note that the type for default codecs might come as a surprise: the wrapping <code>Exported</code> is used to lower their
+priority. This is necessary because the standard use case will be to <code>import kantan.regex.java8._</code>, which
+brings both the instance creation and default instances in scope. Without this type trickery, custom instances
+and default ones would always clash.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="kantan.regex">regex</a></dd></dl></div>
+    </li><li name="kantan.regex.joda" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="joda"></a><a id="joda:joda"></a>
+      <span class="permalink">
+      <a href="../../kantan/regex/index.html#joda" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../joda/index.html"><span class="name">joda</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="kantan.regex">regex</a></dd></dl></div>
+    </li><li name="kantan.regex.laws" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="laws"></a><a id="laws:laws"></a>
       <span class="permalink">
       <a href="../../kantan/regex/index.html#laws" title="Permalink">
@@ -205,11 +241,11 @@
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/generic/src/main/scala/kantan/regex/generic/package.scala" target="_blank">package.scala</a></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/generic/shared/src/main/scala/kantan/regex/generic/package.scala" target="_blank">package.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><a href="GenericInstances.html" class="extype" name="kantan.regex.generic.GenericInstances">GenericInstances</a>, <a href="LowPrirityGenericInstances.html" class="extype" name="kantan.regex.generic.LowPrirityGenericInstances">LowPrirityGenericInstances</a>, <a href="https://nrinaudo.github.io/kantan.codecs/api/kantan/codecs/shapeless/ShapelessInstances.html#kantan.codecs.shapeless.ShapelessInstances" class="extype" name="kantan.codecs.shapeless.ShapelessInstances">ShapelessInstances</a>, <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.AnyRef" class="extype" name="scala.collection.immutable.List">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.Any" class="extype" name="scala.collection.immutable.List">Any</a></div>
+          <div class="superTypes hiddenContent"><a href="GenericInstances.html" class="extype" name="kantan.regex.generic.GenericInstances">GenericInstances</a>, <a href="LowPrirityGenericInstances.html" class="extype" name="kantan.regex.generic.LowPrirityGenericInstances">LowPrirityGenericInstances</a>, <a href="https://nrinaudo.github.io/kantan.codecs/api/kantan/codecs/shapeless/ShapelessInstances.html#kantan.codecs.shapeless.ShapelessInstances" class="extype" name="kantan.codecs.shapeless.ShapelessInstances">ShapelessInstances</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -301,7 +337,7 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a title="" href="LowPrirityGenericInstances.html"><span class="name">LowPrirityGenericInstances</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.AnyRef" class="extype" name="scala.collection.immutable.List">AnyRef</a></span>
+        <a title="" href="LowPrirityGenericInstances.html"><span class="name">LowPrirityGenericInstances</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       
       
@@ -378,18 +414,18 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ShapelessInstances</dd></dl></div>
     </li><li name="kantan.codecs.shapeless.ShapelessInstances#cnilDecoder" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="cnilDecoder[E,F,T](f:E=&gt;F):kantan.codecs.Decoder[E,shapeless.CNil,F,T]"></a><a id="cnilDecoder[E,F,T]((E)⇒F):Decoder[E,CNil,F,T]"></a>
+      <a id="cnilDecoder[E,F,T](implicitevidence$1:kantan.codecs.error.IsError[F]):kantan.codecs.Decoder[E,shapeless.CNil,F,T]"></a><a id="cnilDecoder[E,F,T](IsError[F]):Decoder[E,CNil,F,T]"></a>
       <span class="permalink">
-      <a href="../../../kantan/regex/generic/index.html#cnilDecoder[E,F,T](f:E=&gt;F):kantan.codecs.Decoder[E,shapeless.CNil,F,T]" title="Permalink">
+      <a href="../../../kantan/regex/generic/index.html#cnilDecoder[E,F,T](implicitevidence$1:kantan.codecs.error.IsError[F]):kantan.codecs.Decoder[E,shapeless.CNil,F,T]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">implicit </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">cnilDecoder</span><span class="tparams">[<span name="E">E</span>, <span name="F">F</span>, <span name="T">T</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="kantan.codecs.shapeless.ShapelessInstances.cnilDecoder.E">E</span>) ⇒ <span class="extype" name="kantan.codecs.shapeless.ShapelessInstances.cnilDecoder.F">F</span></span>)</span><span class="result">: <a href="https://nrinaudo.github.io/kantan.codecs/api/kantan/codecs/Decoder.html#kantan.codecs.Decoder" class="extype" name="kantan.codecs.Decoder">Decoder</a>[<span class="extype" name="kantan.codecs.shapeless.ShapelessInstances.cnilDecoder.E">E</span>, <span class="extype" name="shapeless.CNil">CNil</span>, <span class="extype" name="kantan.codecs.shapeless.ShapelessInstances.cnilDecoder.F">F</span>, <span class="extype" name="kantan.codecs.shapeless.ShapelessInstances.cnilDecoder.T">T</span>]</span>
+        <span class="name">cnilDecoder</span><span class="tparams">[<span name="E">E</span>, <span name="F">F</span>, <span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="kantan.codecs.error.IsError">IsError</span>[<span class="extype" name="kantan.codecs.shapeless.ShapelessInstances.cnilDecoder.F">F</span>]</span>)</span><span class="result">: <a href="https://nrinaudo.github.io/kantan.codecs/api/kantan/codecs/Decoder.html#kantan.codecs.Decoder" class="extype" name="kantan.codecs.Decoder">Decoder</a>[<span class="extype" name="kantan.codecs.shapeless.ShapelessInstances.cnilDecoder.E">E</span>, <span class="extype" name="shapeless.CNil">CNil</span>, <span class="extype" name="kantan.codecs.shapeless.ShapelessInstances.cnilDecoder.F">F</span>, <span class="extype" name="kantan.codecs.shapeless.ShapelessInstances.cnilDecoder.T">T</span>]</span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ShapelessInstances</dd></dl></div>
@@ -412,38 +448,6 @@
                 <span class="name">@SuppressWarnings</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="kantan.regex.generic.GenericInstances#cnilGroupDecoder" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="cnilGroupDecoder:kantan.regex.GroupDecoder[shapeless.CNil]"></a><a id="cnilGroupDecoder:GroupDecoder[CNil]"></a>
-      <span class="permalink">
-      <a href="../../../kantan/regex/generic/index.html#cnilGroupDecoder:kantan.regex.GroupDecoder[shapeless.CNil]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">implicit </span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">cnilGroupDecoder</span><span class="result">: <a href="../package$$GroupDecoder.html" class="extype" name="kantan.regex.GroupDecoder">GroupDecoder</a>[<span class="extype" name="shapeless.CNil">CNil</span>]</span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="GenericInstances.html" class="extype" name="kantan.regex.generic.GenericInstances">GenericInstances</a></dd></dl></div>
-    </li><li name="kantan.regex.generic.GenericInstances#cnilMatchDecoder" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="cnilMatchDecoder:kantan.regex.MatchDecoder[shapeless.CNil]"></a><a id="cnilMatchDecoder:MatchDecoder[CNil]"></a>
-      <span class="permalink">
-      <a href="../../../kantan/regex/generic/index.html#cnilMatchDecoder:kantan.regex.MatchDecoder[shapeless.CNil]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">implicit </span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">cnilMatchDecoder</span><span class="result">: <a href="../package$$MatchDecoder.html" class="extype" name="kantan.regex.MatchDecoder">MatchDecoder</a>[<span class="extype" name="shapeless.CNil">CNil</span>]</span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="GenericInstances.html" class="extype" name="kantan.regex.generic.GenericInstances">GenericInstances</a></dd></dl></div>
     </li><li name="kantan.codecs.shapeless.ShapelessInstances#coproductDecoder" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="coproductDecoder[E,H,D&lt;:shapeless.Coproduct,F,T](implicitdh:kantan.codecs.Decoder[E,H,F,T],implicitdt:kantan.codecs.Decoder[E,D,F,T]):kantan.codecs.Decoder[E,H:+:D,F,T]"></a><a id="coproductDecoder[E,H,D&lt;:Coproduct,F,T](Decoder[E,H,F,T],Decoder[E,D,F,T]):Decoder[E,:+:[H,D],F,T]"></a>
       <span class="permalink">
@@ -605,9 +609,9 @@
             </div><div class="parent" name="kantan.codecs.shapeless.ShapelessInstances">
               <h3>Inherited from <a href="https://nrinaudo.github.io/kantan.codecs/api/kantan/codecs/shapeless/ShapelessInstances.html#kantan.codecs.shapeless.ShapelessInstances" class="extype" name="kantan.codecs.shapeless.ShapelessInstances">ShapelessInstances</a></h3>
             </div><div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.AnyRef" class="extype" name="scala.collection.immutable.List">AnyRef</a></h3>
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.Any" class="extype" name="scala.collection.immutable.List">Any</a></h3>
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
             </div>
         
         </div>

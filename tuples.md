@@ -30,8 +30,8 @@ We can then proceed to extract our points as `(Int, Int)` exactly like we did be
 
 ```scala
 scala> input.evalRegex[(Int, Int)](regex).foreach(println _)
-Success((1,2))
-Success((3,4))
+Right((1,2))
+Right((3,4))
 ```
 
 Note that this will map each group in a match to the corresponding field in a tuple. If your groups and tuple
@@ -51,9 +51,9 @@ optional third. This is achieved exactly as you'd expect:
 
 ```scala
 scala> input.evalRegex[(Int, Int, Option[Int])](regex).foreach(println _)
-Success((1,2,None))
-Success((3,4,None))
-Success((5,6,Some(7)))
+Right((1,2,None))
+Right((3,4,None))
+Right((5,6,Some(7)))
 ```
 
 Another way would be as either an `(Int, Int, Int)` or an `(Int, Int)`, which is also as simple as specifying the
@@ -61,9 +61,9 @@ right type parameter to [`evalRegex`]:
 
 ```scala
 scala> input.evalRegex[Either[(Int, Int, Int), (Int, Int)]](regex).foreach(println _)
-Success(Right((1,2)))
-Success(Right((3,4)))
-Success(Left((5,6,7)))
+Right(Right((1,2)))
+Right(Right((3,4)))
+Right(Left((5,6,7)))
 ```
 
 Note, however, that there's a small catch when decoding to [`Either`]: the most discriminatory type should always go
@@ -72,9 +72,9 @@ successful.  If we'd swapped the type parameter in our previous example, we'd no
 
 ```scala
 scala> input.evalRegex[Either[(Int, Int), (Int, Int, Int)]](regex).foreach(println _)
-Success(Left((1,2)))
-Success(Left((3,4)))
-Success(Left((5,6)))
+Right(Left((1,2)))
+Right(Left((3,4)))
+Right(Left((5,6)))
 ```
 
 [`evalRegex`]:{{ site.baseurl }}/api/kantan/regex/ops/StringOps.html#evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]

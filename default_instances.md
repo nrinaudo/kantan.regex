@@ -54,7 +54,7 @@ And we're now capable of decoding matches as dates:
 
 ```scala
 scala> "2000-01-00T00:00:00.000".evalRegex[Date](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
-Success(Fri Dec 31 00:00:00 CET 1999)
+Right(Fri Dec 31 00:00:00 CET 1999)
 ```
 
 Note that kantan.regex has a [joda-time](joda.html) module, a very well thought out alternative to [`Date`].
@@ -70,8 +70,8 @@ sometimes a boolean, for example:
 
 ```scala
 scala> "[123] [true]".evalRegex[Either[Int, Boolean]](rx"\[(\d+|true|false)\]", 1).foreach(println _)
-Success(Left(123))
-Success(Right(true))
+Right(Left(123))
+Right(Right(true))
 ```
 
 ### `Option`
@@ -82,8 +82,8 @@ This is particularly useful for optional groups. For example:
 
 ```scala
 scala> "[123], []".evalRegex[Option[Int]](rx"\[(\d+)?\]", 1).foreach(println _)
-Success(Some(123))
-Success(None)
+Right(Some(123))
+Right(None)
 ```
 
 
@@ -108,8 +108,8 @@ assuming that the value of group 1 corresponds to the first field in the tuple, 
 
 ```scala
 scala> "[1, true] and then [3, false]".evalRegex[(Int, Boolean)](rx"\[(\d+), ([a-z]+)\]").foreach(println _)
-Success((1,true))
-Success((3,false))
+Right((1,true))
+Right((3,false))
 ```
 
 
@@ -122,8 +122,8 @@ This works essentially the same way as [`GroupDecoder`] for [`Either`]:
 
 ```scala
 scala> "[123, true] [456, foo]".evalRegex[Either[(Int, Boolean), (Int, String)]](rx"\[(\d+), ([a-z]+)\]").foreach(println _)
-Success(Left((123,true)))
-Success(Right((456,foo)))
+Right(Left((123,true)))
+Right(Right((456,foo)))
 ```
 
 ### `Option`

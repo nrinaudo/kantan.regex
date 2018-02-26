@@ -11,7 +11,7 @@ support for it through a dedicated module.
 The `joda-time` module can be used by adding the following dependency to your `build.sbt`:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.3.2-SNAPSHOT"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-joda-time" % "0.4.0"
 ```
 
 You then need to import the corresponding package:
@@ -39,8 +39,8 @@ This is directly supported:
 
 ```scala
 scala> input.evalRegex[org.joda.time.LocalDate](rx"\[(\d\d\d\d-\d\d-\d\d)\]", 1).foreach(println _)
-Success(1978-10-12)
-Success(2015-09-01)
+Right(1978-10-12)
+Right(2015-09-01)
 ```
 
 It is, of course, possible to declare your own [`GroupDecoder`]. This is, for example, how you'd create a custom
@@ -60,11 +60,25 @@ And we're done, as far as decoding is concerned. We only need to get a regular e
 
 ```scala
 scala> input.evalRegex[org.joda.time.LocalDate](rx"\[(\d\d-\d\d-\d\d\d\d)\]", 1).foreach(println _)
-Success(1978-10-12)
-Success(2015-09-01)
+Right(1978-10-12)
+Right(2015-09-01)
 ```
 
+Note that while you can pass a [`DateTimeFormatter`] directly, the preferred way of dealing with pattern strings is to
+use the literal syntax provided by kantan.regex:
 
+```scala
+localDateDecoder(fmt"dd-MM-yyyy")
+```
+
+The advantage is that this is checked at compile time - invalid pattern strings will cause a compilation error:
+
+```scala
+scala> localDateDecoder(fmt"FOOBAR")
+<console>:25: error: Invalid pattern: 'FOOBAR'
+       localDateDecoder(fmt"FOOBAR")
+                            ^
+```
 
 [`Date`]:https://docs.oracle.com/javase/7/docs/api/java/util/Date.html
 [`DateTime`]:http://joda-time.sourceforge.net/apidocs/org/joda/time/DateTime.html
@@ -73,3 +87,4 @@ Success(2015-09-01)
 [`LocalTime`]:http://joda-time.sourceforge.net/apidocs/org/joda/time/LocalTime.html
 [`DateTimeFormat`]:http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html
 [`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html
+[`DateTimeFormatter`]:http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormatter.html

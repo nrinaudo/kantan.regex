@@ -35,9 +35,9 @@ scala> val results = input.evalRegex[Int](digits)
 results: Iterator[kantan.regex.DecodeResult[Int]] = non-empty iterator
 
 scala> results.foreach(println _)
-Success(123)
-Success(456)
-Success(789)
+Right(123)
+Right(456)
+Right(789)
 ```
 
 There are a few important things happening here. First, note the type parameter to [`evalRegex`]: this tells
@@ -67,8 +67,8 @@ from which to extract data:
 
 ```scala
 scala> input.evalRegex[Int](regex, 1).foreach(println _)
-Success(123)
-Success(456)
+Right(123)
+Right(456)
 ```
 
 ## Adding support to new types
@@ -100,7 +100,7 @@ And we can now decode this easily:
 
 ```scala
 scala> input.evalRegex[DateTime](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
-Success(2009-01-06T00:00:00.000+01:00)
+Right(2009-01-06T00:00:00.000+01:00)
 ```
 
 

@@ -117,6 +117,42 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="kantan.regex">regex</a></dd></dl></div>
+    </li><li name="kantan.regex.java8" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="java8"></a><a id="java8:java8"></a>
+      <span class="permalink">
+      <a href="../../kantan/regex/index.html#java8" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="Declares kantan.regex.GroupDecoder instances for java8 date and time types." href="java8/index.html"><span class="name">java8</span></a>
+      </span>
+      
+      <p class="shortcomment cmt">Declares <a href="package$$GroupDecoder.html" class="extype" name="kantan.regex.GroupDecoder">kantan.regex.GroupDecoder</a> instances for java8 date and time types.</p><div class="fullcomment"><div class="comment cmt"><p>Declares <a href="package$$GroupDecoder.html" class="extype" name="kantan.regex.GroupDecoder">kantan.regex.GroupDecoder</a> instances for java8 date and time types.</p><p>Note that the type for default codecs might come as a surprise: the wrapping <code>Exported</code> is used to lower their
+priority. This is necessary because the standard use case will be to <code>import kantan.regex.java8._</code>, which
+brings both the instance creation and default instances in scope. Without this type trickery, custom instances
+and default ones would always clash.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="kantan.regex">regex</a></dd></dl></div>
+    </li><li name="kantan.regex.joda" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="joda"></a><a id="joda:joda"></a>
+      <span class="permalink">
+      <a href="../../kantan/regex/index.html#joda" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="joda/index.html"><span class="name">joda</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="kantan.regex">regex</a></dd></dl></div>
     </li><li name="kantan.regex.laws" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="laws"></a><a id="laws:laws"></a>
       <span class="permalink">
@@ -210,6 +246,10 @@
                         <a class="trait" href="MatchDecoderInstances.html" title="Declares default MatchDecoder instances."></a>
                         <a href="MatchDecoderInstances.html" title="Declares default MatchDecoder instances.">MatchDecoderInstances</a>
                       </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="PlatformSpecificInstances.html" title=""></a>
+                        <a href="PlatformSpecificInstances.html" title="">PlatformSpecificInstances</a>
+                      </li><li class="current-entities indented2">
                         <a class="object" href="Regex$.html" title=""></a>
                         <a class="trait" href="Regex.html" title="Compiled version of a regular expression."></a>
                         <a href="Regex.html" title="Compiled version of a regular expression.">Regex</a>
@@ -261,11 +301,11 @@
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/core/src/main/scala/kantan/regex/RegexResult.scala" target="_blank">RegexResult.scala</a></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/nrinaudo/kantan.regex/tree/master/core/shared/src/main/scala/kantan/regex/RegexResult.scala" target="_blank">RegexResult.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="kantan.codecs.ResultCompanion.Simple">Simple</span>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>], <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.AnyRef" class="extype" name="scala.collection.immutable.List">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.Any" class="extype" name="scala.collection.immutable.List">Any</a></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="kantan.codecs.ResultCompanion.Simple">Simple</span>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -330,7 +370,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.Any" class="extype" name="scala.collection.immutable.List">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -362,7 +402,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.Any" class="extype" name="scala.collection.immutable.List">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -394,7 +434,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.AnyRef" class="extype" name="scala.collection.immutable.List">AnyRef</a></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -418,7 +458,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.AnyRef" class="extype" name="scala.collection.immutable.List">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -434,14 +474,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.Any" class="extype" name="scala.collection.immutable.List">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="kantan.codecs.ResultCompanion.Simple#failure" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="failure(f:F):kantan.codecs.Result[F,Nothing]"></a><a id="failure(RegexError):Result[RegexError,Nothing]"></a>
+      <a id="failure(f:F):Either[F,Nothing]"></a><a id="failure(RegexError):Either[RegexError,Nothing]"></a>
       <span class="permalink">
-      <a href="../../kantan/regex/RegexResult$.html#failure(f:F):kantan.codecs.Result[F,Nothing]" title="Permalink">
+      <a href="../../kantan/regex/RegexResult$.html#failure(f:F):Either[F,Nothing]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -450,7 +490,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">failure</span><span class="params">(<span name="f">f: <a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a></span>)</span><span class="result">: <a href="https://nrinaudo.github.io/kantan.codecs/api/kantan/codecs/Result.html#kantan.codecs.Result" class="extype" name="kantan.codecs.Result">Result</a>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>, <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.Nothing" class="extype" name="scala.collection.immutable.List">Nothing</a>]</span>
+        <span class="name">failure</span><span class="params">(<span name="f">f: <a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a></span>)</span><span class="result">: <span class="extype" name="scala.Either">Either</span>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>, <span class="extype" name="scala.Nothing">Nothing</span>]</span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Simple</dd><dt>Annotations</dt><dd>
@@ -477,44 +517,6 @@
       
       <span class="symbol">classOf[java.lang.Throwable]</span>
     </span>)</span>
-              
-        </dd></dl></div>
-    </li><li name="kantan.codecs.ResultCompanion.Simple#fromEither" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="fromEither[S](e:Either[F,S]):kantan.codecs.Result[F,S]"></a><a id="fromEither[S](Either[RegexError,S]):Result[RegexError,S]"></a>
-      <span class="permalink">
-      <a href="../../kantan/regex/RegexResult$.html#fromEither[S](e:Either[F,S]):kantan.codecs.Result[F,S]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">fromEither</span><span class="tparams">[<span name="S">S</span>]</span><span class="params">(<span name="e">e: <span class="extype" name="scala.Either">Either</span>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>, <span class="extype" name="kantan.codecs.ResultCompanion.Simple.fromEither.S">S</span>]</span>)</span><span class="result">: <a href="https://nrinaudo.github.io/kantan.codecs/api/kantan/codecs/Result.html#kantan.codecs.Result" class="extype" name="kantan.codecs.Result">Result</a>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>, <span class="extype" name="kantan.codecs.ResultCompanion.Simple.fromEither.S">S</span>]</span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Simple</dd><dt>Annotations</dt><dd>
-                <span class="name">@inline</span><span class="args">()</span>
-              
-        </dd></dl></div>
-    </li><li name="kantan.codecs.ResultCompanion.Simple#fromOption" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="fromOption[S](o:Option[S],f:=&gt;F):kantan.codecs.Result[F,S]"></a><a id="fromOption[S](Option[S],⇒RegexError):Result[RegexError,S]"></a>
-      <span class="permalink">
-      <a href="../../kantan/regex/RegexResult$.html#fromOption[S](o:Option[S],f:=&gt;F):kantan.codecs.Result[F,S]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">fromOption</span><span class="tparams">[<span name="S">S</span>]</span><span class="params">(<span name="o">o: <a href="http://www.scala-lang.org/api/2.12.4/scala/Option.html#scala.Option" class="extype" name="scala.Option">Option</a>[<span class="extype" name="kantan.codecs.ResultCompanion.Simple.fromOption.S">S</span>]</span>, <span name="f">f: ⇒ <a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a></span>)</span><span class="result">: <a href="https://nrinaudo.github.io/kantan.codecs/api/kantan/codecs/Result.html#kantan.codecs.Result" class="extype" name="kantan.codecs.Result">Result</a>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>, <span class="extype" name="kantan.codecs.ResultCompanion.Simple.fromOption.S">S</span>]</span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Simple</dd><dt>Annotations</dt><dd>
-                <span class="name">@inline</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -583,7 +585,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.AnyRef" class="extype" name="scala.collection.immutable.List">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -626,9 +628,9 @@
               
         </dd></dl></div>
     </li><li name="kantan.codecs.ResultCompanion.Simple#sequence" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="sequence[S,M[X]&lt;:TraversableOnce[X]](rs:M[kantan.codecs.Result[F,S]])(implicitcbf:scala.collection.generic.CanBuildFrom[M[kantan.codecs.Result[F,S]],S,M[S]]):kantan.codecs.Result[F,M[S]]"></a><a id="sequence[S,M[X]&lt;:TraversableOnce[X]](M[Result[RegexError,S]])(CanBuildFrom[M[Result[RegexError,S]],S,M[S]]):Result[RegexError,M[S]]"></a>
+      <a id="sequence[S,M[X]&lt;:TraversableOnce[X]](rs:M[Either[F,S]])(implicitcbf:scala.collection.generic.CanBuildFrom[M[Either[F,S]],S,M[S]]):Either[F,M[S]]"></a><a id="sequence[S,M[X]&lt;:TraversableOnce[X]](M[Either[RegexError,S]])(CanBuildFrom[M[Either[RegexError,S]],S,M[S]]):Either[RegexError,M[S]]"></a>
       <span class="permalink">
-      <a href="../../kantan/regex/RegexResult$.html#sequence[S,M[X]&lt;:TraversableOnce[X]](rs:M[kantan.codecs.Result[F,S]])(implicitcbf:scala.collection.generic.CanBuildFrom[M[kantan.codecs.Result[F,S]],S,M[S]]):kantan.codecs.Result[F,M[S]]" title="Permalink">
+      <a href="../../kantan/regex/RegexResult$.html#sequence[S,M[X]&lt;:TraversableOnce[X]](rs:M[Either[F,S]])(implicitcbf:scala.collection.generic.CanBuildFrom[M[Either[F,S]],S,M[S]]):Either[F,M[S]]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -637,7 +639,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">sequence</span><span class="tparams">[<span name="S">S</span>, <span name="M">M<span class="tparams">[<span name="X">X</span>]</span> &lt;: <span class="extype" name="scala.TraversableOnce">TraversableOnce</span>[<span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.M.X">X</span>]</span>]</span><span class="params">(<span name="rs">rs: <span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.M">M</span>[<a href="https://nrinaudo.github.io/kantan.codecs/api/kantan/codecs/Result.html#kantan.codecs.Result" class="extype" name="kantan.codecs.Result">Result</a>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>, <span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.S">S</span>]]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="cbf">cbf: <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/generic/CanBuildFrom.html#scala.collection.generic.CanBuildFrom" class="extype" name="scala.collection.generic.CanBuildFrom">CanBuildFrom</a>[<span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.M">M</span>[<a href="https://nrinaudo.github.io/kantan.codecs/api/kantan/codecs/Result.html#kantan.codecs.Result" class="extype" name="kantan.codecs.Result">Result</a>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>, <span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.S">S</span>]], <span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.S">S</span>, <span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.M">M</span>[<span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.S">S</span>]]</span>)</span><span class="result">: <a href="https://nrinaudo.github.io/kantan.codecs/api/kantan/codecs/Result.html#kantan.codecs.Result" class="extype" name="kantan.codecs.Result">Result</a>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>, <span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.M">M</span>[<span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.S">S</span>]]</span>
+        <span class="name">sequence</span><span class="tparams">[<span name="S">S</span>, <span name="M">M<span class="tparams">[<span name="X">X</span>]</span> &lt;: <span class="extype" name="scala.TraversableOnce">TraversableOnce</span>[<span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.M.X">X</span>]</span>]</span><span class="params">(<span name="rs">rs: <span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.M">M</span>[<span class="extype" name="scala.Either">Either</span>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>, <span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.S">S</span>]]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="cbf">cbf: <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/generic/CanBuildFrom.html#scala.collection.generic.CanBuildFrom" class="extype" name="scala.collection.generic.CanBuildFrom">CanBuildFrom</a>[<span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.M">M</span>[<span class="extype" name="scala.Either">Either</span>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>, <span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.S">S</span>]], <span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.S">S</span>, <span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.M">M</span>[<span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.S">S</span>]]</span>)</span><span class="result">: <span class="extype" name="scala.Either">Either</span>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>, <span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.M">M</span>[<span class="extype" name="kantan.codecs.ResultCompanion.Simple.sequence.S">S</span>]]</span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Simple</dd><dt>Annotations</dt><dd>
@@ -645,9 +647,9 @@
               
         </dd></dl></div>
     </li><li name="kantan.codecs.ResultCompanion.Simple#success" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="success[S](s:S):kantan.codecs.Result[F,S]"></a><a id="success[S](S):Result[RegexError,S]"></a>
+      <a id="success[S](s:S):Either[F,S]"></a><a id="success[S](S):Either[RegexError,S]"></a>
       <span class="permalink">
-      <a href="../../kantan/regex/RegexResult$.html#success[S](s:S):kantan.codecs.Result[F,S]" title="Permalink">
+      <a href="../../kantan/regex/RegexResult$.html#success[S](s:S):Either[F,S]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -656,7 +658,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">success</span><span class="tparams">[<span name="S">S</span>]</span><span class="params">(<span name="s">s: <span class="extype" name="kantan.codecs.ResultCompanion.Simple.success.S">S</span></span>)</span><span class="result">: <a href="https://nrinaudo.github.io/kantan.codecs/api/kantan/codecs/Result.html#kantan.codecs.Result" class="extype" name="kantan.codecs.Result">Result</a>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>, <span class="extype" name="kantan.codecs.ResultCompanion.Simple.success.S">S</span>]</span>
+        <span class="name">success</span><span class="tparams">[<span name="S">S</span>]</span><span class="params">(<span name="s">s: <span class="extype" name="kantan.codecs.ResultCompanion.Simple.success.S">S</span></span>)</span><span class="result">: <span class="extype" name="scala.Either">Either</span>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>, <span class="extype" name="kantan.codecs.ResultCompanion.Simple.success.S">S</span>]</span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Simple</dd><dt>Annotations</dt><dd>
@@ -776,9 +778,9 @@
         <div class="parent" name="kantan.codecs.ResultCompanion.Simple">
               <h3>Inherited from <span class="extype" name="kantan.codecs.ResultCompanion.Simple">Simple</span>[<a href="RegexError.html" class="extype" name="kantan.regex.RegexError">RegexError</a>]</h3>
             </div><div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.AnyRef" class="extype" name="scala.collection.immutable.List">AnyRef</a></h3>
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.12.4/scala/collection/immutable/List.html#scala.Any" class="extype" name="scala.collection.immutable.List">Any</a></h3>
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
             </div>
         
         </div>

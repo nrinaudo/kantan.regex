@@ -47,9 +47,9 @@ And that's it, we're done: we can now [`evalRegex`] as usual, with the right typ
 
 ```scala
 scala> input.evalRegex[Point](regex).foreach(println _)
-Success(Point(1, 2, None))
-Success(Point(3, 4, None))
-Success(Point(5, 6, Some(7)))
+Right(Point(1, 2, None))
+Right(Point(3, 4, None))
+Right(Point(5, 6, Some(7)))
 ```
 
 Two things worth noting about how created that decoder instance:

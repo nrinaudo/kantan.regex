@@ -36,9 +36,11 @@ And, as promised, this fails *at compile time* if the regular expression is not 
 
 ```scala
 scala> rx"[abc"
-<console>:16: error: Unclosed character class
+<console>:16: error: Unclosed character class near index 3
+[abc
+   ^
        rx"[abc"
-            ^
+          ^
 ```
 
 ## Simple evaluation
@@ -49,9 +51,9 @@ strings using kantan.regex is through the [`evalRegex`] method that enriches str
 
 ```scala
 scala> "123 and some text followed by 456 and then 789".evalRegex[Int](rx"\d+").foreach(println _)
-Success(123)
-Success(456)
-Success(789)
+Right(123)
+Right(456)
+Right(789)
 ```
 
 [`kantan.regex.implicits._`]:{{ site.baseurl }}/api/kantan/regex/implicits$.html

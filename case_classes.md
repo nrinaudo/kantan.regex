@@ -42,8 +42,8 @@ And that's all there is to it. Now that we have this decoder in place, we can ju
 
 ```scala
 scala> input.evalRegex[WeirdPoint](regex).foreach(println _)
-Success(WeirdPoint(1,Left(2)))
-Success(WeirdPoint(3,Right(false)))
+Right(WeirdPoint(1,Left(2)))
+Right(WeirdPoint(3,Right(false)))
 ```
 
 It's possible to automate this process through the [shapeless](http://shapeless.io)-backed [generic](generic.html)
@@ -59,8 +59,8 @@ And without any further work, we can decode instances of `Foo`:
 
 ```scala
 scala> input.evalRegex[Foo](regex).foreach(println _)
-Success(Foo(1,Left(2)))
-Success(Foo(3,Right(false)))
+Right(Foo(1,Left(2)))
+Right(Foo(3,Right(false)))
 ```
 
 [`evalRegex`]:{{ site.baseurl }}/api/kantan/regex/ops/StringOps.html#evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]

@@ -10,7 +10,7 @@ bones: it provides decoders for [`Maybe`] and [`\/`] as well as a few useful typ
 The `scalaz` module can be used by adding the following dependency to your `build.sbt`:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-scalaz" % "0.3.1"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-scalaz" % "0.4.0"
 ```
 
 You then need to import the corresponding package:
@@ -35,16 +35,16 @@ We can then simply write the following:
 
 ```scala
 scala> "[123] [true]".evalRegex[Int \/ Boolean](rx"\[(\d+|true|false)\]", 1).foreach(println _)
-Success(-\/(123))
-Success(\/-(true))
+Right(-\/(123))
+Right(\/-(true))
 ```
 
 This also applies to [`MatchDecoder`] instances:
 
 ```scala
 scala> "(1, true) and then (2, foo)".evalRegex[(Int, Boolean) \/ (Int, String)](rx"\((\d+), ([a-z]+)\)").foreach(println _)
-Success(-\/((1,true)))
-Success(\/-((2,foo)))
+Right(-\/((1,true)))
+Right(\/-((2,foo)))
 ```
 
 ## `Maybe` decoder
@@ -54,8 +54,8 @@ instance, there exists a [`GroupDecoder`] instance for `Maybe[A]`.
 
 ```scala
 scala> "[123], []".evalRegex[Maybe[Int]](rx"\[(\d+)?\]", 1).foreach(println _)
-Success(Just(123))
-Success(Empty())
+Right(Just(123))
+Right(Empty())
 ```
 
 The same is true for [`MatchDecoder`], although I can't really think of an example for this odd concept.
@@ -64,25 +64,18 @@ The same is true for [`MatchDecoder`], although I can't really think of an examp
 
 The following instance for cats type classes are provided:
 
-* [`Functor`] for all decoders ([`GroupDecoder`] and [`MatchDecoder`]).
-* [`Order`] for all result types ([`DecodeResult`], [`RegexResult`] and [`CompileResult`]).
-* [`Monoid`] for all result types.
-* [`Show`] for all result types.
-* [`Traverse`] for all result types.
-* [`Monad`] for all result types.
-* [`BiFunctor`] for all result types.
+* [`MonadError`] and [`Plus`] for [`GroupDecoder`].
+* [`Show`] and [`Equal`] for all error types ([`RegexError`] and all its descendants).
+* [`Functor`] for [`Regex`].
 
-[`Functor`]:https://oss.sonatype.org/service/local/repositories/releases/archive/org/scalaz/scalaz_2.11/7.2.3/scalaz_2.11-7.2.3-javadoc.jar/!/index.html#scalaz.Functor
-[`BiFunctor`]:https://oss.sonatype.org/service/local/repositories/releases/archive/org/scalaz/scalaz_2.11/7.2.3/scalaz_2.11-7.2.3-javadoc.jar/!/index.html#scalaz.Bifunctor
-[`Order`]:https://oss.sonatype.org/service/local/repositories/releases/archive/org/scalaz/scalaz_2.11/7.2.3/scalaz_2.11-7.2.3-javadoc.jar/!/index.html#scalaz.Order
-[`Show`]:https://oss.sonatype.org/service/local/repositories/releases/archive/org/scalaz/scalaz_2.11/7.2.3/scalaz_2.11-7.2.3-javadoc.jar/!/index.html#scalaz.Show
-[`Traverse`]:https://oss.sonatype.org/service/local/repositories/releases/archive/org/scalaz/scalaz_2.11/7.2.3/scalaz_2.11-7.2.3-javadoc.jar/!/index.html#scalaz.Show
-[`Monad`]:https://oss.sonatype.org/service/local/repositories/releases/archive/org/scalaz/scalaz_2.11/7.2.3/scalaz_2.11-7.2.3-javadoc.jar/!/index.html#scalaz.Monad
-[`Monoid`]:https://oss.sonatype.org/service/local/repositories/releases/archive/org/scalaz/scalaz_2.11/7.2.3/scalaz_2.11-7.2.3-javadoc.jar/!/index.html#scalaz.Monoid
-[`\/`]:https://oss.sonatype.org/service/local/repositories/releases/archive/org/scalaz/scalaz_2.11/7.2.3/scalaz_2.11-7.2.3-javadoc.jar/!/index.html#scalaz.$bslash$div
-[`Maybe`]:https://oss.sonatype.org/service/local/repositories/releases/archive/org/scalaz/scalaz_2.11/7.2.3/scalaz_2.11-7.2.3-javadoc.jar/!/index.html#scalaz.Maybe
+[`MonadError`]:https://static.javadoc.io/org.scalaz/scalaz_2.12/7.2.18/scalaz/MonadError.html
+[`Functor`]:https://static.javadoc.io/org.scalaz/scalaz_2.12/7.2.18/scalaz/Functor.html
+[`Plus`]:https://static.javadoc.io/org.scalaz/scalaz_2.12/7.2.18/scalaz/Plus.html
+[`Show`]:https://static.javadoc.io/org.scalaz/scalaz_2.12/7.2.18/scalaz/Show.html
+[`Equal`]:https://static.javadoc.io/org.scalaz/scalaz_2.12/7.2.18/scalaz/Equal.html
+[`\/`]:https://static.javadoc.io/org.scalaz/scalaz_2.12/7.2.18/scalaz/$bslash$div.html
+[`Maybe`]:https://static.javadoc.io/org.scalaz/scalaz_2.12/7.2.18/scalaz/Maybe.html
 [`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html
 [`MatchDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$MatchDecoder.html
-[`RegexResult`]:{{ site.baseurl}}/api/index.html#kantan.regex.package$$RegexResult
-[`DecodeResult`]:{{ site.baseurl }}/api/kantan/regex/package$$DecodeResult.html
-[`CompileResult`]:{{ site.baseurl }}/api/index.html#kantan.regex.package$$CompileResult
+[`RegexError`]:{{ site.baseurl}}/api/kantan/regex/RegexError.html
+[`Regex`]:{{ site.baseurl}}/api/kantan/regex/Regex.html
