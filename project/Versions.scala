@@ -1,5 +1,5 @@
 object Versions {
   val contextual   = "1.1.0"
-  val kantanCodecs = "0.4.0"
+  val kantanCodecs = "0.4.1-SNAPSHOT"
   val scalatest    = "3.0.5"
 }
