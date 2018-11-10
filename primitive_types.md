@@ -32,7 +32,7 @@ And we can now simply call the [`evalRegex`] method that enriches strings:
 
 ```scala
 scala> val results = input.evalRegex[Int](digits)
-results: Iterator[kantan.regex.DecodeResult[Int]] = non-empty iterator
+results: Iterator[kantan.regex.DecodeResult[Int]] = <iterator>
 
 scala> results.foreach(println _)
 Right(123)
