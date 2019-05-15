@@ -25,7 +25,7 @@ class MatchIteratorTests extends FunSuite with GeneratorDrivenPropertyChecks wit
   def toMatchIterator(is: List[Int]): Iterator[Int] = Regex[Int](rx"-?\d+").eval(is.mkString(" ")).map(_.right.get)
 
   test("MatchIterator should fail when reading more than the maximum number of elements") {
-    forAll { is: List[Int] ⇒
+    forAll { is: List[Int] =>
       val it = toMatchIterator(is)
       while(it.hasNext) it.next()
 
@@ -35,9 +35,9 @@ class MatchIteratorTests extends FunSuite with GeneratorDrivenPropertyChecks wit
   }
 
   test("MatchIterator should contain the expected number of elements") {
-    forAll { is: List[Int] ⇒
+    forAll { is: List[Int] =>
       val it = toMatchIterator(is)
-      is.indices.foreach(_ ⇒ it.next)
+      is.indices.foreach(_ => it.next)
       it.hasNext should be(false)
     }
   }

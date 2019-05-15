@@ -75,19 +75,19 @@ object Compiler {
   def apply[A](implicit ev: Compiler[A]): Compiler[A] = macro imp.summon[Compiler[A]]
 
   /** Creates a new [[Compiler]] instance from a function that turns `A` into a `Pattern`. */
-  def fromPattern[A](f: A ⇒ CompileResult[Pattern]): Compiler[A] = new Compiler[A] {
+  def fromPattern[A](f: A => CompileResult[Pattern]): Compiler[A] = new Compiler[A] {
     override def compile[B: MatchDecoder](expr: A): CompileResult[Regex[DecodeResult[B]]] =
-      f(expr).right.map(p ⇒ Regex(p))
+      f(expr).right.map(p => Regex(p))
   }
 
   /** Provides compilation for Scala Regexes. */
-  implicit val scalaRegex: Compiler[scala.util.matching.Regex] = fromPattern(r ⇒ CompileResult.success(r.pattern))
+  implicit val scalaRegex: Compiler[scala.util.matching.Regex] = fromPattern(r => CompileResult.success(r.pattern))
 
   /** Provides compilation for Java Patterns. */
-  implicit val pattern: Compiler[Pattern] = fromPattern(p ⇒ CompileResult.success(p))
+  implicit val pattern: Compiler[Pattern] = fromPattern(p => CompileResult.success(p))
 
   /** Provides compilation for Strings. */
-  implicit val string: Compiler[String] = fromPattern(s ⇒ CompileResult(java.util.regex.Pattern.compile(s)))
+  implicit val string: Compiler[String] = fromPattern(s => CompileResult(java.util.regex.Pattern.compile(s)))
 }
 
 @SuppressWarnings(Array("org.wartremover.warts.Var"))

@@ -23,7 +23,7 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
 class GroupDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
   test("Instances created through GroupDecoder.from should behave as expected") {
-    forAll { (s: String, f: (Option[String] ⇒ DecodeResult[Int])) ⇒
+    forAll { (s: String, f: (Option[String] => DecodeResult[Int])) =>
       implicit val decoder: GroupDecoder[Int] = GroupDecoder.from(f)
 
       val r = ".*".asUnsafeRegex[Int]
@@ -32,7 +32,7 @@ class GroupDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks with 
   }
 
   test("The instance summoning method should behave as expected") {
-    forAll { (f: (Option[String] ⇒ DecodeResult[Int])) ⇒
+    forAll { (f: (Option[String] => DecodeResult[Int])) =>
       implicit val decoder: GroupDecoder[Int] = GroupDecoder.from(f)
 
       decoder should be theSameInstanceAs GroupDecoder[Int]

@@ -33,14 +33,14 @@ class ErrorTests extends DisciplineSuite {
   checkAll("CompileError", EqTests[CompileError].eqv)
 
   test("Show[CompileError] should yield a string containing the expected message") {
-    forAll { error: CompileError ⇒
+    forAll { error: CompileError =>
       Show[CompileError].show(error) should include(error.message)
       Show[RegexError].show(error) should include(error.message)
     }
   }
 
   test("Show[DecodeError.NoSuchGroupId] should yield a string containing the expected group id") {
-    forAll { error: DecodeError.NoSuchGroupId ⇒
+    forAll { error: DecodeError.NoSuchGroupId =>
       Show[DecodeError.NoSuchGroupId].show(error) should include(error.id.toString)
       Show[DecodeError].show(error) should include(error.id.toString)
       Show[RegexError].show(error) should include(error.id.toString)
@@ -48,7 +48,7 @@ class ErrorTests extends DisciplineSuite {
   }
 
   test("Show[DecodeError.TypeError] should yield a string containing the expected message") {
-    forAll { error: DecodeError.TypeError ⇒
+    forAll { error: DecodeError.TypeError =>
       Show[DecodeError.TypeError].show(error) should include(error.message)
       Show[DecodeError].show(error) should include(error.message)
       Show[RegexError].show(error) should include(error.message)
@@ -58,7 +58,7 @@ class ErrorTests extends DisciplineSuite {
   test("Show[DecodeError.EmptyGroup] should yield a string containing 'empty group'") {
     val expected = "empty group"
 
-    forAll { error: DecodeError.EmptyGroup.type ⇒
+    forAll { error: DecodeError.EmptyGroup.type =>
       Show[DecodeError.EmptyGroup.type].show(error) should include(expected)
       Show[DecodeError].show(error) should include(expected)
       Show[RegexError].show(error) should include(expected)

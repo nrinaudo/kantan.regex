@@ -24,7 +24,7 @@ sealed abstract class RegexError(msg: String) extends Error(msg)
 /** Describes errors that occur while compiling a regular expression. */
 sealed case class CompileError(message: String) extends RegexError(message)
 
-object CompileError extends ErrorCompanion("an unspecified compile error occurred")(s ⇒ new CompileError(s))
+object CompileError extends ErrorCompanion("an unspecified compile error occurred")(s => new CompileError(s))
 
 sealed abstract class DecodeError(msg: String) extends RegexError(msg)
 
@@ -35,5 +35,5 @@ object DecodeError {
 
   sealed case class TypeError(message: String) extends DecodeError(message)
 
-  object TypeError extends ErrorCompanion("an unspecified type error occurred")(s ⇒ new TypeError(s))
+  object TypeError extends ErrorCompanion("an unspecified type error occurred")(s => new TypeError(s))
 }

@@ -23,19 +23,19 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 @SuppressWarnings(Array("org.wartremover.warts.Throw"))
 class CompileResultTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
   test("CompileResult.success should return a success") {
-    forAll { i: Int ⇒
+    forAll { i: Int =>
       CompileResult.success(i).right.value should be(i)
     }
   }
 
   test("CompileResult.apply should return a success on 'good' values") {
-    forAll { i: Int ⇒
+    forAll { i: Int =>
       CompileResult(i).right.value should be(i)
     }
   }
 
   test("CompileResult.apply should return a failure on 'bad' values") {
-    forAll { e: Exception ⇒
+    forAll { e: Exception =>
       CompileResult(throw e).left.value should be(CompileError(e))
     }
   }

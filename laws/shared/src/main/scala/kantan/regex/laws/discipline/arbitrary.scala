@@ -22,7 +22,7 @@ import java.util.regex.Pattern
 import kantan.codecs.laws._
 import laws._
 import org.scalacheck.{Arbitrary, Cogen, Gen}
-import org.scalacheck.Arbitrary.{arbitrary ⇒ arb}
+import org.scalacheck.Arbitrary.{arbitrary => arb}
 import org.scalacheck.Gen._
 import org.scalacheck.rng.Seed
 
@@ -33,21 +33,21 @@ trait ArbitraryInstances
 
   implicit def arbRegex[A: Arbitrary]: Arbitrary[Regex[A]] =
     Arbitrary(
-      arb[String ⇒ List[A]].map(
-        f ⇒
+      arb[String => List[A]].map(
+        f =>
           new Regex[A] {
             override def eval(str: String) = f(str).iterator
-        }
+          }
       )
     )
 
   // - Arbitrary errors ------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
   implicit val arbCompileError: Arbitrary[CompileError] =
-    Arbitrary(arbException.arbitrary.map(e ⇒ CompileError(e)))
+    Arbitrary(arbException.arbitrary.map(e => CompileError(e)))
 
   implicit val arbTypeError: Arbitrary[DecodeError.TypeError] =
-    Arbitrary(arbException.arbitrary.map(e ⇒ DecodeError.TypeError(e)))
+    Arbitrary(arbException.arbitrary.map(e => DecodeError.TypeError(e)))
 
   implicit val arbNoSuchGroupId: Arbitrary[DecodeError.NoSuchGroupId] =
     Arbitrary(arb[Int].map(DecodeError.NoSuchGroupId.apply))
@@ -64,19 +64,19 @@ trait ArbitraryInstances
   implicit val cogenRegexCompileError: Cogen[CompileError]               = Cogen[String].contramap(_.message)
   implicit val cogenRegexTypeError: Cogen[DecodeError.TypeError]         = Cogen[String].contramap(_.message)
   implicit val cogenRegexNoSuchGroupId: Cogen[DecodeError.NoSuchGroupId] = Cogen[Int].contramap(_.id)
-  implicit val cogenRegexEmptyGroup: Cogen[DecodeError.EmptyGroup.type]  = Cogen[Unit].contramap(_ ⇒ ())
-  implicit val cogenRegexDecodeError: Cogen[DecodeError] = Cogen { (seed: Seed, err: DecodeError) ⇒
+  implicit val cogenRegexEmptyGroup: Cogen[DecodeError.EmptyGroup.type]  = Cogen[Unit].contramap(_ => ())
+  implicit val cogenRegexDecodeError: Cogen[DecodeError] = Cogen { (seed: Seed, err: DecodeError) =>
     err match {
-      case error: DecodeError.TypeError       ⇒ cogenRegexTypeError.perturb(seed, error)
-      case error: DecodeError.NoSuchGroupId   ⇒ cogenRegexNoSuchGroupId.perturb(seed, error)
-      case error: DecodeError.EmptyGroup.type ⇒ cogenRegexEmptyGroup.perturb(seed, error)
+      case error: DecodeError.TypeError       => cogenRegexTypeError.perturb(seed, error)
+      case error: DecodeError.NoSuchGroupId   => cogenRegexNoSuchGroupId.perturb(seed, error)
+      case error: DecodeError.EmptyGroup.type => cogenRegexEmptyGroup.perturb(seed, error)
     }
   }
 
-  implicit val cogenRegexError: Cogen[RegexError] = Cogen { (seed: Seed, err: RegexError) ⇒
+  implicit val cogenRegexError: Cogen[RegexError] = Cogen { (seed: Seed, err: RegexError) =>
     err match {
-      case error: DecodeError  ⇒ cogenRegexDecodeError.perturb(seed, error)
-      case error: CompileError ⇒ cogenRegexCompileError.perturb(seed, error)
+      case error: DecodeError  => cogenRegexDecodeError.perturb(seed, error)
+      case error: CompileError => cogenRegexCompileError.perturb(seed, error)
     }
   }
 

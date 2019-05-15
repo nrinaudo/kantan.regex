@@ -31,7 +31,7 @@ trait GroupDecoderInstances {
     */
   implicit def fromString[A: StringDecoder]: GroupDecoder[A] =
     GroupDecoder.from {
-      _.map(StringDecoder[A].leftMap { error ⇒
+      _.map(StringDecoder[A].leftMap { error =>
         DecodeError.TypeError(error.getMessage, error.getCause)
       }.decode)
         .getOrElse(DecodeResult.emptyGroup)

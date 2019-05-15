@@ -23,36 +23,36 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 @SuppressWarnings(Array("org.wartremover.warts.Throw"))
 class DecodeResultTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
   test("DecodeResult.success should return a success") {
-    forAll { i: Int ⇒
+    forAll { i: Int =>
       DecodeResult.success(i).right.value should be(i)
     }
   }
 
   test("DecodeResult.apply should return a success on 'good' values") {
-    forAll { i: Int ⇒
+    forAll { i: Int =>
       DecodeResult(i).right.value should be(i)
     }
   }
 
   test("DecodeResult.apply should return a failure on 'bad' values") {
-    forAll { e: Exception ⇒
+    forAll { e: Exception =>
       DecodeResult(throw e).left.value should be(DecodeError.TypeError(e))
     }
   }
 
   test("DecodeResult.typeError should return a failure") {
-    forAll { e: Exception ⇒
+    forAll { e: Exception =>
       DecodeResult.typeError(e).left.value should be(DecodeError.TypeError(e))
 
       DecodeResult.typeError(e.getMessage) match {
-        case Left(DecodeError.TypeError(m)) ⇒ m should be(e.getMessage)
-        case a                              ⇒ fail(s"$a was not a type error")
+        case Left(DecodeError.TypeError(m)) => m should be(e.getMessage)
+        case a                              => fail(s"$a was not a type error")
       }
     }
   }
 
   test("DecodeResult.noSuchGroupId should return a failure ") {
-    forAll { i: Int ⇒
+    forAll { i: Int =>
       DecodeResult.noSuchGroupId(i).left.value should be(DecodeError.NoSuchGroupId(i))
     }
   }

@@ -26,13 +26,13 @@ class StringOpsTests extends FunSuite with GeneratorDrivenPropertyChecks with Ma
 
   test("evalRegex should succeed for valid regular expressions") {
 
-    forAll { value: LegalString[Int] ⇒
+    forAll { value: LegalString[Int] =>
       value.encoded.evalRegex[Int](rx"-?\d+").toList should be(List(DecodeResult.success(value.decoded)))
       value.encoded.evalRegex[Int](rx"-?\d+", 0).toList should be(List(DecodeResult.success(value.decoded)))
       value.encoded.evalRegex("-?\\d+".asUnsafeRegex[Int]).toList should be(List(DecodeResult.success(value.decoded)))
     }
 
-    forAll { value: IllegalString[Int] ⇒
+    forAll { value: IllegalString[Int] =>
       every(value.encoded.evalRegex[Int](rx"-?\d+").toList) shouldBe 'left
       every(value.encoded.evalRegex[Int](rx"-?\d+", 0).toList) shouldBe 'left
       every(value.encoded.evalRegex("-?\\d+".asUnsafeRegex[Int]).toList) shouldBe 'left
@@ -41,7 +41,7 @@ class StringOpsTests extends FunSuite with GeneratorDrivenPropertyChecks with Ma
   }
 
   test("unsafeEvalRegex should succeed for valid regular expressions and valid matches") {
-    forAll { value: LegalString[Int] ⇒
+    forAll { value: LegalString[Int] =>
       value.encoded.unsafeEvalRegex[Int](rx"-?\d+").toList should be(List(value.decoded))
       value.encoded.unsafeEvalRegex[Int](rx"-?\d+", 0).toList should be(List(value.decoded))
     }
