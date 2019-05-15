@@ -22,7 +22,7 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
 class RegexTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
   test("All matches should be decoded as expected.") {
-    forAll { is: List[Int] ⇒
+    forAll { is: List[Int] =>
       val regex = ("-?\\d+").asUnsafeRegex[Int].map(_.right.get)
       regex.eval(is.mkString(" ")).toList should be(is)
     }

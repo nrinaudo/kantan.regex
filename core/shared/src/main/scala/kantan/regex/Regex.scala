@@ -17,10 +17,10 @@
 package kantan.regex
 
 /** Compiled version of a regular expression. */
-trait Regex[A] { self ⇒
+trait Regex[A] { self =>
 
   /** Turns a `Regex[A]` into a `Regex[B]` by applying the specified function to each result. */
-  def map[B](f: A ⇒ B): Regex[B] = new Regex[B] {
+  def map[B](f: A => B): Regex[B] = new Regex[B] {
     override def eval(str: String) = self.eval(str).map(f)
   }
 
@@ -39,7 +39,7 @@ object Regex {
     * helpful.
     */
   def apply[A: MatchDecoder](pattern: Pattern): Regex[DecodeResult[A]] = new Regex[DecodeResult[A]] {
-    override def eval(s: String) = new MatchIterator(pattern.matcher(s)).map(m ⇒ MatchDecoder[A].decode(m))
+    override def eval(s: String) = new MatchIterator(pattern.matcher(s)).map(m => MatchDecoder[A].decode(m))
     override def toString        = pattern.toString
   }
 

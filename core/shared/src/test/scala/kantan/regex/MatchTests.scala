@@ -23,15 +23,15 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
 class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
   test("length should return the expected value") {
-    def validating(length: Int): MatchDecoder[List[Int]] = MatchDecoder[List[Int]].contramapEncoded { (m: Match) ⇒
+    def validating(length: Int): MatchDecoder[List[Int]] = MatchDecoder[List[Int]].contramapEncoded { (m: Match) =>
       m.length should be(length)
       m
     }
 
-    forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int])) { (is: List[Int]) ⇒
+    forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int])) { (is: List[Int]) =>
       implicit val decoder: MatchDecoder[List[Int]] = validating(is.length)
 
-      val regex = is.map(_ ⇒ "(-?\\d+)").mkString(" ").asUnsafeRegex[List[Int]].map(_.right.get)
+      val regex = is.map(_ => "(-?\\d+)").mkString(" ").asUnsafeRegex[List[Int]].map(_.right.get)
       regex.eval(is.mkString(" ")).next should be(is)
     }
   }
@@ -39,11 +39,11 @@ class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks with Matche
   test("Out of bound groups should generate a NoSuchGroupId") {
     def outOfBounds(i: Int): MatchDecoder[Int] = MatchDecoder.from(_.decode[Int](i))
 
-    forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int]), Arbitrary.arbitrary[Int].suchThat(_ != -1)) { (is, offset) ⇒
+    forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int]), Arbitrary.arbitrary[Int].suchThat(_ != -1)) { (is, offset) =>
       val index = is.length + 1 + offset
 
       implicit val decoder: MatchDecoder[Int] = outOfBounds(index)
-      val regex                               = is.map(_ ⇒ "(-?\\d+)").mkString(" ").asUnsafeRegex[Int]
+      val regex                               = is.map(_ => "(-?\\d+)").mkString(" ").asUnsafeRegex[Int]
       regex.eval(is.mkString(" ")).next should be(DecodeResult.noSuchGroupId(index))
     }
   }

@@ -24,7 +24,7 @@ package object cats extends DecoderInstances with CommonInstances {
   // -------------------------------------------------------------------------------------------------------------------
 
   implicit val regexFunctor: Functor[Regex] = new Functor[Regex] {
-    override def map[A, B](fa: Regex[A])(f: A ⇒ B) = fa.map(f)
+    override def map[A, B](fa: Regex[A])(f: A => B) = fa.map(f)
   }
 
   // - Eq instances ----------------------------------------------------------------------------------------------------

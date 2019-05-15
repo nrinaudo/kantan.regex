@@ -18,7 +18,7 @@ package kantan.regex
 package scalaz
 
 import _root_.scalaz.Show
-import _root_.scalaz.scalacheck.ScalazProperties.{equal ⇒ equ}
+import _root_.scalaz.scalacheck.ScalazProperties.{equal => equ}
 import arbitrary._
 import kantan.codecs.scalaz.laws.discipline.ScalazDisciplineSuite
 
@@ -34,14 +34,14 @@ class ErrorTests extends ScalazDisciplineSuite {
   checkAll("CompileError", equ.laws[CompileError])
 
   test("Show[CompileError] should yield a string containing the expected message") {
-    forAll { error: CompileError ⇒
+    forAll { error: CompileError =>
       Show[CompileError].shows(error) should include(error.message)
       Show[RegexError].shows(error) should include(error.message)
     }
   }
 
   test("Show[DecodeError.NoSuchGroupId] should yield a string containing the expected group id") {
-    forAll { error: DecodeError.NoSuchGroupId ⇒
+    forAll { error: DecodeError.NoSuchGroupId =>
       Show[DecodeError.NoSuchGroupId].shows(error) should include(error.id.toString)
       Show[DecodeError].shows(error) should include(error.id.toString)
       Show[RegexError].shows(error) should include(error.id.toString)
@@ -49,7 +49,7 @@ class ErrorTests extends ScalazDisciplineSuite {
   }
 
   test("Show[DecodeError.TypeError] should yield a string containing the expected message") {
-    forAll { error: DecodeError.TypeError ⇒
+    forAll { error: DecodeError.TypeError =>
       Show[DecodeError.TypeError].shows(error) should include(error.message)
       Show[DecodeError].shows(error) should include(error.message)
       Show[RegexError].shows(error) should include(error.message)
@@ -59,7 +59,7 @@ class ErrorTests extends ScalazDisciplineSuite {
   test("Show[DecodeError.EmptyGroup] should yield a string containing 'empty group'") {
     val expected = "empty group"
 
-    forAll { error: DecodeError.EmptyGroup.type ⇒
+    forAll { error: DecodeError.EmptyGroup.type =>
       Show[DecodeError.EmptyGroup.type].shows(error) should include(expected)
       Show[DecodeError].shows(error) should include(expected)
       Show[RegexError].shows(error) should include(expected)

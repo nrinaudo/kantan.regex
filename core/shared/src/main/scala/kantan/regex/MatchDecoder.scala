@@ -52,7 +52,7 @@ trait MatchDecoderInstances {
 
   /** Provides an instance of [[MatchDecoder]] for `Option[A]`, provided `A` has a [[MatchDecoder]]. */
   implicit def optMatch[A](implicit da: GroupDecoder[Option[A]]): MatchDecoder[Option[A]] =
-    MatchDecoder.fromGroup[Option[A]](0)(GroupDecoder.from { os ⇒
+    MatchDecoder.fromGroup[Option[A]](0)(GroupDecoder.from { os =>
       da.decode(os.filter(_.nonEmpty))
     })
 
@@ -60,14 +60,14 @@ trait MatchDecoderInstances {
   // This is more of a hack and not terribly satisfactory, since regular expressions are much more limitted than I
   // initially assumed: matching "12345" against "(\d)*" will not result in 5 groups, but 2: "12345" and "5".
   implicit def fromCbf[F[_], A](implicit da: GroupDecoder[Option[A]], cbf: HasBuilder[F, A]): MatchDecoder[F[A]] =
-    MatchDecoder.from { m ⇒
+    MatchDecoder.from { m =>
       @tailrec
       def loop(i: Int, curr: DecodeResult[mutable.Builder[A, F[A]]]): DecodeResult[F[A]] =
         if(i > m.length || !curr.isRight) curr.right.map(_.result())
         else
           loop(i + 1, for {
-            fa ← curr.right
-            a  ← m.decode[Option[A]](i).right
+            fa <- curr.right
+            a  <- m.decode[Option[A]](i).right
           } yield {
             a.foreach(fa += _)
             fa

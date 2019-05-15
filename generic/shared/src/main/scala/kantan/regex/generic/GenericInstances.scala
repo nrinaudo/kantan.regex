@@ -33,8 +33,8 @@ trait GenericInstances extends ShapelessInstances with LowPrirityGenericInstance
     new DerivedMatchDecoder[H :: T] {
       override def decodeFrom(e: Match, index: Int): DecodeResult[H :: T] =
         for {
-          h ← e.decode[H](index).right
-          t ← DerivedMatchDecoder[T].decodeFrom(e, index + 1).right
+          h <- e.decode[H](index).right
+          t <- DerivedMatchDecoder[T].decodeFrom(e, index + 1).right
         } yield h :: t
     }
 
@@ -44,6 +44,6 @@ trait GenericInstances extends ShapelessInstances with LowPrirityGenericInstance
   }
 
   /** [[GroupDecoder]] for `HList` of size 1, provided the single element has a [[GroupDecoder]]. */
-  implicit def hlistGroupDecoder[H: GroupDecoder]: GroupDecoder[H :: HNil] = GroupDecoder[H].map(h ⇒ h :: HNil)
+  implicit def hlistGroupDecoder[H: GroupDecoder]: GroupDecoder[H :: HNil] = GroupDecoder[H].map(h => h :: HNil)
 
 }

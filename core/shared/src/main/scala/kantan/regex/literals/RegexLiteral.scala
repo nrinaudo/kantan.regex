@@ -27,8 +27,10 @@ object RegexLiteral extends Verifier[Pattern] {
     // - this is not guaranteed to always work - error message might change format
     // - it doesn't work with scala.js, and I'm not interested in this enough to have different error handling depending
     //   on the target platform.
-    try { Right(Pattern.compile(string)) } catch {
-      case e: Exception ⇒ Left((0, e.getMessage))
+    try {
+      Right(Pattern.compile(string))
+    } catch {
+      case e: Exception => Left((0, e.getMessage))
     }
 
 }

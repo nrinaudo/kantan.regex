@@ -27,11 +27,11 @@ import org.scalacheck.Arbitrary
 class DerivedGroupDecoderTests extends DisciplineSuite {
 
   implicit val arbLegal: Arbitrary[LegalGroup[Int Or Boolean]] = arbLegalValue(
-    (o: Or[Int, Boolean]) ⇒
+    (o: Or[Int, Boolean]) =>
       o match {
-        case Left(i)  ⇒ Option(i.toString)
-        case Right(b) ⇒ Option(b.toString)
-    }
+        case Left(i)  => Option(i.toString)
+        case Right(b) => Option(b.toString)
+      }
   )
 
   checkAll("GroupDecoder[Int Or Boolean]", GroupDecoderTests[Int Or Boolean].decoder[Byte, String])

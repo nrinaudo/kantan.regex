@@ -25,7 +25,9 @@ object equality extends kantan.codecs.scalaz.laws.discipline.EqualInstances {
   implicit def equalRegex[A: Equal: Arbitrary]: Equal[Regex[A]] = new Equal[Regex[A]] {
     override def equal(a1: Regex[A], a2: Regex[A]) =
       kantan.codecs.laws.discipline.equality
-        .eq((str: String) ⇒ a1.eval(str).toList, (str: String) ⇒ a2.eval(str).toList)(implicitly[Equal[List[A]]].equal)
+        .eq((str: String) => a1.eval(str).toList, (str: String) => a2.eval(str).toList)(
+          implicitly[Equal[List[A]]].equal
+        )
   }
 
 }

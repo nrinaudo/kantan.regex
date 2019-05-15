@@ -24,7 +24,7 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 class MatchDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
 
   test("Instances created through MatchDecoder.from should behave as expected") {
-    forAll { (s: String, f: (Match ⇒ DecodeResult[Int])) ⇒
+    forAll { (s: String, f: (Match => DecodeResult[Int])) =>
       implicit val decoder: MatchDecoder[Int] = MatchDecoder.from(f)
       val pattern                             = rx".*"
 
@@ -39,7 +39,7 @@ class MatchDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks with 
   }
 
   test("The instance summoning method should behave as expected") {
-    forAll { (f: (Match ⇒ DecodeResult[Int])) ⇒
+    forAll { (f: (Match => DecodeResult[Int])) =>
       implicit val decoder: MatchDecoder[Int] = MatchDecoder.from(f)
 
       decoder should be theSameInstanceAs MatchDecoder[Int]
