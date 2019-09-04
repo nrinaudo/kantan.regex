@@ -1,7 +1,7 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Refined module"
-section: tutorial
+section: scala mdocorial
 sort_order: 13
 ---
 kantan.regex comes with a [refined](https://github.com/fthomas/refined) module that can be used
@@ -13,7 +13,7 @@ libraryDependencies += "com.nrinaudo" %% "kantan.regex-refined" % "@VERSION@"
 
 You then need to import the corresponding package:
 
-```tut:silent
+```scala mdoc:silent
 import kantan.regex.refined._
 ```
 
@@ -21,7 +21,7 @@ And that's pretty much it. You can now decode refined types directly.
 
 Let's first set our types up:
 
-```tut:silent
+```scala mdoc:silent
 import eu.timepit.refined.api.Refined
 import eu.timepit.refined.numeric.Positive
 import kantan.regex.implicits._
@@ -31,12 +31,12 @@ type PositiveInt = Int Refined Positive
 
 We can then simply write the following:
 
-```tut
+```scala mdoc
 "[123]".evalRegex[PositiveInt](rx"\[([+-]?\d+)\]", 1).toList
 ```
 
 And, for an error case:
 
-```tut
+```scala mdoc
 "[-123]".evalRegex[PositiveInt](rx"\[([+-]?\d+)\]", 1).toList
 ```

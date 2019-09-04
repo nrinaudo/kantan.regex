@@ -17,20 +17,39 @@
 package kantan.regex
 package literals
 
-import contextual._
 import java.util.regex.Pattern
+import scala.reflect.macros.blackbox.Context
+import scala.util.{Failure, Success, Try => UTry}
 
-object RegexLiteral extends Verifier[Pattern] {
+final class RegexLiteral(val sc: StringContext) extends AnyVal {
+  def rx(args: Any*): Pattern = macro RegexLiteral.rxImpl
+}
 
-  override def check(string: String): Either[(Int, String), Pattern] =
-    // We could do a better job at analysing the error message and extracting the interesting bits, but:
-    // - this is not guaranteed to always work - error message might change format
-    // - it doesn't work with scala.js, and I'm not interested in this enough to have different error handling depending
-    //   on the target platform.
-    try {
-      Right(Pattern.compile(string))
-    } catch {
-      case e: Exception => Left((0, e.getMessage))
+// Relatively distatefull trick to get rid of spurious warnings.
+trait RegexLiteralMacro {
+  def rxImpl(c: Context)(args: c.Expr[Any]*): c.Expr[Pattern]
+}
+
+object RegexLiteral extends RegexLiteralMacro {
+
+  override def rxImpl(c: Context)(args: c.Expr[Any]*): c.Expr[Pattern] = {
+    import c.universe._
+
+    c.prefix.tree match {
+      case Apply(_, List(Apply(_, List(lit @ Literal(Constant(str: String)))))) =>
+        UTry(Pattern.compile(str)) match {
+          case Failure(_) => c.abort(c.enclosingPosition, s"Illegal regex: '$str'")
+          case Success(_) =>
+            reify {
+              Pattern.compile(c.Expr[String](lit).splice)
+            }
+        }
+      case _ =>
+        c.abort(c.enclosingPosition, "rx can only be used on string literals")
     }
+  }
+}
 
+trait ToRegexLiteral {
+  implicit def toRegexLiteral(sc: StringContext): RegexLiteral = new RegexLiteral(sc)
 }

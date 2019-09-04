@@ -1,7 +1,7 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Default instances"
-section: tutorial
+section: scala mdocorial
 sort_order: 7
 ---
 
@@ -41,7 +41,7 @@ provides easy tools for creating decoders from an instance of [`DateFormat`].
 
 We could for example declare a decoder for something ISO 8601-like:
 
-```tut:silent
+```scala mdoc:silent
 import kantan.regex.implicits._
 import kantan.regex.GroupDecoder
 import java.text.SimpleDateFormat
@@ -52,7 +52,7 @@ implicit val dateDecoder: GroupDecoder[Date] = GroupDecoder.dateDecoder(new Simp
 
 And we're now capable of decoding matches as dates:
 
-```tut
+```scala mdoc
 "2000-01-00T00:00:00.000".evalRegex[Date](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
 ```
 
@@ -67,7 +67,7 @@ For any two types `A` and `B` that each have a [`GroupDecoder`], there exists a
 This is useful for dodgy string data where the type of a value is not well defined - it might sometimes be an int,
 sometimes a boolean, for example:
 
-```tut
+```scala mdoc
 "[123] [true]".evalRegex[Either[Int, Boolean]](rx"\[(\d+|true|false)\]", 1).foreach(println _)
 ```
 
@@ -77,7 +77,7 @@ For any type `A` that has a [`GroupDecoder`], there exists a [`GroupDecoder[Opti
 
 This is particularly useful for optional groups. For example:
 
-```tut
+```scala mdoc
 "[123], []".evalRegex[Option[Int]](rx"\[(\d+)?\]", 1).foreach(println _)
 ```
 
@@ -101,7 +101,7 @@ That is in fact what was happening in most examples above: [`evalRegex`] expects
 Tuples composed of types that each have a [`GroupDecoder`] automatically have a [`MatchDecoder`]. This is done by
 assuming that the value of group 1 corresponds to the first field in the tuple, group 2 to the second, ...
 
-```tut
+```scala mdoc
 "[1, true] and then [3, false]".evalRegex[(Int, Boolean)](rx"\[(\d+), ([a-z]+)\]").foreach(println _)
 ```
 
@@ -113,7 +113,7 @@ For any two types `A` and `B` that each have a [`MatchDecoder`], there exists a
 
 This works essentially the same way as [`GroupDecoder`] for [`Either`]:
 
-```tut
+```scala mdoc
 "[123, true] [456, foo]".evalRegex[Either[(Int, Boolean), (Int, String)]](rx"\[(\d+), ([a-z]+)\]").foreach(println _)
 ```
 

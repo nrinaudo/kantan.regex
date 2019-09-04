@@ -19,7 +19,8 @@ package refined
 
 import eu.timepit.refined.api.Refined
 import eu.timepit.refined.numeric.Positive
-import laws.discipline._, arbitrary._
+import kantan.regex.refined.arbitrary._
+import laws.discipline._
 
 class RefinedDecoderTests extends DisciplineSuite {
 

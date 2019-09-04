@@ -1,7 +1,7 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Generic Module"
-section: tutorial
+section: scala mdocorial
 sort_order: 8
 ---
 While kantan.regex goes out of its way to provide [default instance](default_instances.html) for as many types as it can,
@@ -15,9 +15,9 @@ The `generic` module can be used by adding the following dependency to your `bui
 libraryDependencies += "com.nrinaudo" %% "kantan.regex-generic" % "0.1.6"
 ```
 
-Let's first declare the imports we'll need in the rest of this tutorial:
+Let's first declare the imports we'll need in the rest of this scala mdocorial:
 
-```tut:silent
+```scala mdoc:silent
 import kantan.regex.implicits._ // Provides syntax and literal values.
 import kantan.regex.generic._   // Provides automatic instance derivation.
 ```
@@ -32,13 +32,13 @@ Any class of arity 1 such that the type of its sole field has a [`GroupDecoder`]
 
 Let's take a simple `Wrapper` class as an example:
 
-```tut:silent
+```scala mdoc:silent
 final case class Wrapper[A](a: A)
 ```
 
 Without any further work, we can decode instances of `Wrapper`:
 
-```tut
+```scala mdoc
 "123 and then 456".evalRegex[Wrapper[Int]](rx"\d+").foreach(println _)
 ```
 
@@ -49,7 +49,7 @@ Any sum type such that each of its alternatives has a [`GroupDecoder`] get a [`G
 
 For example, the following `Or` type:
 
-```tut:silent
+```scala mdoc:silent
 sealed abstract class Or[+A, +B]
 final case class Left[A](value: A) extends Or[A, Nothing]
 final case class Right[B](value: B) extends Or[Nothing, B]
@@ -58,7 +58,7 @@ final case class Right[B](value: B) extends Or[Nothing, B]
 If both `A` and `B` have a [`GroupDecoder`], then both `Left` and `Right`, being unary case classes, also do. If both
 `Left` and `Right` have a [`GroupDecoder`], all of `Or[A, B]`'s alternatives do and `Or[A, B]` also does:
 
-```tut
+```scala mdoc
 "(123) and then (true)".evalRegex[Int Or Boolean](rx"\((\d+|true|false)\)", 1).foreach(println _)
 ```
 
@@ -71,13 +71,13 @@ Any case class of arity one or more such that all of its fields have a [`MatchDe
 
 For example, a silly [`Tuple2`] implementation:
 
-```tut:silent
+```scala mdoc:silent
 final case class CustomTuple2[A, B](a: A, b: B)
 ```
 
 If both `A` and `B` have [`MatchDecoder`] instances, so does `CustomTuple2[A, B]`:
 
-```tut
+```scala mdoc
 "(1, false) and then (3, true)".evalRegex[CustomTuple2[Int, Boolean]](rx"\((\d+), (true|false)\)").foreach(println _)
 ```
 
@@ -85,7 +85,7 @@ If both `A` and `B` have [`MatchDecoder`] instances, so does `CustomTuple2[A, B]
 
 Finally, any sum type such that all its alternatives have a [`MatchDecoder`] gets a [`MatchDecoder`] instance for free:
 
-```tut
+```scala mdoc
 "(1, false) and then (3, foobar)".evalRegex[CustomTuple2[Int, Boolean] Or CustomTuple2[Int, String]](rx"\((\d+), ([a-z]+)\)").foreach(println _)
 ```
 

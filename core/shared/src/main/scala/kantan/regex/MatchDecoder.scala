@@ -18,7 +18,7 @@ package kantan.regex
 
 import kantan.codecs.Decoder
 import kantan.codecs.DecoderCompanion
-import kantan.codecs.collection.HasBuilder
+import kantan.codecs.collection.Factory
 import scala.annotation.tailrec
 import scala.collection.mutable
 
@@ -59,15 +59,15 @@ trait MatchDecoderInstances {
   // TODO: there *must* be a more elegant way to write this.
   // This is more of a hack and not terribly satisfactory, since regular expressions are much more limitted than I
   // initially assumed: matching "12345" against "(\d)*" will not result in 5 groups, but 2: "12345" and "5".
-  implicit def fromCbf[F[_], A](implicit da: GroupDecoder[Option[A]], cbf: HasBuilder[F, A]): MatchDecoder[F[A]] =
+  implicit def fromCbf[F[_], A](implicit da: GroupDecoder[Option[A]], cbf: Factory[A, F[A]]): MatchDecoder[F[A]] =
     MatchDecoder.from { m =>
       @tailrec
       def loop(i: Int, curr: DecodeResult[mutable.Builder[A, F[A]]]): DecodeResult[F[A]] =
-        if(i > m.length || !curr.isRight) curr.right.map(_.result())
+        if(i > m.length || !curr.isRight) curr.map(_.result())
         else
           loop(i + 1, for {
-            fa <- curr.right
-            a  <- m.decode[Option[A]](i).right
+            fa <- curr
+            a  <- m.decode[Option[A]](i)
           } yield {
             a.foreach(fa += _)
             fa

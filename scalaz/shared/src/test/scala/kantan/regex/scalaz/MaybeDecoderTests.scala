@@ -18,8 +18,9 @@ package kantan.regex
 package scalaz
 
 import _root_.scalaz.Maybe
+import kantan.regex.scalaz.arbitrary._
 import laws._
-import laws.discipline._, arbitrary._
+import laws.discipline._
 import org.scalacheck.Arbitrary
 
 class MaybeDecoderTests extends DisciplineSuite {

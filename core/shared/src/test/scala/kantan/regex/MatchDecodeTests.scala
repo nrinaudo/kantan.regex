@@ -18,10 +18,11 @@ package kantan.regex
 
 import implicits._
 import laws.discipline.arbitrary._
-import org.scalatest.{FunSuite, Matchers}
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
-class MatchDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
+class MatchDecodeTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers {
 
   test("Instances created through MatchDecoder.from should behave as expected") {
     forAll { (s: String, f: (Match => DecodeResult[Int])) =>

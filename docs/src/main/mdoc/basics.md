@@ -1,7 +1,7 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Basics"
-section: tutorial
+section: scala mdocorial
 sort_order: 0
 ---
 There are a few concepts to get familiar with before getting to grips with kantan.regex proper.
@@ -15,7 +15,7 @@ as soon as possible.
 There are various ways of enabling the feature, the simplest and most common one being to import
 [`kantan.regex.implicits._`]:
 
-```tut:silent
+```scala mdoc:silent
 import kantan.regex.implicits._
 ```
 
@@ -24,7 +24,7 @@ This will also bring kantan.regex syntax in scope though, so if you only want th
 
 This lets you create new regular expression by prefixing string literals with [`rx`]:
 
-```tut
+```scala mdoc
 rx"\d+"
 
 rx"[ -~]"
@@ -32,7 +32,7 @@ rx"[ -~]"
 
 And, as promised, this fails *at compile time* if the regular expression is not valid:
 
-```tut:fail
+```scala mdoc:fail
 rx"[abc"
 ```
 
@@ -42,7 +42,7 @@ Subsequent pages will get into more details, but the simplest, most idiomatic wa
 strings using kantan.regex is through the [`evalRegex`] method that enriches strings (since we've imported
 [`kantan.regex.implicits._`]). For example:
 
-```tut
+```scala mdoc
 "123 and some text followed by 456 and then 789".evalRegex[Int](rx"\d+").foreach(println _)
 ```
 
