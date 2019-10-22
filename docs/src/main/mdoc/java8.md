@@ -1,7 +1,7 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Java 8 dates and times"
-section: tutorial
+section: scala mdocorial
 sort_order: 10
 ---
 Java 8 comes with a better thought out dates and times API. Unfortunately, it cannot be supported as part of the core
@@ -14,7 +14,7 @@ libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "@VERSION@"
 
 You then need to import the corresponding package:
 
-```tut:silent
+```scala mdoc:silent
 import kantan.regex.java8._
 ```
 
@@ -29,7 +29,7 @@ And this will bring [`GroupDecoder`] instances in scope for the following types:
 
 These will use the default Java 8 formats. For example:
 
-```tut:silent
+```scala mdoc:silent
 import kantan.regex.implicits._
 import java.time._
 
@@ -38,16 +38,18 @@ val input = "[1978-10-12] and [2015-01-09]"
 
 We can decode the bracketed dates without providing an explicit decoder:
 
-```tut
+```scala mdoc
 input.evalRegex[LocalDate](rx"\[(\d\d\d\d-\d\d-\d\d)\]", 1).foreach(println _)
 ```
 
 It's also possible to provide your own format. For example, for [`LocalDateTime`]:
 
-```tut:silent
+```scala mdoc:reset:silent
+import java.time._
 import java.time.format.DateTimeFormatter
-import java.time.LocalDate
 import kantan.regex._
+import kantan.regex.implicits._
+import kantan.regex.java8._
 
 implicit val decoder: GroupDecoder[LocalDate] = localDateDecoder(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 
@@ -56,20 +58,20 @@ val input = "[10/12/1978] and [09/01/2015]"
 
 And we can now simply write:
 
-```tut
+```scala mdoc
 input.evalRegex[LocalDate](rx"\[(\d\d/\d\d/\d\d\d\d)\]", 1).foreach(println _)
 ```
 
 Note that while you can pass a [`DateTimeFormatter`] directly, the preferred way of dealing with pattern strings is to
 use the literal syntax provided by kantan.regex:
 
-```tut:silent
+```scala mdoc:silent
 localDateDecoder(fmt"dd-MM-yyyy")
 ```
 
 The advantage is that this is checked at compile time - invalid pattern strings will cause a compilation error:
 
-```tut:fail
+```scala mdoc:fail
 localDateDecoder(fmt"FOOBAR")
 ```
 

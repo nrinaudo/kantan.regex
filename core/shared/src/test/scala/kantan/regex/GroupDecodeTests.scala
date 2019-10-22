@@ -18,10 +18,11 @@ package kantan.regex
 
 import laws.discipline.arbitrary._
 import ops._
-import org.scalatest.{FunSuite, Matchers}
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
-class GroupDecodeTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
+class GroupDecodeTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers {
   test("Instances created through GroupDecoder.from should behave as expected") {
     forAll { (s: String, f: (Option[String] => DecodeResult[Int])) =>
       implicit val decoder: GroupDecoder[Int] = GroupDecoder.from(f)

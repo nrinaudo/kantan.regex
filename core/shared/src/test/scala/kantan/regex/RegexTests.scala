@@ -17,13 +17,14 @@
 package kantan.regex
 
 import implicits._
-import org.scalatest.{FunSuite, Matchers}
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
-class RegexTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
+class RegexTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers {
   test("All matches should be decoded as expected.") {
     forAll { is: List[Int] =>
-      val regex = ("-?\\d+").asUnsafeRegex[Int].map(_.right.get)
+      val regex = ("-?\\d+").asUnsafeRegex[Int].map(_.fold(e => throw e, identity))
       regex.eval(is.mkString(" ")).toList should be(is)
     }
   }

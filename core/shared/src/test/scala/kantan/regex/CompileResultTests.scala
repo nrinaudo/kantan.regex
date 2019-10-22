@@ -16,27 +16,27 @@
 
 package kantan.regex
 
-import org.scalatest.{FunSuite, Matchers}
-import org.scalatest.EitherValues._
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
 @SuppressWarnings(Array("org.wartremover.warts.Throw"))
-class CompileResultTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
+class CompileResultTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers {
   test("CompileResult.success should return a success") {
     forAll { i: Int =>
-      CompileResult.success(i).right.value should be(i)
+      CompileResult.success(i) should be(Right(i))
     }
   }
 
   test("CompileResult.apply should return a success on 'good' values") {
     forAll { i: Int =>
-      CompileResult(i).right.value should be(i)
+      CompileResult(i) should be(Right(i))
     }
   }
 
   test("CompileResult.apply should return a failure on 'bad' values") {
     forAll { e: Exception =>
-      CompileResult(throw e).left.value should be(CompileError(e))
+      CompileResult(throw e) should be(Left(CompileError(e)))
     }
   }
 }

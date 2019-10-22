@@ -16,7 +16,7 @@ lazy val jvmModules: Seq[ProjectReference] = Seq(
   coreJVM,
   enumeratumJVM,
   genericJVM,
-  jodaTime,
+  java8,
   lawsJVM,
   libra,
   refinedJVM,
@@ -38,18 +38,17 @@ lazy val root = Project(id = "kantan-regex", base = file("."))
     """.stripMargin
   )
   .aggregate((jsModules ++ jvmModules :+ (docs: ProjectReference)): _*)
-  .aggregateIf(java8Supported)(java8)
   .dependsOn(coreJVM, genericJVM, refinedJVM)
 
 lazy val docs = project
   .settings(
     unidocProjectFilter in (ScalaUnidoc, unidoc) :=
-      inAnyProject -- inProjectsIf(!java8Supported)(java8) -- inProjects(jsModules: _*)
+      inAnyProject -- inProjects(jsModules: _*)
   )
   .enablePlugins(DocumentationPlugin)
   .settings(name := "docs")
-  .dependsOn(catsJVM, coreJVM, enumeratumJVM, genericJVM, jodaTime, libra, refinedJVM, scalazJVM)
-  .dependsOnIf(java8Supported)(java8)
+  .settings(libraryDependencies += "joda-time" % "joda-time" % Versions.jodaTime)
+  .dependsOn(catsJVM, coreJVM, enumeratumJVM, genericJVM, java8, libra, refinedJVM, scalazJVM)
 
 // - core projects -----------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
@@ -65,9 +64,7 @@ lazy val core = kantanCrossProject("core")
   .enablePlugins(PublishedPlugin, BoilerplatePlugin)
   .settings(
     libraryDependencies ++= Seq(
-      "com.nrinaudo"   %%% "kantan.codecs" % Versions.kantanCodecs,
-      "com.propensive" %%% "contextual"    % Versions.contextual,
-      "org.scalatest"  %%% "scalatest"     % Versions.scalatest % "test"
+      "com.nrinaudo" %%% "kantan.codecs" % Versions.kantanCodecs
     )
   )
   .laws("laws")
@@ -84,23 +81,6 @@ lazy val laws = kantanCrossProject("laws")
 lazy val lawsJVM = laws.jvm
 lazy val lawsJS  = laws.js
 
-// - joda-time projects ------------------------------------------------------------------------------------------------
-// ---------------------------------------------------------------------------------------------------------------------
-lazy val jodaTime = Project(id = "joda-time", base = file("joda-time"))
-  .settings(
-    moduleName := "kantan.regex-joda-time",
-    name       := "joda-time"
-  )
-  .enablePlugins(PublishedPlugin)
-  .dependsOn(coreJVM, lawsJVM % "test")
-  .settings(
-    libraryDependencies ++= Seq(
-      "com.nrinaudo"  %% "kantan.codecs-joda-time"      % Versions.kantanCodecs,
-      "com.nrinaudo"  %% "kantan.codecs-joda-time-laws" % Versions.kantanCodecs % "test",
-      "org.scalatest" %% "scalatest"                    % Versions.scalatest % "test"
-    )
-  )
-
 // - java8 projects ----------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
 lazy val java8 = project
@@ -112,9 +92,8 @@ lazy val java8 = project
   .dependsOn(coreJVM, lawsJVM % "test")
   .settings(
     libraryDependencies ++= Seq(
-      "com.nrinaudo"  %% "kantan.codecs-java8"      % Versions.kantanCodecs,
-      "com.nrinaudo"  %% "kantan.codecs-java8-laws" % Versions.kantanCodecs % "test",
-      "org.scalatest" %% "scalatest"                % Versions.scalatest % "test"
+      "com.nrinaudo" %% "kantan.codecs-java8"      % Versions.kantanCodecs,
+      "com.nrinaudo" %% "kantan.codecs-java8-laws" % Versions.kantanCodecs % "test"
     )
   )
 
@@ -126,9 +105,8 @@ lazy val cats = kantanCrossProject("cats")
   .dependsOn(core, laws % "test")
   .settings(
     libraryDependencies ++= Seq(
-      "com.nrinaudo"  %%% "kantan.codecs-cats"      % Versions.kantanCodecs,
-      "com.nrinaudo"  %%% "kantan.codecs-cats-laws" % Versions.kantanCodecs % "test",
-      "org.scalatest" %%% "scalatest"               % Versions.scalatest % "test"
+      "com.nrinaudo" %%% "kantan.codecs-cats"      % Versions.kantanCodecs,
+      "com.nrinaudo" %%% "kantan.codecs-cats-laws" % Versions.kantanCodecs % "test"
     )
   )
 
@@ -143,9 +121,8 @@ lazy val scalaz = kantanCrossProject("scalaz")
   .dependsOn(core, laws % "test")
   .settings(
     libraryDependencies ++= Seq(
-      "com.nrinaudo"  %%% "kantan.codecs-scalaz"      % Versions.kantanCodecs,
-      "com.nrinaudo"  %%% "kantan.codecs-scalaz-laws" % Versions.kantanCodecs % "test",
-      "org.scalatest" %%% "scalatest"                 % Versions.scalatest % "test"
+      "com.nrinaudo" %%% "kantan.codecs-scalaz"      % Versions.kantanCodecs,
+      "com.nrinaudo" %%% "kantan.codecs-scalaz-laws" % Versions.kantanCodecs % "test"
     )
   )
 
@@ -160,9 +137,8 @@ lazy val generic = kantanCrossProject("generic")
   .dependsOn(core, laws % "test")
   .settings(
     libraryDependencies ++= Seq(
-      "com.nrinaudo"  %%% "kantan.codecs-shapeless"      % Versions.kantanCodecs,
-      "com.nrinaudo"  %%% "kantan.codecs-shapeless-laws" % Versions.kantanCodecs % "test",
-      "org.scalatest" %%% "scalatest"                    % Versions.scalatest % "test"
+      "com.nrinaudo" %%% "kantan.codecs-shapeless"      % Versions.kantanCodecs,
+      "com.nrinaudo" %%% "kantan.codecs-shapeless-laws" % Versions.kantanCodecs % "test"
     )
   )
 
@@ -177,9 +153,8 @@ lazy val refined = kantanCrossProject("refined")
   .dependsOn(core, laws % "test")
   .settings(
     libraryDependencies ++= Seq(
-      "com.nrinaudo"  %%% "kantan.codecs-refined"      % Versions.kantanCodecs,
-      "com.nrinaudo"  %%% "kantan.codecs-refined-laws" % Versions.kantanCodecs % "test",
-      "org.scalatest" %%% "scalatest"                  % Versions.scalatest % "test"
+      "com.nrinaudo" %%% "kantan.codecs-refined"      % Versions.kantanCodecs,
+      "com.nrinaudo" %%% "kantan.codecs-refined-laws" % Versions.kantanCodecs % "test"
     )
   )
 
@@ -194,9 +169,8 @@ lazy val enumeratum = kantanCrossProject("enumeratum")
   .dependsOn(core, laws % "test")
   .settings(
     libraryDependencies ++= Seq(
-      "com.nrinaudo"  %%% "kantan.codecs-enumeratum"      % Versions.kantanCodecs,
-      "com.nrinaudo"  %%% "kantan.codecs-enumeratum-laws" % Versions.kantanCodecs % "test",
-      "org.scalatest" %%% "scalatest"                     % Versions.scalatest % "test"
+      "com.nrinaudo" %%% "kantan.codecs-enumeratum"      % Versions.kantanCodecs,
+      "com.nrinaudo" %%% "kantan.codecs-enumeratum-laws" % Versions.kantanCodecs % "test"
     )
   )
 
@@ -214,8 +188,7 @@ lazy val libra = project
   .dependsOn(coreJVM, lawsJVM % "test")
   .settings(
     libraryDependencies ++= Seq(
-      "com.nrinaudo"  %% "kantan.codecs-libra"      % Versions.kantanCodecs,
-      "com.nrinaudo"  %% "kantan.codecs-libra-laws" % Versions.kantanCodecs % "test",
-      "org.scalatest" %% "scalatest"                % Versions.scalatest % "test"
+      "com.nrinaudo" %% "kantan.codecs-libra"      % Versions.kantanCodecs,
+      "com.nrinaudo" %% "kantan.codecs-libra-laws" % Versions.kantanCodecs % "test"
     )
   )

@@ -19,10 +19,11 @@ package kantan.regex
 import implicits._
 import kantan.codecs.laws._
 import laws.discipline.arbitrary._
-import org.scalatest.{FunSuite, Matchers}
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
-class StringOpsTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
+class StringOpsTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers {
 
   test("evalRegex should succeed for valid regular expressions") {
 
@@ -33,9 +34,9 @@ class StringOpsTests extends FunSuite with GeneratorDrivenPropertyChecks with Ma
     }
 
     forAll { value: IllegalString[Int] =>
-      every(value.encoded.evalRegex[Int](rx"-?\d+").toList) shouldBe 'left
-      every(value.encoded.evalRegex[Int](rx"-?\d+", 0).toList) shouldBe 'left
-      every(value.encoded.evalRegex("-?\\d+".asUnsafeRegex[Int]).toList) shouldBe 'left
+      every(value.encoded.evalRegex[Int](rx"-?\d+").toList) should matchPattern { case Left(_)              => }
+      every(value.encoded.evalRegex[Int](rx"-?\d+", 0).toList) should matchPattern { case Left(_)           => }
+      every(value.encoded.evalRegex("-?\\d+".asUnsafeRegex[Int]).toList) should matchPattern { case Left(_) => }
     }
 
   }

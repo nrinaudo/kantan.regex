@@ -17,12 +17,14 @@
 package kantan.regex
 
 import implicits._
-import org.scalatest.{FunSuite, Matchers}
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
 @SuppressWarnings(Array("org.wartremover.warts.While"))
-class MatchIteratorTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
-  def toMatchIterator(is: List[Int]): Iterator[Int] = Regex[Int](rx"-?\d+").eval(is.mkString(" ")).map(_.right.get)
+class MatchIteratorTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers {
+  def toMatchIterator(is: List[Int]): Iterator[Int] =
+    Regex[Int](rx"-?\d+").eval(is.mkString(" ")).map(_.fold(e => throw e, identity))
 
   test("MatchIterator should fail when reading more than the maximum number of elements") {
     forAll { is: List[Int] =>

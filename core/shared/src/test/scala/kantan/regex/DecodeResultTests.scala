@@ -16,33 +16,33 @@
 
 package kantan.regex
 
-import org.scalatest.{FunSuite, Matchers}
-import org.scalatest.EitherValues._
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
 @SuppressWarnings(Array("org.wartremover.warts.Throw"))
-class DecodeResultTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
+class DecodeResultTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers {
   test("DecodeResult.success should return a success") {
     forAll { i: Int =>
-      DecodeResult.success(i).right.value should be(i)
+      DecodeResult.success(i) should be(Right(i))
     }
   }
 
   test("DecodeResult.apply should return a success on 'good' values") {
     forAll { i: Int =>
-      DecodeResult(i).right.value should be(i)
+      DecodeResult(i) should be(Right(i))
     }
   }
 
   test("DecodeResult.apply should return a failure on 'bad' values") {
     forAll { e: Exception =>
-      DecodeResult(throw e).left.value should be(DecodeError.TypeError(e))
+      DecodeResult(throw e) should be(Left(DecodeError.TypeError(e)))
     }
   }
 
   test("DecodeResult.typeError should return a failure") {
     forAll { e: Exception =>
-      DecodeResult.typeError(e).left.value should be(DecodeError.TypeError(e))
+      DecodeResult.typeError(e) should be(Left(DecodeError.TypeError(e)))
 
       DecodeResult.typeError(e.getMessage) match {
         case Left(DecodeError.TypeError(m)) => m should be(e.getMessage)
@@ -53,7 +53,7 @@ class DecodeResultTests extends FunSuite with GeneratorDrivenPropertyChecks with
 
   test("DecodeResult.noSuchGroupId should return a failure ") {
     forAll { i: Int =>
-      DecodeResult.noSuchGroupId(i).left.value should be(DecodeError.NoSuchGroupId(i))
+      DecodeResult.noSuchGroupId(i) should be(Left(DecodeError.NoSuchGroupId(i)))
     }
   }
 }

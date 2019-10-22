@@ -1,7 +1,7 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Scalaz module"
-section: tutorial
+section: scala mdocorial
 sort_order: 12
 ---
 Kantan.regex has a [scalaz](https://github.com/scalaz/scalaz) module that is, in its current incarnation, fairly bare
@@ -15,7 +15,7 @@ libraryDependencies += "com.nrinaudo" %% "kantan.regex-scalaz" % "@VERSION@"
 
 You then need to import the corresponding package:
 
-```tut:silent
+```scala mdoc:silent
 import kantan.regex.scalaz._
 ```
 
@@ -26,20 +26,20 @@ The `scalaz` module provides a [`GroupDecoder`] instance for [`\/`]: for any typ
 
 First, a few imports:
 
-```tut:silent
+```scala mdoc:silent
 import scalaz._
 import kantan.regex.implicits._
 ```
 
 We can then simply write the following:
 
-```tut
+```scala mdoc
 "[123] [true]".evalRegex[Int \/ Boolean](rx"\[(\d+|true|false)\]", 1).foreach(println _)
 ```
 
 This also applies to [`MatchDecoder`] instances:
 
-```tut
+```scala mdoc
 "(1, true) and then (2, foo)".evalRegex[(Int, Boolean) \/ (Int, String)](rx"\((\d+), ([a-z]+)\)").foreach(println _)
 ```
 
@@ -48,7 +48,7 @@ This also applies to [`MatchDecoder`] instances:
 The `scalaz` module provides a [`GroupDecoder`] instance for [`Maybe`]: for any type `A` that has a [`GroupDecoder`]
 instance, there exists a [`GroupDecoder`] instance for `Maybe[A]`.
 
-```tut
+```scala mdoc
 "[123], []".evalRegex[Maybe[Int]](rx"\[(\d+)?\]", 1).foreach(println _)
 ```
 

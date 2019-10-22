@@ -17,10 +17,11 @@
 package kantan.regex
 
 import implicits._
-import org.scalatest.{FunSuite, Matchers}
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
-class CompilableOpsTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
+class CompilableOpsTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers {
 
   test("asRegex should succeed for valid regular expressions") {
     "\\d+".asRegex[Int].isRight should be(true)

@@ -1,7 +1,7 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Extracting arbitrary types"
-section: tutorial
+section: scala mdocorial
 sort_order: 4
 ---
 Sometimes, you're trying to extract content from strings into something that is neither a
@@ -11,13 +11,13 @@ function.
 
 Let's imagine for example that we want to extract the bits between brackets as points with an optional z-coordinate:
 
-```tut:silent
+```scala mdoc:silent
 val input = "(1, 2) and then (3, 4) followed by (5, 6, 7)"
 ```
 
 This could be achieved with the following regular expression:
 
-```tut:silent
+```scala mdoc:silent
 import kantan.regex.implicits._
 
 val regex = rx"\((\d+), (\d+)(?:, (\d+))?\)"
@@ -25,7 +25,7 @@ val regex = rx"\((\d+), (\d+)(?:, (\d+))?\)"
 
 Here's the class we want to extract matches into:
 
-```tut:silent
+```scala mdoc:silent
 class Point(val x: Int, val y: Int, val z: Option[Int]) {
   override def toString = s"Point($x, $y, $z)"
 }
@@ -35,17 +35,17 @@ Just like we did for [case classes](case_classes.html), we need to create a new 
 While we could write one from scratch, it's usually easier (and easier to get right) to use one of [`MatchDecoder`]'s
 helper functions - in our case, [`decoder`]:
 
-```tut:silent
+```scala mdoc:silent
 import kantan.regex._
 
-implicit val decoder: MatchDecoder[Point] = MatchDecoder.decoder(1, 2, 3) { (x: Int, y: Int, z: Option[Int]) ⇒
+implicit val decoder: MatchDecoder[Point] = MatchDecoder.decoder(1, 2, 3) { (x: Int, y: Int, z: Option[Int]) =>
   new Point(x, y, z)
 }
 ```
 
 And that's it, we're done: we can now [`evalRegex`] as usual, with the right type parameter:
 
-```tut
+```scala mdoc
 input.evalRegex[Point](regex).foreach(println _)
 ```
 

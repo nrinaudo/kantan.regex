@@ -17,14 +17,14 @@
 package kantan.regex
 
 trait GeneratedMatchDecoders {
-  [#def decoder[[#A1: GroupDecoder#], O]([#i1: Int#])(f: ([#A1#]) ⇒ O): MatchDecoder[O] = MatchDecoder.from { m ⇒
+  [#def decoder[[#A1: GroupDecoder#], O]([#i1: Int#])(f: ([#A1#]) => O): MatchDecoder[O] = MatchDecoder.from { m =>
     for {
-      [#a1 ← m.decode[A1](i1).right#
+      [#a1 <- m.decode[A1](i1)#
       ]
     } yield f([#a1#])
   }
 
-  def ordered[[#A1: GroupDecoder#], O](f: ([#A1#]) ⇒ O): MatchDecoder[O] = decoder([#1#])(f)#
+  def ordered[[#A1: GroupDecoder#], O](f: ([#A1#]) => O): MatchDecoder[O] = decoder([#1#])(f)#
 
   ]
 

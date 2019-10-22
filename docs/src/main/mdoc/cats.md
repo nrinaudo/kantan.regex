@@ -1,7 +1,7 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Scala cats module"
-section: tutorial
+section: scala mdocorial
 sort_order: 11
 ---
 Kantan.regex has a [cats](https://github.com/typelevel/cats) module that is, in its current incarnation, fairly bare
@@ -15,7 +15,7 @@ libraryDependencies += "com.nrinaudo" %% "kantan.regex-cats" % "@VERSION@"
 
 You then need to import the corresponding package:
 
-```tut:silent
+```scala mdoc:silent
 import kantan.regex.cats._
 ```
 

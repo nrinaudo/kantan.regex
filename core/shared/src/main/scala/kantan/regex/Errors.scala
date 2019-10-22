@@ -31,6 +31,7 @@ sealed abstract class DecodeError(msg: String) extends RegexError(msg)
 object DecodeError {
   case object EmptyGroup extends DecodeError("an empty group was found")
 
+  @SuppressWarnings(Array("org.wartremover.warts.StringPlusAny"))
   final case class NoSuchGroupId(id: Int) extends DecodeError(s"no group exist with identifier $id")
 
   sealed case class TypeError(message: String) extends DecodeError(message)

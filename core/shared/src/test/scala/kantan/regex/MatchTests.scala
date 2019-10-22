@@ -18,10 +18,11 @@ package kantan.regex
 
 import ops._
 import org.scalacheck.{Arbitrary, Gen}
-import org.scalatest.{FunSuite, Matchers}
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
-class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks with Matchers {
+class MatchTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers {
   test("length should return the expected value") {
     def validating(length: Int): MatchDecoder[List[Int]] = MatchDecoder[List[Int]].contramapEncoded { (m: Match) =>
       m.length should be(length)
@@ -31,7 +32,7 @@ class MatchTests extends FunSuite with GeneratorDrivenPropertyChecks with Matche
     forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int])) { (is: List[Int]) =>
       implicit val decoder: MatchDecoder[List[Int]] = validating(is.length)
 
-      val regex = is.map(_ => "(-?\\d+)").mkString(" ").asUnsafeRegex[List[Int]].map(_.right.get)
+      val regex = is.map(_ => "(-?\\d+)").mkString(" ").asUnsafeRegex[List[Int]].map(_.fold(e => throw e, identity))
       regex.eval(is.mkString(" ")).next should be(is)
     }
   }

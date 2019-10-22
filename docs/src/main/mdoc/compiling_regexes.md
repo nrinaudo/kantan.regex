@@ -1,7 +1,7 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Compiling regular expressions for reuse"
-section: tutorial
+section: scala mdocorial
 sort_order: 6
 ---
 In the examples we've seen so far, regular expressions were passed around as [`Pattern`]s. This can be inefficient, as
@@ -15,7 +15,7 @@ of [`Regex`].
 If you already have an instance of [`Pattern`], turning it into an instance of [`Regex`] is trivial, you need only
 call [`Regex.apply`]:
 
-```tut:silent
+```scala mdoc:silent
 import kantan.regex._
 import kantan.regex.implicits._
 
@@ -26,7 +26,7 @@ Note the type parameter, which works exactly as in [`evalRegex`].
 
 You can now pass the compiled regex to [`evalRegex`] directly, as many time as you need:
 
-```tut
+```scala mdoc
 "(1, 2) and then (3, 4) followed by (5, 6)".evalRegex(regex).foreach(println _)
 ```
 
@@ -43,7 +43,10 @@ is validated at compile time.
 If you really must work with a string - for a dynamically generated regular expression, say - you can compile it safely
 through [`asRegex`]:
 
-```tut:silent
+```scala mdoc:reset:silent
+import kantan.regex._
+import kantan.regex.implicits._
+
 val regex = """\((\d+), (\d+)\)""".asRegex[(Int, Int)].right.get
 ```
 
@@ -52,7 +55,7 @@ ill-formed regular expressions.
 
 Now that we have this instance of [`Regex`], we can simply pass it as parameter to [`evalRegex`]:
 
-```tut
+```scala mdoc
 "(1, 2) and then (3, 4) followed by (5, 6)".evalRegex(regex).foreach(println _)
 ```
 
