@@ -1,9 +1,10 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Extracting case classes"
-section: tutorial
+section: scala mdocorial
 sort_order: 3
 ---
+
 We've already seen how to extract [primitive types](primitive_types.html) and [tuples](tuples.html) from regular
 expression matches, but a more common requirement is to extract case classes - often preferable to tuples, since they
 provide more meaningful types.
@@ -41,9 +42,9 @@ implicit val decoder: MatchDecoder[WeirdPoint] = MatchDecoder.ordered(WeirdPoint
 And that's all there is to it. Now that we have this decoder in place, we can just call [`evalRegex`] as usual:
 
 ```scala
-scala> input.evalRegex[WeirdPoint](regex).foreach(println _)
-Right(WeirdPoint(1,Left(2)))
-Right(WeirdPoint(3,Right(false)))
+input.evalRegex[WeirdPoint](regex).foreach(println _)
+// Right(WeirdPoint(1,Left(2)))
+// Right(WeirdPoint(3,Right(false)))
 ```
 
 It's possible to automate this process through the [shapeless](http://shapeless.io)-backed [generic](generic.html)
@@ -58,9 +59,9 @@ final case class Foo(x: Int, y: Either[Int, Boolean])
 And without any further work, we can decode instances of `Foo`:
 
 ```scala
-scala> input.evalRegex[Foo](regex).foreach(println _)
-Right(Foo(1,Left(2)))
-Right(Foo(3,Right(false)))
+input.evalRegex[Foo](regex).foreach(println _)
+// Right(Foo(1,Left(2)))
+// Right(Foo(3,Right(false)))
 ```
 
 [`evalRegex`]:{{ site.baseurl }}/api/kantan/regex/ops/StringOps.html#evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]

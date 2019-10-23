@@ -1,15 +1,16 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Java 8 dates and times"
-section: tutorial
+section: scala mdocorial
 sort_order: 10
 ---
+
 Java 8 comes with a better thought out dates and times API. Unfortunately, it cannot be supported as part of the core
 kantan.regex API - we still support Java 7. There is, however, a dedicated optional module that you can include by
 adding the following line to your `build.sbt` file:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "0.5.0"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-java8" % "0.5.1"
 ```
 
 You then need to import the corresponding package:
@@ -39,17 +40,19 @@ val input = "[1978-10-12] and [2015-01-09]"
 We can decode the bracketed dates without providing an explicit decoder:
 
 ```scala
-scala> input.evalRegex[LocalDate](rx"\[(\d\d\d\d-\d\d-\d\d)\]", 1).foreach(println _)
-Right(1978-10-12)
-Right(2015-01-09)
+input.evalRegex[LocalDate](rx"\[(\d\d\d\d-\d\d-\d\d)\]", 1).foreach(println _)
+// Right(1978-10-12)
+// Right(2015-01-09)
 ```
 
 It's also possible to provide your own format. For example, for [`LocalDateTime`]:
 
 ```scala
+import java.time._
 import java.time.format.DateTimeFormatter
-import java.time.LocalDate
 import kantan.regex._
+import kantan.regex.implicits._
+import kantan.regex.java8._
 
 implicit val decoder: GroupDecoder[LocalDate] = localDateDecoder(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 
@@ -59,9 +62,9 @@ val input = "[10/12/1978] and [09/01/2015]"
 And we can now simply write:
 
 ```scala
-scala> input.evalRegex[LocalDate](rx"\[(\d\d/\d\d/\d\d\d\d)\]", 1).foreach(println _)
-Right(1978-12-10)
-Right(2015-01-09)
+input.evalRegex[LocalDate](rx"\[(\d\d/\d\d/\d\d\d\d)\]", 1).foreach(println _)
+// Right(1978-12-10)
+// Right(2015-01-09)
 ```
 
 Note that while you can pass a [`DateTimeFormatter`] directly, the preferred way of dealing with pattern strings is to
@@ -74,10 +77,10 @@ localDateDecoder(fmt"dd-MM-yyyy")
 The advantage is that this is checked at compile time - invalid pattern strings will cause a compilation error:
 
 ```scala
-scala> localDateDecoder(fmt"FOOBAR")
-<console>:28: error: Invalid pattern: 'FOOBAR'
-       localDateDecoder(fmt"FOOBAR")
-                            ^
+localDateDecoder(fmt"FOOBAR")
+// error: Illegal format: 'FOOBAR'
+// localDateDecoder(fmt"FOOBAR")
+//                  ^^^^^^^^^^^
 ```
 
 [`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html

@@ -1,9 +1,10 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Extracting primitive types"
-section: tutorial
+section: scala mdocorial
 sort_order: 1
 ---
+
 When working with regular expressions, it's fairly common to want to extract matches and turn them into useful types -
 a depressingly recurrent scenario being extracting simple integers from strings.
 
@@ -31,13 +32,13 @@ compile time.
 And we can now simply call the [`evalRegex`] method that enriches strings:
 
 ```scala
-scala> val results = input.evalRegex[Int](digits)
-results: Iterator[kantan.regex.DecodeResult[Int]] = <iterator>
+val results = input.evalRegex[Int](digits)
+// results: Iterator[kantan.regex.package.DecodeResult[Int]] = empty iterator
 
-scala> results.foreach(println _)
-Right(123)
-Right(456)
-Right(789)
+results.foreach(println _)
+// Right(123)
+// Right(456)
+// Right(789)
 ```
 
 There are a few important things happening here. First, note the type parameter to [`evalRegex`]: this tells
@@ -56,8 +57,8 @@ Looking at the results however, we see that we didn't really achieve what we set
 matched, but was. In order to solve this, we need to change our regular expression to something more precise, such as:
 
 ```scala
-scala> val regex = rx"\[(\d+)\]"
-regex: java.util.regex.Pattern = \[(\d+)\]
+val regex = rx"\[(\d+)\]"
+// regex: java.util.regex.Pattern = \[(\d+)\]
 ```
 
 The problem here is that matches of this expression are not valid ints - they are surrounded by brackets. This
@@ -66,9 +67,9 @@ will be the matched digits without the brackets. There's a version of [`evalRege
 from which to extract data:
 
 ```scala
-scala> input.evalRegex[Int](regex, 1).foreach(println _)
-Right(123)
-Right(456)
+input.evalRegex[Int](regex, 1).foreach(println _)
+// Right(123)
+// Right(456)
 ```
 
 ## Adding support to new types
@@ -86,21 +87,21 @@ implicit val jodaDateTime: GroupDecoder[DateTime] = {
 
   // Summon an existing GroupDecoder[String] instance and modifies its behaviour,
   // rather than build a new decoder from scratch.
-  GroupDecoder[String].emap(s ⇒ DecodeResult(format.parseDateTime(s)))
+  GroupDecoder[String].emap(s => DecodeResult(format.parseDateTime(s)))
 }
 ```
 
 Here's an example of a string with a valid ISO date:
 
 ```scala
-val input = "Nothing of note happened on 2009-01-06"
+val isoInput = "Nothing of note happened on 2009-01-06"
 ```
 
 And we can now decode this easily:
 
 ```scala
-scala> input.evalRegex[DateTime](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
-Right(2009-01-06T00:00:00.000+01:00)
+isoInput.evalRegex[DateTime](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
+// Right(2009-01-06T00:00:00.000+01:00)
 ```
 
 

@@ -1,14 +1,15 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Enumeratum module"
-section: tutorial
+section: scala mdocorial
 sort_order: 14
 ---
+
 kantan.regex comes with an [enumeratum](https://github.com/lloydmeta/enumeratum) module that can be used
 by adding the following dependency to your `build.sbt`:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-enumeratum" % "0.5.0"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-enumeratum" % "0.5.1"
 ```
 
 ## Name-based enumerations
@@ -54,13 +55,18 @@ import somePackage._
 We can then simply write the following:
 
 ```scala
-scala> "[Hello]".evalRegex[DummyEnum](rx"\[([a-zA-Z]+)]", 1).toList
-res2: List[kantan.regex.DecodeResult[somePackage.DummyEnum]] = List(Right(Hello))
+"[Hello]".evalRegex[DummyEnum](rx"\[([a-zA-Z]+)]", 1).toList
+// res0: List[kantan.regex.package.DecodeResult[DummyEnum]] = List(
+//   Right(Hello)
+// )
 
-scala> "[GoodDay]".evalRegex[DummyEnum](rx"\[([a-zA-Z]+)]", 1).toList
-res3: List[kantan.regex.DecodeResult[somePackage.DummyEnum]] = List(Left(TypeError: 'GoodDay' is not a member of enumeration [Hello, GoodBye, Hi]))
+"[GoodDay]".evalRegex[DummyEnum](rx"\[([a-zA-Z]+)]", 1).toList
+// res1: List[kantan.regex.package.DecodeResult[DummyEnum]] = List(
+//   Left(
+//     TypeError("'GoodDay' is not a member of enumeration [Hello, GoodBye, Hi]")
+//   )
+// )
 ```
-
 
 
 ## Value-based enumerations
@@ -108,9 +114,12 @@ import somePackage._
 We can then simply write the following:
 
 ```scala
-scala> "[1]".evalRegex[Greeting](rx"\[([+-]?\d+)\]", 1).toList
-res2: List[kantan.regex.DecodeResult[somePackage.Greeting]] = List(Right(Hello))
+"[1]".evalRegex[Greeting](rx"\[([+-]?\d+)\]", 1).toList
+// res3: List[kantan.regex.package.DecodeResult[Greeting]] = List(Right(Hello))
 
-scala> "[-2]".evalRegex[Greeting](rx"\[([+-]?\d+)\]", 1).toList
-res3: List[kantan.regex.DecodeResult[somePackage.Greeting]] = List(Left(TypeError: '-2' is not in values [1, 2, 3, 4]))
+"[-2]".evalRegex[Greeting](rx"\[([+-]?\d+)\]", 1).toList
+// res4: List[kantan.regex.package.DecodeResult[Greeting]] = List(
+//   Left(TypeError("'-2' is not in values [1, 2, 3, 4]"))
+// )
 ```
+

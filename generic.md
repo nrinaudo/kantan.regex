@@ -1,9 +1,10 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Generic Module"
-section: tutorial
+section: scala mdocorial
 sort_order: 8
 ---
+
 While kantan.regex goes out of its way to provide [default instance](default_instances.html) for as many types as it can,
 some are made problematic by my desire to avoid runtime reflection. Fortunately, [shapeless](http://shapeless.io)
 provides _compile time_ reflection, which makes it possible for the `generic` module to automatically derive instances
@@ -15,7 +16,7 @@ The `generic` module can be used by adding the following dependency to your `bui
 libraryDependencies += "com.nrinaudo" %% "kantan.regex-generic" % "0.1.6"
 ```
 
-Let's first declare the imports we'll need in the rest of this tutorial:
+Let's first declare the imports we'll need in the rest of this scala mdocorial:
 
 ```scala
 import kantan.regex.implicits._ // Provides syntax and literal values.
@@ -39,9 +40,9 @@ final case class Wrapper[A](a: A)
 Without any further work, we can decode instances of `Wrapper`:
 
 ```scala
-scala> "123 and then 456".evalRegex[Wrapper[Int]](rx"\d+").foreach(println _)
-Right(Wrapper(123))
-Right(Wrapper(456))
+"123 and then 456".evalRegex[Wrapper[Int]](rx"\d+").foreach(println _)
+// Right(Wrapper(123))
+// Right(Wrapper(456))
 ```
 
 
@@ -61,9 +62,9 @@ If both `A` and `B` have a [`GroupDecoder`], then both `Left` and `Right`, being
 `Left` and `Right` have a [`GroupDecoder`], all of `Or[A, B]`'s alternatives do and `Or[A, B]` also does:
 
 ```scala
-scala> "(123) and then (true)".evalRegex[Int Or Boolean](rx"\((\d+|true|false)\)", 1).foreach(println _)
-Right(Left(123))
-Right(Right(true))
+"(123) and then (true)".evalRegex[Int Or Boolean](rx"\((\d+|true|false)\)", 1).foreach(println _)
+// Right(Left(123))
+// Right(Right(true))
 ```
 
 
@@ -82,9 +83,9 @@ final case class CustomTuple2[A, B](a: A, b: B)
 If both `A` and `B` have [`MatchDecoder`] instances, so does `CustomTuple2[A, B]`:
 
 ```scala
-scala> "(1, false) and then (3, true)".evalRegex[CustomTuple2[Int, Boolean]](rx"\((\d+), (true|false)\)").foreach(println _)
-Right(CustomTuple2(1,false))
-Right(CustomTuple2(3,true))
+"(1, false) and then (3, true)".evalRegex[CustomTuple2[Int, Boolean]](rx"\((\d+), (true|false)\)").foreach(println _)
+// Right(CustomTuple2(1,false))
+// Right(CustomTuple2(3,true))
 ```
 
 ### Sum types
@@ -92,9 +93,9 @@ Right(CustomTuple2(3,true))
 Finally, any sum type such that all its alternatives have a [`MatchDecoder`] gets a [`MatchDecoder`] instance for free:
 
 ```scala
-scala> "(1, false) and then (3, foobar)".evalRegex[CustomTuple2[Int, Boolean] Or CustomTuple2[Int, String]](rx"\((\d+), ([a-z]+)\)").foreach(println _)
-Right(Left(CustomTuple2(1,false)))
-Right(Right(CustomTuple2(3,foobar)))
+"(1, false) and then (3, foobar)".evalRegex[CustomTuple2[Int, Boolean] Or CustomTuple2[Int, String]](rx"\((\d+), ([a-z]+)\)").foreach(println _)
+// Right(Left(CustomTuple2(1,false)))
+// Right(Right(CustomTuple2(3,foobar)))
 ```
 
 [`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html

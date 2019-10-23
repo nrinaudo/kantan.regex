@@ -1,9 +1,10 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Compiling regular expressions for reuse"
-section: tutorial
+section: scala mdocorial
 sort_order: 6
 ---
+
 In the examples we've seen so far, regular expressions were passed around as [`Pattern`]s. This can be inefficient, as
 kantan.regex needs to bake in the decoding code in patterns each time they are evaluated against some input.
 
@@ -27,10 +28,10 @@ Note the type parameter, which works exactly as in [`evalRegex`].
 You can now pass the compiled regex to [`evalRegex`] directly, as many time as you need:
 
 ```scala
-scala> "(1, 2) and then (3, 4) followed by (5, 6)".evalRegex(regex).foreach(println _)
-Right((1,2))
-Right((3,4))
-Right((5,6))
+"(1, 2) and then (3, 4) followed by (5, 6)".evalRegex(regex).foreach(println _)
+// Right((1,2))
+// Right((3,4))
+// Right((5,6))
 ```
 
 Note how you don't need to specify a type parameter to [`evalRegex`] anymore, as the target type has already been
@@ -47,6 +48,9 @@ If you really must work with a string - for a dynamically generated regular expr
 through [`asRegex`]:
 
 ```scala
+import kantan.regex._
+import kantan.regex.implicits._
+
 val regex = """\((\d+), (\d+)\)""".asRegex[(Int, Int)].right.get
 ```
 
@@ -56,10 +60,10 @@ ill-formed regular expressions.
 Now that we have this instance of [`Regex`], we can simply pass it as parameter to [`evalRegex`]:
 
 ```scala
-scala> "(1, 2) and then (3, 4) followed by (5, 6)".evalRegex(regex).foreach(println _)
-Right((1,2))
-Right((3,4))
-Right((5,6))
+"(1, 2) and then (3, 4) followed by (5, 6)".evalRegex(regex).foreach(println _)
+// Right((1,2))
+// Right((3,4))
+// Right((5,6))
 ```
 
 ## Under the hood
@@ -68,8 +72,6 @@ Any type that has an implicit instance of [`Compiler`] in scope can be compiled 
 instances of [`Compiler`] for [`Pattern`] and [`scala.util.matching.Regex`], although they're not often useful - if you
 have a [`Pattern`], just pass that to [`Regex.apply`], and if you have a [`scala.util.matching.Regex`], you can just
 call [`pattern`][`Regex.pattern`] to get the underlying [`Pattern`].
-
-
 
 
 [`evalRegex`]:{{ site.baseurl }}/api/kantan/regex/ops/StringOps.html#evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]

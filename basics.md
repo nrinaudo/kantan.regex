@@ -1,9 +1,10 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Basics"
-section: tutorial
+section: scala mdocorial
 sort_order: 0
 ---
+
 There are a few concepts to get familiar with before getting to grips with kantan.regex proper.
 
 ## Regular expression literals
@@ -25,22 +26,20 @@ This will also bring kantan.regex syntax in scope though, so if you only want th
 This lets you create new regular expression by prefixing string literals with [`rx`]:
 
 ```scala
-scala> rx"\d+"
-res0: java.util.regex.Pattern = \d+
+rx"\d+"
+// res0: java.util.regex.Pattern = \d+
 
-scala> rx"[ -~]"
-res1: java.util.regex.Pattern = [ -~]
+rx"[ -~]"
+// res1: java.util.regex.Pattern = [ -~]
 ```
 
 And, as promised, this fails *at compile time* if the regular expression is not valid:
 
 ```scala
-scala> rx"[abc"
-<console>:16: error: Unclosed character class near index 3
-[abc
-   ^
-       rx"[abc"
-          ^
+rx"[abc"
+// error: Illegal regex: '[abc'
+// rx"[abc"
+// ^^^^^^^^
 ```
 
 ## Simple evaluation
@@ -50,10 +49,10 @@ strings using kantan.regex is through the [`evalRegex`] method that enriches str
 [`kantan.regex.implicits._`]). For example:
 
 ```scala
-scala> "123 and some text followed by 456 and then 789".evalRegex[Int](rx"\d+").foreach(println _)
-Right(123)
-Right(456)
-Right(789)
+"123 and some text followed by 456 and then 789".evalRegex[Int](rx"\d+").foreach(println _)
+// Right(123)
+// Right(456)
+// Right(789)
 ```
 
 [`kantan.regex.implicits._`]:{{ site.baseurl }}/api/kantan/regex/implicits$.html

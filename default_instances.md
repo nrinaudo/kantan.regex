@@ -1,7 +1,7 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Default instances"
-section: tutorial
+section: scala mdocorial
 sort_order: 7
 ---
 
@@ -53,8 +53,8 @@ implicit val dateDecoder: GroupDecoder[Date] = GroupDecoder.dateDecoder(new Simp
 And we're now capable of decoding matches as dates:
 
 ```scala
-scala> "2000-01-00T00:00:00.000".evalRegex[Date](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
-Right(Fri Dec 31 00:00:00 CET 1999)
+"2000-01-00T00:00:00.000".evalRegex[Date](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
+// Right(Fri Dec 31 00:00:00 CET 1999)
 ```
 
 Note that kantan.regex has a [joda-time](joda.html) module, a very well thought out alternative to [`Date`].
@@ -69,9 +69,9 @@ This is useful for dodgy string data where the type of a value is not well defin
 sometimes a boolean, for example:
 
 ```scala
-scala> "[123] [true]".evalRegex[Either[Int, Boolean]](rx"\[(\d+|true|false)\]", 1).foreach(println _)
-Right(Left(123))
-Right(Right(true))
+"[123] [true]".evalRegex[Either[Int, Boolean]](rx"\[(\d+|true|false)\]", 1).foreach(println _)
+// Right(Left(123))
+// Right(Right(true))
 ```
 
 ### `Option`
@@ -81,9 +81,9 @@ For any type `A` that has a [`GroupDecoder`], there exists a [`GroupDecoder[Opti
 This is particularly useful for optional groups. For example:
 
 ```scala
-scala> "[123], []".evalRegex[Option[Int]](rx"\[(\d+)?\]", 1).foreach(println _)
-Right(Some(123))
-Right(None)
+"[123], []".evalRegex[Option[Int]](rx"\[(\d+)?\]", 1).foreach(println _)
+// Right(Some(123))
+// Right(None)
 ```
 
 
@@ -107,9 +107,9 @@ Tuples composed of types that each have a [`GroupDecoder`] automatically have a 
 assuming that the value of group 1 corresponds to the first field in the tuple, group 2 to the second, ...
 
 ```scala
-scala> "[1, true] and then [3, false]".evalRegex[(Int, Boolean)](rx"\[(\d+), ([a-z]+)\]").foreach(println _)
-Right((1,true))
-Right((3,false))
+"[1, true] and then [3, false]".evalRegex[(Int, Boolean)](rx"\[(\d+), ([a-z]+)\]").foreach(println _)
+// Right((1,true))
+// Right((3,false))
 ```
 
 
@@ -121,9 +121,9 @@ For any two types `A` and `B` that each have a [`MatchDecoder`], there exists a
 This works essentially the same way as [`GroupDecoder`] for [`Either`]:
 
 ```scala
-scala> "[123, true] [456, foo]".evalRegex[Either[(Int, Boolean), (Int, String)]](rx"\[(\d+), ([a-z]+)\]").foreach(println _)
-Right(Left((123,true)))
-Right(Right((456,foo)))
+"[123, true] [456, foo]".evalRegex[Either[(Int, Boolean), (Int, String)]](rx"\[(\d+), ([a-z]+)\]").foreach(println _)
+// Right(Left((123,true)))
+// Right(Right((456,foo)))
 ```
 
 ### `Option`
@@ -152,6 +152,7 @@ the notion of an optional match is... odd.
 [`InputStream`]:https://docs.oracle.com/javase/7/docs/api/java/io/InputStream.html
 [`File`]:https://docs.oracle.com/javase/7/docs/api/java/io/File.html
 [`Path`]:https://docs.oracle.com/javase/7/docs/api/java/nio/file/Path.html
+
 [`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html
 [`Date`]:https://docs.oracle.com/javase/7/docs/api/java/util/Date.html
 [`DateFormat`]:https://docs.oracle.com/javase/7/docs/api/java/text/DateFormat.html

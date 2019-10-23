@@ -1,9 +1,10 @@
 ---
-layout: tutorial
+layout: scala mdocorial
 title: "Extracting arbitrary types"
-section: tutorial
+section: scala mdocorial
 sort_order: 4
 ---
+
 Sometimes, you're trying to extract content from strings into something that is neither a
 [primitive type](primitive_types.html), a [tuple](tuples.html) or a [case class](case_classes.html). Dealing with
 arbitrary types is essentially the same thing as with case classes, you just need to write your own instantiation
@@ -38,7 +39,7 @@ helper functions - in our case, [`decoder`]:
 ```scala
 import kantan.regex._
 
-implicit val decoder: MatchDecoder[Point] = MatchDecoder.decoder(1, 2, 3) { (x: Int, y: Int, z: Option[Int]) ⇒
+implicit val decoder: MatchDecoder[Point] = MatchDecoder.decoder(1, 2, 3) { (x: Int, y: Int, z: Option[Int]) =>
   new Point(x, y, z)
 }
 ```
@@ -46,10 +47,10 @@ implicit val decoder: MatchDecoder[Point] = MatchDecoder.decoder(1, 2, 3) { (x: 
 And that's it, we're done: we can now [`evalRegex`] as usual, with the right type parameter:
 
 ```scala
-scala> input.evalRegex[Point](regex).foreach(println _)
-Right(Point(1, 2, None))
-Right(Point(3, 4, None))
-Right(Point(5, 6, Some(7)))
+input.evalRegex[Point](regex).foreach(println _)
+// Right(Point(1, 2, None))
+// Right(Point(3, 4, None))
+// Right(Point(5, 6, Some(7)))
 ```
 
 Two things worth noting about how created that decoder instance:
