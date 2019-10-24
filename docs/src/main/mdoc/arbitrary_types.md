@@ -1,7 +1,7 @@
 ---
-layout: scala mdocorial
+layout: tutorial
 title: "Extracting arbitrary types"
-section: scala mdocorial
+section: tutorial
 sort_order: 4
 ---
 Sometimes, you're trying to extract content from strings into something that is neither a

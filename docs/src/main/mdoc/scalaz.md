@@ -1,7 +1,7 @@
 ---
-layout: scala mdocorial
+layout: tutorial
 title: "Scalaz module"
-section: scala mdocorial
+section: tutorial
 sort_order: 12
 ---
 Kantan.regex has a [scalaz](https://github.com/scalaz/scalaz) module that is, in its current incarnation, fairly bare

@@ -1,7 +1,7 @@
 ---
-layout: scala mdocorial
+layout: tutorial
 title: "Compiling regular expressions for reuse"
-section: scala mdocorial
+section: tutorial
 sort_order: 6
 ---
 In the examples we've seen so far, regular expressions were passed around as [`Pattern`]s. This can be inefficient, as
