@@ -1,11 +1,11 @@
 ---
-layout: scala mdocorial
+layout: tutorial
 title: "Extracting tuples"
-section: scala mdocorial
+section: tutorial
 sort_order: 2
 ---
 
-We've seen in a [previous scala mdocorial](primitive_types.html) how to extract simple types from matches in a regular
+We've seen in a [previous tutorial](primitive_types.html) how to extract simple types from matches in a regular
 expression. Sometimes, however, matches contain more than one interesting value, each in a separate group.
 
 For example, consider the following string:

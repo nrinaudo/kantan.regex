@@ -1,7 +1,7 @@
 ---
-layout: scala mdocorial
+layout: tutorial
 title: "Basics"
-section: scala mdocorial
+section: tutorial
 sort_order: 0
 ---
 

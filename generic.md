@@ -1,7 +1,7 @@
 ---
-layout: scala mdocorial
+layout: tutorial
 title: "Generic Module"
-section: scala mdocorial
+section: tutorial
 sort_order: 8
 ---
 
@@ -16,7 +16,7 @@ The `generic` module can be used by adding the following dependency to your `bui
 libraryDependencies += "com.nrinaudo" %% "kantan.regex-generic" % "0.1.6"
 ```
 
-Let's first declare the imports we'll need in the rest of this scala mdocorial:
+Let's first declare the imports we'll need in the rest of this tutorial:
 
 ```scala
 import kantan.regex.implicits._ // Provides syntax and literal values.
