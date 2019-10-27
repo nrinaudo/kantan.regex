@@ -1,7 +1,7 @@
 ---
-layout: scala mdocorial
+layout: tutorial
 title: "Extracting case classes"
-section: scala mdocorial
+section: tutorial
 sort_order: 3
 ---
 We've already seen how to extract [primitive types](primitive_types.html) and [tuples](tuples.html) from regular

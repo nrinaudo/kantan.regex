@@ -1,7 +1,7 @@
 ---
-layout: scala mdocorial
+layout: tutorial
 title: "Extracting primitive types"
-section: scala mdocorial
+section: tutorial
 sort_order: 1
 ---
 When working with regular expressions, it's fairly common to want to extract matches and turn them into useful types -
