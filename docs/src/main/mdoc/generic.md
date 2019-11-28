@@ -33,7 +33,7 @@ Any class of arity 1 such that the type of its sole field has a [`GroupDecoder`]
 Let's take a simple `Wrapper` class as an example:
 
 ```scala mdoc:silent
-final case class Wrapper[A](a: A)
+case class Wrapper[A](a: A)
 ```
 
 Without any further work, we can decode instances of `Wrapper`:
@@ -51,8 +51,8 @@ For example, the following `Or` type:
 
 ```scala mdoc:silent
 sealed abstract class Or[+A, +B]
-final case class Left[A](value: A) extends Or[A, Nothing]
-final case class Right[B](value: B) extends Or[Nothing, B]
+case class Left[A](value: A) extends Or[A, Nothing]
+case class Right[B](value: B) extends Or[Nothing, B]
 ```
 
 If both `A` and `B` have a [`GroupDecoder`], then both `Left` and `Right`, being unary case classes, also do. If both
@@ -72,7 +72,7 @@ Any case class of arity one or more such that all of its fields have a [`MatchDe
 For example, a silly [`Tuple2`] implementation:
 
 ```scala mdoc:silent
-final case class CustomTuple2[A, B](a: A, b: B)
+case class CustomTuple2[A, B](a: A, b: B)
 ```
 
 If both `A` and `B` have [`MatchDecoder`] instances, so does `CustomTuple2[A, B]`:

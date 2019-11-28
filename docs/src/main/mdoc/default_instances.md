@@ -56,8 +56,6 @@ And we're now capable of decoding matches as dates:
 "2000-01-00T00:00:00.000".evalRegex[Date](rx"\d\d\d\d-\d\d-\d\d").foreach(println _)
 ```
 
-Note that kantan.regex has a [joda-time](joda.html) module, a very well thought out alternative to [`Date`].
-
 ### `Either`
 
 For any two types `A` and `B` that each have a [`GroupDecoder`], there exists a
