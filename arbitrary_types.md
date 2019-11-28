@@ -4,7 +4,6 @@ title: "Extracting arbitrary types"
 section: tutorial
 sort_order: 4
 ---
-
 Sometimes, you're trying to extract content from strings into something that is neither a
 [primitive type](primitive_types.html), a [tuple](tuples.html) or a [case class](case_classes.html). Dealing with
 arbitrary types is essentially the same thing as with case classes, you just need to write your own instantiation

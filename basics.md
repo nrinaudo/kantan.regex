@@ -4,7 +4,6 @@ title: "Basics"
 section: tutorial
 sort_order: 0
 ---
-
 There are a few concepts to get familiar with before getting to grips with kantan.regex proper.
 
 ## Regular expression literals

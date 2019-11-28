@@ -4,7 +4,6 @@ title: "Extracting case classes"
 section: tutorial
 sort_order: 3
 ---
-
 We've already seen how to extract [primitive types](primitive_types.html) and [tuples](tuples.html) from regular
 expression matches, but a more common requirement is to extract case classes - often preferable to tuples, since they
 provide more meaningful types.
@@ -26,7 +25,7 @@ val regex = rx"\((\d+), (\d+|true|false)\)"
 And since we're trying to demonstrate case class extraction, let's extract data to the following case class:
 
 ```scala
-final case class WeirdPoint(x: Int, y: Either[Int, Boolean])
+case class WeirdPoint(x: Int, y: Either[Int, Boolean])
 ```
 
 In order to extract complex (as in, composed of more than one value) types, we need to provide instances of
@@ -53,7 +52,7 @@ module. Let's first import the module and declare a new case class:
 ```scala
 import kantan.regex.generic._
 
-final case class Foo(x: Int, y: Either[Int, Boolean])
+case class Foo(x: Int, y: Either[Int, Boolean])
 ```
 
 And without any further work, we can decode instances of `Foo`:

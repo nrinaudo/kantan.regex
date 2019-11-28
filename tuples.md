@@ -4,7 +4,6 @@ title: "Extracting tuples"
 section: tutorial
 sort_order: 2
 ---
-
 We've seen in a [previous tutorial](primitive_types.html) how to extract simple types from matches in a regular
 expression. Sometimes, however, matches contain more than one interesting value, each in a separate group.
 

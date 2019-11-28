@@ -4,12 +4,11 @@ title: "Libra module"
 section: tutorial
 sort_order: 15
 ---
-
 kantan.regex comes with a [libra](https://github.com/to-ithaca/libra) module that can be used
 by adding the following dependency to your `build.sbt`:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-libra" % "0.5.2-SNAPSHOT"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-libra" % "0.5.1"
 ```
 
 You then need to import the corresponding package:
@@ -37,4 +36,3 @@ We can then simply write the following:
 //   Right(Quantity(123))
 // )
 ```
-

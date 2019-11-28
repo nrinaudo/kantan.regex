@@ -4,12 +4,11 @@ title: "Enumeratum module"
 section: tutorial
 sort_order: 14
 ---
-
 kantan.regex comes with an [enumeratum](https://github.com/lloydmeta/enumeratum) module that can be used
 by adding the following dependency to your `build.sbt`:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-enumeratum" % "0.5.2-SNAPSHOT"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-enumeratum" % "0.5.1"
 ```
 
 ## Name-based enumerations
@@ -27,20 +26,16 @@ Let's first set our types up:
 ```scala
 import enumeratum._
 
-// We need to put this all in a faked out package object due to the way
-// documentation is built.
-object somePackage {
-  sealed trait DummyEnum extends EnumEntry
+sealed trait DummyEnum extends EnumEntry
 
-  object DummyEnum extends Enum[DummyEnum] {
+object DummyEnum extends Enum[DummyEnum] {
 
-    val values = findValues
+  val values = findValues
 
-    case object Hello   extends DummyEnum
-    case object GoodBye extends DummyEnum
-    case object Hi      extends DummyEnum
+  case object Hello   extends DummyEnum
+  case object GoodBye extends DummyEnum
+  case object Hi      extends DummyEnum
 
-  }
 }
 ```
 
@@ -48,7 +43,6 @@ And a few further imports, to bring our enumeration and the kantan.csv syntax in
 
 ```scala
 import kantan.regex.implicits._
-import somePackage._
 ```
 
 
@@ -69,6 +63,7 @@ We can then simply write the following:
 ```
 
 
+
 ## Value-based enumerations
 
 For enumerations of type `ValueEnum`, you should import the following package:
@@ -84,22 +79,16 @@ Let's first set our types up:
 ```scala
 import enumeratum.values._
 
-// We need to put this all in a faked out package object due to the way
-// documentation is built.
-object somePackage {
+sealed abstract class Greeting(val value: Int) extends IntEnumEntry
 
-  sealed abstract class Greeting(val value: Int) extends IntEnumEntry
+object Greeting extends IntEnum[Greeting] {
 
-  object Greeting extends IntEnum[Greeting] {
+  val values = findValues
 
-    val values = findValues
-
-    case object Hello   extends Greeting(1)
-    case object GoodBye extends Greeting(2)
-    case object Hi      extends Greeting(3)
-    case object Bye     extends Greeting(4)
-
-  }
+  case object Hello   extends Greeting(1)
+  case object GoodBye extends Greeting(2)
+  case object Hi      extends Greeting(3)
+  case object Bye     extends Greeting(4)
 
 }
 ```
@@ -108,7 +97,6 @@ And a few further imports, to bring our enumeration and the kantan.csv syntax in
 
 ```scala
 import kantan.regex.implicits._
-import somePackage._
 ```
 
 We can then simply write the following:
@@ -122,4 +110,3 @@ We can then simply write the following:
 //   Left(TypeError("'-2' is not in values [1, 2, 3, 4]"))
 // )
 ```
-

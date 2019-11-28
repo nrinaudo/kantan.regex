@@ -4,7 +4,6 @@ title: "Compiling regular expressions for reuse"
 section: tutorial
 sort_order: 6
 ---
-
 In the examples we've seen so far, regular expressions were passed around as [`Pattern`]s. This can be inefficient, as
 kantan.regex needs to bake in the decoding code in patterns each time they are evaluated against some input.
 
@@ -72,6 +71,8 @@ Any type that has an implicit instance of [`Compiler`] in scope can be compiled 
 instances of [`Compiler`] for [`Pattern`] and [`scala.util.matching.Regex`], although they're not often useful - if you
 have a [`Pattern`], just pass that to [`Regex.apply`], and if you have a [`scala.util.matching.Regex`], you can just
 call [`pattern`][`Regex.pattern`] to get the underlying [`Pattern`].
+
+
 
 
 [`evalRegex`]:{{ site.baseurl }}/api/kantan/regex/ops/StringOps.html#evalRegex[A](p:kantan.regex.Pattern)(implicitevidence$1:kantan.regex.MatchDecoder[A]):Iterator[kantan.regex.DecodeResult[A]]

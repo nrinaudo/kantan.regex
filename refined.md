@@ -4,12 +4,11 @@ title: "Refined module"
 section: tutorial
 sort_order: 13
 ---
-
 kantan.regex comes with a [refined](https://github.com/fthomas/refined) module that can be used
 by adding the following dependency to your `build.sbt`:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-refined" % "0.5.2-SNAPSHOT"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-refined" % "0.5.1"
 ```
 
 You then need to import the corresponding package:
@@ -47,4 +46,3 @@ And, for an error case:
 //   Left(TypeError("Not acceptable: 'Predicate failed: (-123 > 0).'"))
 // )
 ```
-

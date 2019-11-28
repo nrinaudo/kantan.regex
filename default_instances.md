@@ -57,8 +57,6 @@ And we're now capable of decoding matches as dates:
 // Right(Fri Dec 31 00:00:00 CET 1999)
 ```
 
-Note that kantan.regex has a [joda-time](joda.html) module, a very well thought out alternative to [`Date`].
-
 ### `Either`
 
 For any two types `A` and `B` that each have a [`GroupDecoder`], there exists a
@@ -152,7 +150,6 @@ the notion of an optional match is... odd.
 [`InputStream`]:https://docs.oracle.com/javase/7/docs/api/java/io/InputStream.html
 [`File`]:https://docs.oracle.com/javase/7/docs/api/java/io/File.html
 [`Path`]:https://docs.oracle.com/javase/7/docs/api/java/nio/file/Path.html
-
 [`GroupDecoder`]:{{ site.baseurl }}/api/kantan/regex/package$$GroupDecoder.html
 [`Date`]:https://docs.oracle.com/javase/7/docs/api/java/util/Date.html
 [`DateFormat`]:https://docs.oracle.com/javase/7/docs/api/java/text/DateFormat.html
