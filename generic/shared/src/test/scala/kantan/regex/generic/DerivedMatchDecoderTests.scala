@@ -35,15 +35,14 @@ object Instances {
   }
 
   implicit val arbLegal: Arbitrary[LegalMatch[Or[Complex, Simple]]] =
-    arbLegalValue(
-      (o: Or[Complex, Simple]) =>
-        o match {
-          case Left(Complex(i, b, c)) =>
-            toMatch(rx"(-?\d+) (true|false) (-?\d+)?", i.toString, b.toString, c.fold("")(_.toString))
+    arbLegalValue((o: Or[Complex, Simple]) =>
+      o match {
+        case Left(Complex(i, b, c)) =>
+          toMatch(rx"(-?\d+) (true|false) (-?\d+)?", i.toString, b.toString, c.fold("")(_.toString))
 
-          case Right(Simple(i)) => toMatch(rx"(-?\d+)", i.toString)
+        case Right(Simple(i)) => toMatch(rx"(-?\d+)", i.toString)
 
-        }
+      }
     )
 }
 

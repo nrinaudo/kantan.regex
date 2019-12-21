@@ -33,11 +33,10 @@ trait ArbitraryInstances
 
   implicit def arbRegex[A: Arbitrary]: Arbitrary[Regex[A]] =
     Arbitrary(
-      arb[String => List[A]].map(
-        f =>
-          new Regex[A] {
-            override def eval(str: String) = f(str).iterator
-          }
+      arb[String => List[A]].map(f =>
+        new Regex[A] {
+          override def eval(str: String) = f(str).iterator
+        }
       )
     )
 
