@@ -33,7 +33,7 @@ class MatchTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers
       implicit val decoder: MatchDecoder[List[Int]] = validating(is.length)
 
       val regex = is.map(_ => "(-?\\d+)").mkString(" ").asUnsafeRegex[List[Int]].map(_.fold(e => throw e, identity))
-      regex.eval(is.mkString(" ")).next should be(is)
+      regex.eval(is.mkString(" ")).next() should be(is)
     }
   }
 
@@ -45,7 +45,7 @@ class MatchTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers
 
       implicit val decoder: MatchDecoder[Int] = outOfBounds(index)
       val regex                               = is.map(_ => "(-?\\d+)").mkString(" ").asUnsafeRegex[Int]
-      regex.eval(is.mkString(" ")).next should be(DecodeResult.noSuchGroupId(index))
+      regex.eval(is.mkString(" ")).next() should be(DecodeResult.noSuchGroupId(index))
     }
   }
 }

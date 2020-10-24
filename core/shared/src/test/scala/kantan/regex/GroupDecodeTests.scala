@@ -28,7 +28,7 @@ class GroupDecodeTests extends AnyFunSuite with ScalaCheckPropertyChecks with Ma
       implicit val decoder: GroupDecoder[Int] = GroupDecoder.from(f)
 
       val r = ".*".asUnsafeRegex[Int]
-      r.eval(s).next should be(f(Some(s)))
+      r.eval(s).next() should be(f(Some(s)))
     }
   }
 
