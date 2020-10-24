@@ -34,7 +34,7 @@ class MatchDecodeTests extends AnyFunSuite with ScalaCheckPropertyChecks with Ma
       val m = pattern.matcher(s)
       m.find()
 
-      r.eval(s).next should be(f(new Match(m)))
+      r.eval(s).next() should be(f(new Match(m)))
 
     }
   }

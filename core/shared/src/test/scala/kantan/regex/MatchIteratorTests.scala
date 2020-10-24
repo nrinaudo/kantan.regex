@@ -31,7 +31,7 @@ class MatchIteratorTests extends AnyFunSuite with ScalaCheckPropertyChecks with 
       val it = toMatchIterator(is)
       while(it.hasNext) it.next()
 
-      intercept[NoSuchElementException](it.next)
+      intercept[NoSuchElementException](it.next())
       ()
     }
   }
@@ -39,7 +39,7 @@ class MatchIteratorTests extends AnyFunSuite with ScalaCheckPropertyChecks with 
   test("MatchIterator should contain the expected number of elements") {
     forAll { is: List[Int] =>
       val it = toMatchIterator(is)
-      is.indices.foreach(_ => it.next)
+      is.indices.foreach(_ => it.next())
       it.hasNext should be(false)
     }
   }
