@@ -20,7 +20,9 @@ import laws.discipline._, arbitrary._
 
 class TupleDecoderTests extends DisciplineSuite {
   [#checkAll("MatchDecoder[([#Int#])]", MatchDecoderTests[Tuple1[[#Int#]]].decoder[Int, Int])
-  checkAll("MatchDecoder[([#Int#])]", SerializableTests[MatchDecoder[Tuple1[[#Int#]]]].serializable)#
+
+  // Currently disabled because sbt-boilerplate doesn't support platform specific source directories.
+  // checkAll("MatchDecoder[([#Int#])]", SerializableTests[MatchDecoder[Tuple1[[#Int#]]]].serializable)#
 
   ]
 }
