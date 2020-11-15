@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package cats
+package kantan.regex.cats
 
-import _root_.cats._
-import _root_.cats.implicits._
-import _root_.cats.laws.discipline.eq._
+import cats.Eq
+import cats.implicits._
+import kantan.regex.Regex
 import org.scalacheck.Arbitrary
 
 object equality extends kantan.codecs.cats.laws.discipline.EqInstances {

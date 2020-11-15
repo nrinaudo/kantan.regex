@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package libra
+package kantan.regex.libra
 
-import _root_.libra.Quantity
-import arbitrary._
-import laws.discipline._
+import kantan.regex.{GroupDecoder, MatchDecoder}
+import kantan.regex.laws.discipline.{DisciplineSuite, GroupDecoderTests, MatchDecoderTests, SerializableTests}
+import kantan.regex.libra.arbitrary._
+import libra.Quantity
 import shapeless.HNil
 
 class LibraCodecTests extends DisciplineSuite {

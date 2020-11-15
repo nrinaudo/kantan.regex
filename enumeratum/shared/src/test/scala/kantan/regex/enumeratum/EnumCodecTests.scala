@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package enumeratum
+package kantan.regex.enumeratum
 
-import arbitrary._
 import kantan.codecs.enumeratum.laws.discipline.Enumerated
-import kantan.regex.laws.discipline._
+import kantan.regex.enumeratum.arbitrary._
+import kantan.regex.laws.discipline.{DisciplineSuite, GroupDecoderTests, MatchDecoderTests}
 
 class EnumCodecTests extends DisciplineSuite {
 

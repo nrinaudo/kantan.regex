@@ -17,7 +17,8 @@
 package kantan.regex
 
 import java.io.File
-import laws.discipline._, arbitrary._
+import kantan.regex.laws.discipline.{DisciplineSuite, GroupDecoderTests, MatchDecoderTests}
+import kantan.regex.laws.discipline.arbitrary._
 
 class FileDecoderTests extends DisciplineSuite {
 

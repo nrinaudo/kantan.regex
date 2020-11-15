@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package scalaz
+package kantan.regex.scalaz
 
-import _root_.scalaz.Show
-import _root_.scalaz.scalacheck.ScalazProperties.{equal => equ}
-import arbitrary._
 import kantan.codecs.scalaz.laws.discipline.ScalazDisciplineSuite
+import kantan.regex.{CompileError, DecodeError, RegexError}
+import kantan.regex.scalaz.arbitrary._
+import scalaz.Show
+import scalaz.scalacheck.ScalazProperties.{equal => equ}
 
 class ErrorTests extends ScalazDisciplineSuite {
 

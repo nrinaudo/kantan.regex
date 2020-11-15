@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package generic
+package kantan.regex.generic
 
-import arbitrary._
-import kantan.codecs.shapeless.laws._
-import laws._
-import laws.discipline._
+import kantan.codecs.shapeless.laws.{Left, Or, Right}
+import kantan.regex.generic.arbitrary._
+import kantan.regex.laws.LegalGroup
+import kantan.regex.laws.discipline.{DisciplineSuite, GroupDecoderTests}
 import org.scalacheck.Arbitrary
 
 @SuppressWarnings(Array("org.wartremover.warts.Null"))

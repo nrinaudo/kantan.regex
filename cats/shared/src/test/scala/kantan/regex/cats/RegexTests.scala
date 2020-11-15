@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package cats
+package kantan.regex.cats
 
-import _root_.cats.instances.all._
-import _root_.cats.laws.discipline.FunctorTests
-import laws.discipline._, arbitrary._, equality._
+import cats.instances.all._
+import cats.laws.discipline.FunctorTests
+import kantan.regex.Regex
+import kantan.regex.cats.arbitrary._
+import kantan.regex.cats.equality._
+import kantan.regex.laws.discipline.DisciplineSuite
 
 class RegexTests extends DisciplineSuite {
 

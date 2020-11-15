@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package generic
+package kantan.regex.generic
 
 import kantan.codecs.shapeless.ShapelessInstances
-import shapeless._
+import kantan.regex.{DecodeResult, GroupDecoder, Match, MatchDecoder}
+import shapeless.{::, HList, HNil}
 
 trait LowPrirityGenericInstances {
   implicit def hlistSingletonMatchDecoder[H: MatchDecoder]: MatchDecoder[H :: HNil] =

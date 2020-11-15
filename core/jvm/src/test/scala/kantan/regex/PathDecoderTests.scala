@@ -17,7 +17,8 @@
 package kantan.regex
 
 import java.nio.file.Path
-import laws.discipline._, arbitrary._
+import kantan.regex.laws.discipline.{DisciplineSuite, GroupDecoderTests, MatchDecoderTests}
+import kantan.regex.laws.discipline.arbitrary._
 
 class PathDecoderTests extends DisciplineSuite {
 

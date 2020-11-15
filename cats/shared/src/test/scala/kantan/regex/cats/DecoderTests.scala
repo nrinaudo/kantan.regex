@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package cats
+package kantan.regex.cats
 
-import _root_.cats.Eq
-import _root_.cats.data.EitherT
-import _root_.cats.instances.all._
-import _root_.cats.laws.discipline.{MonadErrorTests, SemigroupKTests}
-import _root_.cats.laws.discipline.SemigroupalTests.Isomorphisms
-import laws.discipline._, arbitrary._, equality._
+import cats.Eq
+import cats.data.EitherT
+import cats.instances.all._
+import cats.laws.discipline.{MonadErrorTests, SemigroupKTests}
+import cats.laws.discipline.SemigroupalTests.Isomorphisms
+import kantan.regex.{DecodeError, GroupDecoder}
+import kantan.regex.cats.arbitrary._
+import kantan.regex.cats.equality._
+import kantan.regex.laws.discipline.DisciplineSuite
 
 class DecoderTests extends DisciplineSuite {
 

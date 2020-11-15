@@ -16,8 +16,8 @@
 
 package kantan.regex
 
-import _root_.scalaz._
-import kantan.codecs.scalaz._
+import _root_.scalaz.{Equal, Functor}
+import kantan.codecs.scalaz.{CommonInstances, DecoderInstances}
 
 package object scalaz extends DecoderInstances with CommonInstances {
 

@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package libra
+package kantan.regex.libra
 
 object arbitrary
     extends kantan.regex.laws.discipline.ArbitraryInstances with kantan.codecs.libra.laws.discipline.ArbitraryInstances

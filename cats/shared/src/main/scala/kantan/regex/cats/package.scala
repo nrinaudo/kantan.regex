@@ -16,8 +16,8 @@
 
 package kantan.regex
 
-import _root_.cats._
-import kantan.codecs.cats._
+import _root_.cats.{Eq, Functor}
+import kantan.codecs.cats.{CommonInstances, DecoderInstances}
 
 package object cats extends DecoderInstances with CommonInstances {
   // - Regex instances -------------------------------------------------------------------------------------------------

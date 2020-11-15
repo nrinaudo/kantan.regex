@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package literals
+package kantan.regex.literals
 
 import java.util.regex.Pattern
 import scala.reflect.macros.blackbox.Context

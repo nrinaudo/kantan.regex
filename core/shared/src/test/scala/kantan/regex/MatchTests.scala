@@ -16,7 +16,7 @@
 
 package kantan.regex
 
-import ops._
+import kantan.regex.ops._
 import org.scalacheck.{Arbitrary, Gen}
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
