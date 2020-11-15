@@ -14,16 +14,17 @@
  * limitations under the License.
  */
 
-package kantan.regex.refined
+package kantan.regex.generic
 
-import eu.timepit.refined.api.Refined
-import eu.timepit.refined.numeric.Positive
+import kantan.codecs.shapeless.laws.Or
 import kantan.regex.{GroupDecoder, MatchDecoder}
+import kantan.regex.generic.Instances._
 import kantan.regex.laws.discipline.{DisciplineSuite, SerializableTests}
 
-class SerialisationTests extends DisciplineSuite {
+@SuppressWarnings(Array("org.wartremover.warts.Null"))
+class SerializationTests extends DisciplineSuite {
 
-  checkAll("GroupDecoder[Int Refined Positive]", SerializableTests[GroupDecoder[Int Refined Positive]].serializable)
-  checkAll("MatchDecoder[Int Refined Positive]", SerializableTests[MatchDecoder[Int Refined Positive]].serializable)
+  checkAll("MatchDecoder[Complex Or Simple]", SerializableTests[MatchDecoder[Complex Or Simple]].serializable)
+  checkAll("GroupDecoder[Int Or Boolean]", SerializableTests[GroupDecoder[Int Or Boolean]].serializable)
 
 }

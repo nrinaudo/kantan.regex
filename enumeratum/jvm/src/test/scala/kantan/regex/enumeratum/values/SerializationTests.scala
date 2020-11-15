@@ -20,7 +20,7 @@ import kantan.codecs.enumeratum.laws.discipline._
 import kantan.regex.{GroupDecoder, MatchDecoder}
 import kantan.regex.laws.discipline.DisciplineSuite
 
-class SerialisationTests extends DisciplineSuite {
+class SerializationTests extends DisciplineSuite {
 
   checkAll("GroupDecoder[EnumeratedByte]", SerializableTests[GroupDecoder[EnumeratedByte]].serializable)
   checkAll("MatchDecoder[EnumeratedByte]", SerializableTests[MatchDecoder[EnumeratedByte]].serializable)

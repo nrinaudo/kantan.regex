@@ -14,17 +14,15 @@
  * limitations under the License.
  */
 
-package kantan.regex.generic
+package kantan.regex.enumeratum
 
-import kantan.codecs.shapeless.laws.Or
+import kantan.codecs.enumeratum.laws.discipline.Enumerated
 import kantan.regex.{GroupDecoder, MatchDecoder}
-import kantan.regex.generic.Instances._
 import kantan.regex.laws.discipline.{DisciplineSuite, SerializableTests}
 
-@SuppressWarnings(Array("org.wartremover.warts.Null"))
-class SerialisationTests extends DisciplineSuite {
+class SerializationTests extends DisciplineSuite {
 
-  checkAll("MatchDecoder[Complex Or Simple]", SerializableTests[MatchDecoder[Complex Or Simple]].serializable)
-  checkAll("GroupDecoder[Int Or Boolean]", SerializableTests[GroupDecoder[Int Or Boolean]].serializable)
+  checkAll("GroupDecoder[Enumerated]", SerializableTests[GroupDecoder[Enumerated]].serializable)
+  checkAll("MatchDecoder[Enumerated]", SerializableTests[MatchDecoder[Enumerated]].serializable)
 
 }
