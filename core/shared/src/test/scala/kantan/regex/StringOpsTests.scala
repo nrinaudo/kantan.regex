@@ -16,9 +16,9 @@
 
 package kantan.regex
 
-import implicits._
-import kantan.codecs.laws._
-import laws.discipline.arbitrary._
+import kantan.codecs.laws.{IllegalString, LegalString}
+import kantan.codecs.laws.discipline.arbitrary._
+import kantan.regex.implicits._
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks

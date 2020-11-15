@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package generic
+package kantan.regex.generic
+
+import kantan.regex.{DecodeResult, Match, MatchDecoder}
 
 /** Custom [[MatchDecoder]] implementation for decoding `HList`. */
 trait DerivedMatchDecoder[A] extends MatchDecoder[A] {

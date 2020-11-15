@@ -16,7 +16,8 @@
 
 package kantan.regex
 
-import kantan.codecs.laws._, CodecValue.{IllegalValue, LegalValue}
+import kantan.codecs.laws.{CodecValue, DecoderLaws}
+import kantan.codecs.laws.CodecValue.{IllegalValue, LegalValue}
 
 package object laws {
   type GroupDecoderLaws[A] = DecoderLaws[Option[String], A, DecodeError, codecs.type]

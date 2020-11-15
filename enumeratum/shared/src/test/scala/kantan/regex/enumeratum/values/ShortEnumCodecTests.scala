@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package enumeratum.values
+package kantan.regex.enumeratum.values
 
-import enumeratum.arbitrary._
 import kantan.codecs.enumeratum.laws.discipline.EnumeratedShort
-import laws.discipline._
+import kantan.regex.enumeratum.arbitrary._
+import kantan.regex.laws.discipline.{DisciplineSuite, GroupDecoderTests, MatchDecoderTests}
 
 class ShortEnumCodecTests extends DisciplineSuite {
 

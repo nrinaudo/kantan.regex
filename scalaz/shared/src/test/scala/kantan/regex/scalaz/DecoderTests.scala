@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package scalaz
+package kantan.regex.scalaz
 
-import _root_.scalaz._, Scalaz._
-import _root_.scalaz.scalacheck.ScalazProperties._
-import arbitrary._, equality._
 import kantan.codecs.scalaz.laws.discipline.ScalazDisciplineSuite
+import kantan.regex.{DecodeError, GroupDecoder}
+import kantan.regex.scalaz.arbitrary._
+import kantan.regex.scalaz.equality._
+import scalaz.Scalaz._
+import scalaz.scalacheck.ScalazProperties.{monadError, plus}
 
 class DecoderTests extends ScalazDisciplineSuite {
 

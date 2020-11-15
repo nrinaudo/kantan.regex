@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package java8
+package kantan.regex.java8
 
-import arbitrary._
 import java.time.Instant
-import laws.discipline._
+import kantan.regex.{GroupDecoder, MatchDecoder}
+import kantan.regex.java8.arbitrary._
+import kantan.regex.laws.discipline.{DisciplineSuite, GroupDecoderTests, MatchDecoderTests, SerializableTests}
 
 class InstantDecoderTests extends DisciplineSuite {
 

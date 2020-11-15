@@ -21,8 +21,8 @@ import java.net.{URI, URL}
 import java.nio.file.Path
 import java.text.SimpleDateFormat
 import java.util.{Date, Locale, UUID}
-import kantan.codecs.strings._
-import laws.discipline._
+import kantan.codecs.strings.StringCodec
+import kantan.regex.laws.discipline.{DisciplineSuite, SerializableTests}
 
 class SerialisationTests extends DisciplineSuite {
 

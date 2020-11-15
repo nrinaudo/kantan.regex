@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package enumeratum.values
+package kantan.regex.enumeratum.values
 
-import kantan.codecs.enumeratum.laws.discipline.{SerializableTests => _, _}
-import laws.discipline._
+import kantan.codecs.enumeratum.laws.discipline._
+import kantan.regex.{GroupDecoder, MatchDecoder}
+import kantan.regex.laws.discipline.DisciplineSuite
 
 class SerialisationTests extends DisciplineSuite {
 

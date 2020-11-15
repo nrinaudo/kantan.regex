@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package refined
+package kantan.regex.refined
 
 import eu.timepit.refined.api.Refined
 import eu.timepit.refined.numeric.Positive
-import laws.discipline._
+import kantan.regex.{GroupDecoder, MatchDecoder}
+import kantan.regex.laws.discipline.{DisciplineSuite, SerializableTests}
 
 class SerialisationTests extends DisciplineSuite {
 

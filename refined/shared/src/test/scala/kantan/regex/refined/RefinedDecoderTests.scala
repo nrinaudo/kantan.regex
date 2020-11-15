@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package refined
+package kantan.regex.refined
 
 import eu.timepit.refined.api.Refined
 import eu.timepit.refined.numeric.Positive
+import kantan.regex.laws.discipline.{DisciplineSuite, GroupDecoderTests, MatchDecoderTests}
 import kantan.regex.refined.arbitrary._
-import laws.discipline._
 
 class RefinedDecoderTests extends DisciplineSuite {
 

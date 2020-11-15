@@ -16,7 +16,7 @@
 
 package kantan.regex
 
-import kantan.codecs.error._
+import kantan.codecs.error.{Error, ErrorCompanion}
 
 /** Root class for all regular expression related errors. */
 sealed abstract class RegexError(msg: String) extends Error(msg)

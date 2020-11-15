@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package laws
+package kantan.regex.laws
 
 import kantan.codecs.laws.discipline.DisciplinePackage
+import kantan.regex.{codecs, DecodeError, Match}
 
 package object discipline extends DisciplinePackage {
 

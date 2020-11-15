@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package laws.discipline
+package kantan.regex.laws.discipline
 
 import imp.imp
 import java.util.regex.Pattern
-import kantan.codecs.laws._
-import laws._
+import kantan.codecs.laws.{CodecValue, IllegalString, LegalString}
+import kantan.regex.{codecs, CompileError, DecodeError, DecodeResult, Match, Regex, RegexError}
+import kantan.regex.laws.{IllegalGroup, IllegalMatch, LegalGroup, LegalMatch}
 import org.scalacheck.{Arbitrary, Cogen, Gen}
 import org.scalacheck.Arbitrary.{arbitrary => arb}
 import org.scalacheck.Gen._

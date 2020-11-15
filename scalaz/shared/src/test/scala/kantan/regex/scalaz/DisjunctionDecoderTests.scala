@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package scalaz
+package kantan.regex.scalaz
 
-import _root_.scalaz.\/
+import kantan.regex.laws.{IllegalGroup, IllegalMatch, LegalGroup, LegalMatch}
+import kantan.regex.laws.discipline.{DisciplineSuite, GroupDecoderTests, MatchDecoderTests}
 import kantan.regex.scalaz.arbitrary._
-import laws._
-import laws.discipline._
 import org.scalacheck.Arbitrary
+import scalaz.\/
 
 class DisjunctionDecoderTests extends DisciplineSuite {
 

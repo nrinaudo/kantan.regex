@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package scalaz
+package kantan.regex.scalaz
 
-import _root_.scalaz._, Scalaz._
+import kantan.regex.Regex
 import org.scalacheck.Arbitrary
+import scalaz.Equal
+import scalaz.Scalaz._
 
 object equality extends kantan.codecs.scalaz.laws.discipline.EqualInstances {
 

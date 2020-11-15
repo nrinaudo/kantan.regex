@@ -16,8 +16,8 @@
 
 package kantan.regex
 
-import laws.discipline.arbitrary._
-import ops._
+import kantan.regex.laws.discipline.arbitrary._
+import kantan.regex.ops._
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks

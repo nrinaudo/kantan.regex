@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-package kantan.regex
-package generic
+package kantan.regex.generic
 
-import kantan.codecs.shapeless.laws._
-import laws.discipline._
+import kantan.codecs.shapeless.laws.Or
+import kantan.regex.{GroupDecoder, MatchDecoder}
+import kantan.regex.generic.Instances._
+import kantan.regex.laws.discipline.{DisciplineSuite, SerializableTests}
 
 @SuppressWarnings(Array("org.wartremover.warts.Null"))
 class SerialisationTests extends DisciplineSuite {
-
-  import Instances._
 
   checkAll("MatchDecoder[Complex Or Simple]", SerializableTests[MatchDecoder[Complex Or Simple]].serializable)
   checkAll("GroupDecoder[Int Or Boolean]", SerializableTests[GroupDecoder[Int Or Boolean]].serializable)
