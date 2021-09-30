@@ -8,7 +8,7 @@ kantan.regex comes with an [enumeratum](https://github.com/lloydmeta/enumeratum)
 by adding the following dependency to your `build.sbt`:
 
 ```scala
-libraryDependencies += "com.nrinaudo" %% "kantan.regex-enumeratum" % "0.5.2"
+libraryDependencies += "com.nrinaudo" %% "kantan.regex-enumeratum" % "0.5.3"
 ```
 
 ## Name-based enumerations
@@ -51,13 +51,15 @@ We can then simply write the following:
 ```scala
 "[Hello]".evalRegex[DummyEnum](rx"\[([a-zA-Z]+)]", 1).toList
 // res0: List[kantan.regex.package.DecodeResult[DummyEnum]] = List(
-//   Right(Hello)
+//   Right(value = Hello)
 // )
 
 "[GoodDay]".evalRegex[DummyEnum](rx"\[([a-zA-Z]+)]", 1).toList
 // res1: List[kantan.regex.package.DecodeResult[DummyEnum]] = List(
 //   Left(
-//     TypeError("'GoodDay' is not a member of enumeration [Hello, GoodBye, Hi]")
+//     value = TypeError(
+//       message = "'GoodDay' is not a member of enumeration [Hello, GoodBye, Hi]"
+//     )
 //   )
 // )
 ```
@@ -103,10 +105,12 @@ We can then simply write the following:
 
 ```scala
 "[1]".evalRegex[Greeting](rx"\[([+-]?\d+)\]", 1).toList
-// res3: List[kantan.regex.package.DecodeResult[Greeting]] = List(Right(Hello))
+// res3: List[kantan.regex.package.DecodeResult[Greeting]] = List(
+//   Right(value = Hello)
+// )
 
 "[-2]".evalRegex[Greeting](rx"\[([+-]?\d+)\]", 1).toList
 // res4: List[kantan.regex.package.DecodeResult[Greeting]] = List(
-//   Left(TypeError("'-2' is not in values [1, 2, 3, 4]"))
+//   Left(value = TypeError(message = "'-2' is not in values [1, 2, 3, 4]"))
 // )
 ```
