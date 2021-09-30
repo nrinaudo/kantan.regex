@@ -1,5 +1,5 @@
-kantanProject in ThisBuild := "regex"
-startYear in ThisBuild     := Some(2016)
+ThisBuild / kantanProject := "regex"
+ThisBuild / startYear     := Some(2016)
 
 lazy val jsModules: Seq[ProjectReference] = Seq(
   catsJS,
@@ -29,7 +29,7 @@ lazy val root = Project(id = "kantan-regex", base = file("."))
   .settings(moduleName := "root")
   .enablePlugins(UnpublishedPlugin)
   .settings(
-    initialCommands in console :=
+    console / initialCommands :=
       """
       |import kantan.regex._
       |import kantan.regex.implicits._
@@ -42,7 +42,7 @@ lazy val root = Project(id = "kantan-regex", base = file("."))
 
 lazy val docs = project
   .settings(
-    unidocProjectFilter in (ScalaUnidoc, unidoc) :=
+    ScalaUnidoc / unidoc / unidocProjectFilter :=
       inAnyProject -- inProjects(jsModules: _*)
   )
   .enablePlugins(DocumentationPlugin)

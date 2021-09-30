@@ -118,7 +118,7 @@ trait ArbitraryInstances
   implicit val cogenMatch: Cogen[Match] = Cogen[Pattern].contramap(_.pattern())
 
   def toMatch(str: String): Match = {
-    val matcher = Pattern.compile("(?smiU).*").matcher(str)
+    val matcher = Pattern.compile("(?si).*").matcher(str)
     matcher.find()
     new Match(matcher)
   }
