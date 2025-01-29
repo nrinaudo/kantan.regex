@@ -16,8 +16,12 @@
 
 package kantan.regex.libra
 
-import kantan.regex.{GroupDecoder, MatchDecoder}
-import kantan.regex.laws.discipline.{DisciplineSuite, GroupDecoderTests, MatchDecoderTests, SerializableTests}
+import kantan.regex.GroupDecoder
+import kantan.regex.MatchDecoder
+import kantan.regex.laws.discipline.DisciplineSuite
+import kantan.regex.laws.discipline.GroupDecoderTests
+import kantan.regex.laws.discipline.MatchDecoderTests
+import kantan.regex.laws.discipline.SerializableTests
 import kantan.regex.libra.arbitrary._
 import libra.Quantity
 import shapeless.HNil

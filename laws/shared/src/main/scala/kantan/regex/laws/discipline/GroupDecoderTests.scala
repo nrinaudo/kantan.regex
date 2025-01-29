@@ -16,10 +16,13 @@
 
 package kantan.regex.laws.discipline
 
-import kantan.regex.{codecs, DecodeError}
-import kantan.regex.laws.{GroupDecoderLaws, LegalGroup}
+import kantan.regex.DecodeError
+import kantan.regex.codecs
+import kantan.regex.laws.GroupDecoderLaws
+import kantan.regex.laws.LegalGroup
 import kantan.regex.laws.discipline.arbitrary._
-import org.scalacheck.{Arbitrary, Cogen}
+import org.scalacheck.Arbitrary
+import org.scalacheck.Cogen
 
 object GroupDecoderTests {
   def apply[A: GroupDecoderLaws: Arbitrary: Cogen](implicit al: Arbitrary[LegalGroup[A]]): GroupDecoderTests[A] =

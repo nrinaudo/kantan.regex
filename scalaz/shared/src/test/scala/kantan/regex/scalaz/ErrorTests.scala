@@ -17,7 +17,9 @@
 package kantan.regex.scalaz
 
 import kantan.codecs.scalaz.laws.discipline.ScalazDisciplineSuite
-import kantan.regex.{CompileError, DecodeError, RegexError}
+import kantan.regex.CompileError
+import kantan.regex.DecodeError
+import kantan.regex.RegexError
 import kantan.regex.scalaz.arbitrary._
 import scalaz.Show
 import scalaz.scalacheck.ScalazProperties.{equal => equ}

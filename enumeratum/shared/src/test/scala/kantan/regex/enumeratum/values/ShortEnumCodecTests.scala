@@ -18,7 +18,9 @@ package kantan.regex.enumeratum.values
 
 import kantan.codecs.enumeratum.laws.discipline.EnumeratedShort
 import kantan.regex.enumeratum.arbitrary._
-import kantan.regex.laws.discipline.{DisciplineSuite, GroupDecoderTests, MatchDecoderTests}
+import kantan.regex.laws.discipline.DisciplineSuite
+import kantan.regex.laws.discipline.GroupDecoderTests
+import kantan.regex.laws.discipline.MatchDecoderTests
 
 class ShortEnumCodecTests extends DisciplineSuite {
 

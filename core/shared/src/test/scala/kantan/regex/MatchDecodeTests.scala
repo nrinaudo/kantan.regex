@@ -16,8 +16,8 @@
 
 package kantan.regex
 
-import implicits._
-import laws.discipline.arbitrary._
+import kantan.regex.implicits._
+import kantan.regex.laws.discipline.arbitrary._
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
@@ -43,7 +43,7 @@ class MatchDecodeTests extends AnyFunSuite with ScalaCheckPropertyChecks with Ma
     forAll { (f: (Match => DecodeResult[Int])) =>
       implicit val decoder: MatchDecoder[Int] = MatchDecoder.from(f)
 
-      decoder should be theSameInstanceAs MatchDecoder[Int]
+      (decoder should be).theSameInstanceAs(MatchDecoder[Int])
     }
   }
 

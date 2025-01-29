@@ -18,10 +18,13 @@ package kantan.regex.literals
 
 import java.util.regex.Pattern
 import scala.reflect.macros.blackbox.Context
-import scala.util.{Failure, Success, Try => UTry}
+import scala.util.Failure
+import scala.util.Success
+import scala.util.{Try => UTry}
 
 final class RegexLiteral(val sc: StringContext) extends AnyVal {
-  def rx(args: Any*): Pattern = macro RegexLiteral.rxImpl
+  def rx(args: Any*): Pattern =
+    macro RegexLiteral.rxImpl
 }
 
 // Relatively distatefull trick to get rid of spurious warnings.
@@ -50,5 +53,6 @@ object RegexLiteral extends RegexLiteralMacro {
 }
 
 trait ToRegexLiteral {
-  implicit def toRegexLiteral(sc: StringContext): RegexLiteral = new RegexLiteral(sc)
+  implicit def toRegexLiteral(sc: StringContext): RegexLiteral =
+    new RegexLiteral(sc)
 }

@@ -27,7 +27,8 @@ final class CompilerOps[S: Compiler](val expr: S) {
   def asRegex[A: GroupDecoder](group: Int): CompileResult[Regex[DecodeResult[A]]] =
     Compiler[S].compile(expr, group)
 
-  def asUnsafeRegex[A: MatchDecoder]: Regex[DecodeResult[A]] = Compiler[S].unsafeCompile(expr)
+  def asUnsafeRegex[A: MatchDecoder]: Regex[DecodeResult[A]] =
+    Compiler[S].unsafeCompile(expr)
 
   /** Unsafe version of [[asRegex[A](group:Int)*]]. */
   def asUnsafeRegex[A: GroupDecoder](group: Int): Regex[DecodeResult[A]] =
@@ -35,7 +36,8 @@ final class CompilerOps[S: Compiler](val expr: S) {
 }
 
 trait ToCompilerOps {
-  implicit def toRegexCompilerOps[A: Compiler](a: A): CompilerOps[A] = new CompilerOps(a)
+  implicit def toRegexCompilerOps[A: Compiler](a: A): CompilerOps[A] =
+    new CompilerOps(a)
 }
 
 object compiler extends ToCompilerOps

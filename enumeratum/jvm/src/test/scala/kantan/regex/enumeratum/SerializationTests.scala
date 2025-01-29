@@ -17,8 +17,10 @@
 package kantan.regex.enumeratum
 
 import kantan.codecs.enumeratum.laws.discipline.Enumerated
-import kantan.regex.{GroupDecoder, MatchDecoder}
-import kantan.regex.laws.discipline.{DisciplineSuite, SerializableTests}
+import kantan.regex.GroupDecoder
+import kantan.regex.MatchDecoder
+import kantan.regex.laws.discipline.DisciplineSuite
+import kantan.regex.laws.discipline.SerializableTests
 
 class SerializationTests extends DisciplineSuite {
 

@@ -16,8 +16,13 @@
 
 package kantan.regex.scalaz
 
-import kantan.regex.laws.{IllegalGroup, IllegalMatch, LegalGroup, LegalMatch}
-import kantan.regex.laws.discipline.{DisciplineSuite, GroupDecoderTests, MatchDecoderTests}
+import kantan.regex.laws.IllegalGroup
+import kantan.regex.laws.IllegalMatch
+import kantan.regex.laws.LegalGroup
+import kantan.regex.laws.LegalMatch
+import kantan.regex.laws.discipline.DisciplineSuite
+import kantan.regex.laws.discipline.GroupDecoderTests
+import kantan.regex.laws.discipline.MatchDecoderTests
 import kantan.regex.scalaz.arbitrary._
 import org.scalacheck.Arbitrary
 import scalaz.Maybe

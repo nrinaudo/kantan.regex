@@ -16,7 +16,7 @@
 
 package kantan.regex
 
-import implicits._
+import kantan.regex.implicits._
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
@@ -24,7 +24,7 @@ import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 class RegexTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers {
   test("All matches should be decoded as expected.") {
     forAll { is: List[Int] =>
-      val regex = ("-?\\d+").asUnsafeRegex[Int].map(_.fold(e => throw e, identity))
+      val regex = "-?\\d+".asUnsafeRegex[Int].map(_.fold(e => throw e, identity))
       regex.eval(is.mkString(" ")).toList should be(is)
     }
   }

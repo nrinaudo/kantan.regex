@@ -16,7 +16,8 @@
 
 package kantan.regex
 
-import kantan.codecs.laws.{IllegalString, LegalString}
+import kantan.codecs.laws.IllegalString
+import kantan.codecs.laws.LegalString
 import kantan.codecs.laws.discipline.arbitrary._
 import kantan.regex.implicits._
 import org.scalatest.funsuite.AnyFunSuite
@@ -34,8 +35,8 @@ class StringOpsTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matc
     }
 
     forAll { value: IllegalString[Int] =>
-      every(value.encoded.evalRegex[Int](rx"-?\d+").toList) should matchPattern { case Left(_)              => }
-      every(value.encoded.evalRegex[Int](rx"-?\d+", 0).toList) should matchPattern { case Left(_)           => }
+      every(value.encoded.evalRegex[Int](rx"-?\d+").toList) should matchPattern { case Left(_) => }
+      every(value.encoded.evalRegex[Int](rx"-?\d+", 0).toList) should matchPattern { case Left(_) => }
       every(value.encoded.evalRegex("-?\\d+".asUnsafeRegex[Int]).toList) should matchPattern { case Left(_) => }
     }
 

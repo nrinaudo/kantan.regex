@@ -16,10 +16,13 @@
 
 package kantan.regex.generic
 
-import kantan.codecs.shapeless.laws.{Left, Or, Right}
+import kantan.codecs.shapeless.laws.Left
+import kantan.codecs.shapeless.laws.Or
+import kantan.codecs.shapeless.laws.Right
 import kantan.regex.generic.arbitrary._
 import kantan.regex.laws.LegalGroup
-import kantan.regex.laws.discipline.{DisciplineSuite, GroupDecoderTests}
+import kantan.regex.laws.discipline.DisciplineSuite
+import kantan.regex.laws.discipline.GroupDecoderTests
 import org.scalacheck.Arbitrary
 
 @SuppressWarnings(Array("org.wartremover.warts.Null"))

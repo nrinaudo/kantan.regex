@@ -16,10 +16,12 @@
 
 package kantan.regex
 
-import java.text.DateFormat
-import java.util.Date
 import kantan.codecs.strings.StringDecoder
 
+import java.text.DateFormat
+import java.util.Date
+
 trait PlatformSpecificInstances {
-  def dateDecoder(format: DateFormat): GroupDecoder[Date] = codecs.fromString(StringDecoder.dateDecoder(format))
+  def dateDecoder(format: DateFormat): GroupDecoder[Date] =
+    codecs.fromString(StringDecoder.dateDecoder(format))
 }

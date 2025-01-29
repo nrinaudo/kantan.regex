@@ -17,7 +17,9 @@
 package kantan.regex.laws
 
 import kantan.codecs.laws.discipline.DisciplinePackage
-import kantan.regex.{codecs, DecodeError, Match}
+import kantan.regex.DecodeError
+import kantan.regex.Match
+import kantan.regex.codecs
 
 package object discipline extends DisciplinePackage {
 

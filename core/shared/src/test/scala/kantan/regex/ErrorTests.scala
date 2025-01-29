@@ -16,8 +16,8 @@
 
 package kantan.regex
 
-import DecodeError.TypeError
-import laws.discipline.arbitrary._
+import kantan.regex.DecodeError.TypeError
+import kantan.regex.laws.discipline.arbitrary._
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
@@ -27,7 +27,7 @@ class ErrorTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers
     forAll { (e1: CompileError, e2: RegexError) =>
       (e1, e2) match {
         case (CompileError(t1), CompileError(t2)) => (e1 == e2) should be(t1 == t2)
-        case _                                    => e1 should not be (e2)
+        case _                                    => e1 should not be e2
       }
     }
   }
@@ -42,7 +42,7 @@ class ErrorTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers
     forAll { (e1: TypeError, e2: RegexError) =>
       (e1, e2) match {
         case (TypeError(t1), TypeError(t2)) => (e1 == e2) should be(t1 == t2)
-        case _                              => e1 should not be (e2)
+        case _                              => e1 should not be e2
       }
     }
   }

@@ -19,9 +19,11 @@ package kantan.regex.cats
 import cats.Eq
 import cats.data.EitherT
 import cats.instances.all._
-import cats.laws.discipline.{MonadErrorTests, SemigroupKTests}
+import cats.laws.discipline.MonadErrorTests
+import cats.laws.discipline.SemigroupKTests
 import cats.laws.discipline.SemigroupalTests.Isomorphisms
-import kantan.regex.{DecodeError, GroupDecoder}
+import kantan.regex.DecodeError
+import kantan.regex.GroupDecoder
 import kantan.regex.cats.arbitrary._
 import kantan.regex.cats.equality._
 import kantan.regex.laws.discipline.DisciplineSuite

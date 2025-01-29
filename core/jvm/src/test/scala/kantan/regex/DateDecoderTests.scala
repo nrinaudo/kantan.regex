@@ -18,7 +18,7 @@ package kantan.regex
 
 import java.text.SimpleDateFormat
 import java.util.{Date, Locale}
-import kantan.codecs.strings.{StringCodec}
+import kantan.codecs.strings.StringCodec
 import kantan.regex.laws.discipline.{DisciplineSuite, GroupDecoderTests, MatchDecoderTests}
 import kantan.regex.laws.discipline.arbitrary._
 
