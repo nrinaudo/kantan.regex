@@ -29,6 +29,7 @@ object CompileError extends ErrorCompanion("an unspecified compile error occurre
 sealed abstract class DecodeError(msg: String) extends RegexError(msg)
 
 object DecodeError {
+  @SuppressWarnings(Array("org.wartremover.warts.ObjectThrowable"))
   case object EmptyGroup extends DecodeError("an empty group was found")
 
   @SuppressWarnings(Array("org.wartremover.warts.StringPlusAny"))
