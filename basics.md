@@ -37,8 +37,6 @@ And, as promised, this fails *at compile time* if the regular expression is not 
 ```scala
 rx"[abc"
 // error: Illegal regex: '[abc'
-// rx"[abc"
-// ^^^^^^^^
 ```
 
 ## Simple evaluation
