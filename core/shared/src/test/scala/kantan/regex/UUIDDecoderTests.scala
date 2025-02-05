@@ -16,8 +16,10 @@
 
 package kantan.regex
 
+import kantan.regex.laws.discipline._
+import kantan.regex.laws.discipline.arbitrary._
+
 import java.util.UUID
-import laws.discipline._, arbitrary._
 
 class UUIDDecoderTests extends DisciplineSuite {
 

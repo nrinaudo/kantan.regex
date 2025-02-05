@@ -22,8 +22,9 @@ import kantan.regex.Regex
 
 object equality extends kantan.codecs.cats.laws.discipline.EqInstances {
 
-  implicit def eqRegex[A: Eq]: Eq[Regex[A]] = Eq.by { regex => (str: String) =>
-    regex.eval(str).toList
-  }
+  implicit def eqRegex[A: Eq]: Eq[Regex[A]] =
+    Eq.by { regex => (str: String) =>
+      regex.eval(str).toList
+    }
 
 }

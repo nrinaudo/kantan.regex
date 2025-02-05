@@ -19,6 +19,7 @@ package kantan.regex
 import kantan.codecs.Decoder
 import kantan.codecs.DecoderCompanion
 import kantan.codecs.collection.Factory
+
 import scala.annotation.tailrec
 import scala.collection.mutable
 
@@ -34,17 +35,21 @@ object MatchDecoder extends GeneratedMatchDecoders with DecoderCompanion[Match, 
 
   /** Creates a new [[MatchDecoder]] for a type that already has a [[GroupDecoder]].
     *
-    * @param index index (from 1) of the group that should be extracted.
+    * @param index
+    *   index (from 1) of the group that should be extracted.
     */
-  def fromGroup[A: GroupDecoder](index: Int): MatchDecoder[A] = from(_.decode(index))
+  def fromGroup[A: GroupDecoder](index: Int): MatchDecoder[A] =
+    from(_.decode(index))
 }
 
 /** Declares default [[MatchDecoder]] instances. */
 trait MatchDecoderInstances {
 
   /** Turns a [[GroupDecoder]] into a [[MatchDecoder]] by having it look at the entire match rather than a specific
-    * group. */
-  implicit def fromGroup[A: GroupDecoder]: MatchDecoder[A] = MatchDecoder.fromGroup(0)
+    * group.
+    */
+  implicit def fromGroup[A: GroupDecoder]: MatchDecoder[A] =
+    MatchDecoder.fromGroup(0)
 
   /** Provides an instance of [[MatchDecoder]] for `Either[A, B]`, provided both `A` and `B` have a [[MatchDecoder]]. */
   implicit def eitherMatch[A: MatchDecoder, B: MatchDecoder]: MatchDecoder[Either[A, B]] =
@@ -65,13 +70,16 @@ trait MatchDecoderInstances {
       def loop(i: Int, curr: DecodeResult[mutable.Builder[A, F[A]]]): DecodeResult[F[A]] =
         if(i > m.length || !curr.isRight) curr.map(_.result())
         else
-          loop(i + 1, for {
-            fa <- curr
-            a  <- m.decode[Option[A]](i)
-          } yield {
-            a.foreach(fa += _)
-            fa
-          })
+          loop(
+            i + 1,
+            for {
+              fa <- curr
+              a  <- m.decode[Option[A]](i)
+            } yield {
+              a.foreach(fa += _)
+              fa
+            }
+          )
 
       loop(1, DecodeResult.success(cbf.newBuilder))
     }

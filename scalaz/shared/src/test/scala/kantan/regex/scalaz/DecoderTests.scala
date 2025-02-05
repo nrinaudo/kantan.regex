@@ -17,11 +17,13 @@
 package kantan.regex.scalaz
 
 import kantan.codecs.scalaz.laws.discipline.ScalazDisciplineSuite
-import kantan.regex.{DecodeError, GroupDecoder}
+import kantan.regex.DecodeError
+import kantan.regex.GroupDecoder
 import kantan.regex.scalaz.arbitrary._
 import kantan.regex.scalaz.equality._
 import scalaz.Scalaz._
-import scalaz.scalacheck.ScalazProperties.{monadError, plus}
+import scalaz.scalacheck.ScalazProperties.monadError
+import scalaz.scalacheck.ScalazProperties.plus
 
 class DecoderTests extends ScalazDisciplineSuite {
 

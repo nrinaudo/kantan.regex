@@ -1,7 +1,8 @@
 # kantan.regex
 
-[![Build Status](https://travis-ci.org/nrinaudo/kantan.regex.svg?branch=master)](https://travis-ci.org/nrinaudo/kantan.regex)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.nrinaudo/kantan.regex_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.nrinaudo/kantan.regex_2.13)
+[![Build Status](https://github.com/nrinaudo/kantan.regex/actions/workflows/cli.yml/badge.svg?branch=master)](https://github.com/nrinaudo/kantan.regex/actions/workflows/cli.yml?branch=master)
+[![kantan.regex Scala version support](https://index.scala-lang.org/nrinaudo/kantan.regex/kantan.regex/latest-by-scala-version.svg?platform=jvm)](https://index.scala-lang.org/nrinaudo/kantan.regex/kantan.regex)
+[![kantan.regex Scala version support](https://index.scala-lang.org/nrinaudo/kantan.regex/kantan.regex/latest-by-scala-version.svg?platform=sjs1)](https://index.scala-lang.org/nrinaudo/kantan.regex/kantan.regex)
 [![Join the chat at https://gitter.im/nrinaudo/kantan.regex](https://img.shields.io/badge/gitter-join%20chat-52c435.svg)](https://gitter.im/nrinaudo/kantan.regex)
 
 There are two main use-cases for regular expressions:

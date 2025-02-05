@@ -16,13 +16,17 @@
 
 package kantan.regex.generic
 
-import kantan.codecs.shapeless.laws.{Left, Or, Right}
-import kantan.regex.{Match, Pattern}
+import kantan.codecs.shapeless.laws.Left
+import kantan.codecs.shapeless.laws.Or
+import kantan.codecs.shapeless.laws.Right
+import kantan.regex.Match
+import kantan.regex.Pattern
 import kantan.regex.generic.Instances._
 import kantan.regex.generic.arbitrary._
 import kantan.regex.implicits._
 import kantan.regex.laws.LegalMatch
-import kantan.regex.laws.discipline.{DisciplineSuite, MatchDecoderTests}
+import kantan.regex.laws.discipline.DisciplineSuite
+import kantan.regex.laws.discipline.MatchDecoderTests
 import org.scalacheck.Arbitrary
 
 object Instances {

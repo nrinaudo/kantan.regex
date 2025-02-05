@@ -17,8 +17,13 @@
 package kantan.regex.generic
 
 import kantan.codecs.shapeless.ShapelessInstances
-import kantan.regex.{DecodeResult, GroupDecoder, Match, MatchDecoder}
-import shapeless.{::, HList, HNil}
+import kantan.regex.DecodeResult
+import kantan.regex.GroupDecoder
+import kantan.regex.Match
+import kantan.regex.MatchDecoder
+import shapeless.::
+import shapeless.HList
+import shapeless.HNil
 
 trait LowPrirityGenericInstances {
   implicit def hlistSingletonMatchDecoder[H: MatchDecoder]: MatchDecoder[H :: HNil] =
@@ -40,10 +45,12 @@ trait GenericInstances extends ShapelessInstances with LowPrirityGenericInstance
 
   /** [[MatchDecoder]] for `HNil` (always succeeds). */
   implicit val hnilMatchDecoder: DerivedMatchDecoder[HNil] = new DerivedMatchDecoder[HNil] {
-    override def decodeFrom(e: Match, index: Int) = DecodeResult.success(HNil)
+    override def decodeFrom(e: Match, index: Int) =
+      DecodeResult.success(HNil)
   }
 
   /** [[GroupDecoder]] for `HList` of size 1, provided the single element has a [[GroupDecoder]]. */
-  implicit def hlistGroupDecoder[H: GroupDecoder]: GroupDecoder[H :: HNil] = GroupDecoder[H].map(h => h :: HNil)
+  implicit def hlistGroupDecoder[H: GroupDecoder]: GroupDecoder[H :: HNil] =
+    GroupDecoder[H].map(h => h :: HNil)
 
 }

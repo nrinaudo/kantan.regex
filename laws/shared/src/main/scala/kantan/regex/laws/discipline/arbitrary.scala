@@ -17,14 +17,28 @@
 package kantan.regex.laws.discipline
 
 import imp.imp
-import java.util.regex.Pattern
-import kantan.codecs.laws.{CodecValue, IllegalString, LegalString}
-import kantan.regex.{codecs, CompileError, DecodeError, DecodeResult, Match, Regex, RegexError}
-import kantan.regex.laws.{IllegalGroup, IllegalMatch, LegalGroup, LegalMatch}
-import org.scalacheck.{Arbitrary, Cogen, Gen}
+import kantan.codecs.laws.CodecValue
+import kantan.codecs.laws.IllegalString
+import kantan.codecs.laws.LegalString
+import kantan.regex.CompileError
+import kantan.regex.DecodeError
+import kantan.regex.DecodeResult
+import kantan.regex.Match
+import kantan.regex.Regex
+import kantan.regex.RegexError
+import kantan.regex.codecs
+import kantan.regex.laws.IllegalGroup
+import kantan.regex.laws.IllegalMatch
+import kantan.regex.laws.LegalGroup
+import kantan.regex.laws.LegalMatch
+import org.scalacheck.Arbitrary
 import org.scalacheck.Arbitrary.{arbitrary => arb}
+import org.scalacheck.Cogen
+import org.scalacheck.Gen
 import org.scalacheck.Gen._
 import org.scalacheck.rng.Seed
+
+import java.util.regex.Pattern
 
 object arbitrary extends kantan.regex.laws.discipline.ArbitraryInstances
 
@@ -35,7 +49,8 @@ trait ArbitraryInstances
     Arbitrary(
       arb[String => List[A]].map(f =>
         new Regex[A] {
-          override def eval(str: String) = f(str).iterator
+          override def eval(str: String) =
+            f(str).iterator
         }
       )
     )

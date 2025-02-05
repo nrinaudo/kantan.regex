@@ -16,7 +16,8 @@
 
 package kantan.regex
 
-import laws.discipline._, arbitrary._
+import kantan.regex.laws.discipline._
+import kantan.regex.laws.discipline.arbitrary._
 
 class BigIntDecoderTests extends DisciplineSuite {
 

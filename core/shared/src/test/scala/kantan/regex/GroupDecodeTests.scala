@@ -36,7 +36,7 @@ class GroupDecodeTests extends AnyFunSuite with ScalaCheckPropertyChecks with Ma
     forAll { (f: (Option[String] => DecodeResult[Int])) =>
       implicit val decoder: GroupDecoder[Int] = GroupDecoder.from(f)
 
-      decoder should be theSameInstanceAs GroupDecoder[Int]
+      (decoder should be).theSameInstanceAs(GroupDecoder[Int])
     }
   }
 }

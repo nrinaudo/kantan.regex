@@ -16,10 +16,14 @@
 
 package kantan.regex.laws.discipline
 
-import kantan.regex.{codecs, DecodeError, Match}
-import kantan.regex.laws.{LegalMatch, MatchDecoderLaws}
+import kantan.regex.DecodeError
+import kantan.regex.Match
+import kantan.regex.codecs
+import kantan.regex.laws.LegalMatch
+import kantan.regex.laws.MatchDecoderLaws
 import kantan.regex.laws.discipline.arbitrary._
-import org.scalacheck.{Arbitrary, Cogen}
+import org.scalacheck.Arbitrary
+import org.scalacheck.Cogen
 
 object MatchDecoderTests {
   implicit val arbMatch: Arbitrary[Match] = Arbitrary(Arbitrary.arbitrary[String].map(toMatch))

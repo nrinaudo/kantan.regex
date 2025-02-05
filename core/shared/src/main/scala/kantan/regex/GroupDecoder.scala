@@ -16,7 +16,8 @@
 
 package kantan.regex
 
-import kantan.codecs.{Decoder, DecoderCompanion}
+import kantan.codecs.Decoder
+import kantan.codecs.DecoderCompanion
 import kantan.codecs.strings.StringDecoder
 
 /** Provides instance creation and summoning methods for [[GroupDecoder]]. */

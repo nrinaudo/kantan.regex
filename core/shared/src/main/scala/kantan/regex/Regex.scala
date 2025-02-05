@@ -20,9 +20,11 @@ package kantan.regex
 trait Regex[A] { self =>
 
   /** Turns a `Regex[A]` into a `Regex[B]` by applying the specified function to each result. */
-  def map[B](f: A => B): Regex[B] = new Regex[B] {
-    override def eval(str: String) = self.eval(str).map(f)
-  }
+  def map[B](f: A => B): Regex[B] =
+    new Regex[B] {
+      override def eval(str: String) =
+        self.eval(str).map(f)
+    }
 
   /** Evaluates the regular expression against the specified string. */
   def eval(str: String): Iterator[A]
@@ -34,23 +36,24 @@ object Regex {
     *
     * Decoding is achieved by applying whatever [[MatchDecoder]] is in scope for `A` on each match.
     *
-    * This method is made with [[kantan.regex.literals.RegexLiteral literals]] in mind. Should you be working with
-    * other types (such as non-literal strings, for instance), [[kantan.regex.ops.CompilerOps]] might prove more
-    * helpful.
+    * This method is made with [[kantan.regex.literals.RegexLiteral literals]] in mind. Should you be working with other
+    * types (such as non-literal strings, for instance), [[kantan.regex.ops.CompilerOps]] might prove more helpful.
     */
-  def apply[A: MatchDecoder](pattern: Pattern): Regex[DecodeResult[A]] = new Regex[DecodeResult[A]] {
-    override def eval(s: String) = new MatchIterator(pattern.matcher(s)).map(m => MatchDecoder[A].decode(m))
-    override def toString        = pattern.toString
-  }
+  def apply[A: MatchDecoder](pattern: Pattern): Regex[DecodeResult[A]] =
+    new Regex[DecodeResult[A]] {
+      override def eval(s: String) =
+        new MatchIterator(pattern.matcher(s)).map(m => MatchDecoder[A].decode(m))
+      override def toString =
+        pattern.toString
+    }
 
   /** Turns the specified pattern into a [[Regex]].
     *
     * Decoding is achieved by applying whatever [[GroupDecoder]] is in scope for `A` on group index `group` of each
     * match.
     *
-    * This method is made with [[kantan.regex.literals.RegexLiteral literals]] in mind. Should you be working with
-    * other types (such as non-literal strings, for instance), [[kantan.regex.ops.CompilerOps]] might prove more
-    * helpful.
+    * This method is made with [[kantan.regex.literals.RegexLiteral literals]] in mind. Should you be working with other
+    * types (such as non-literal strings, for instance), [[kantan.regex.ops.CompilerOps]] might prove more helpful.
     */
   def apply[A: GroupDecoder](pattern: Pattern, group: Int): Regex[DecodeResult[A]] =
     Regex(pattern)(MatchDecoder.fromGroup(group))

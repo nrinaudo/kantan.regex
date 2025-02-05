@@ -16,10 +16,15 @@
 
 package kantan.regex.java8
 
-import java.time.OffsetDateTime
-import kantan.regex.{GroupDecoder, MatchDecoder}
+import kantan.regex.GroupDecoder
+import kantan.regex.MatchDecoder
 import kantan.regex.java8.arbitrary._
-import kantan.regex.laws.discipline.{DisciplineSuite, GroupDecoderTests, MatchDecoderTests, SerializableTests}
+import kantan.regex.laws.discipline.DisciplineSuite
+import kantan.regex.laws.discipline.GroupDecoderTests
+import kantan.regex.laws.discipline.MatchDecoderTests
+import kantan.regex.laws.discipline.SerializableTests
+
+import java.time.OffsetDateTime
 
 class OffsetDateTimeDecoderTests extends DisciplineSuite {
 

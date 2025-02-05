@@ -16,7 +16,11 @@
 
 package kantan.regex.ops
 
-import kantan.regex.{DecodeResult, GroupDecoder, MatchDecoder, Pattern, Regex}
+import kantan.regex.DecodeResult
+import kantan.regex.GroupDecoder
+import kantan.regex.MatchDecoder
+import kantan.regex.Pattern
+import kantan.regex.Regex
 
 /** Enriches `String` with useful regex-related syntax. */
 final class StringOps(val str: String) extends AnyVal {
@@ -24,7 +28,8 @@ final class StringOps(val str: String) extends AnyVal {
     r.eval(s)
 
   /** Shorthand for [[Regex.eval]]. */
-  def evalRegex[A](r: Regex[A]): Iterator[A] = r.eval(str)
+  def evalRegex[A](r: Regex[A]): Iterator[A] =
+    r.eval(str)
 
   def evalRegex[A: MatchDecoder](p: Pattern): Iterator[DecodeResult[A]] =
     eval(str, Regex[A](p))
@@ -42,7 +47,8 @@ final class StringOps(val str: String) extends AnyVal {
 }
 
 trait ToStringOps {
-  implicit def toRegexStringOps(str: String): StringOps = new StringOps(str)
+  implicit def toRegexStringOps(str: String): StringOps =
+    new StringOps(str)
 }
 
 object string extends ToStringOps

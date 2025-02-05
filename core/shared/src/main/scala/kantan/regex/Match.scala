@@ -22,8 +22,8 @@ import scala.util.Try
 /** Represents a single match in a regular expression evaluation.
   *
   * It's usually better not to interact with [[Match]] directly - more often than not, adapting existing instances of
-  * [[MatchDecoder]] is the better solution. When in a situation where you *must* deal with such values directly,
-  * it's important not to hold onto them: due to the way kantan.regex works internally, [[Match]] is mutable.
+  * [[MatchDecoder]] is the better solution. When in a situation where you *must* deal with such values directly, it's
+  * important not to hold onto them: due to the way kantan.regex works internally, [[Match]] is mutable.
   */
 class Match private[regex] (private val matcher: Matcher) {
 
@@ -38,7 +38,8 @@ class Match private[regex] (private val matcher: Matcher) {
     if(index < 0 || index > length) DecodeResult.noSuchGroupId(index)
     else GroupDecoder[A].decode(Option(matcher.group(index)))
 
-  override def toString = matcher.toString
+  override def toString =
+    matcher.toString
 
   /** Underlying pattern. */
   def pattern(): Pattern =

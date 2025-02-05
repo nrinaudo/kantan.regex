@@ -16,15 +16,18 @@
 
 package kantan.regex
 
-import _root_.cats.{Eq, Functor}
-import kantan.codecs.cats.{CommonInstances, DecoderInstances}
+import _root_.cats.Eq
+import _root_.cats.Functor
+import kantan.codecs.cats.CommonInstances
+import kantan.codecs.cats.DecoderInstances
 
 package object cats extends DecoderInstances with CommonInstances {
   // - Regex instances -------------------------------------------------------------------------------------------------
   // -------------------------------------------------------------------------------------------------------------------
 
   implicit val regexFunctor: Functor[Regex] = new Functor[Regex] {
-    override def map[A, B](fa: Regex[A])(f: A => B) = fa.map(f)
+    override def map[A, B](fa: Regex[A])(f: A => B) =
+      fa.map(f)
   }
 
   // - Eq instances ----------------------------------------------------------------------------------------------------

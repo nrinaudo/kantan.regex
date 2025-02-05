@@ -17,17 +17,19 @@
 package kantan.regex
 
 import kantan.regex.ops._
-import org.scalacheck.{Arbitrary, Gen}
+import org.scalacheck.Arbitrary
+import org.scalacheck.Gen
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
 class MatchTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers {
   test("length should return the expected value") {
-    def validating(length: Int): MatchDecoder[List[Int]] = MatchDecoder[List[Int]].contramapEncoded { (m: Match) =>
-      m.length should be(length)
-      m
-    }
+    def validating(length: Int): MatchDecoder[List[Int]] =
+      MatchDecoder[List[Int]].contramapEncoded { (m: Match) =>
+        m.length should be(length)
+        m
+      }
 
     forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int])) { (is: List[Int]) =>
       implicit val decoder: MatchDecoder[List[Int]] = validating(is.length)
@@ -38,7 +40,8 @@ class MatchTests extends AnyFunSuite with ScalaCheckPropertyChecks with Matchers
   }
 
   test("Out of bound groups should generate a NoSuchGroupId") {
-    def outOfBounds(i: Int): MatchDecoder[Int] = MatchDecoder.from(_.decode[Int](i))
+    def outOfBounds(i: Int): MatchDecoder[Int] =
+      MatchDecoder.from(_.decode[Int](i))
 
     forAll(Gen.nonEmptyListOf(Arbitrary.arbitrary[Int]), Arbitrary.arbitrary[Int].suchThat(_ != -1)) { (is, offset) =>
       val index = is.length + 1 + offset

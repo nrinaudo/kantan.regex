@@ -16,7 +16,8 @@
 
 package kantan.regex
 
-import kantan.codecs.error.{Error, ErrorCompanion}
+import kantan.codecs.error.Error
+import kantan.codecs.error.ErrorCompanion
 
 /** Root class for all regular expression related errors. */
 sealed abstract class RegexError(msg: String) extends Error(msg)
@@ -29,6 +30,7 @@ object CompileError extends ErrorCompanion("an unspecified compile error occurre
 sealed abstract class DecodeError(msg: String) extends RegexError(msg)
 
 object DecodeError {
+  @SuppressWarnings(Array("org.wartremover.warts.ObjectThrowable"))
   case object EmptyGroup extends DecodeError("an empty group was found")
 
   @SuppressWarnings(Array("org.wartremover.warts.StringPlusAny"))

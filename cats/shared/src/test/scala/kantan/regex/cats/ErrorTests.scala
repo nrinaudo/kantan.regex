@@ -18,7 +18,9 @@ package kantan.regex.cats
 
 import cats.Show
 import cats.kernel.laws.discipline.EqTests
-import kantan.regex.{CompileError, DecodeError, RegexError}
+import kantan.regex.CompileError
+import kantan.regex.DecodeError
+import kantan.regex.RegexError
 import kantan.regex.cats.arbitrary._
 import kantan.regex.laws.discipline.DisciplineSuite
 

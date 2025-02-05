@@ -16,14 +16,18 @@
 
 package kantan.regex.generic
 
-import kantan.regex.{DecodeResult, Match, MatchDecoder}
+import kantan.regex.DecodeResult
+import kantan.regex.Match
+import kantan.regex.MatchDecoder
 
 /** Custom [[MatchDecoder]] implementation for decoding `HList`. */
 trait DerivedMatchDecoder[A] extends MatchDecoder[A] {
   def decodeFrom(e: Match, index: Int): DecodeResult[A]
-  override def decode(e: Match) = decodeFrom(e, 1)
+  override def decode(e: Match) =
+    decodeFrom(e, 1)
 }
 
 object DerivedMatchDecoder {
-  def apply[A](implicit ev: DerivedMatchDecoder[A]): DerivedMatchDecoder[A] = macro imp.summon[DerivedMatchDecoder[A]]
+  def apply[A](implicit ev: DerivedMatchDecoder[A]): DerivedMatchDecoder[A] =
+    macro imp.summon[DerivedMatchDecoder[A]]
 }

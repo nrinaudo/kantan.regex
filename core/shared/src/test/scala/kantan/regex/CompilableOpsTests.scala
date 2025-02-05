@@ -16,7 +16,7 @@
 
 package kantan.regex
 
-import implicits._
+import kantan.regex.implicits._
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks

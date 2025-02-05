@@ -16,8 +16,10 @@
 
 package kantan.regex
 
-import _root_.scalaz.{Equal, Functor}
-import kantan.codecs.scalaz.{CommonInstances, DecoderInstances}
+import _root_.scalaz.Equal
+import _root_.scalaz.Functor
+import kantan.codecs.scalaz.CommonInstances
+import kantan.codecs.scalaz.DecoderInstances
 
 package object scalaz extends DecoderInstances with CommonInstances {
 
@@ -25,7 +27,8 @@ package object scalaz extends DecoderInstances with CommonInstances {
   // -------------------------------------------------------------------------------------------------------------------
 
   implicit val regexFunctor: Functor[Regex] = new Functor[Regex] {
-    override def map[A, B](fa: Regex[A])(f: A => B) = fa.map(f)
+    override def map[A, B](fa: Regex[A])(f: A => B) =
+      fa.map(f)
   }
 
   // - Equal instances ----------------------------------------------------------------------------------------------------
